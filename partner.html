@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Partner With Us | Agency & Production House Subcontracting | DraftsRush</title>
+  <meta name="description" content="White-label scriptwriting, research overflow, and B2B ghostwriting services for creative agencies and production houses under strict NDAs.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -55,7 +56,7 @@
           Your silent script desk and research team.
         </h1>
         <p class="text-lg md:text-xl font-medium max-w-3xl mb-8 leading-relaxed text-gray-800">
-          Agencies and production houses run into bandwidth crunches. We act as your on-demand, white-label writing partner. You maintain client contact; we deliver industry-formatted scripts, research modules, and video outlines under strict NDAs.
+          Agencies and production houses run into bandwidth crunches. We act as your on-demand, white-label writing partner. You maintain direct client contact; we deliver industry-formatted scripts, research modules, and video outlines under strict NDAs.
         </p>
         <div class="flex flex-wrap gap-4">
           <a href="#partner-form" class="bg-[#FFE600] text-black brand-font font-black text-lg px-8 py-3.5 border-2 border-black brutal-box brutal-btn">
@@ -136,27 +137,31 @@
     <!-- Partner Inquiry Form -->
     <section id="partner-form" class="max-w-3xl mx-auto px-6 py-16">
       <div class="border-4 border-black bg-[#F0F2F5] p-8 md:p-10 brutal-box">
-        <h2 class="text-3xl font-black brand-font mb-2">Agency Subcontract Intake</h2>
+        <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">B2B Application</span>
+        <h2 class="text-3xl font-black brand-font mt-2 mb-2">Agency Subcontract Intake</h2>
         <p class="font-medium text-gray-700 mb-8">Tell us about your production house or agency requirements. We will review your brief and reply with a custom wholesale proposal within 6 hours.</p>
 
-     <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
-  <!-- Replace YOUR_ACCESS_KEY_HERE with the key from your email -->
-  <input type="hidden" name="access_key" value="00accd55-2a1d-4d94-858d-672993022b3a">
+        <!-- Asynchronous Submission Form -->
+        <form id="partner-form-element" class="space-y-6">
+          <!-- Web3Forms Key -->
+          <input type="hidden" name="access_key" value="00accd55-2a1d-4d94-858d-672993022b3a">
+          <input type="hidden" name="from_name" value="DraftsRush Partner Desk">
+
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block font-black text-sm uppercase tracking-wider mb-2">Your Name</label>
-              <input type="text" name="name" required placeholder="Your Name" class="w-full border-2 border-black p-3 font-medium bg-white focus:outline-none focus:bg-[#FFE600]">
+              <input type="text" name="name" required placeholder="" class="w-full border-2 border-black p-3 font-medium bg-white focus:outline-none focus:bg-[#FFE600]">
             </div>
             <div>
               <label class="block font-black text-sm uppercase tracking-wider mb-2">Agency / Studio Name</label>
-              <input type="text" name="agency" required placeholder="Agency Name" class="w-full border-2 border-black p-3 font-medium bg-white focus:outline-none focus:bg-[#FFE600]">
+              <input type="text" name="agency" required placeholder="" class="w-full border-2 border-black p-3 font-medium bg-white focus:outline-none focus:bg-[#FFE600]">
             </div>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block font-black text-sm uppercase tracking-wider mb-2">Business Email</label>
-              <input type="email" name="email" required placeholder="xyz@agency.com" class="w-full border-2 border-black p-3 font-medium bg-white focus:outline-none focus:bg-[#FFE600]">
+              <input type="email" name="email" required placeholder="" class="w-full border-2 border-black p-3 font-medium bg-white focus:outline-none focus:bg-[#FFE600]">
             </div>
             <div>
               <label class="block font-black text-sm uppercase tracking-wider mb-2">Engagement Type</label>
@@ -174,7 +179,17 @@
             <textarea name="details" rows="5" required placeholder="Give us a quick rundown: estimated monthly volume, target formats, turnaround expectations, or NDA requirements..." class="w-full border-2 border-black p-3 font-medium bg-white focus:outline-none focus:bg-[#FFE600]"></textarea>
           </div>
 
-          <button type="submit" class="w-full bg-[#FFE600] text-black font-black text-xl py-4 border-4 border-black brutal-box brutal-btn tracking-wider uppercase">
+          <!-- Success Prompt -->
+          <div id="partner-success" class="hidden border-2 border-black bg-[#6BCB77] text-black font-bold p-4 brutal-box">
+            ✓ Application submitted successfully! We will review your agency parameters and respond within 6 hours.
+          </div>
+
+          <!-- Error Prompt -->
+          <div id="partner-error" class="hidden border-2 border-black bg-[#FF6B6B] text-black font-bold p-4 brutal-box">
+            Something went wrong. Please check your details and try again.
+          </div>
+
+          <button id="partner-submit-btn" type="submit" class="w-full bg-[#FFE600] text-black font-black text-xl py-4 border-4 border-black brutal-box brutal-btn tracking-wider uppercase">
             Submit Agency Application
           </button>
         </form>
@@ -183,7 +198,7 @@
   </main>
 
   <!-- Universal Footer -->
-  <footer class="border-t-4 border-black bg-[#D4D7E1] py-12">
+  <footer class="border-t-4 border-black bg-[#D4D7E1] py-12 mt-auto">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <div class="col-span-1 md:col-span-2">
         <a href="index.html" class="flex items-center gap-2 text-2xl font-black tracking-tight brand-font mb-3">
@@ -193,7 +208,7 @@
         <p class="font-medium text-sm text-gray-700 max-w-sm leading-relaxed mb-4">
           Independent writing studio delivering high-retention video scripts and citation-verified academic research modules.
         </p>
-        <span class="inline-block bg-[#FFE600] border-2 border-black px-2 py-1 text-xs font-bold brand-font">TURNAROUND: 24-48 HOURS</span>
+        <span class="inline-block bg-[#FFE600] border-2 border-black px-2 py-1 text-xs font-bold brand-font">BUDGET-FRIENDLY & FAST TURNAROUND</span>
       </div>
 
       <div>
@@ -218,13 +233,59 @@
 
     <div class="max-w-6xl mx-auto px-6 border-t-2 border-black pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-gray-600">
       <p>© 2026 DraftsRush. All rights reserved.</p>
-   <div class="flex gap-6">
-  <a href="privacy.html" class="hover:underline">Privacy Policy</a>
-  <a href="terms.html" class="hover:underline">Terms of Service</a>
-  <a href="contact.html" class="hover:underline">Support</a>
-</div>
+      <div class="flex gap-6">
+        <a href="privacy.html" class="hover:underline">Privacy Policy</a>
+        <a href="terms.html" class="hover:underline">Terms of Service</a>
+        <a href="contact.html" class="hover:underline">Support</a>
+      </div>
     </div>
   </footer>
+
+  <!-- Submission Script -->
+  <script>
+    const partnerForm = document.getElementById('partner-form-element');
+    const partnerSubmitBtn = document.getElementById('partner-submit-btn');
+    const partnerSuccessBox = document.getElementById('partner-success');
+    const partnerErrorBox = document.getElementById('partner-error');
+
+    partnerForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      partnerSubmitBtn.disabled = true;
+      partnerSubmitBtn.innerText = 'PROCESSING...';
+      partnerSuccessBox.classList.add('hidden');
+      partnerErrorBox.classList.add('hidden');
+
+      const formData = new FormData(partnerForm);
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          partnerSuccessBox.classList.remove('hidden');
+          partnerForm.reset();
+          partnerSubmitBtn.innerText = 'SUBMIT AGENCY APPLICATION';
+          partnerSubmitBtn.disabled = false;
+
+          setTimeout(() => {
+            partnerSuccessBox.classList.add('hidden');
+          }, 6000);
+        } else {
+          partnerErrorBox.classList.remove('hidden');
+          partnerSubmitBtn.innerText = 'TRY AGAIN';
+          partnerSubmitBtn.disabled = false;
+        }
+      } catch (err) {
+        partnerErrorBox.classList.remove('hidden');
+        partnerSubmitBtn.innerText = 'TRY AGAIN';
+        partnerSubmitBtn.disabled = false;
+      }
+    });
+  </script>
 
 </body>
 </html>
