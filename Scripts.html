@@ -1,1 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scripts | DraftRush</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 5px 5px 0px #000000; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0px #000000; }
+  </style>
+</head>
+<body class="bg-[#FFFDF6] text-black min-h-screen flex flex-col">
 
+  <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-2xl font-black tracking-tight">
+        <span class="bg-black text-white px-2 py-1 rotate-[-3deg] border-2 border-black inline-block">DR</span>
+        DraftRush
+      </a>
+      <nav class="hidden md:flex gap-6 font-bold text-lg">
+        <a href="scripts.html" class="underline underline-offset-4">Scripts</a>
+        <a href="academic.html" class="hover:underline">Academic Help</a>
+        <a href="about.html" class="hover:underline">About</a>
+        <a href="contact.html" class="bg-black text-white px-4 py-1.5 brutal-box brutal-btn border-2 border-black">Order Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-6xl mx-auto px-6 py-12">
+    <div class="border-4 border-black bg-[#FFE600] p-6 brutal-box mb-12">
+      <h1 class="text-4xl md:text-5xl font-black mb-3">Bulk Script Packages</h1>
+      <p class="text-lg font-medium">Clear hooks, strict pacing, zero fluff. Pick your package to scale production fast.</p>
+    </div>
+
+    <!-- Script Pricing Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      
+      <!-- Tier 1 -->
+      <div class="border-4 border-black bg-white p-6 brutal-box flex flex-col justify-between">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider bg-gray-200 px-2 py-1 border border-black inline-block mb-3">Starter Test</div>
+          <h2 class="text-2xl font-black mb-2">5 Scripts</h2>
+          <div class="text-3xl font-black mb-4">$35 <span class="text-sm font-bold text-gray-600">($7/script)</span></div>
+          <ul class="text-sm font-bold space-y-2 mb-6">
+            <li>• 30 to 60 seconds each</li>
+            <li>• 2 hook options per script</li>
+            <li>• Visual notes for video editor</li>
+            <li>• 24 to 48 hour turnaround</li>
+          </ul>
+        </div>
+        <a href="contact.html" class="block text-center bg-[#FFE600] text-black font-black py-2 border-2 border-black brutal-btn">Order Tier</a>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="border-4 border-black bg-[#6BCB77] p-6 brutal-box flex flex-col justify-between">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider bg-black text-white px-2 py-1 inline-block mb-3">Growth Pack</div>
+          <h2 class="text-2xl font-black mb-2">10 Scripts</h2>
+          <div class="text-3xl font-black mb-4">$60 <span class="text-sm font-bold text-black">($6/script)</span></div>
+          <ul class="text-sm font-bold space-y-2 mb-6">
+            <li>• 30 to 60 seconds each</li>
+            <li>• 3 hook options per script</li>
+            <li>• Visual direction & pacing cues</li>
+            <li>• 3 days turnaround</li>
+          </ul>
+        </div>
+        <a href="contact.html" class="block text-center bg-black text-white font-black py-2 border-2 border-black brutal-btn">Order Tier</a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="border-4 border-black bg-white p-6 brutal-box flex flex-col justify-between">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider bg-gray-200 px-2 py-1 border border-black inline-block mb-3">Scale Engine</div>
+          <h2 class="text-2xl font-black mb-2">20 Scripts</h2>
+          <div class="text-3xl font-black mb-4">$100 <span class="text-sm font-bold text-gray-600">($5/script)</span></div>
+          <ul class="text-sm font-bold space-y-2 mb-6">
+            <li>• 30 to 60 seconds each</li>
+            <li>• Full script + B-roll cues</li>
+            <li>• SEO title ideas included</li>
+            <li>• 5 days turnaround</li>
+          </ul>
+        </div>
+        <a href="contact.html" class="block text-center bg-[#FFE600] text-black font-black py-2 border-2 border-black brutal-btn">Order Tier</a>
+      </div>
+
+      <!-- Tier 4 -->
+      <div class="border-4 border-black bg-[#FF6B6B] p-6 brutal-box flex flex-col justify-between">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wider bg-black text-white px-2 py-1 inline-block mb-3">Monthly Engine</div>
+          <h2 class="text-2xl font-black mb-2">30 Scripts</h2>
+          <div class="text-3xl font-black mb-4">$135 <span class="text-sm font-bold text-black">($4.50/script)</span></div>
+          <ul class="text-sm font-bold space-y-2 mb-6">
+            <li>• 1 month of daily shorts</li>
+            <li>• Weekly delivery batches (7/wk)</li>
+            <li>• Content calendar layout</li>
+            <li>• Dedicated priority revisions</li>
+          </ul>
+        </div>
+        <a href="contact.html" class="block text-center bg-black text-white font-black py-2 border-2 border-black brutal-btn">Order Tier</a>
+      </div>
+
+    </div>
+
+    <!-- Long-Form Custom Box -->
+    <div class="border-4 border-black bg-[#4D96FF] text-white p-8 brutal-box">
+      <h3 class="text-2xl font-black mb-2 text-black">Need Long-Form Screenplays or YouTube Video Essays?</h3>
+      <p class="font-medium text-black mb-4 max-w-3xl">
+        I format narrative screenplays to industry standard using Final Draft. Ideal for short films, mystery/suspense plots, and 8 to 15 minute YouTube educational explainers.
+      </p>
+      <div class="font-black text-xl text-black mb-4">$20 to $40 per script page / minute of footage</div>
+      <a href="contact.html" class="inline-block bg-black text-white font-black px-6 py-2 border-2 border-black brutal-btn">Request Custom Quote</a>
+    </div>
+  </main>
+
+  <footer class="border-t-4 border-black bg-white mt-auto py-8">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center text-sm font-bold">
+      <p>© 2026 DraftRush.</p>
+      <a href="contact.html" class="hover:underline">Contact Desk</a>
+    </div>
+  </footer>
+
+</body>
+</html>
