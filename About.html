@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | DraftRush</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 5px 5px 0px #000000; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0px #000000; }
+  </style>
+</head>
+<body class="bg-[#FFFDF6] text-black min-h-screen flex flex-col">
 
+  <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-2xl font-black tracking-tight">
+        <span class="bg-black text-white px-2 py-1 rotate-[-3deg] border-2 border-black inline-block">DR</span>
+        DraftRush
+      </a>
+      <nav class="hidden md:flex gap-6 font-bold text-lg">
+        <a href="scripts.html" class="hover:underline">Scripts</a>
+        <a href="academic.html" class="hover:underline">Academic Help</a>
+        <a href="about.html" class="underline underline-offset-4">About</a>
+        <a href="contact.html" class="bg-black text-white px-4 py-1.5 brutal-box brutal-btn border-2 border-black">Order Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-4xl mx-auto px-6 py-12">
+    <div class="border-4 border-black bg-[#6BCB77] p-8 brutal-box mb-12">
+      <h1 class="text-4xl md:text-5xl font-black mb-4">Speed, Structure, and Volume.</h1>
+      <p class="text-lg font-medium">
+        DraftRush delivers lean, impact-driven writing for creators and students who need results right away.
+      </p>
+    </div>
+
+    <div class="space-y-8 font-medium text-lg leading-relaxed mb-12">
+      <div class="border-4 border-black bg-white p-6 brutal-box">
+        <h2 class="text-2xl font-black mb-2">How the Script Engine Works</h2>
+        <p>
+          Most short-form scripts fail in the first 3 seconds because the creator takes too long to reach the premise. I build every script around quick visual hooks, fast payoffs, and explicit direction for your video editor. You get clean Google Docs with columns for visuals and spoken audio.
+        </p>
+      </div>
+
+      <div class="border-4 border-black bg-white p-6 brutal-box">
+        <h2 class="text-2xl font-black mb-2">How the Academic Engine Works</h2>
+        <p>
+          Disorganized arguments and messy bibliographies waste hours. I extract insights from peer-reviewed databases, organize complex information into direct outlines, and format your references cleanly in standard citation styles.
+        </p>
+      </div>
+    </div>
+
+    <div class="border-4 border-black bg-[#FFE600] p-6 brutal-box text-center">
+      <h3 class="text-2xl font-black mb-4">Have an unusual project or urgent deadline?</h3>
+      <a href="contact.html" class="inline-block bg-black text-white font-black px-6 py-3 border-2 border-black brutal-btn">
+        Send Project Details
+      </a>
+    </div>
+  </main>
+
+  <footer class="border-t-4 border-black bg-white mt-auto py-8">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center text-sm font-bold">
+      <p>© 2026 DraftRush.</p>
+      <a href="contact.html" class="hover:underline">Contact Desk</a>
+    </div>
+  </footer>
+
+</body>
+</html>
