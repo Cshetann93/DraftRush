@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Hook Retention Grader | DraftsRush</title>
+  <meta name="description" content="Audit your video hook sentence for retention, curiosity gaps, and filler words. Free browser tool by DraftsRush.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+
+  <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2 text-2xl font-black tracking-tight brand-font">
+        <span class="bg-black text-white px-2 py-0.5 border-2 border-black rotate-[-2deg]">DR</span>
+        DraftsRush
+      </a>
+      <nav class="hidden md:flex items-center gap-8 font-bold text-sm tracking-wide brand-font">
+        <a href="../scripts.html" class="hover:underline">SCRIPTS</a>
+        <a href="../tools.html" class="underline font-black">TOOLS HUB</a>
+        <a href="../partner.html" class="hover:underline">PARTNER</a>
+        <a href="../contact.html" class="bg-black text-white px-5 py-2 border-2 border-black brutal-box brutal-btn tracking-wider uppercase">Order Draft</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-4xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-10 brutal-box-lg mb-8">
+      <div class="inline-flex items-center gap-2 bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase mb-3">
+        Utility: Script Retention
+      </div>
+      <h1 class="text-3xl md:text-5xl font-black brand-font tracking-tight mb-3">
+        Video Hook Retention Grader
+      </h1>
+      <p class="text-sm md:text-base font-medium text-gray-700 leading-relaxed mb-6">
+        Paste the single opening line or sentence of your video. The analyzer flags weak greetings, counts filler words, and estimates your retention score out of 100.
+      </p>
+
+      <div class="mb-4">
+        <label class="block font-black text-xs uppercase tracking-wider mb-2">Opening Sentence (Hook)</label>
+        <input id="hook-input" type="text" placeholder='e.g. "Most people throw away the healthiest part of an egg without knowing it."' class="w-full border-2 border-black p-4 font-medium text-base bg-white focus:outline-none focus:bg-[#FFFDE6]">
+      </div>
+
+      <!-- Score Card -->
+      <div class="border-2 border-black bg-white p-6 brutal-box mb-6">
+        <div class="flex items-center justify-between border-b-2 border-black pb-4 mb-4">
+          <div>
+            <span class="text-xs font-bold text-gray-500 uppercase">Estimated Retention Power</span>
+            <div id="score-display" class="text-5xl font-black brand-font text-gray-400">--/100</div>
+          </div>
+          <div id="grade-badge" class="border-2 border-black px-4 py-1 font-black brand-font text-lg bg-gray-200">
+            Awaiting Hook
+          </div>
+        </div>
+
+        <h4 class="font-black text-xs uppercase tracking-wider mb-2">Diagnostic Feedback:</h4>
+        <ul id="feedback-list" class="space-y-2 text-sm font-medium text-gray-700">
+          <li>• Enter your hook above to view suggestions.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Promo CTA -->
+    <div class="border-4 border-black bg-[#FFE600] p-6 brutal-box flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h2 class="text-xl font-black brand-font mb-1">Want 3 tested hook angles per script?</h2>
+        <p class="text-xs font-medium text-black">Every DraftsRush script package includes multiple opening options so you can A/B test your titles and thumbnails.</p>
+      </div>
+      <a href="../scripts.html" class="bg-black text-white font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn text-xs uppercase whitespace-nowrap">
+        View Script Packages
+      </a>
+    </div>
+  </main>
+
+  <footer class="border-t-4 border-black bg-[#D4D7E1] py-8 text-center text-xs font-bold text-gray-600">
+    <p>© 2026 DraftsRush. All rights reserved. • <a href="mailto:contact@draftsrush.com" class="underline">contact@draftsrush.com</a></p>
+  </footer>
+
+  <script>
+    const input = document.getElementById('hook-input');
+    const scoreDisplay = document.getElementById('score-display');
+    const gradeBadge = document.getElementById('grade-badge');
+    const feedbackList = document.getElementById('feedback-list');
+
+    const badGreetings = ['hey guys', 'hello everyone', 'welcome back', 'in this video', "today i'm going to", 'so basically'];
+    const powerWords = ['secret', 'never', 'stop', 'mistake', 'nobody', 'warning', 'why', 'how', 'lost', 'waste', 'banned', 'truth', 'exposed'];
+
+    input.addEventListener('input', function() {
+      const val = input.value.trim().toLowerCase();
+      if (!val) {
+        scoreDisplay.innerText = '--/100';
+        scoreDisplay.className = 'text-5xl font-black brand-font text-gray-400';
+        gradeBadge.innerText = 'Awaiting Hook';
+        gradeBadge.className = 'border-2 border-black px-4 py-1 font-black brand-font text-lg bg-gray-200';
+        feedbackList.innerHTML = '<li>• Enter your hook above to view suggestions.</li>';
+        return;
+      }
+
+      let score = 75;
+      const feedback = [];
+      const words = val.match(/\b\S+\b/g) || [];
+
+      // Penalty: Weak YouTube Greetings
+      let hasBadGreeting = false;
+      for (const phrase of badGreetings) {
+        if (val.startsWith(phrase)) {
+          hasBadGreeting = true;
+          score -= 35;
+          feedback.push(`❌ <strong>Fatal Retention Drop:</strong> Starts with "${phrase}". Mobile viewers swipe away from formal greetings. Cut immediately.`);
+          break;
+        }
+      }
+
+      // Check Word Count
+      if (words.length > 14) {
+        score -= 15;
+        feedback.push(`⚠️ <strong>Too Long (${words.length} words):</strong> Hooks should ideally deliver the premise in under 10 words.`);
+      } else if (words.length >= 5 && words.length <= 11) {
+        score += 10;
+        feedback.push(`✓ <strong>Punchy Word Length:</strong> ${words.length} words is fast enough to hook before second 00:03.`);
+      }
+
+      // Check for curiosity/power words
+      let foundPowerWord = false;
+      for (const pw of powerWords) {
+        if (words.includes(pw)) {
+          foundPowerWord = true;
+          break;
+        }
+      }
+
+      if (foundPowerWord) {
+        score += 15;
+        feedback.push(`✓ <strong>Strong Curiosity / Tension Trigger:</strong> Contains active trigger verbs that force an open question.`);
+      } else {
+        feedback.push(`ℹ <strong>Neutral Tone:</strong> Consider adding a higher stakes word (e.g. "mistake", "never", "why", "stop").`);
+      }
+
+      score = Math.max(10, Math.min(100, score));
+
+      scoreDisplay.innerText = `${score}/100`;
+
+      if (score >= 80) {
+        scoreDisplay.className = 'text-5xl font-black brand-font text-emerald-700';
+        gradeBadge.innerText = 'HIGH RETENTION';
+        gradeBadge.className = 'border-2 border-black px-4 py-1 font-black brand-font text-lg bg-[#C2F0C2]';
+      } else if (score >= 50) {
+        scoreDisplay.className = 'text-5xl font-black brand-font text-yellow-700';
+        gradeBadge.innerText = 'MODERATE';
+        gradeBadge.className = 'border-2 border-black px-4 py-1 font-black brand-font text-lg bg-[#FFF080]';
+      } else {
+        scoreDisplay.className = 'text-5xl font-black brand-font text-red-700';
+        gradeBadge.innerText = 'HIGH DROP-OFF RISK';
+        gradeBadge.className = 'border-2 border-black px-4 py-1 font-black brand-font text-lg bg-[#FFB4B4]';
+      }
+
+      feedbackList.innerHTML = feedback.map(item => `<li>${item}</li>`).join('');
+    });
+  </script>
+</body>
+</html>
