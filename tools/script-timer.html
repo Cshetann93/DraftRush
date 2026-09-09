@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Short-Form Video Script Timer | DraftsRush</title>
+  <meta name="description" content="Calculate the exact speaking duration of your YouTube Shorts, Reels, or TikTok script. Analyzes pacing and warns if your opening hook exceeds 3 seconds.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+
+  <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2 text-2xl font-black tracking-tight brand-font">
+        <span class="bg-black text-white px-2 py-0.5 border-2 border-black rotate-[-2deg]">DR</span>
+        DraftsRush
+      </a>
+      <nav class="hidden md:flex items-center gap-8 font-bold text-sm tracking-wide brand-font">
+        <a href="../scripts.html" class="hover:underline">SCRIPTS</a>
+        <a href="../tools.html" class="underline font-black">TOOLS HUB</a>
+        <a href="../partner.html" class="hover:underline">PARTNER</a>
+        <a href="../contact.html" class="bg-black text-white px-5 py-2 border-2 border-black brutal-box brutal-btn tracking-wider uppercase">Order Draft</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-4xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-10 brutal-box-lg mb-8">
+      <div class="inline-flex items-center gap-2 bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase mb-3">
+        Utility: Script Calculator
+      </div>
+      <h1 class="text-3xl md:text-5xl font-black brand-font tracking-tight mb-3">
+        Short-Form Script Duration Calculator
+      </h1>
+      <p class="text-sm md:text-base font-medium text-gray-700 leading-relaxed mb-6">
+        Paste your script voiceover below. The tool calculates words, characters, estimated video seconds, and checks if your opening hook exceeds the 3-second attention threshold.
+      </p>
+
+      <!-- Settings Bar -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label class="block font-black text-xs uppercase tracking-wider mb-2">Speaking Pace</label>
+          <select id="pace-select" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFE600] transition-colors">
+            <option value="130">Documentary / Measured (130 WPM)</option>
+            <option value="150" selected>Standard Shorts / Explainers (150 WPM)</option>
+            <option value="175">Fast-Paced TikTok / Dynamic (175 WPM)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-black text-xs uppercase tracking-wider mb-2">Target Platform Constraint</label>
+          <select id="platform-select" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFE600] transition-colors">
+            <option value="30">30-Second Micro Reel</option>
+            <option value="60" selected>60-Second Short (Optimal Retention)</option>
+            <option value="90">90-Second Extended Video</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Text Input -->
+      <div class="mb-6">
+        <label class="block font-black text-xs uppercase tracking-wider mb-2">Paste Voiceover / Dialogue Only</label>
+        <textarea id="script-input" rows="8" placeholder="Paste your script text here. Do not include visual directions (e.g. [B-Roll cut])..." class="w-full border-2 border-black p-4 font-medium text-sm bg-white focus:outline-none focus:bg-[#FFFDE6]"></textarea>
+      </div>
+
+      <!-- Metrics Display -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-center">
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-words" class="text-3xl font-black brand-font">0</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Words</p>
+        </div>
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-seconds" class="text-3xl font-black brand-font text-blue-700">0.0s</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Est. Duration</p>
+        </div>
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-hook-words" class="text-3xl font-black brand-font">0</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Hook Words</p>
+        </div>
+        <div class="border-2 border-black bg-[#FFE600] p-3 brutal-box">
+          <div id="metric-fit" class="text-lg font-black brand-font mt-1">Ready</div>
+          <p class="text-xs font-bold text-black uppercase">Fit Status</p>
+        </div>
+      </div>
+
+      <!-- Live Hook Feedback Box -->
+      <div id="hook-alert" class="border-2 border-black p-4 bg-white brutal-box">
+        <div class="font-black text-xs brand-font uppercase mb-1">Hook Speed Audit</div>
+        <p id="hook-alert-text" class="text-sm font-medium text-gray-700">
+          Paste your script above to audit whether your opening sentence hooks the viewer before second 00:03.
+        </p>
+      </div>
+    </div>
+
+    <!-- Commercial CTA Strip -->
+    <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Need It Written For You?</span>
+        <h2 class="text-2xl font-black brand-font mt-2 mb-1">Get Retention-Optimized Scripts</h2>
+        <p class="text-sm font-medium text-black max-w-xl">
+          We write scripts engineered to retain viewers past second 30, complete with visual cues for your video editor. Flexible budgets welcomed.
+        </p>
+      </div>
+      <a href="../scripts.html" class="bg-black text-white font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn whitespace-nowrap text-sm uppercase">
+        Explore Script Packs →
+      </a>
+    </div>
+  </main>
+
+  <footer class="border-t-4 border-black bg-[#D4D7E1] py-8 text-center text-xs font-bold text-gray-600">
+    <p>© 2026 DraftsRush. All rights reserved. • <a href="mailto:contact@draftsrush.com" class="underline">contact@draftsrush.com</a></p>
+  </footer>
+
+  <script>
+    const scriptInput = document.getElementById('script-input');
+    const paceSelect = document.getElementById('pace-select');
+    const platformSelect = document.getElementById('platform-select');
+
+    const metricWords = document.getElementById('metric-words');
+    const metricSeconds = document.getElementById('metric-seconds');
+    const metricHookWords = document.getElementById('metric-hook-words');
+    const metricFit = document.getElementById('metric-fit');
+    const hookAlert = document.getElementById('hook-alert');
+    const hookAlertText = document.getElementById('hook-alert-text');
+
+    function calculate() {
+      const text = scriptInput.value.trim();
+      if (!text) {
+        metricWords.innerText = '0';
+        metricSeconds.innerText = '0.0s';
+        metricHookWords.innerText = '0';
+        metricFit.innerText = 'Ready';
+        metricFit.className = 'text-lg font-black brand-font mt-1';
+        hookAlert.className = 'border-2 border-black p-4 bg-white brutal-box';
+        hookAlertText.innerText = 'Paste your script above to audit whether your opening sentence hooks the viewer before second 00:03.';
+        return;
+      }
+
+      // Word count
+      const words = text.match(/\b\S+\b/g) || [];
+      const wordCount = words.length;
+      metricWords.innerText = wordCount;
+
+      // Seconds calculation
+      const wpm = parseFloat(paceSelect.value);
+      const totalSeconds = (wordCount / wpm) * 60;
+      metricSeconds.innerText = totalSeconds.toFixed(1) + 's';
+
+      // First sentence (hook)
+      const firstSentenceMatch = text.match(/[^.!?]+[.!?]*/);
+      const firstSentence = firstSentenceMatch ? firstSentenceMatch[0].trim() : '';
+      const hookWords = (firstSentence.match(/\b\S+\b/g) || []).length;
+      metricHookWords.innerText = hookWords;
+
+      const hookSeconds = (hookWords / wpm) * 60;
+
+      // Audit Hook
+      if (hookSeconds > 3.5) {
+        hookAlert.className = 'border-2 border-black p-4 bg-[#FFB4B4] brutal-box';
+        hookAlertText.innerHTML = `<strong>⚠️ Hook Too Long (${hookSeconds.toFixed(1)}s):</strong> Your first sentence has ${hookWords} words. At ${wpm} WPM, viewers will reach second 00:03 before you deliver your payoff. Cut filler words to bring this under 8 words.`;
+      } else {
+        hookAlert.className = 'border-2 border-black p-4 bg-[#C2F0C2] brutal-box';
+        hookAlertText.innerHTML = `<strong>✓ Hook Pacing Good (${hookSeconds.toFixed(1)}s):</strong> Delivers the opening premise in under 3.5 seconds before mobile users swipe away.`;
+      }
+
+      // Target fit check
+      const targetMax = parseFloat(platformSelect.value);
+      if (totalSeconds > targetMax) {
+        metricFit.innerText = `+${(totalSeconds - targetMax).toFixed(0)}s Over`;
+        metricFit.className = 'text-lg font-black brand-font mt-1 text-red-700';
+      } else {
+        metricFit.innerText = `${(targetMax - totalSeconds).toFixed(0)}s Left`;
+        metricFit.className = 'text-lg font-black brand-font mt-1 text-emerald-800';
+      }
+    }
+
+    scriptInput.addEventListener('input', calculate);
+    paceSelect.addEventListener('change', calculate);
+    platformSelect.addEventListener('change', calculate);
+  </script>
+</body>
+</html>
