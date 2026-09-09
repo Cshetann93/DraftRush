@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teleprompter Speaking Pace Coach | DraftsRush</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+  <header class="border-b-4 border-black bg-[#FFE600] p-4">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="../index.html" class="text-2xl font-black brand-font flex items-center gap-2">
+        <span class="bg-black text-white px-2 py-0.5 border-2 border-black rotate-[-2deg]">DR</span> DraftsRush
+      </a>
+      <a href="../tools.html" class="font-bold text-sm underline">All Tools</a>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-3xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-8 brutal-box mb-8">
+      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Creator Training</span>
+      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">Live Speaking Rate (WPM) Coach</h1>
+      <p class="text-sm font-medium text-gray-700 mb-6">Hit Start, read your script out loud, and hit Stop. The tool measures your real speaking words per minute.</p>
+
+      <textarea id="practice-text" rows="5" class="w-full border-2 border-black p-3 font-medium bg-white focus:bg-[#FFFDE6] mb-4" placeholder="Paste what you plan to read out loud..."></textarea>
+
+      <div class="flex gap-4 mb-6">
+        <button id="start-btn" class="bg-[#FFE600] text-black font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase text-sm">Start Timer</button>
+        <button id="stop-btn" disabled class="bg-black text-white font-black brand-font px-6 py-3 border-2 border-black brutal-box uppercase text-sm disabled:opacity-50">Stop Timer</button>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 text-center">
+        <div class="border-2 border-black bg-white p-4 brutal-box">
+          <div id="elapsed-time" class="text-3xl font-black brand-font">0.0s</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Elapsed Time</p>
+        </div>
+        <div class="border-2 border-black bg-white p-4 brutal-box">
+          <div id="calculated-wpm" class="text-3xl font-black brand-font text-blue-700">0 WPM</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Your Reading Speed</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let startTime, timerInterval;
+    const textEl = document.getElementById('practice-text');
+    const startBtn = document.getElementById('start-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    const elapsedEl = document.getElementById('elapsed-time');
+    const wpmEl = document.getElementById('calculated-wpm');
+
+    startBtn.addEventListener('click', () => {
+      startTime = Date.now();
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+      timerInterval = setInterval(() => {
+        elapsedEl.innerText = ((Date.now() - startTime) / 1000).toFixed(1) + 's';
+      }, 100);
+    });
+
+    stopBtn.addEventListener('click', () => {
+      clearInterval(timerInterval);
+      const totalSecs = (Date.now() - startTime) / 1000;
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+
+      const words = (textEl.value.trim().match(/\b\S+\b/g) || []).length;
+      const wpm = Math.round((words / totalSecs) * 60);
+      wpmEl.innerText = (isFinite(wpm) && wpm > 0) ? `${wpm} WPM` : '0 WPM';
+    });
+  </script>
+</body>
+</html>
