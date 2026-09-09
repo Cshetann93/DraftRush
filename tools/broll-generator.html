@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Script to B-Roll Shot List Generator | DraftsRush</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+  <header class="border-b-4 border-black bg-[#FFE600] p-4">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="../index.html" class="text-2xl font-black brand-font flex items-center gap-2">
+        <span class="bg-black text-white px-2 py-0.5 border-2 border-black rotate-[-2deg]">DR</span> DraftsRush
+      </a>
+      <a href="../tools.html" class="font-bold text-sm underline">All Tools</a>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-3xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-8 brutal-box mb-8">
+      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Production Utility</span>
+      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">B-Roll Shot List Generator</h1>
+      <p class="text-sm font-medium text-gray-700 mb-6">Paste your dialogue lines below. The tool generates three matching visual assets: primary A-cam framing, secondary cutaway footage, and text overlays.</p>
+
+      <label class="block font-black text-xs uppercase mb-2">Voiceover Script Segment</label>
+      <textarea id="script-input" rows="4" placeholder="e.g. Most creators spend thousands on camera gear before they ever write a functional hook..." class="w-full border-2 border-black p-3 font-medium bg-white focus:bg-[#FFFDE6] mb-4"></textarea>
+
+      <button id="generate-btn" class="bg-[#FFE600] text-black font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase text-sm mb-6">
+        Generate Shot List
+      </button>
+
+      <div id="shot-output" class="space-y-3">
+        <p class="text-xs font-bold text-gray-500">Your generated camera and B-roll cues will show here.</p>
+      </div>
+
+      <button id="copy-shots-btn" class="hidden mt-4 bg-black text-white font-black brand-font px-4 py-2 border-2 border-black brutal-box text-xs uppercase">
+        Copy Shot List
+      </button>
+      <div id="copy-status" class="hidden text-xs font-bold text-emerald-700 mt-2">✓ Copied to clipboard!</div>
+    </div>
+  </main>
+
+  <script>
+    const scriptInput = document.getElementById('script-input');
+    const generateBtn = document.getElementById('generate-btn');
+    const output = document.getElementById('shot-output');
+    const copyBtn = document.getElementById('copy-shots-btn');
+    const status = document.getElementById('copy-status');
+
+    generateBtn.addEventListener('click', () => {
+      const text = scriptInput.value.trim();
+      if (!text) return;
+
+      const words = text.split(' ').slice(0, 4).join(' ');
+
+      const shots = [
+        { angle: "A-Cam Setup", desc: "Medium close-up (chest-level), eye-line direct to lens, shallow depth of field." },
+        { angle: "Cutaway B-Roll", desc: `Fast dynamic insert clip illustrating "${words}...", macro focus or rapid downward pan.` },
+        { angle: "Graphic Overlay", desc: `Bold centered keyword animation tracking the vocal emphasis on "${words}".` },
+        { angle: "Audio Stinger", desc: "Subtle bass drop / paper-crumple SFX under the visual transition." }
+      ];
+
+      output.innerHTML = shots.map(s => `
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <span class="bg-black text-white px-1.5 py-0.5 text-[10px] font-bold brand-font uppercase">${s.angle}</span>
+          <p class="font-bold text-sm mt-1 text-gray-800">${s.desc}</p>
+        </div>
+      `).join('');
+
+      copyBtn.classList.remove('hidden');
+    });
+
+    copyBtn.addEventListener('click', () => {
+      const items = output.querySelectorAll('p');
+      let copyText = '';
+      items.forEach(item => copyText += `• ${item.innerText}\n`);
+      navigator.clipboard.writeText(copyText);
+      status.classList.remove('hidden');
+      setTimeout(() => status.classList.add('hidden'), 3000);
+    });
+  </script>
+</body>
+</html>
