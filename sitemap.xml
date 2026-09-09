@@ -1,118 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Core Commercial Pages -->
+  <!-- Core Landing Page -->
   <url>
     <loc>https://www.draftsrush.com/</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Service and Portfolio Pages -->
   <url>
-    <loc>https://www.draftsrush.com/scripts.html</loc>
+    <loc>https://www.draftsrush.com/scripts</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/academic.html</loc>
+    <loc>https://www.draftsrush.com/academic</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/tools.html</loc>
+    <loc>https://www.draftsrush.com/tools</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/partner.html</loc>
+    <loc>https://www.draftsrush.com/partner</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/contact.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/about.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/privacy.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/terms.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.3</priority>
   </url>
 
-  <!-- Interactive Creator & Script Tools -->
+  <!-- Company and Contact Pages -->
   <url>
-    <loc>https://www.draftsrush.com/tools/script-timer.html</loc>
+    <loc>https://www.draftsrush.com/about</loc>
     <lastmod>2026-09-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/hook-analyzer.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/format-converter.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/title-checker.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/hook-generator.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/screenplay-calculator.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/broll-generator.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/retention-simulator.html</loc>
-    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/tools/speech-trainer.html</loc>
+    <loc>https://www.draftsrush.com/contact</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Legal Documentation -->
   <url>
-    <loc>https://www.draftsrush.com/tools/timestamp-maker.html</loc>
+    <loc>https://www.draftsrush.com/privacy</loc>
     <lastmod>2026-09-09</lastmod>
-    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/tools/dialogue-pruner.html</loc>
+    <loc>https://www.draftsrush.com/terms</loc>
     <lastmod>2026-09-09</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/cta-checker.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/shorts-splitter.html</loc>
-    <lastmod>2026-09-09</lastmod>
-    <priority>0.7</priority>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
