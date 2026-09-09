@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Script Dialogue Word-Economy Pruner | DraftsRush</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+  <header class="border-b-4 border-black bg-[#FFE600] p-4">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="../index.html" class="text-2xl font-black brand-font flex items-center gap-2">
+        <span class="bg-black text-white px-2 py-0.5 border-2 border-black rotate-[-2deg]">DR</span> DraftsRush
+      </a>
+      <a href="../tools.html" class="font-bold text-sm underline">All Tools</a>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-3xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-8 brutal-box mb-8">
+      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Script Tightener</span>
+      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">Dialogue Economy Pruner</h1>
+      <p class="text-sm font-medium text-gray-700 mb-6">Replaces wordy, academic, or formal phrases with punchy spoken dialogue built for fast-paced audio.</p>
+
+      <textarea id="prune-input" rows="4" placeholder="Paste your script draft here to prune filler phrases..." class="w-full border-2 border-black p-3 font-medium bg-white focus:bg-[#FFFDE6] mb-4"></textarea>
+
+      <button id="prune-btn" class="bg-[#FFE600] text-black font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase text-sm mb-6">
+        Prune Wordy Phrasing
+      </button>
+
+      <div class="border-2 border-black bg-white p-4 brutal-box">
+        <div class="text-xs font-bold text-gray-500 uppercase mb-2">Tighter Spoken Version:</div>
+        <div id="prune-output" class="font-medium text-sm text-gray-900 border-l-4 border-emerald-500 pl-3 py-1">Pruned text will appear here.</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const input = document.getElementById('prune-input');
+    const btn = document.getElementById('prune-btn');
+    const output = document.getElementById('prune-output');
+
+    const replacements = [
+      { from: /in order to/gi, to: 'to' },
+      { from: /due to the fact that/gi, to: 'because' },
+      { from: /at the present moment/gi, to: 'now' },
+      { from: /as a matter of fact/gi, to: 'actually' },
+      { from: /utilize/gi, to: 'use' },
+      { from: /for the purpose of/gi, to: 'for' },
+      { from: /in the event that/gi, to: 'if' }
+    ];
+
+    btn.addEventListener('click', () => {
+      let text = input.value;
+      if (!text.trim()) return;
+
+      replacements.forEach(r => {
+        text = text.replace(r.from, r.to);
+      });
+
+      output.innerText = text;
+    });
+  </script>
+</body>
+</html>
