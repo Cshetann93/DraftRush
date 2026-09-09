@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Creator & Writing Tools | DraftsRush</title>
-  <meta name="description" content="Free browser utilities for creators, scriptwriters, and researchers. Calculate video speaking time, grade retention hooks, and format scripts.">
+  <meta name="description" content="Free browser utilities for creators, scriptwriters, and researchers. Calculate video speaking time, grade retention hooks, format scripts, and check titles.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -28,7 +28,9 @@
       <nav class="hidden md:flex items-center gap-8 font-bold text-sm tracking-wide brand-font">
         <a href="scripts.html" class="hover:underline underline-offset-4">SCRIPTS</a>
         <a href="academic.html" class="hover:underline underline-offset-4">ACADEMIC RESEARCH</a>
-        <a href="tools.html" class="underline underline-offset-4">FREE TOOLS</a>
+        <a href="tools.html" class="underline underline-offset-4 font-black">FREE TOOLS</a>
+        <a href="about.html" class="hover:underline underline-offset-4">ABOUT</a>
+        <a href="contact.html" class="hover:underline underline-offset-4">CONTACT</a>
       </nav>
       <button onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -38,33 +40,36 @@
       <a href="scripts.html" class="block border-b border-gray-300 pb-2">SCRIPTS</a>
       <a href="academic.html" class="block border-b border-gray-300 pb-2">ACADEMIC RESEARCH</a>
       <a href="tools.html" class="block border-b border-gray-300 pb-2">FREE TOOLS</a>
+      <a href="about.html" class="block border-b border-gray-300 pb-2">ABOUT</a>
+      <a href="contact.html" class="block pb-2">CONTACT</a>
     </div>
   </header>
 
   <main class="flex-grow max-w-6xl mx-auto px-6 py-12 w-full">
     <div class="border-4 border-black bg-[#FFE600] p-8 md:p-12 brutal-box-lg mb-12">
       <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Direct Browser Utilities</span>
-      <h1 class="text-4xl md:text-5xl font-black brand-font mt-2 mb-2">Free Creator & Research Tools</h1>
+      <h1 class="text-4xl md:text-5xl font-black brand-font mt-2 mb-2">Free Creator & Writing Tools</h1>
       <p class="text-base md:text-lg font-medium max-w-2xl text-black">
-        Free utilities engineered to measure retention pacing, analyze opening hooks, and format research matrices. No login or registration required.
+        Zero login. Zero sign-up. Instant client-side utilities engineered for creators, scriptwriters, and researchers to audit pacing, test hooks, and format video assets.
       </p>
     </div>
 
-    <!-- Creator Section -->
+    <!-- Creator Track -->
     <div class="mb-12">
       <div class="flex items-center gap-3 mb-6">
         <span class="bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase">Track 01</span>
         <h2 class="text-2xl font-black brand-font">Video & Scriptwriting Tools</h2>
       </div>
+      
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <!-- Tool 1 -->
+        <!-- Tool 1: Script Timer -->
         <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
           <div>
             <span class="bg-emerald-400 text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">Pacing & Duration</span>
             <h3 class="text-xl font-black brand-font mt-3 mb-2">Short-Form Script Timer</h3>
             <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
-              Calculate exact video speaking duration across conversational, documentary, and fast-paced speaking rates. Flags critical 3-second hook drop-offs.
+              Calculate exact video speaking duration across 130 to 175 WPM rates. Flags critical 3-second hook drop-offs.
             </p>
           </div>
           <a href="tools/script-timer.html" class="block text-center bg-[#FFE600] text-black font-black brand-font py-2.5 border-2 border-black brutal-btn">
@@ -72,13 +77,13 @@
           </a>
         </div>
 
-        <!-- Tool 2 -->
+        <!-- Tool 2: Hook Grader -->
         <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
           <div>
             <span class="bg-[#FFE600] text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">Hook Optimization</span>
             <h3 class="text-xl font-black brand-font mt-3 mb-2">Hook Retention Grader</h3>
             <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
-              Test your video's opening sentence against proven retention metrics: syllable density, curiosity gaps, filler words, and hook punchiness.
+              Audit your opening sentence for retention metrics, syllable punchiness, and filler words with live diagnostic feedback.
             </p>
           </div>
           <a href="tools/hook-analyzer.html" class="block text-center bg-black text-white font-black brand-font py-2.5 border-2 border-black brutal-btn">
@@ -86,13 +91,13 @@
           </a>
         </div>
 
-        <!-- Tool 3 -->
+        <!-- Tool 3: Dual-Column Formatter -->
         <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
           <div>
             <span class="bg-purple-300 text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">Editor Workflow</span>
             <h3 class="text-xl font-black brand-font mt-3 mb-2">Dual-Column Script Formatter</h3>
             <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
-              Split plain paragraphs into industry-standard two-column AV format (Visual Cue on the left, Voiceover on the right). Copy straight into Google Docs.
+              Split plain paragraphs into industry-standard AV tables (Visual Cues on left, Audio on right). Copy straight to Docs.
             </p>
           </div>
           <a href="tools/format-converter.html" class="block text-center bg-[#FFE600] text-black font-black brand-font py-2.5 border-2 border-black brutal-btn">
@@ -100,42 +105,73 @@
           </a>
         </div>
 
-      </div>
-    </div>
-
-    <!-- Research Section (Can be removed at any time without touching the rest of the site) -->
-    <div id="academic-tools-section" class="mb-12">
-      <div class="flex items-center gap-3 mb-6">
-        <span class="bg-[#FFE600] text-black border border-black px-2.5 py-1 text-xs font-bold brand-font uppercase">Track 02</span>
-        <h2 class="text-2xl font-black brand-font">Academic & Synthesis Tools</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Tool 4 -->
+        <!-- Tool 4: Title Truncation Preview -->
         <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
           <div>
-            <span class="bg-gray-300 text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">Citations</span>
-            <h3 class="text-xl font-black brand-font mt-3 mb-2">APA 7th & MLA Citation Styler</h3>
+            <span class="bg-sky-300 text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">CTR & Metadata</span>
+            <h3 class="text-xl font-black brand-font mt-3 mb-2">Title Truncation Checker</h3>
             <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
-              Paste raw metadata (author, journal, volume, DOI) and receive perfectly indented, italicized reference records ready for your bibliography.
+              Preview your YouTube title against real mobile display boundaries (~50 characters) so key words never get cut off.
             </p>
           </div>
-          <a href="tools/citation-formatter.html" class="block text-center bg-black text-white font-black brand-font py-2.5 border-2 border-black brutal-btn">
-            Open Citation Styler →
+          <a href="tools/title-checker.html" class="block text-center bg-black text-white font-black brand-font py-2.5 border-2 border-black brutal-btn">
+            Open Title Checker →
           </a>
         </div>
 
-        <!-- Tool 5 -->
+        <!-- Tool 5: Hook Formula Generator -->
         <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
           <div>
-            <span class="bg-gray-300 text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">Literature Review</span>
-            <h3 class="text-xl font-black brand-font mt-3 mb-2">Literature Synthesis Matrix</h3>
+            <span class="bg-amber-300 text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">Ideation</span>
+            <h3 class="text-xl font-black brand-font mt-3 mb-2">Hook Formula Generator</h3>
             <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
-              Map multiple research papers across methodology, sample sizes, variables, and core findings. Download as CSV or clean HTML table.
+              Input any topic or niche action to generate 5 high-converting psychological hook angles built for TikTok, Reels, and Shorts.
             </p>
           </div>
-          <a href="tools/research-matrix.html" class="block text-center bg-[#FFE600] text-black font-black brand-font py-2.5 border-2 border-black brutal-btn">
-            Open Matrix Builder →
+          <a href="tools/hook-generator.html" class="block text-center bg-[#FFE600] text-black font-black brand-font py-2.5 border-2 border-black brutal-btn">
+            Open Generator →
+          </a>
+        </div>
+
+        <!-- Tool 6: Screenplay Page-to-Runtime -->
+        <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
+          <div>
+            <span class="bg-rose-300 text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">Film & Screenplay</span>
+            <h3 class="text-xl font-black brand-font mt-3 mb-2">Screenplay Runtime Calculator</h3>
+            <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
+              Convert industry-standard screenplay page counts into estimated film run times adjusted for dialogue, action, or suspense.
+            </p>
+          </div>
+          <a href="tools/screenplay-calculator.html" class="block text-center bg-black text-white font-black brand-font py-2.5 border-2 border-black brutal-btn">
+            Open Screenplay Calc →
+          </a>
+        </div>
+
+        <!-- Tool 7: Teleprompter Speaking Coach -->
+        <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
+          <div>
+            <span class="bg-teal-300 text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">Vocal Training</span>
+            <h3 class="text-xl font-black brand-font mt-3 mb-2">Speaking Pace (WPM) Coach</h3>
+            <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
+              Read your script out loud with the live stopwatch to calculate your natural reading Words Per Minute before recording.
+            </p>
+          </div>
+          <a href="tools/speech-trainer.html" class="block text-center bg-[#FFE600] text-black font-black brand-font py-2.5 border-2 border-black brutal-btn">
+            Open Pace Coach →
+          </a>
+        </div>
+
+        <!-- Tool 8: YouTube Chapter Timestamps -->
+        <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
+          <div>
+            <span class="bg-indigo-300 text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">SEO Timestamps</span>
+            <h3 class="text-xl font-black brand-font mt-3 mb-2">Chapter Timestamp Maker</h3>
+            <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
+              Build clickable video chapters for your YouTube video descriptions to qualify for Google video search key moments.
+            </p>
+          </div>
+          <a href="tools/timestamp-maker.html" class="block text-center bg-black text-white font-black brand-font py-2.5 border-2 border-black brutal-btn">
+            Open Timestamp Maker →
           </a>
         </div>
 
@@ -158,12 +194,12 @@
       </div>
 
       <div>
-        <h4 class="font-black brand-font text-sm uppercase tracking-wider mb-3">Free Utilities</h4>
+        <h4 class="font-black brand-font text-sm uppercase tracking-wider mb-3">Free Tools</h4>
         <ul class="space-y-2 text-sm font-semibold text-gray-800">
           <li><a href="tools/script-timer.html" class="hover:underline">Script Duration Timer</a></li>
           <li><a href="tools/hook-analyzer.html" class="hover:underline">Hook Retention Grader</a></li>
-          <li><a href="tools/format-converter.html" class="hover:underline">Dual-Column Formatter</a></li>
-          <li><a href="tools.html" class="hover:underline font-bold">All 5 Free Tools →</a></li>
+          <li><a href="tools/title-checker.html" class="hover:underline">Title Truncation Preview</a></li>
+          <li><a href="tools/screenplay-calculator.html" class="hover:underline">Screenplay Calculator</a></li>
         </ul>
       </div>
 
@@ -171,7 +207,7 @@
         <h4 class="font-black brand-font text-sm uppercase tracking-wider mb-3">Studio & Contact</h4>
         <ul class="space-y-2 text-sm font-semibold text-gray-800">
           <li>
-            <a href="mailto:draftsrushh@gmail.com" class="inline-block font-mono text-xs font-bold bg-[#F0F2F5] border-2 border-black px-2 py-1 brutal-box hover:bg-[#FFE600] transition-colors">
+            <a href="mailto:contact@draftsrush.com" class="inline-block font-mono text-xs font-bold bg-[#F0F2F5] border-2 border-black px-2 py-1 brutal-box hover:bg-[#FFE600] transition-colors">
               ✉ contact@draftsrush.com
             </a>
           </li>
