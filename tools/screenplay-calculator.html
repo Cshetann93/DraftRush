@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screenplay Page to Screen Runtime Calculator | DraftsRush</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+  <header class="border-b-4 border-black bg-[#FFE600] p-4">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="../index.html" class="text-2xl font-black brand-font flex items-center gap-2">
+        <span class="bg-black text-white px-2 py-0.5 border-2 border-black rotate-[-2deg]">DR</span> DraftsRush
+      </a>
+      <a href="../tools.html" class="font-bold text-sm underline">All Tools</a>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-3xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-8 brutal-box mb-8">
+      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Screenplay Tool</span>
+      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">Screenplay Page to Runtime Calculator</h1>
+      <p class="text-sm font-medium text-gray-700 mb-6">Industry standard calculates 1 page of standard screenplay format as roughly 1 minute of screen time. Adjust by genre density below.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label class="block font-black text-xs uppercase mb-2">Number of Formatted Pages</label>
+          <input id="page-input" type="number" min="1" value="5" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFFDE6]">
+        </div>
+        <div>
+          <label class="block font-black text-xs uppercase mb-2">Genre Cadence</label>
+          <select id="genre-select" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFE600]">
+            <option value="1.0">Drama / Dialogue Heavy (1 min / page)</option>
+            <option value="0.75">Action / Fast Cut (45 sec / page)</option>
+            <option value="1.3">Horror / Suspense / Atmospheric (1.3 min / page)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="border-2 border-black bg-white p-6 brutal-box text-center">
+        <span class="text-xs font-bold text-gray-500 uppercase">Estimated Film Run Time</span>
+        <div id="runtime-display" class="text-4xl font-black brand-font text-blue-800 my-2">5 Min 0 Sec</div>
+        <p id="runtime-note" class="text-xs font-medium text-gray-600">Standard pacing for short film festival submissions.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const pageInput = document.getElementById('page-input');
+    const genreSelect = document.getElementById('genre-select');
+    const display = document.getElementById('runtime-display');
+
+    function calculate() {
+      const pages = parseFloat(pageInput.value) || 0;
+      const factor = parseFloat(genreSelect.value);
+      const totalMinutes = pages * factor;
+      const mins = Math.floor(totalMinutes);
+      const secs = Math.round((totalMinutes - mins) * 60);
+      display.innerText = `${mins} Min ${secs} Sec`;
+    }
+
+    pageInput.addEventListener('input', calculate);
+    genreSelect.addEventListener('change', calculate);
+  </script>
+</body>
+</html>
