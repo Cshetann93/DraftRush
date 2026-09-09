@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Outro CTA Optimizer | DraftsRush</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+  <header class="border-b-4 border-black bg-[#FFE600] p-4">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="../index.html" class="text-2xl font-black brand-font flex items-center gap-2">
+        <span class="bg-black text-white px-2 py-0.5 border-2 border-black rotate-[-2deg]">DR</span> DraftsRush
+      </a>
+      <a href="../tools.html" class="font-bold text-sm underline">All Tools</a>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-3xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-8 brutal-box mb-8">
+      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Ending Polish</span>
+      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">Outro CTA Friction Checker</h1>
+      <p class="text-sm font-medium text-gray-700 mb-6">Test the closing line of your short. Traditional outro phrases trigger viewer drop-offs before completion.</p>
+
+      <label class="block font-black text-xs uppercase mb-2">Your Video Ending Line</label>
+      <input id="cta-input" type="text" placeholder='e.g. "Don’t forget to like and subscribe for more tips!"' class="w-full border-2 border-black p-3 font-medium bg-white focus:bg-[#FFFDE6] mb-6">
+
+      <div id="cta-result" class="border-2 border-black bg-white p-5 brutal-box">
+        <div class="text-xs font-bold text-gray-500 uppercase mb-2">Analysis:</div>
+        <p id="cta-verdict" class="font-bold text-sm text-gray-800">Paste your closing line above to audit swipe-away friction.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const input = document.getElementById('cta-input');
+    const verdict = document.getElementById('cta-verdict');
+
+    const badPatterns = ['like and subscribe', 'comment down below', 'see you in the next one', 'thanks for watching', 'hit the bell'];
+
+    input.addEventListener('input', () => {
+      const val = input.value.toLowerCase().trim();
+      if (!val) {
+        verdict.innerText = 'Paste your closing line above to audit swipe-away friction.';
+        return;
+      }
+
+      let found = false;
+      for (const phrase of badPatterns) {
+        if (val.includes(phrase)) {
+          found = true;
+          break;
+        }
+      }
+
+      if (found) {
+        verdict.innerHTML = `<span class="text-red-600">❌ High Drop-off Friction:</span> Viewers leave mobile feeds the exact second they hear "subscribe" or "thanks for watching". Replace this with a seamless loop connecting back to your opening hook sentence.`;
+      } else {
+        verdict.innerHTML = `<span class="text-emerald-700">✓ Friction-Free:</span> Avoids predictable outro flags. If you want maximum replay loop metrics, end abruptly on the core takeaway.`;
+      }
+    });
+  </script>
+</body>
+</html>
