@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dual-Column Video Script Formatter | DraftsRush</title>
+  <meta name="description" content="Turn raw text into an industry-standard dual-column AV script table (Visuals on left, Voiceover on right). Copy straight to Google Docs.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+
+  <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-2 text-2xl font-black tracking-tight brand-font">
+        <span class="bg-black text-white px-2 py-0.5 border-2 border-black rotate-[-2deg]">DR</span>
+        DraftsRush
+      </a>
+      <nav class="hidden md:flex items-center gap-8 font-bold text-sm tracking-wide brand-font">
+        <a href="../scripts.html" class="hover:underline">SCRIPTS</a>
+        <a href="../tools.html" class="underline font-black">TOOLS HUB</a>
+        <a href="../partner.html" class="hover:underline">PARTNER</a>
+        <a href="../contact.html" class="bg-black text-white px-5 py-2 border-2 border-black brutal-box brutal-btn tracking-wider uppercase">Order Draft</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-10 brutal-box-lg mb-8">
+      <div class="inline-flex items-center gap-2 bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase mb-3">
+        Utility: Script Layout
+      </div>
+      <h1 class="text-3xl md:text-5xl font-black brand-font tracking-tight mb-3">
+        Dual-Column AV Script Formatter
+      </h1>
+      <p class="text-sm md:text-base font-medium text-gray-700 leading-relaxed mb-6">
+        Add rows of dialogue and B-roll cues below. When finished, hit <strong>Copy Table</strong> and paste it directly into Google Docs or Word with formatting preserved.
+      </p>
+
+      <!-- Interactive Script Builder Table -->
+      <div class="border-2 border-black bg-white brutal-box overflow-hidden mb-6">
+        <div class="grid grid-cols-12 bg-black text-white font-black brand-font text-xs uppercase p-3 border-b-2 border-black">
+          <div class="col-span-2 md:col-span-1">Timestamp</div>
+          <div class="col-span-5 md:col-span-5">Visual Cue / B-Roll / Overlay</div>
+          <div class="col-span-5 md:col-span-6">Voiceover / Dialogue / Audio</div>
+        </div>
+
+        <div id="row-container" class="divide-y-2 divide-black">
+          <!-- Row 1 Default -->
+          <div class="grid grid-cols-12 p-2 gap-2 items-center bg-[#FFFDE6]">
+            <input type="text" value="00:00 - 00:03" class="col-span-2 md:col-span-1 text-xs font-mono font-bold border border-black p-1">
+            <input type="text" placeholder="Visual: e.g. Close-up face cut, screen shakes" value="Close-up headshot, bold text overlay 'STOP SCROLLING'" class="col-span-5 md:col-span-5 text-xs font-medium border border-black p-1">
+            <input type="text" placeholder="Audio / Dialogue" value="Stop buying supplements until you check this one ingredient." class="col-span-5 md:col-span-6 text-xs font-medium border border-black p-1">
+          </div>
+          <!-- Row 2 Default -->
+          <div class="grid grid-cols-12 p-2 gap-2 items-center">
+            <input type="text" value="00:03 - 00:15" class="col-span-2 md:col-span-1 text-xs font-mono font-bold border border-black p-1">
+            <input type="text" placeholder="Visual: e.g. Cut to nutrient label" value="B-roll: Fast pan across supermarket shelf" class="col-span-5 md:col-span-5 text-xs font-medium border border-black p-1">
+            <input type="text" placeholder="Audio / Dialogue" value="Most brands hide cheap fillers right beneath the primary protein blend." class="col-span-5 md:col-span-6 text-xs font-medium border border-black p-1">
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-4 items-center justify-between">
+        <button id="add-row-btn" class="bg-white text-black font-black brand-font px-4 py-2 border-2 border-black brutal-box brutal-btn text-xs uppercase">
+          + Add Cue Row
+        </button>
+        <button id="copy-table-btn" class="bg-[#FFE600] text-black font-black brand-font px-6 py-2 border-2 border-black brutal-box brutal-btn text-sm uppercase">
+          📋 Copy Table for Google Docs
+        </button>
+      </div>
+
+      <div id="copy-confirm" class="hidden text-xs font-bold text-emerald-700 mt-3 text-right">
+        ✓ Formatted table copied! Paste directly into Google Docs or Word (Ctrl+V / Cmd+V).
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t-4 border-black bg-[#D4D7E1] py-8 text-center text-xs font-bold text-gray-600">
+    <p>© 2026 DraftsRush. All rights reserved. • <a href="mailto:contact@draftsrush.com" class="underline">contact@draftsrush.com</a></p>
+  </footer>
+
+  <script>
+    const container = document.getElementById('row-container');
+    const addRowBtn = document.getElementById('add-row-btn');
+    const copyTableBtn = document.getElementById('copy-table-btn');
+    const copyConfirm = document.getElementById('copy-confirm');
+
+    addRowBtn.addEventListener('click', () => {
+      const row = document.createElement('div');
+      row.className = 'grid grid-cols-12 p-2 gap-2 items-center';
+      row.innerHTML = `
+        <input type="text" placeholder="Time" class="col-span-2 md:col-span-1 text-xs font-mono font-bold border border-black p-1">
+        <input type="text" placeholder="Visual Cue / Graphic Asset" class="col-span-5 md:col-span-5 text-xs font-medium border border-black p-1">
+        <input type="text" placeholder="Voiceover / Dialogue" class="col-span-5 md:col-span-6 text-xs font-medium border border-black p-1">
+      `;
+      container.appendChild(row);
+    });
+
+    copyTableBtn.addEventListener('click', async () => {
+      const rows = container.children;
+      let html = '<table border="1" style="border-collapse:collapse; width:100%; font-family:sans-serif;"><thead><tr style="background:#FFE600;"><th>Timestamp</th><th>Visual / B-Roll Cue</th><th>Voiceover / Audio Dialogue</th></tr></thead><tbody>';
+
+      for (let r of rows) {
+        const inputs = r.querySelectorAll('input');
+        html += `<tr><td style="padding:6px;">${inputs[0].value}</td><td style="padding:6px;">${inputs[1].value}</td><td style="padding:6px;">${inputs[2].value}</td></tr>`;
+      }
+      html += '</tbody></table>';
+
+      const blobHtml = new Blob([html], { type: 'text/html' });
+      const blobText = new Blob([html.replace(/<[^>]*>?/gm, '\t')], { type: 'text/plain' });
+
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'text/html': blobHtml,
+            'text/plain': blobText
+          })
+        ]);
+        copyConfirm.classList.remove('hidden');
+        setTimeout(() => copyConfirm.classList.add('hidden'), 5000);
+      } catch (err) {
+        alert('Table copied. Use keyboard shortcut to paste into Google Docs.');
+      }
+    });
+  </script>
+</body>
+</html>
