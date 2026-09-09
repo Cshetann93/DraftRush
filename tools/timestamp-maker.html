@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Chapters & Timestamp Generator | DraftsRush</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+  <header class="border-b-4 border-black bg-[#FFE600] p-4">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="../index.html" class="text-2xl font-black brand-font flex items-center gap-2">
+        <span class="bg-black text-white px-2 py-0.5 border-2 border-black rotate-[-2deg]">DR</span> DraftsRush
+      </a>
+      <a href="../tools.html" class="font-bold text-sm underline">All Tools</a>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-3xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-8 brutal-box mb-8">
+      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Metadata Helper</span>
+      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">YouTube Chapter Timestamp Formatter</h1>
+      <p class="text-sm font-medium text-gray-700 mb-6">Build validated YouTube timestamps. Formatted chapters help videos rank on Google Search results.</p>
+
+      <div id="chapter-list" class="space-y-3 mb-4">
+        <div class="flex gap-2">
+          <input type="text" value="00:00" class="w-24 border-2 border-black p-2 font-mono font-bold bg-white">
+          <input type="text" value="Introduction & Hook" class="flex-grow border-2 border-black p-2 font-medium bg-white">
+        </div>
+      </div>
+
+      <div class="flex gap-3 mb-6">
+        <button id="add-btn" class="bg-white text-black font-black brand-font px-4 py-2 border-2 border-black brutal-box brutal-btn text-xs uppercase">+ Add Chapter</button>
+        <button id="copy-btn" class="bg-[#FFE600] text-black font-black brand-font px-5 py-2 border-2 border-black brutal-box brutal-btn text-xs uppercase">Copy All for Description</button>
+      </div>
+      <div id="copy-status" class="hidden text-xs font-bold text-emerald-700">✓ Timestamps copied to clipboard!</div>
+    </div>
+  </main>
+
+  <script>
+    const list = document.getElementById('chapter-list');
+    const addBtn = document.getElementById('add-btn');
+    const copyBtn = document.getElementById('copy-btn');
+    const status = document.getElementById('copy-status');
+
+    addBtn.addEventListener('click', () => {
+      const row = document.createElement('div');
+      row.className = 'flex gap-2';
+      row.innerHTML = `
+        <input type="text" placeholder="01:30" class="w-24 border-2 border-black p-2 font-mono font-bold bg-white">
+        <input type="text" placeholder="Chapter title..." class="flex-grow border-2 border-black p-2 font-medium bg-white">
+      `;
+      list.appendChild(row);
+    });
+
+    copyBtn.addEventListener('click', () => {
+      const rows = list.children;
+      let text = '';
+      for (let r of rows) {
+        const inputs = r.querySelectorAll('input');
+        if (inputs[0].value && inputs[1].value) {
+          text += `${inputs[0].value} - ${inputs[1].value}\n`;
+        }
+      }
+      navigator.clipboard.writeText(text);
+      status.classList.remove('hidden');
+      setTimeout(() => status.classList.add('hidden'), 3000);
+    });
+  </script>
+</body>
+</html>
