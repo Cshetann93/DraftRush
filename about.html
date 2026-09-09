@@ -156,11 +156,13 @@
     </div>
   </main>
 
-  <!-- Universal Footer -->
-  <footer class="border-t-4 border-black bg-[#D4D7E1] py-12 mt-auto">
+ <!-- Universal Footer -->
+  <footer class="border-t-4 border-black bg-[#D4D7E1] py-12 mt-auto w-full">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      
+      <!-- Brand Summary -->
       <div class="col-span-1 md:col-span-2">
-        <a href="index.html" class="flex items-center gap-2 text-2xl font-black tracking-tight brand-font mb-3">
+        <a href="/index.html" class="flex items-center gap-2 text-2xl font-black tracking-tight brand-font mb-3">
           <span class="bg-black text-white px-2 py-0.5 border-2 border-black rotate-[-2deg]">DR</span>
           DraftsRush
         </a>
@@ -170,16 +172,18 @@
         <span class="inline-block bg-[#FFE600] border-2 border-black px-2 py-1 text-xs font-bold brand-font">BUDGET-FRIENDLY & FAST TURNAROUND</span>
       </div>
 
+      <!-- Quick Navigation -->
       <div>
         <h4 class="font-black brand-font text-sm uppercase tracking-wider mb-3">Quick Navigation</h4>
         <ul class="space-y-2 text-sm font-semibold text-gray-800">
-          <li><a href="scripts.html" class="hover:underline">Video Scripts</a></li>
-          <li><a href="academic.html" class="hover:underline">Academic Synthesis</a></li>
-          <li><a href="tools.html" class="hover:underline">Free Creator Tools</a></li>
-          <li><a href="partner.html" class="hover:underline">Agency Partner Desk</a></li>
+          <li><a href="/scripts.html" class="hover:underline">Video Scripts</a></li>
+          <li><a href="/academic.html" class="hover:underline">Academic Synthesis</a></li>
+          <li><a href="/tools.html" class="hover:underline">Free Creator Tools</a></li>
+          <li><a href="/partner.html" class="hover:underline">Agency Partner Desk</a></li>
         </ul>
       </div>
 
+      <!-- Studio & Inquiries -->
       <div>
         <h4 class="font-black brand-font text-sm uppercase tracking-wider mb-3">Studio & Contact</h4>
         <ul class="space-y-2 text-sm font-semibold text-gray-800">
@@ -188,33 +192,26 @@
               ✉ contact@draftsrush.com
             </a>
           </li>
-          <li><a href="partner.html" class="hover:underline">Partner With Us</a></li>
-          <li><a href="about.html" class="hover:underline font-bold">Process & Methodology</a></li>
-          <li><a href="contact.html" class="hover:underline">Contact Desk</a></li>
+          <li><a href="/partner.html" class="hover:underline">Partner With Us</a></li>
+          <li><a href="/about.html" class="hover:underline">Process & Methodology</a></li>
+          <li><a href="/contact.html" class="hover:underline">Contact Desk</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="max-w-6xl mx-auto px-6 border-t-2 border-black pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-gray-600">
+    <!-- Bottom Legal Bar (Properly Contained) -->
+    <div class="max-w-6xl mx-auto px-6 border-t-2 border-black pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-gray-700">
       <p>© 2026 DraftsRush. All rights reserved.</p>
-      <div class="flex gap-6">
-        <a href="privacy.html" class="hover:underline">Privacy Policy</a>
-        <a href="terms.html" class="hover:underline">Terms of Service</a>
-        <a href="mailto:contact@draftsrush.com" class="hover:underline text-black">Email Desk</a>
-      </div>
-    </div>
-  </footer>
-<div class="flex gap-6">
-        <a href="privacy.html" class="hover:underline">Privacy Policy</a>
-        <a href="terms.html" class="hover:underline">Terms of Service</a>
-        <a href="mailto:contact@draftsrush.com" class="hover:underline text-black">Email Desk</a>
+      <div class="flex flex-wrap justify-center gap-6">
+        <a href="/privacy.html" class="hover:underline hover:text-black">Privacy Policy</a>
+        <a href="/terms.html" class="hover:underline hover:text-black">Terms of Service</a>
+        <a href="mailto:contact@draftsrush.com" class="hover:underline hover:text-black">Email Desk</a>
       </div>
     </div>
   </footer>
 
-  <!-- PASTE STARTS DIRECTLY HERE -->
-  <!-- Floating Fixed Contact Widget -->
-  <a href="contact.html" 
+  <!-- Floating Contact Widget (Only element that stays outside the footer) -->
+  <a href="/contact.html" 
      aria-label="Contact Desk"
      class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#FFE600] text-black font-black brand-font text-xs uppercase px-4 py-3 border-2 border-black brutal-box brutal-btn transition-transform select-none">
     <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
