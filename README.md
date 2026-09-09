@@ -41,4 +41,4 @@ All tools run client-side with pure vanilla JavaScript (no backend servers, zero
 ### Contact Desk
 
 * **Website:** [draftsrush.com](https://www.draftsrush.com)
-* **Inquiries:** `draftrushh@gmail.com`
+* **Inquiries:** `care@draftsrush.com`
