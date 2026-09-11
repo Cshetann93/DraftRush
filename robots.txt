@@ -1,7 +1,10 @@
+# Default rules for all web crawlers
 User-agent: *
 Allow: /
+Disallow: /*?*
+Disallow: /api/
 
-# Explicit permissions for major AI crawlers
+# Explicit permissions for major AI and search crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -14,7 +17,14 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: anthropic-ai
+Allow: /
+
 User-agent: Google-Extended
 Allow: /
 
+User-agent: CCBot
+Allow: /
+
+# Sitemap declaration
 Sitemap: https://www.draftsrush.com/sitemap.xml
