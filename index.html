@@ -9,49 +9,54 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
+<!-- Brand Knowledge Graph Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "DraftsRush",
+  "alternateName": "Drafts Rush",
+  "url": "https://www.draftsrush.com",
+  "logo": "https://www.draftsrush.com/favicon.png",
+  "email": "care@draftsrush.com"
+}
+</script>
+<!-- Pre-compiled Tailwind CSS (No runtime blocking) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 
-  <!-- Brand Knowledge Graph Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "DraftsRush",
-    "alternateName": "Drafts Rush",
-    "url": "https://www.draftsrush.com",
-    "logo": "https://www.draftsrush.com/favicon.png",
-    "email": "care@draftsrush.com"
+<!-- Custom Branding & Brutalist Styles -->
+<style>
+  .bg-\[\#FFE600\] { background-color: #FFE600 !important; }
+  .text-\[\#FFE600\] { color: #FFE600 !important; }
+  .border-\[\#FFE600\] { border-color: #FFE600 !important; }
+  .brutal-box {
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px #000;
   }
-  </script>
-
-  <!-- Pre-compiled Tailwind CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
-
-  <!-- Preconnect to speed up font handshake -->
+  .brand-font {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+</style>
+ <!-- Preconnect to speed up font handshake -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <!-- Non-blocking font load -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap">
+  </noscript>
   <style>
-    body { 
-      font-family: 'Inter', sans-serif; 
-      background-color: #E2E4E9 !important; 
-    }
+    body { font-family: 'Inter', sans-serif; }
     h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
-    .brutal-box {
-      border: 2px solid #000;
-      box-shadow: 4px 4px 0px #000;
-    }
-    .brutal-box-lg { 
-      border: 4px solid #000;
-      box-shadow: 8px 8px 0px #000; 
-    }
-    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000; }
-    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
   </style>
 </head>
-<body class="text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black" style="background-color: #E2E4E9;">
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
 
   <!-- Header -->
   <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
@@ -65,36 +70,36 @@
           class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
         />
       </a>
-      <nav class="hidden md:flex items-center gap-4 font-bold text-xs tracking-wider brand-font">
-        <a href="/scripts" class="bg-white text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-          SCRIPTS
-        </a>
-        <a href="/tools" class="bg-white text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-          FREE TOOLS
-        </a>
-        <a href="/writers-room" class="bg-white text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-          WRITERS ROOM
-        </a>
-        <a href="/about" class="bg-white text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-          ABOUT
-        </a>
-      </nav>
-      <button aria-label="Toggle Navigation Menu" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden border-2 border-black bg-white p-1.5 brutal-box">
+     <nav class="hidden md:flex items-center gap-4 font-bold text-xs tracking-wider brand-font">
+  <a href="/scripts" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+    SCRIPTS
+  </a>
+  <a href="/tools" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+    FREE TOOLS
+  </a>
+  <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+    WRITERS ROOM
+  </a>
+  <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+    ABOUT
+  </a>
+</nav>
+      <button aria-label="Toggle Navigation Menu" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
       </button>
     </div>
-    <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-white p-6 space-y-4 font-bold brand-font">
+    <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-[#F0F2F5] p-6 space-y-4 font-bold brand-font">
       <a href="/scripts" class="block border-b border-gray-300 pb-2">SCRIPTS</a>
       <a href="/tools" class="block border-b border-gray-300 pb-2">FREE TOOLS</a>
-      <a href="/writers-room" class="block border-b border-gray-300 pb-2">WRITERS ROOM</a>
+       <a href="/writers-room" class="block border-b border-gray-300 pb-2">WRITERS ROOM</a>
       <a href="/about" class="block border-b border-gray-300 pb-2">ABOUT</a>
     </div>
   </header>
 
   <main class="flex-grow">
-    <!-- Hero Section (Classic Signature Yellow) -->
+    <!-- Hero Section -->
     <section class="max-w-6xl mx-auto px-6 pt-12 pb-16">
-      <div class="border-4 border-black brutal-box-lg p-8 md:p-14 relative overflow-hidden" style="background-color: #FFE600;">
+      <div class="bg-[#FFE600] border-4 border-black brutal-box-lg p-8 md:p-14 relative overflow-hidden">
         <div class="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase mb-6">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Rapid Production Studio
         </div>
@@ -104,22 +109,22 @@
         <p class="text-lg md:text-xl font-medium max-w-2xl mb-4 leading-relaxed text-black">
           We draft high-retention video screenplays built for YouTube, Shorts, and Reels, backed by disciplined hook frameworks, pacing calculators, and structured scene direction.
         </p>
-        <p class="text-base font-bold text-black mb-8 border-l-4 border-black pl-3 bg-[#FFF6CF] py-1.5 inline-block">
+        <p class="text-base font-bold text-black mb-8 border-l-4 border-black pl-3 bg-[#f2da00] py-1 inline-block">
           Tight budget? Tell us what you have to work with. We tailor every quote so lack of funds never stops your project.
         </p>
         <div class="flex flex-wrap gap-4 items-center">
           <a href="/scripts" class="bg-black text-white brand-font font-black text-lg px-8 py-3.5 border-2 border-black brutal-box brutal-btn">
             Explore Script Services
           </a>
-          <a href="/tools" class="bg-white text-black brand-font font-black text-lg px-8 py-3.5 border-2 border-black brutal-box brutal-btn">
+          <a href="/tools" class="bg-[#F0F2F5] text-black brand-font font-black text-lg px-8 py-3.5 border-2 border-black brutal-box brutal-btn">
             Explore Free Tools
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Operational Metrics Strip (Soft Light Steel Grey) -->
-    <section class="border-y-4 border-black py-8" style="background-color: #D4D7E1;">
+    <!-- Operational Metrics Strip -->
+    <section class="border-y-4 border-black bg-[#D4D7E1] py-8">
       <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div class="border-r-0 md:border-r-2 border-black last:border-none">
           <div class="text-3xl md:text-4xl font-black brand-font mb-1">24-48h</div>
@@ -143,20 +148,20 @@
     <!-- Deliverables Showcase -->
     <section class="max-w-6xl mx-auto px-6 py-16">
       <div class="mb-10">
-        <span class="text-xs font-bold uppercase tracking-wider bg-black text-white px-2.5 py-1 brand-font">Specifications</span>
+        <span class="text-xs font-bold uppercase tracking-wider bg-black text-white px-2 py-1 brand-font">Specifications</span>
         <h2 class="text-3xl md:text-4xl font-black mt-2 tracking-tight">Structured For Direct Implementation</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         
-        <!-- Script Sample Card (Soft Butter Yellow) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box flex flex-col justify-between" style="background-color: #FFF6CF;">
+        <!-- Script Sample Card -->
+        <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
           <div>
             <div class="flex justify-between items-center mb-4 pb-2 border-b-2 border-black">
               <span class="font-bold text-sm brand-font uppercase">Video Script Protocol</span>
               <span class="bg-[#FFE600] px-2 py-0.5 text-xs font-bold border border-black">Google Docs / Dual-Column</span>
             </div>
-            <div class="bg-white p-4 border-2 border-black font-mono text-xs mb-4 space-y-2">
+            <div class="bg-[#DDE0E7] p-4 border-2 border-black font-mono text-xs mb-4 space-y-2">
               <p class="text-gray-600 font-bold">// SAMPLE OUTLINE STRUCTURE</p>
               <p><strong class="text-red-700">[00:00 - 00:03] HOOK:</strong> "Most creators lose 40% of their viewers right here..."</p>
               <p><strong class="text-blue-700">[VISUAL CUE]:</strong> Fast cut to retention graph drop-off + red text highlight.</p>
@@ -166,19 +171,19 @@
               Every short-form script comes equipped with precise pacing cues, text hook overlays, and B-roll guidance so your video editor never guesses what asset to use.
             </p>
           </div>
-          <a href="/scripts" class="block text-center bg-[#FFE600] text-black font-black brand-font py-3 border-2 border-black brutal-btn brutal-box">
-            View Script Services →
+          <a href="/scripts" class="block text-center bg-[#FFE600] text-black font-black brand-font py-3 border-2 border-black brutal-btn">
+            View Script Services
           </a>
         </div>
 
-        <!-- Hook Retention & Tools Protocol (Soft Cool Slate Blue) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box flex flex-col justify-between" style="background-color: #D6E4EE;">
+        <!-- Hook Retention & Tools Protocol (Replaced Standard Card) -->
+        <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
           <div>
             <div class="flex justify-between items-center mb-4 pb-2 border-b-2 border-black">
               <span class="font-bold text-sm brand-font uppercase">Hook & Pacing Mechanics</span>
-              <span class="bg-black text-white px-2 py-0.5 text-xs font-bold border border-black">Retention-Engineered</span>
+              <span class="bg-[#C8CBD5] px-2 py-0.5 text-xs font-bold border border-black">Retention-Engineered</span>
             </div>
-            <div class="bg-white p-4 border-2 border-black font-mono text-xs mb-4 space-y-2">
+            <div class="bg-[#DDE0E7] p-4 border-2 border-black font-mono text-xs mb-4 space-y-2">
               <p class="text-gray-600 font-bold">// HOOK PACING PROTOCOL</p>
               <p>• <strong>The First 3 Seconds:</strong> Immediate high-stakes premise, zero throat clearing.</p>
               <p>• <strong>Mini-Arc Resets:</strong> Retention anchors placed every 90s to stop viewer drop-off.</p>
@@ -188,16 +193,16 @@
               Use our free creator calculators to plan your script duration, or access multiple tailored script packages designed to maximize watch time.
             </p>
           </div>
-          <a href="/tools" class="block text-center bg-black text-white font-black brand-font py-3 border-2 border-black brutal-btn brutal-box">
-            Launch Free Creator Tools →
+          <a href="/tools" class="block text-center bg-black text-white font-black brand-font py-3 border-2 border-black brutal-btn">
+            Launch Free Creator Tools
           </a>
         </div>
 
       </div>
     </section>
 
-    <!-- Delivery Flow (Warm Subtle Parchment Background) -->
-    <section class="border-t-4 border-black py-16" style="background-color: #CCD0DC;">
+    <!-- Delivery Flow -->
+    <section class="border-t-4 border-black bg-[#CCD0DC] py-16">
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center max-w-xl mx-auto mb-12">
           <h2 class="text-3xl md:text-4xl font-black brand-font tracking-tight mb-2">How An Order Executes</h2>
@@ -205,7 +210,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="border-4 border-black bg-white p-6 brutal-box relative">
+          <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box relative">
             <span class="absolute -top-5 left-4 bg-black text-white px-3 py-1 font-black brand-font text-lg border-2 border-black">01</span>
             <h3 class="text-xl font-black brand-font mt-2 mb-2">Brief Transmission</h3>
             <p class="text-sm font-medium text-gray-800 leading-relaxed">
@@ -213,30 +218,30 @@
             </p>
           </div>
 
-          <div class="border-4 border-black bg-[#FFE600] p-6 brutal-box relative">
-            <span class="absolute -top-5 left-4 bg-black text-white px-3 py-1 font-black brand-font text-lg border-2 border-black">02</span>
+          <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box relative">
+            <span class="absolute -top-5 left-4 bg-[#FFE600] text-black px-3 py-1 font-black brand-font text-lg border-2 border-black">02</span>
             <h3 class="text-xl font-black brand-font mt-2 mb-2">Drafting & Pacing</h3>
-            <p class="text-sm font-medium text-gray-900 leading-relaxed">
+            <p class="text-sm font-medium text-gray-800 leading-relaxed">
               Scripts receive strict pacing cues, multiple hook variations, and dual-column visual cutaway notes.
             </p>
           </div>
 
-          <div class="border-4 border-black bg-white p-6 brutal-box relative">
+          <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box relative">
             <span class="absolute -top-5 left-4 bg-emerald-400 text-black px-3 py-1 font-black brand-font text-lg border-2 border-black">03</span>
             <h3 class="text-xl font-black brand-font mt-2 mb-2">Delivery & Revisions</h3>
             <p class="text-sm font-medium text-gray-800 leading-relaxed">
-              You receive clean, production-ready Google Docs deliverables within the agreed 24 to 48-hour timeline.
+              You receive clean, production-ready Google Docs or Final Draft deliverables within the agreed 24 to 48-hour timeline.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Agency & Production Partner Strip (Signature Yellow) -->
-    <section class="border-t-4 border-black py-12" style="background-color: #FFE600;">
+    <!-- Agency & Production Partner Strip -->
+    <section class="border-t-4 border-black bg-[#FFE600] py-12">
       <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">Agencies & Studios</span>
+          <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Agencies & Studios</span>
           <h2 class="text-3xl md:text-4xl font-black brand-font tracking-tight mt-2 mb-2">Need a reliable third-party script desk?</h2>
           <p class="font-medium text-gray-900 max-w-xl">
             We handle white-label ghostwriting and overflow script production for marketing agencies and video teams under strict NDAs.
@@ -253,21 +258,21 @@
       <h2 class="text-3xl font-black brand-font mb-8 border-b-4 border-black pb-2 inline-block">Frequently Asked Questions</h2>
       <div class="space-y-4">
         
-        <div class="border-2 border-black bg-white p-5 brutal-box">
+        <div class="border-2 border-black bg-[#F0F2F5] p-5 brutal-box">
           <h4 class="font-black brand-font text-lg mb-1">What if I have a very low budget?</h4>
           <p class="text-sm text-gray-700 font-medium leading-relaxed">
             Reach out anyway. We build flexible solutions and can scope drafts, batch scripts, or adjust deliverables to make your project work within your exact budget.
           </p>
         </div>
 
-        <div class="border-2 border-black bg-[#FFF6CF] p-5 brutal-box">
+        <div class="border-2 border-black bg-[#F0F2F5] p-5 brutal-box">
           <h4 class="font-black brand-font text-lg mb-1">What formats are scripts delivered in?</h4>
           <p class="text-sm text-gray-700 font-medium leading-relaxed">
-            Short-form scripts are provided in structured, dual-column Google Docs (Visual cues on the left, Audio/Dialogue on the right). Narrative screenplays and video essays are delivered as standard production-ready PDFs.
+            Short-form scripts are provided in structured, dual-column Google Docs (Visual cues on the left, Audio/Dialogue on the right). Narrative screenplays and video essays are delivered as standard industry-compliant Final Draft PDFs.
           </p>
         </div>
 
-        <div class="border-2 border-black bg-white p-5 brutal-box">
+        <div class="border-2 border-black bg-[#F0F2F5] p-5 brutal-box">
           <h4 class="font-black brand-font text-lg mb-1">Are the tools really free to use?</h4>
           <p class="text-sm text-gray-700 font-medium leading-relaxed">
             Yes. All our browser-based script calculators, read-time estimators, and pacing tools run client-side with zero sign-ups, subscriptions, or fees.
@@ -279,7 +284,7 @@
   </main>
 
   <!-- Universal Footer -->
-  <footer class="border-t-4 border-black py-12 mt-auto" style="background-color: #D4D7E1;">
+  <footer class="border-t-4 border-black bg-[#D4D7E1] py-12 mt-auto">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <div class="col-span-1 md:col-span-2">
         <a href="/" class="block mb-4" aria-label="DraftsRush Home">
@@ -314,6 +319,8 @@
             </svg>
           </a>
 
+         
+
           <!-- YouTube -->
           <a href="https://www.youtube.com/channel/UCEQ4hAWrJyFXdDgesf2U03Q" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
             <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
@@ -337,7 +344,7 @@
         <h4 class="font-black brand-font text-sm uppercase tracking-wider mb-3">Studio & Contact</h4>
         <ul class="space-y-2 text-sm font-semibold text-gray-800">
           <li>
-            <a href="mailto:care@draftsrush.com" class="inline-block font-mono text-xs font-bold bg-white border-2 border-black px-2 py-1 brutal-box hover:bg-[#FFE600] transition-colors">
+            <a href="mailto:care@draftsrush.com" class="inline-block font-mono text-xs font-bold bg-[#F0F2F5] border-2 border-black px-2 py-1 brutal-box hover:bg-[#FFE600] transition-colors">
               ✉ care@draftsrush.com
             </a>
           </li>
@@ -357,9 +364,9 @@
       </div>
     </div>
   </footer>
-
-  <!-- Floating Contact Widget -->
-  <a href="/contact" 
+  
+  <!-- Floating Contact Widget (Only element that stays outside the footer) -->
+  <a href="/contact.html" 
      aria-label="Contact Desk" 
      class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#FFE600] text-black font-black brand-font text-xs uppercase px-4 py-3 border-2 border-black brutal-box brutal-btn transition-transform select-none">
     <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
