@@ -3,7 +3,7 @@
 > **Live Website:** [draftsrush.com](https://www.draftsrush.com)  
 > **Free Tools Hub:** [draftsrush.com/tools.html](https://www.draftsrush.com/tools.html)
 
-**DraftsRush** is an independent writing studio providing high-retention video screenplays, narrative scriptwriting, and citation-verified academic research synthesis. 
+**DraftsRush** is an independent writing studio providing high-retention video screenplays, narrative scriptwriting, and citation-verified  research synthesis. 
 
 The platform also hosts an open suite of zero-friction, client-side browser utilities designed for creators, video editors, and script supervisors.
 
