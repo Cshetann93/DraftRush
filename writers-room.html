@@ -17,12 +17,11 @@
     .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
     .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
     .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
-    .hub-card:hover { transform: translateY(-4px); box-shadow: 8px 8px 0px #111317; transition: all 0.2s ease; }
+    .list-row:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; transition: all 0.15s ease; }
   </style>
 </head>
 <body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
 
-  <!-- Universal Header -->
   <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between">
       <a href="/" class="inline-flex items-center" aria-label="DraftsRush Home">
@@ -34,20 +33,20 @@
           class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
         />
       </a>
-    <nav class="hidden md:flex items-center gap-4 font-bold text-xs tracking-wider brand-font">
-  <a href="/scripts" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    SCRIPTS
-  </a>
-  <a href="/tools" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    FREE TOOLS
-  </a>
-  <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    WRITER'S ROOM
-  </a>
-  <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    ABOUT
-  </a>
-</nav>
+      <nav class="hidden md:flex items-center gap-4 font-bold text-xs tracking-wider brand-font">
+        <a href="/scripts" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          SCRIPTS
+        </a>
+        <a href="/tools" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          FREE TOOLS
+        </a>
+        <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          WRITER'S ROOM
+        </a>
+        <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          ABOUT
+        </a>
+      </nav>
       <button onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box" aria-label="Toggle navigation menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
       </button>
@@ -63,91 +62,129 @@
   </header>
 
   <main class="flex-grow">
-    <!-- Hero Section -->
     <section class="max-w-6xl mx-auto px-6 pt-12 pb-10">
       <div class="bg-[#F0F2F5] border-4 border-black brutal-box-lg p-8 md:p-14 relative">
         <div class="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase mb-6">
-          Production Notes
+          Production Notes & Knowledge Base
         </div>
         <h1 class="text-4xl md:text-6xl font-black leading-none mb-6 tracking-tight">
           The Writer's Room
         </h1>
-        <p class="text-lg md:text-xl font-medium max-w-3xl mb-8 leading-relaxed text-gray-800">
-          Retention studies, pacing frameworks, and tactical script breakdowns. This is our central hub for creator education and production resources.
+        <p class="text-lg md:text-xl font-medium max-w-3xl mb-0 leading-relaxed text-gray-800">
+          Our core directory of downloadable scripting frameworks, retention studies, terminology indexes, and edit room cut logs.
         </p>
       </div>
     </section>
 
-    <!-- Four Pillars Grid -->
     <section class="max-w-6xl mx-auto px-6 pb-20">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <!-- Pillar 1: Templates -->
-        <a href="/templates" class="block border-4 border-black bg-white p-8 brutal-box hub-card flex flex-col h-full group">
-          <span class="bg-[#FFE600] border-2 border-black text-black px-2 py-1 text-xs font-bold brand-font uppercase w-fit mb-4">Workspace</span>
-          <h3 class="text-3xl font-black brand-font mb-4 group-hover:underline decoration-4 underline-offset-4">Production Templates</h3>
-          <p class="font-medium text-gray-800 mb-8 flex-grow text-lg">
-            Copy the exact document formats we use to write retention heavy scripts directly into your Google Drive. Includes dual column formats and video essay outlines.
-          </p>
-          <span class="font-black text-sm uppercase tracking-wider inline-flex items-center gap-2 text-blue-700 group-hover:text-black">
-            Access Templates <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="3" d="M5 12h14M12 5l7 7-7 7"></path></svg>
-          </span>
-        </a>
+      <div class="space-y-6">
 
-        <!-- Pillar 2: Teardowns -->
-        <a href="/retention-teardowns" class="block border-4 border-black bg-white p-8 brutal-box hub-card flex flex-col h-full group">
-          <span class="bg-black text-white px-2 py-1 text-xs font-bold brand-font uppercase w-fit mb-4">Case Studies</span>
-          <h3 class="text-3xl font-black brand-font mb-4 group-hover:underline decoration-4 underline-offset-4">Retention Teardowns</h3>
-          <p class="font-medium text-gray-800 mb-8 flex-grow text-lg">
-            We watch successful videos with a stopwatch. See exactly when creators drop hooks, introduce conflicts, and structure pacing to hold viewers until the end.
-          </p>
-          <span class="font-black text-sm uppercase tracking-wider inline-flex items-center gap-2 text-blue-700 group-hover:text-black">
-            Read Teardowns <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="3" d="M5 12h14M12 5l7 7-7 7"></path></svg>
-          </span>
-        </a>
+        <!-- List Item 1: Templates -->
+        <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-3xl">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
+                Resource 01 // Workspace
+              </span>
+              <span class="text-xs font-bold text-gray-500 font-mono">3 Formats Available</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
+              <a href="/templates" class="hover:underline">Production Script Templates</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
+              Production ready formats formatted for immediate export. Includes our 10-minute video essay framework, 60-second vertical reels structure, and two-column commercial AV layouts.
+            </p>
+          </div>
+          <div class="flex-shrink-0">
+            <a href="/templates" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+              Get Templates →
+            </a>
+          </div>
+        </div>
 
-        <!-- Pillar 3: Visual Comparisons -->
-        <a href="/visual-comparisons" class="block border-4 border-black bg-white p-8 brutal-box hub-card flex flex-col h-full group">
-          <span class="bg-black text-white px-2 py-1 text-xs font-bold brand-font uppercase w-fit mb-4">Process</span>
-          <h3 class="text-3xl font-black brand-font mb-4 group-hover:underline decoration-4 underline-offset-4">Visual Comparisons</h3>
-          <p class="font-medium text-gray-800 mb-8 flex-grow text-lg">
-            We write visual instructions. See side by side breakdowns showing exactly how our raw scripts dictate the final cut in the edit room.
-          </p>
-          <span class="font-black text-sm uppercase tracking-wider inline-flex items-center gap-2 text-blue-700 group-hover:text-black">
-            View Comparisons <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="3" d="M5 12h14M12 5l7 7-7 7"></path></svg>
-          </span>
-        </a>
+        <!-- List Item 2: Teardowns -->
+        <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-3xl">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
+                Resource 02 // Analytics
+              </span>
+              <span class="text-xs font-bold text-gray-500 font-mono">4 Case Studies</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
+              <a href="/retention-teardowns" class="hover:underline">Retention Teardowns</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
+              Second-by-second dissections of high-performing video scripts. Learn how creators use open loops, 90-second mini-arcs, and non-linear narrative structures to prevent drop-off cliffs.
+            </p>
+          </div>
+          <div class="flex-shrink-0">
+            <a href="/retention-teardowns" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+              Read Teardowns →
+            </a>
+          </div>
+        </div>
 
-        <!-- Pillar 4: Glossary -->
-        <a href="/glossary" class="block border-4 border-black bg-white p-8 brutal-box hub-card flex flex-col h-full group">
-          <span class="bg-black text-white px-2 py-1 text-xs font-bold brand-font uppercase w-fit mb-4">Knowledge Base</span>
-          <h3 class="text-3xl font-black brand-font mb-4 group-hover:underline decoration-4 underline-offset-4">Terminology Index</h3>
-          <p class="font-medium text-gray-800 mb-8 flex-grow text-lg">
-            The definitive glossary for digital video production. Learn the exact technical terms we use to engineer high retention scripts.
-          </p>
-          <span class="font-black text-sm uppercase tracking-wider inline-flex items-center gap-2 text-blue-700 group-hover:text-black">
-            Browse Index <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="3" d="M5 12h14M12 5l7 7-7 7"></path></svg>
-          </span>
-        </a>
+        <!-- List Item 3: Visual Comparisons -->
+        <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-3xl">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
+                Resource 03 // Technical Workflow
+              </span>
+              <span class="text-xs font-bold text-gray-500 font-mono">Script To Screen</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
+              <a href="/visual-comparisons" class="hover:underline">Visual Script Comparisons</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
+              Side-by-side production proofs showing written visual/audio instructions paired against precise NLE timeline cut logs, scale punch-ins, audio mastering cues, and frame pacing.
+            </p>
+          </div>
+          <div class="flex-shrink-0">
+            <a href="/visual-comparisons" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+              View Comparisons →
+            </a>
+          </div>
+        </div>
+
+        <!-- List Item 4: Glossary -->
+        <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-3xl">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
+                Resource 04 // Knowledge Base
+              </span>
+              <span class="text-xs font-bold text-gray-500 font-mono">Video Terminology</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
+              <a href="/glossary" class="hover:underline">Production Terminology Index</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
+              The complete reference manual for digital scriptwriting, pacing rates, retention engineering, audio visual scripting, and production vocabulary.
+            </p>
+          </div>
+          <div class="flex-shrink-0">
+            <a href="/glossary" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+              Browse Index →
+            </a>
+          </div>
+        </div>
 
       </div>
-    </section>
 
-    <!-- Bottom CTA -->
-    <section class="border-t-4 border-black bg-[#F0F2F5] py-20">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="text-3xl md:text-5xl font-black brand-font mb-6">Stop Writing From Scratch.</h2>
-        <p class="text-lg font-medium text-gray-800 mb-8 max-w-2xl mx-auto">
-          You read the strategy. Now let us execute it for you. Submit your channel details and get a custom script draft engineered for retention.
+      <div class="mt-16 bg-[#FFE600] border-4 border-black brutal-box p-8 md:p-12 text-center">
+        <h3 class="text-2xl md:text-4xl font-black brand-font mb-4">Want scripts written specifically for your channel?</h3>
+        <p class="font-medium text-gray-800 text-base md:text-lg mb-8 max-w-2xl mx-auto">
+          We combine calculated pacing, structured visual cues, and narrative suspense to build high-retention video assets for your team.
         </p>
-        <a href="/contact" class="inline-block bg-[#FFE600] text-black brand-font font-black text-xl px-10 py-4 border-4 border-black brutal-box brutal-btn uppercase tracking-wider">
-          Order Your Next Script
+        <a href="/contact" class="inline-block bg-black text-white brand-font font-black text-sm md:text-base px-8 py-3.5 border-2 border-black brutal-box hover:bg-gray-800 uppercase tracking-wider">
+          Order A Custom Draft
         </a>
       </div>
     </section>
   </main>
 
-  <!-- Universal Footer -->
   <footer class="border-t-4 border-black bg-[#D4D7E1] py-12 mt-auto">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <div class="col-span-1 md:col-span-2">
