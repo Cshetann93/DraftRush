@@ -1,64 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
+
+  <!-- Core Pages -->
   <url>
     <loc>https://www.draftsrush.com/</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
     <priority>1.0</priority>
   </url>
-
-  <!-- Core Services -->
   <url>
     <loc>https://www.draftsrush.com/scripts</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Free Tools (High Organic Search Driver) -->
-  <url>
-    <loc>https://www.draftsrush.com/tools</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Studio & Partner Pages -->
-  <url>
-    <loc>https://www.draftsrush.com/about</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.draftsrush.com/partner</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Contact / Order Desk -->
-  <url>
-    <loc>https://www.draftsrush.com/contact</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
     <priority>0.8</priority>
   </url>
-
-  <!-- Legal & Compliance -->
+  <url>
+    <loc>https://www.draftsrush.com/tools</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/writers-room</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/about</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/partner</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/contact</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://www.draftsrush.com/privacy</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>yearly</changefreq>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/terms</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
     <priority>0.3</priority>
   </url>
 
+  <!-- Writer's Room Directory Pages -->
   <url>
-    <loc>https://www.draftsrush.com/terms</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://www.draftsrush.com/templates</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.draftsrush.com/retention-teardowns</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/visual-comparisons</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/glossary</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Production Tools -->
+  <url>
+    <loc>https://www.draftsrush.com/tools/script-timer</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/hook-analyzer</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/retention-simulator</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/hook-generator</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/dialogue-pruner</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/cta-checker</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/format-converter</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/broll-generator</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/shorts-splitter</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/title-checker</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/screenplay-calculator</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/speech-trainer</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/timestamp-maker</loc>
+    <lastmod>2026-09-11T11:22:20+00:00</lastmod>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
