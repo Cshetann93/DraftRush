@@ -20,11 +20,11 @@
     .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
     .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
     .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
-    .list-row { background-color: #F0F2F5; transition: all 0.15s ease; }
-    .list-row:hover { background-color: #FFFFFF; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+    .list-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .list-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
   </style>
 </head>
-<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+<body class="text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black" style="background-color: #E2E4E9;">
 
   <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between">
@@ -66,8 +66,9 @@
   </header>
 
   <main class="flex-grow">
+    <!-- Hero Box (Clean Light Slate Grey) -->
     <section class="max-w-6xl mx-auto px-6 pt-12 pb-10">
-      <div class="bg-white border-4 border-black brutal-box-lg p-8 md:p-14 relative">
+      <div class="border-4 border-black brutal-box-lg p-8 md:p-14 relative" style="background-color: #DDE1E8;">
         <div class="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase mb-6">
           Production Notes & Knowledge Base
         </div>
@@ -83,14 +84,14 @@
     <section class="max-w-6xl mx-auto px-6 pb-20">
       <div class="space-y-6">
 
-        <!-- List Item 1: Templates -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <!-- Block 1: Templates (Soft Muted Butter Yellow) -->
+        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #FFF6CF;">
           <div class="max-w-3xl">
             <div class="flex items-center gap-3 mb-3">
               <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
                 Resource 01 // Workspace
               </span>
-              <span class="text-xs font-bold text-gray-600 font-mono">3 Formats Available</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">3 Formats Available</span>
             </div>
             <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
               <a href="/templates" class="hover:underline">Production Script Templates</a>
@@ -106,14 +107,14 @@
           </div>
         </div>
 
-        <!-- List Item 2: Teardowns -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <!-- Block 2: Teardowns (Soft Slate Ice Blue) -->
+        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #D6E4EE;">
           <div class="max-w-3xl">
             <div class="flex items-center gap-3 mb-3">
-              <span class="bg-[#111317] border-2 border-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
+              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
                 Resource 02 // Analytics
               </span>
-              <span class="text-xs font-bold text-gray-600 font-mono">4 Case Studies</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">4 Case Studies</span>
             </div>
             <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
               <a href="/retention-teardowns" class="hover:underline">Retention Teardowns</a>
@@ -123,20 +124,20 @@
             </p>
           </div>
           <div class="flex-shrink-0">
-            <a href="/retention-teardowns" class="inline-block w-full md:w-auto text-center bg-[#111317] text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            <a href="/retention-teardowns" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
               Read Teardowns →
             </a>
           </div>
         </div>
 
-        <!-- List Item 3: Visual Comparisons -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <!-- Block 3: Visual Comparisons (Soft Warm Parchment) -->
+        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #EFE4D6;">
           <div class="max-w-3xl">
             <div class="flex items-center gap-3 mb-3">
               <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
                 Resource 03 // Technical Workflow
               </span>
-              <span class="text-xs font-bold text-gray-600 font-mono">Script To Screen</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">Script To Screen</span>
             </div>
             <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
               <a href="/visual-comparisons" class="hover:underline">Visual Script Comparisons</a>
@@ -152,14 +153,14 @@
           </div>
         </div>
 
-        <!-- List Item 4: Glossary -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <!-- Block 4: Glossary (Soft Sage Mint Green) -->
+        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #DDE8DF;">
           <div class="max-w-3xl">
             <div class="flex items-center gap-3 mb-3">
-              <span class="bg-[#111317] border-2 border-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
+              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
                 Resource 04 // Knowledge Base
               </span>
-              <span class="text-xs font-bold text-gray-600 font-mono">Video Terminology</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">Video Terminology</span>
             </div>
             <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
               <a href="/glossary" class="hover:underline">Production Terminology Index</a>
@@ -169,7 +170,7 @@
             </p>
           </div>
           <div class="flex-shrink-0">
-            <a href="/glossary" class="inline-block w-full md:w-auto text-center bg-[#111317] text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            <a href="/glossary" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
               Browse Index →
             </a>
           </div>
@@ -177,6 +178,7 @@
 
       </div>
 
+      <!-- Action Banner -->
       <div class="mt-16 bg-[#FFE600] border-4 border-black brutal-box p-8 md:p-12 text-center">
         <h3 class="text-2xl md:text-4xl font-black brand-font mb-4">Want scripts written specifically for your channel?</h3>
         <p class="font-medium text-gray-800 text-base md:text-lg mb-8 max-w-2xl mx-auto">
