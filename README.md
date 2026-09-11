@@ -1,44 +1,48 @@
 # DraftsRush
 
-> **Live Website:** [draftsrush.com](https://www.draftsrush.com)  
-> **Free Tools Hub:** [draftsrush.com/tools.html](https://www.draftsrush.com/tools.html)
+DraftsRush is an independent scriptwriting studio that writes high-retention video screenplays and builds free browser-based creator tools. The studio designs content specifically for YouTube channels, Shorts, and Reels, focusing on opening hooks, watch-time mechanics, and pacing.
 
-**DraftsRush** is an independent writing studio providing high-retention video screenplays, narrative scriptwriting, and citation-verified  research synthesis. 
-
-The platform also hosts an open suite of zero-friction, client-side browser utilities designed for creators, video editors, and script supervisors.
+Live site: [draftsrush.com](https://www.draftsrush.com)
 
 ---
 
-### Interactive Utilities Included
+## Core Services
 
-All tools run client-side with pure vanilla JavaScript (no backend servers, zero account sign-ups, zero data tracking):
+### 1. High-Retention Video Scripts
+- **Short-Form Content:** Formatted in dual-column AV tables with visual cues, B-roll recommendations, and test hooks tailored for YouTube Shorts, Instagram Reels, and TikTok.
+- **Long-Form Screenplays:** Fully researched video essays and explainer scripts structured with 90-second mini-arcs to keep audience drop-off low.
+- **Pacing Control:** Scripts calibrated to natural speaking speeds of 130 to 160 words per minute.
 
-* **Short-Form Script Timer (`/tools/script-timer.html`):** Calculates speaking duration across 130–175 WPM rates and audits the critical 3-second hook threshold.
-* **Hook Retention Grader (`/tools/hook-analyzer.html`):** Diagnostic scoring for video opening lines against swipe-away triggers and filler phrasing.
-* **Dual-Column AV Formatter (`/tools/format-converter.html`):** Generates industry-standard two-column script tables for fast Google Docs pasting.
-* **Screenplay Runtime Calculator (`/tools/screenplay-calculator.html`):** Converts Hollywood Courier 12pt page counts to estimated film minutes by genre density.
-* **B-Roll Shot List Generator (`/tools/broll-generator.html`):** Parses voiceover lines into A-cam, cutaway footage, and text overlay cues.
-* **Retention Drop-Off Simulator (`/tools/retention-simulator.html`):** Models mobile viewer attention decay curves.
-* **Dialogue Economy Pruner (`/tools/dialogue-pruner.html`):** Trims multi-syllable filler into punchy spoken audio.
-* **Title Truncation Checker (`/tools/title-checker.html`):** Previews YouTube titles against 50-character mobile display cut-offs.
-* **Long-Form to Shorts Splitter (`/tools/shorts-splitter.html`):** Estimates harvestable 50-second clips from podcast or essay transcripts.
-* **Speaking Pace Coach (`/tools/speech-trainer.html`):** Live stopwatch to measure natural verbal delivery rate (WPM).
-* **YouTube Timestamp Maker (`/tools/timestamp-maker.html`):** Formats chapter timestamps for video descriptions and Google Key Moments.
+### 2. Script Packages
+- **Creator Tier:** Individual short-form script packages for growing vertical video channels.
+- **Production Tier:** Full-length narrative video drafts with scene direction and visual asset breakdowns.
+- **Retainer Tier:** Weekly deliveries on dedicated turnaround schedules for active production teams.
 
----
-
-### Tech Stack
-
-* **Frontend:** Semantic HTML5, Vanilla JavaScript (ES6+)
-* **Styling:** Tailwind CSS (via CDN) with Neo-Brutalist design tokens
-* **Fonts:** Space Grotesk & Inter
-* **Forms:** Client-side background submission via Web3Forms API
-* **Hosting & Edge Delivery:** Vercel
-* **SEO & Indexing:** Complete semantic OpenGraph tags, JSON-LD Schema markup (`CollectionPage`, `WebApplication`), and dynamic `sitemap.xml`
+### 3. Free Browser Tools
+- **Read Time & Pacing Calculator:** Converts word counts into estimated video runtimes across slow, average, and fast speaking rates.
+- **Scene Duration Planner:** Estimates section lengths so creators avoid bloated intros and rushed conclusions.
+- **Zero Friction:** Client-side utilities running in the browser without signups, logins, or tracking paywalls.
 
 ---
 
-### Contact Desk
+## Tech Stack & Design System
 
-* **Website:** [draftsrush.com](https://www.draftsrush.com)
-* **Inquiries:** `care@draftsrush.com`
+- **Markup:** HTML5 with semantic Schema.org organization markup.
+- **Styling:** Tailwind CSS with a high-contrast neo-brutalist aesthetic (`#FFE600` accent, thick black borders, hard offset drop shadows).
+- **Typography:** Space Grotesk (headers, badges) and Inter (body copy).
+- **Deployment:** Vercel with GitHub version control.
+
+---
+
+## Project Structure
+
+```text
+├── index.html         # Homepage: Core studio introduction, specifications, and workflow
+├── about.html         # Studio background, scriptwriting methodology, and standards
+├── scripts.html       # Video script offerings, AV format breakdowns, and packages
+├── tools.html         # Free client-side script pacing and read-time calculators
+├── partner.html       # Agency white-label and production house partnerships
+├── contact.html       # Project inquiry desk and order brief form
+├── privacy.html       # Privacy policy
+├── terms.html         # Terms of service
+└── drlogo.png         # Studio logo asset
