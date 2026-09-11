@@ -11,13 +11,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background-color: #E2E4E9 !important; 
+    }
     h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
     .brutal-box { box-shadow: 4px 4px 0px #111317; }
     .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
     .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
     .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
-    .list-row:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; transition: all 0.15s ease; }
+    .list-row { background-color: #F0F2F5; transition: all 0.15s ease; }
+    .list-row:hover { background-color: #FFFFFF; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
   </style>
 </head>
 <body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
@@ -40,7 +44,7 @@
         <a href="/tools" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
           FREE TOOLS
         </a>
-        <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+        <a href="/writers-room" class="bg-[#FFE600] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
           WRITER'S ROOM
         </a>
         <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
@@ -63,7 +67,7 @@
 
   <main class="flex-grow">
     <section class="max-w-6xl mx-auto px-6 pt-12 pb-10">
-      <div class="bg-[#F0F2F5] border-4 border-black brutal-box-lg p-8 md:p-14 relative">
+      <div class="bg-white border-4 border-black brutal-box-lg p-8 md:p-14 relative">
         <div class="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase mb-6">
           Production Notes & Knowledge Base
         </div>
@@ -80,13 +84,13 @@
       <div class="space-y-6">
 
         <!-- List Item 1: Templates -->
-        <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="border-4 border-black p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-3xl">
             <div class="flex items-center gap-3 mb-3">
               <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
                 Resource 01 // Workspace
               </span>
-              <span class="text-xs font-bold text-gray-500 font-mono">3 Formats Available</span>
+              <span class="text-xs font-bold text-gray-600 font-mono">3 Formats Available</span>
             </div>
             <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
               <a href="/templates" class="hover:underline">Production Script Templates</a>
@@ -96,20 +100,20 @@
             </p>
           </div>
           <div class="flex-shrink-0">
-            <a href="/templates" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            <a href="/templates" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
               Get Templates →
             </a>
           </div>
         </div>
 
         <!-- List Item 2: Teardowns -->
-        <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="border-4 border-black p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-3xl">
             <div class="flex items-center gap-3 mb-3">
-              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
+              <span class="bg-[#111317] border-2 border-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
                 Resource 02 // Analytics
               </span>
-              <span class="text-xs font-bold text-gray-500 font-mono">4 Case Studies</span>
+              <span class="text-xs font-bold text-gray-600 font-mono">4 Case Studies</span>
             </div>
             <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
               <a href="/retention-teardowns" class="hover:underline">Retention Teardowns</a>
@@ -119,20 +123,20 @@
             </p>
           </div>
           <div class="flex-shrink-0">
-            <a href="/retention-teardowns" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            <a href="/retention-teardowns" class="inline-block w-full md:w-auto text-center bg-[#111317] text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
               Read Teardowns →
             </a>
           </div>
         </div>
 
         <!-- List Item 3: Visual Comparisons -->
-        <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="border-4 border-black p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-3xl">
             <div class="flex items-center gap-3 mb-3">
-              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
+              <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
                 Resource 03 // Technical Workflow
               </span>
-              <span class="text-xs font-bold text-gray-500 font-mono">Script To Screen</span>
+              <span class="text-xs font-bold text-gray-600 font-mono">Script To Screen</span>
             </div>
             <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
               <a href="/visual-comparisons" class="hover:underline">Visual Script Comparisons</a>
@@ -142,20 +146,20 @@
             </p>
           </div>
           <div class="flex-shrink-0">
-            <a href="/visual-comparisons" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            <a href="/visual-comparisons" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
               View Comparisons →
             </a>
           </div>
         </div>
 
         <!-- List Item 4: Glossary -->
-        <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="border-4 border-black p-6 md:p-8 brutal-box list-row flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-3xl">
             <div class="flex items-center gap-3 mb-3">
-              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
+              <span class="bg-[#111317] border-2 border-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
                 Resource 04 // Knowledge Base
               </span>
-              <span class="text-xs font-bold text-gray-500 font-mono">Video Terminology</span>
+              <span class="text-xs font-bold text-gray-600 font-mono">Video Terminology</span>
             </div>
             <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
               <a href="/glossary" class="hover:underline">Production Terminology Index</a>
@@ -165,7 +169,7 @@
             </p>
           </div>
           <div class="flex-shrink-0">
-            <a href="/glossary" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            <a href="/glossary" class="inline-block w-full md:w-auto text-center bg-[#111317] text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
               Browse Index →
             </a>
           </div>
@@ -185,7 +189,7 @@
     </section>
   </main>
 
-   <footer class="border-t-4 border-black bg-[#D4D7E1] py-12 mt-auto">
+  <footer class="border-t-4 border-black bg-[#D4D7E1] py-12 mt-auto">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <div class="col-span-1 md:col-span-2">
         <a href="/" class="block mb-4" aria-label="DraftsRush Home">
@@ -204,7 +208,6 @@
           <span class="inline-block bg-[#FFE600] border-2 border-black px-2 py-1 text-xs font-bold brand-font">BUDGET-FRIENDLY & FAST TURNAROUND</span>
         </div>
         
-        <!-- Social Media Icon Tiles -->
         <div class="flex items-center gap-1.5">
           <!-- X -->
           <a href="https://x.com/DraftsRush" target="_blank" rel="noopener noreferrer" aria-label="X" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
