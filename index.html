@@ -9,54 +9,49 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
-<!-- Brand Knowledge Graph Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "DraftsRush",
-  "alternateName": "Drafts Rush",
-  "url": "https://www.draftsrush.com",
-  "logo": "https://www.draftsrush.com/favicon.png",
-  "email": "care@draftsrush.com"
-}
-</script>
-<!-- Pre-compiled Tailwind CSS (No runtime blocking) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 
-<!-- Custom Branding & Brutalist Styles -->
-<style>
-  .bg-\[\#FFE600\] { background-color: #FFE600 !important; }
-  .text-\[\#FFE600\] { color: #FFE600 !important; }
-  .border-\[\#FFE600\] { border-color: #FFE600 !important; }
-  .brutal-box {
-    border: 2px solid #000;
-    box-shadow: 4px 4px 0px #000;
+  <!-- Brand Knowledge Graph Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DraftsRush",
+    "alternateName": "Drafts Rush",
+    "url": "https://www.draftsrush.com",
+    "logo": "https://www.draftsrush.com/favicon.png",
+    "email": "care@draftsrush.com"
   }
-  .brand-font {
-    font-family: 'Space Grotesk', sans-serif;
-  }
-</style>
- <!-- Preconnect to speed up font handshake -->
+  </script>
+
+  <!-- Pre-compiled Tailwind CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+
+  <!-- Preconnect to speed up font handshake -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Non-blocking font load -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap">
-  </noscript>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background-color: #E2E4E9 !important; 
+    }
     h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
-    .brutal-box { box-shadow: 4px 4px 0px #111317; }
-    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
-    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
-    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
+    .brutal-box {
+      border: 2px solid #000;
+      box-shadow: 4px 4px 0px #000;
+    }
+    .brutal-box-lg { 
+      border: 4px solid #000;
+      box-shadow: 8px 8px 0px #000; 
+    }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000; }
+    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
   </style>
 </head>
-<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+<body class="text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black" style="background-color: #E2E4E9;">
 
   <!-- Header -->
   <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
@@ -70,20 +65,20 @@
           class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
         />
       </a>
-     <nav class="hidden md:flex items-center gap-4 font-bold text-xs tracking-wider brand-font">
-  <a href="/scripts" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    SCRIPTS
-  </a>
-  <a href="/tools" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    FREE TOOLS
-  </a>
-  <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    WRITERS ROOM
-  </a>
-  <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    ABOUT
-  </a>
-</nav>
+      <nav class="hidden md:flex items-center gap-4 font-bold text-xs tracking-wider brand-font">
+        <a href="/scripts" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          SCRIPTS
+        </a>
+        <a href="/tools" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          FREE TOOLS
+        </a>
+        <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          WRITERS ROOM
+        </a>
+        <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          ABOUT
+        </a>
+      </nav>
       <button aria-label="Toggle Navigation Menu" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
       </button>
@@ -91,7 +86,7 @@
     <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-[#F0F2F5] p-6 space-y-4 font-bold brand-font">
       <a href="/scripts" class="block border-b border-gray-300 pb-2">SCRIPTS</a>
       <a href="/tools" class="block border-b border-gray-300 pb-2">FREE TOOLS</a>
-       <a href="/writers-room" class="block border-b border-gray-300 pb-2">WRITERS ROOM</a>
+      <a href="/writers-room" class="block border-b border-gray-300 pb-2">WRITERS ROOM</a>
       <a href="/about" class="block border-b border-gray-300 pb-2">ABOUT</a>
     </div>
   </header>
@@ -176,7 +171,7 @@
           </a>
         </div>
 
-        <!-- Hook Retention & Tools Protocol (Replaced Standard Card) -->
+        <!-- Hook Retention & Tools Protocol -->
         <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
           <div>
             <div class="flex justify-between items-center mb-4 pb-2 border-b-2 border-black">
@@ -230,7 +225,7 @@
             <span class="absolute -top-5 left-4 bg-emerald-400 text-black px-3 py-1 font-black brand-font text-lg border-2 border-black">03</span>
             <h3 class="text-xl font-black brand-font mt-2 mb-2">Delivery & Revisions</h3>
             <p class="text-sm font-medium text-gray-800 leading-relaxed">
-              You receive clean, production-ready Google Docs or Final Draft deliverables within the agreed 24 to 48-hour timeline.
+              You receive clean, production-ready Google Docs deliverables within the agreed 24 to 48-hour timeline.
             </p>
           </div>
         </div>
@@ -268,7 +263,7 @@
         <div class="border-2 border-black bg-[#F0F2F5] p-5 brutal-box">
           <h4 class="font-black brand-font text-lg mb-1">What formats are scripts delivered in?</h4>
           <p class="text-sm text-gray-700 font-medium leading-relaxed">
-            Short-form scripts are provided in structured, dual-column Google Docs (Visual cues on the left, Audio/Dialogue on the right). Narrative screenplays and video essays are delivered as standard industry-compliant Final Draft PDFs.
+            Short-form scripts are provided in structured, dual-column Google Docs (Visual cues on the left, Audio/Dialogue on the right). Narrative screenplays and video essays are delivered as standard production-ready PDFs.
           </p>
         </div>
 
@@ -319,8 +314,6 @@
             </svg>
           </a>
 
-         
-
           <!-- YouTube -->
           <a href="https://www.youtube.com/channel/UCEQ4hAWrJyFXdDgesf2U03Q" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
             <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
@@ -364,9 +357,9 @@
       </div>
     </div>
   </footer>
-  
-  <!-- Floating Contact Widget (Only element that stays outside the footer) -->
-  <a href="/contact.html" 
+
+  <!-- Floating Contact Widget -->
+  <a href="/contact" 
      aria-label="Contact Desk" 
      class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#FFE600] text-black font-black brand-font text-xs uppercase px-4 py-3 border-2 border-black brutal-box brutal-btn transition-transform select-none">
     <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
