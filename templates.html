@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Script Templates | DraftsRush</title>
+  <meta name="description" content="Free production templates for video essays, vertical shorts, and commercial scripts.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
+    .template-card:hover { transform: translateY(-4px); box-shadow: 8px 8px 0px #111317; transition: all 0.2s ease; }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+
+  <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between">
+      <a href="/" class="inline-flex items-center" aria-label="DraftsRush Home">
+        <img 
+          src="/drlogo.png" 
+          alt="DraftsRush" 
+          width="240" 
+          height="64" 
+          class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
+        />
+      </a>
+      <nav class="hidden md:flex items-center gap-8 font-bold text-sm tracking-wide brand-font">
+        <a href="/scripts" class="hover:underline underline-offset-4">SCRIPTS</a>
+        <a href="/tools" class="hover:underline underline-offset-4">FREE TOOLS</a>
+        <a href="/writers-room" class="hover:underline underline-offset-4">WRITER'S ROOM</a>
+        <a href="/about" class="hover:underline underline-offset-4">ABOUT</a>
+      </nav>
+      <button onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box" aria-label="Toggle navigation menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+      </button>
+    </div>
+    <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-[#F0F2F5] p-6 space-y-4 font-bold brand-font">
+      <a href="/scripts" class="block border-b border-gray-300 pb-2">SCRIPTS</a>
+      <a href="/tools" class="block border-b border-gray-300 pb-2">FREE TOOLS</a>
+      <a href="/writers-room" class="block border-b border-gray-300 pb-2">WRITER'S ROOM</a>
+      <a href="/partner" class="block border-b border-gray-300 pb-2">PARTNER WITH US</a>
+      <a href="/about" class="block border-b border-gray-300 pb-2">ABOUT</a>
+      <a href="/contact" class="block text-center bg-black text-white py-2 border-2 border-black">ORDER DRAFT</a>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <section class="max-w-6xl mx-auto px-6 pt-12 pb-10">
+      <div class="bg-[#F0F2F5] border-4 border-black brutal-box-lg p-8 md:p-14 relative">
+        <div class="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase mb-6">
+          Raw Workspace Files
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black leading-none mb-6 tracking-tight">
+          Production Templates
+        </h1>
+        <p class="text-lg md:text-xl font-medium max-w-3xl mb-8 leading-relaxed text-gray-800">
+          Copy the exact document formats we use to write retention heavy scripts. Click any template below to duplicate it straight into your Google Drive.
+        </p>
+        <a href="/writers-room" class="font-bold uppercase text-sm tracking-wider hover:underline">
+          Return to the Writer's Room
+        </a>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="border-4 border-black bg-[#F0F2F5] p-8 brutal-box template-card flex flex-col h-full">
+          <span class="bg-black text-white px-2 py-1 text-xs font-bold brand-font uppercase w-fit mb-4">YouTube</span>
+          <h3 class="text-2xl font-black brand-font mb-4">The 10 Minute Video Essay</h3>
+          <p class="font-medium text-sm text-gray-700 mb-8 flex-grow">
+            A structured outline built entirely around 90 second mini arcs. Includes sections for your cold open, core arguments, and a retention bridge.
+          </p>
+          <a href="#" target="_blank" class="block text-center bg-[#FFE600] text-black font-black text-sm px-4 py-3 border-2 border-black brutal-box brutal-btn uppercase">
+            Copy To Google Drive
+          </a>
+        </div>
+
+        <div class="border-4 border-black bg-[#F0F2F5] p-8 brutal-box template-card flex flex-col h-full">
+          <span class="bg-black text-white px-2 py-1 text-xs font-bold brand-font uppercase w-fit mb-4">Shorts & Reels</span>
+          <h3 class="text-2xl font-black brand-font mb-4">60 Second Vertical Format</h3>
+          <p class="font-medium text-sm text-gray-700 mb-8 flex-grow">
+            Paced for exactly 150 words. Includes dedicated columns for on screen text, visual b roll cues, and fast dialogue pacing.
+          </p>
+          <a href="#" target="_blank" class="block text-center bg-[#FFE600] text-black font-black text-sm px-4 py-3 border-2 border-black brutal-box brutal-btn uppercase">
+            Copy To Google Drive
+          </a>
+        </div>
+
+        <div class="border-4 border-black bg-[#F0F2F5] p-8 brutal-box template-card flex flex-col h-full">
+          <span class="bg-black text-white px-2 py-1 text-xs font-bold brand-font uppercase w-fit mb-4">Commercial</span>
+          <h3 class="text-2xl font-black brand-font mb-4">Dual Column AV Script</h3>
+          <p class="font-medium text-sm text-gray-700 mb-8 flex-grow">
+            The industry standard format for brand videos. Separates audio reads from exact visual directions so your editors never have to guess.
+          </p>
+          <a href="#" target="_blank" class="block text-center bg-[#FFE600] text-black font-black text-sm px-4 py-3 border-2 border-black brutal-box brutal-btn uppercase">
+            Copy To Google Drive
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t-4 border-black bg-[#D4D7E1] py-12 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div class="col-span-1 md:col-span-2">
+        <a href="/" class="block mb-4" aria-label="DraftsRush Home">
+          <img 
+            src="/drlogo.png" 
+            alt="DraftsRush" 
+            width="180" 
+            height="48" 
+            class="h-10 sm:h-11 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
+          />
+        </a>
+        <p class="font-medium text-sm text-gray-700 max-w-sm leading-relaxed mb-4">
+          Independent writing studio delivering high retention video scripts and free creator tools.
+        </p>
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="inline-block bg-[#FFE600] border-2 border-black px-2 py-1 text-xs font-bold brand-font">BUDGET FRIENDLY</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-black brand-font text-sm uppercase tracking-wider mb-3">Services</h4>
+        <ul class="space-y-2 text-sm font-semibold text-gray-800">
+          <li><a href="/scripts" class="hover:underline">Short Form Script Packs</a></li>
+          <li><a href="/scripts" class="hover:underline">Long Form Screenplays</a></li>
+          <li><a href="/tools" class="hover:underline">Free Creator Tools</a></li>
+          <li><a href="/partner" class="hover:underline">Agency Partner Program</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-black brand-font text-sm uppercase tracking-wider mb-3">Studio & Contact</h4>
+        <ul class="space-y-2 text-sm font-semibold text-gray-800">
+          <li>
+            <a href="mailto:care@draftsrush.com" class="inline-block font-mono text-xs font-bold bg-[#F0F2F5] border-2 border-black px-2 py-1 brutal-box hover:bg-[#FFE600] transition-colors">
+              ✉ care@draftsrush.com
+            </a>
+          </li>
+          <li><a href="/writers-room" class="hover:underline">The Writer's Room</a></li>
+          <li><a href="/about" class="hover:underline">Process & Methodology</a></li>
+          <li><a href="/contact" class="hover:underline">Intake Desk / Order</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 border-t-2 border-black pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-gray-600">
+      <p>© 2026 DraftsRush. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
