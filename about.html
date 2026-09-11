@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | DraftsRush</title>
-  <meta name="description" content="Learn about DraftsRush, an independent writing studio delivering retention-engineered video scripts and citation-verified  research synthesis.">
+  <meta name="description" content="Learn about DraftsRush, an independent writing studio delivering retention-engineered video scripts and creator tools.">
 
   <!-- Favicon References for Browsers & Search Engines -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -29,7 +29,7 @@
     "@type": "AboutPage",
     "name": "About DraftsRush",
     "url": "https://www.draftsrush.com/about.html",
-    "description": "Studio background, research methodology, and production standards for DraftsRush.",
+    "description": "Studio background, scripting methodology, and production standards for DraftsRush.",
     "publisher": {
       "@type": "Organization",
       "name": "DraftsRush",
@@ -42,28 +42,27 @@
 
   <!-- Header -->
   <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
-  <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between">
-    <a href="/" class="inline-flex items-center" aria-label="DraftsRush Home">
-      <img 
-  src="/drlogo.png" 
-  alt="DraftsRush" 
-  width="240" 
-  height="64"
-  class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
-/>
+    <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between">
+      <a href="/" class="inline-flex items-center" aria-label="DraftsRush Home">
+        <img 
+          src="/drlogo.png" 
+          alt="DraftsRush" 
+          width="240" 
+          height="64" 
+          class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
+        />
+      </a>
       <nav class="hidden md:flex items-center gap-8 font-bold text-sm tracking-wide brand-font">
         <a href="/scripts" class="hover:underline underline-offset-4">SCRIPTS</a>
-        <a href="/" class="hover:underline underline-offset-4"> RESEARCH</a>
         <a href="/tools" class="hover:underline underline-offset-4">FREE TOOLS</a>
         <a href="/about" class="underline underline-offset-4 font-black">ABOUT</a>
       </nav>
-      <button onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box">
+      <button onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box" aria-label="Toggle navigation menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
       </button>
     </div>
     <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-[#F0F2F5] p-6 space-y-4 font-bold brand-font">
       <a href="/scripts" class="block border-b border-gray-300 pb-2">SCRIPTS</a>
-      <a href="/" class="block border-b border-gray-300 pb-2"> RESEARCH</a>
       <a href="/tools" class="block border-b border-gray-300 pb-2">FREE TOOLS</a>
       <a href="/about" class="block border-b border-gray-300 pb-2 font-black">ABOUT</a>
     </div>
@@ -73,44 +72,30 @@
     <!-- Hero Banner -->
     <div class="border-4 border-black bg-[#FFE600] p-8 md:p-12 brutal-box-lg mb-12">
       <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Studio Background & Standards</span>
-      <h1 class="text-4xl md:text-5xl font-black brand-font mt-2 mb-3">Writing Engineered for Human Attention &  Rigor</h1>
+      <h1 class="text-4xl md:text-5xl font-black brand-font mt-2 mb-3">Writing Engineered for Human Attention & Retention</h1>
       <p class="text-base md:text-lg font-medium max-w-2xl text-black">
-        DraftsRush is an independent writing and research studio. We operate at the intersection of mobile retention psychology, screenwriting discipline, and citation-verified  analysis.
+        DraftsRush is an independent video writing studio. We operate at the intersection of mobile retention psychology, disciplined screenplay structure, and deep factual verification.
       </p>
     </div>
 
-    <!-- Core Philosophy Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
-      <div class="border-4 border-black bg-[#F0F2F5] p-8 brutal-box flex flex-col justify-between">
-        <div>
-          <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Track 01</span>
-          <h2 class="text-2xl font-black brand-font mt-3 mb-3">The Scriptwriting Studio</h2>
-          <p class="text-sm font-medium text-gray-800 leading-relaxed mb-4">
+    <!-- Core Studio Focus (Track 01 Only) -->
+    <div class="mb-14">
+      <div class="border-4 border-black bg-[#F0F2F5] p-8 md:p-10 brutal-box flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <div class="max-w-3xl">
+          <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Our Studio</span>
+          <h2 class="text-3xl font-black brand-font mt-3 mb-3">The Scriptwriting Studio</h2>
+          <p class="text-sm md:text-base font-medium text-gray-800 leading-relaxed mb-4">
             Most online video scripts fail within the first 3 seconds due to passive scene setting and generic vocal warmups. We script directly for high hold rates across YouTube Shorts, Reels, TikTok, and long-form video essays.
           </p>
-          <p class="text-sm font-medium text-gray-800 leading-relaxed mb-4">
+          <p class="text-sm md:text-base font-medium text-gray-800 leading-relaxed">
             Every video delivery comes formatted in dual-column AV tables with visual cutaway cues, concrete B-roll notes, and multiple hook variations tested for pacing at 130 to 160 spoken words per minute.
           </p>
         </div>
-        <a href="/scripts" class="block text-center bg-[#FFE600] text-black font-black brand-font py-2.5 border-2 border-black brutal-btn">
-          View Video Script Packs →
-        </a>
-      </div>
-
-      <div class="border-4 border-black bg-[#F0F2F5] p-8 brutal-box flex flex-col justify-between">
-        <div>
-          <span class="bg-blue-300 text-black px-2 py-0.5 text-xs font-bold border border-black brand-font uppercase">Track 02</span>
-          <h2 class="text-2xl font-black brand-font mt-3 mb-3">The  Research Desk</h2>
-          <p class="text-sm font-medium text-gray-800 leading-relaxed mb-4">
-            Modern content demands verifiable fact-checking. We provide literature review synthesis, source auditing, and  research briefs grounded in peer-reviewed journals, primary data sets, and archival materials.
-          </p>
-          <p class="text-sm font-medium text-gray-800 leading-relaxed mb-4">
-            Every document adheres to precise citation frameworks (APA 7th, MLA 9th, Chicago/Turabian, or Harvard), complete with live reference links and zero uncited claims.
-          </p>
+        <div class="flex-shrink-0">
+          <a href="/scripts" class="inline-block text-center bg-[#FFE600] text-black font-black brand-font px-8 py-4 border-2 border-black brutal-btn brutal-box">
+            View Video Script Packs →
+          </a>
         </div>
-        <a href="/" class="block text-center bg-black text-white font-black brand-font py-2.5 border-2 border-black brutal-btn">
-          View  Modules →
-        </a>
       </div>
     </div>
 
@@ -123,15 +108,15 @@
           <div class="text-2xl font-black brand-font text-black mb-1">01</div>
           <h3 class="font-black brand-font text-base uppercase mb-2">Zero Fluff Delivery</h3>
           <p class="text-xs font-semibold text-gray-700 leading-relaxed">
-            We avoid unnecessary jargon and empty filler phrases. Every sentence either establishes tension, delivers direct value, or advances the central argument.
+            We cut filler phrases and unnecessary setup. Every sentence either establishes tension, delivers direct value, or advances the story.
           </p>
         </div>
 
         <div class="border-2 border-black bg-[#F0F2F5] p-5 brutal-box">
           <div class="text-2xl font-black brand-font text-black mb-1">02</div>
-          <h3 class="font-black brand-font text-base uppercase mb-2">Verified Citations</h3>
+          <h3 class="font-black brand-font text-base uppercase mb-2">Verified Content Research</h3>
           <p class="text-xs font-semibold text-gray-700 leading-relaxed">
-            No hallucinations or invented data. Every fact, statistic, and theoretical claim is cross-referenced against primary documents and  repositories.
+            No hallucinations or unverified statistics. Every claim, data point, and case study in our scripts is verified against authoritative source material.
           </p>
         </div>
 
@@ -139,7 +124,7 @@
           <div class="text-2xl font-black brand-font text-black mb-1">03</div>
           <h3 class="font-black brand-font text-base uppercase mb-2">Free Browser Utilities</h3>
           <p class="text-xs font-semibold text-gray-700 leading-relaxed">
-            We build and maintain open client-side utilities without accounts, logins, or fees. Real production tools should remain accessible to independent creators.
+            We build and maintain open client-side utilities without accounts, logins, or fees. Practical production tools should remain accessible to independent creators.
           </p>
         </div>
       </div>
@@ -149,68 +134,66 @@
     <div class="border-4 border-black bg-[#FFE600] p-8 brutal-box-lg flex flex-col md:flex-row items-center justify-between gap-6">
       <div>
         <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Direct Inquiries</span>
-        <h3 class="text-2xl md:text-3xl font-black brand-font mt-2 mb-1">Have a Script or Research Project in Mind?</h3>
+        <h3 class="text-2xl md:text-3xl font-black brand-font mt-2 mb-1">Have a Video Script Project in Mind?</h3>
         <p class="text-sm font-medium text-black max-w-xl">
           We answer project requests within 24 hours with exact turnaround timelines and clear deliverables.
         </p>
       </div>
       <a href="/contact" class="bg-black text-white font-black brand-font px-6 py-3.5 border-2 border-black brutal-box brutal-btn uppercase text-sm whitespace-nowrap">
-        Contact the Desk →
+        Contact the Studio →
       </a>
     </div>
   </main>
-<!-- Universal Footer -->
+
+  <!-- Universal Footer -->
   <footer class="border-t-4 border-black bg-[#D4D7E1] py-12 mt-auto">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <div class="col-span-1 md:col-span-2">
-       <a href="/" class="inline-flex items-center mb-3" aria-label="DraftsRush Home">
- <div class="col-span-1 md:col-span-2">
-          <a href="/" class="block mb-4" aria-label="DraftsRush Home">
-           <img 
-              src="/drlogo.png" 
-              alt="DraftsRush" 
-              width="180" 
-              height="48" 
-              class="h-10 sm:h-11 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
-            />
+        <a href="/" class="block mb-4" aria-label="DraftsRush Home">
+          <img 
+            src="/drlogo.png" 
+            alt="DraftsRush" 
+            width="180" 
+            height="48" 
+            class="h-10 sm:h-11 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
+          />
+        </a>
+        <p class="font-medium text-sm text-gray-700 max-w-sm leading-relaxed mb-4">
+          Independent writing studio delivering high-retention video scripts and free creator tools.
+        </p>
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="inline-block bg-[#FFE600] border-2 border-black px-2 py-1 text-xs font-bold brand-font">BUDGET-FRIENDLY & FAST TURNAROUND</span>
+        </div>
+        
+        <!-- Social Media Icon Tiles -->
+        <div class="flex items-center gap-1.5">
+          <!-- X -->
+          <a href="PASTE_YOUR_X_URL_HERE" target="_blank" rel="noopener noreferrer" aria-label="X" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
+            <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
           </a>
-          <p class="font-medium text-sm text-gray-700 max-w-sm leading-relaxed mb-4">
-            Independent writing studio delivering high-retention video scripts and citation-verified  research modules.
-          </p>
-          <div class="flex flex-wrap items-center gap-3 mb-6">
-            <span class="inline-block bg-[#FFE600] border-2 border-black px-2 py-1 text-xs font-bold brand-font">BUDGET-FRIENDLY & FAST TURNAROUND</span>
-          </div>
-          
-          <!-- Social Media Icon Tiles -->
-          <div class="flex items-center gap-1.5">
-            <!-- X -->
-            <a href="PASTE_YOUR_X_URL_HERE" target="_blank" rel="noopener noreferrer" aria-label="X" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
-              <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
 
-            <!-- Instagram -->
-            <a href="PASTE_YOUR_INSTAGRAM_URL_HERE" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
-              <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-            </a>
+          <!-- Instagram -->
+          <a href="PASTE_YOUR_INSTAGRAM_URL_HERE" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
+            <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
 
-            <!-- LinkedIn -->
-            <a href="PASTE_YOUR_LINKEDIN_URL_HERE" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
-              <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-              </svg>
-            </a>
+          <!-- LinkedIn -->
+          <a href="PASTE_YOUR_LINKEDIN_URL_HERE" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
+            <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
 
-            <!-- YouTube -->
-            <a href="PASTE_YOUR_YOUTUBE_URL_HERE" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
-              <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-            </a>
-          </div>
+          <!-- YouTube -->
+          <a href="PASTE_YOUR_YOUTUBE_URL_HERE" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
+            <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
         </div>
       </div>
 
@@ -219,7 +202,7 @@
         <ul class="space-y-2 text-sm font-semibold text-gray-800">
           <li><a href="/scripts" class="hover:underline">Short-Form Script Packs</a></li>
           <li><a href="/scripts" class="hover:underline">Long-Form Screenplays</a></li>
-          <li><a href="/" class="hover:underline">Literature Reviews</a></li>
+          <li><a href="/tools" class="hover:underline">Free Creator Tools</a></li>
           <li><a href="/partner" class="hover:underline">Agency Partner Program</a></li>
         </ul>
       </div>
@@ -248,9 +231,10 @@
       </div>
     </div>
   </footer>
-  <!-- Floating Contact Widget (Only element that stays outside the footer) -->
+
+  <!-- Floating Contact Widget -->
   <a href="/contact.html" 
-     aria-label="Contact Desk"
+     aria-label="Contact Desk" 
      class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#FFE600] text-black font-black brand-font text-xs uppercase px-4 py-3 border-2 border-black brutal-box brutal-btn transition-transform select-none">
     <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
