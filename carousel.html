@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DraftsRush X Banner Generator</title>
+  <title>LinkedIn Post Graphic Generator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
       background: #111317;
@@ -17,12 +17,12 @@
       padding: 40px 20px;
     }
     canvas {
-      width: 1000px;
+      width: 600px;
+      height: 600px;
       max-width: 100%;
-      height: auto;
       border: 4px solid #000;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     button {
       background: #FFE600;
@@ -35,33 +35,28 @@
       box-shadow: 4px 4px 0px #fff;
       cursor: pointer;
     }
-    button:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0px #fff;
-    }
   </style>
 </head>
 <body>
 
-  <canvas id="xBanner" width="1500" height="500"></canvas>
-  <button onclick="downloadBanner()">Download 1500x500 PNG for X</button>
+  <canvas id="liCanvas" width="1200" height="1200"></canvas>
+  <button onclick="downloadGraphic()">Download 1200x1200px PNG</button>
 
   <script>
-    const canvas = document.getElementById('xBanner');
+    const canvas = document.getElementById('liCanvas');
     const ctx = canvas.getContext('2d');
 
     function draw() {
-      // Background
-      ctx.fillStyle = '#FFE600';
-      ctx.fillRect(0, 0, 1500, 500);
+      // Base canvas
+      ctx.fillStyle = '#E2E4E9';
+      ctx.fillRect(0, 0, 1200, 1200);
 
-      // Outer Border
+      // Outer frame
       ctx.strokeStyle = '#000000';
       ctx.lineWidth = 16;
-      ctx.strokeRect(0, 0, 1500, 500);
+      ctx.strokeRect(0, 0, 1200, 1200);
 
-      // Helper function for Brutalist Box
-      function drawBox(x, y, w, h, fill, border = '#000000', borderWidth = 4, shadow = 8) {
+      function drawBox(x, y, w, h, fill, border = '#000000', borderWidth = 4, shadow = 10) {
         if (shadow > 0) {
           ctx.fillStyle = '#000000';
           ctx.fillRect(x + shadow, y + shadow, w, h);
@@ -73,76 +68,109 @@
         ctx.strokeRect(x, y, w, h);
       }
 
-      // Top Tag
-      drawBox(80, 50, 360, 46, '#000000', '#000000', 0, 0);
+      // Top Header Bar
+      drawBox(80, 80, 360, 56, '#000000', '#000000', 0, 0);
       ctx.fillStyle = '#4ade80';
       ctx.beginPath();
-      ctx.arc(106, 73, 7, 0, Math.PI * 2);
+      ctx.arc(112, 108, 8, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = '700 18px "Space Grotesk", sans-serif';
-      ctx.fillText('INDEPENDENT WRITING STUDIO', 126, 79);
+      ctx.font = '700 20px "Space Grotesk", sans-serif';
+      ctx.fillText('CONTENT BOTTLENECK', 135, 115);
 
-      // Main Center-Right Headline (Safe from bottom-left avatar cutout)
       ctx.fillStyle = '#000000';
-      ctx.font = '900 58px "Space Grotesk", sans-serif';
-      ctx.fillText('RETENTION-ENGINEERED', 80, 160);
-      ctx.fillText('VIDEO SCRIPTS & BLUEPRINTS', 80, 225);
+      ctx.font = '700 24px "JetBrains Mono", monospace';
+      ctx.fillText('draftsrush.com', 930, 116);
 
-      // Sub-headline Banner
-      drawBox(80, 255, 870, 52, '#FFFFFF', '#000000', 4, 6);
+      // Main Hero Card
+      drawBox(80, 180, 1040, 290, '#FFE600', '#000000', 6, 14);
+      ctx.fillStyle = '#000000';
+      ctx.font = '900 52px "Space Grotesk", sans-serif';
+      ctx.fillText('You have the industry insight.', 130, 270);
+      ctx.fillText('You lack the script direction.', 130, 340);
+
+      ctx.font = '600 24px "Inter", sans-serif';
       ctx.fillStyle = '#111317';
-      ctx.font = '700 21px "Inter", sans-serif';
-      ctx.fillText('Dual-Column AV Layouts • Verified Research • 24-48h Delivery Turnaround', 105, 288);
+      ctx.fillText('Turning raw knowledge into high-retention video blueprints', 130, 410);
 
-      // Feature Specification Badges
-      const badges = [
-        { text: 'YouTube & Essays', fill: '#FFF6CF' },
-        { text: 'Shorts & Reels Packs', fill: '#D6E4EE' },
-        { text: 'Free Creator Utilities', fill: '#FFFFFF' }
+      // The 3 Step Framework Cards
+      const steps = [
+        {
+          num: '01',
+          tag: 'THE GAP',
+          title: 'Unstructured Thoughts',
+          desc: 'Bullet points on a notepad do not translate to visual timing. Editors guess the B-roll, pacing drops, and watch time dies.',
+          bg: '#FFFFFF'
+        },
+        {
+          num: '02',
+          tag: 'THE FIX',
+          title: 'Dual-Column AV Architecture',
+          desc: 'We map timed spoken voiceover directly against exact on-screen graphics, text hooks, and punch cues.',
+          bg: '#FFF6CF'
+        },
+        {
+          num: '03',
+          tag: 'THE TEST',
+          title: '24-Hour Working Demo',
+          desc: 'Send 1 topic. We draft your opening hook and narrative setup so you can review delivery before ordering a full package.',
+          bg: '#D6E4EE'
+        }
       ];
 
-      badges.forEach((b, i) => {
-        const xPos = 80 + (i * 260);
-        drawBox(xPos, 340, 240, 48, b.fill, '#000000', 3, 5);
+      steps.forEach((s, idx) => {
+        const yPos = 510 + (idx * 175);
+        drawBox(80, yPos, 1040, 145, s.bg, '#000000', 4, 8);
+
+        // Step number badge
+        drawBox(115, yPos + 35, 75, 75, '#000000', '#000000', 0, 0);
+        ctx.fillStyle = '#FFE600';
+        ctx.font = '900 34px "Space Grotesk", sans-serif';
+        ctx.fillText(s.num, 132, yPos + 85);
+
+        // Text content
         ctx.fillStyle = '#000000';
-        ctx.font = '700 16px "Space Grotesk", sans-serif';
-        ctx.fillText(b.text, xPos + 22, 370);
+        ctx.font = '900 26px "Space Grotesk", sans-serif';
+        ctx.fillText(s.title, 215, yPos + 60);
+
+        ctx.fillStyle = '#333333';
+        ctx.font = '500 20px "Inter", sans-serif';
+        wrapText(ctx, s.desc, 215, yPos + 95, 870, 28);
       });
 
-      // Right-Side Brutalist Anchor Card
-      drawBox(1060, 50, 360, 400, '#FFFFFF', '#000000', 6, 12);
-
-      // Studio Label Inside Card
-      drawBox(1100, 85, 280, 40, '#000000', '#000000', 0, 0);
+      // Bottom Action Strip
+      drawBox(80, 1060, 1040, 75, '#000000', '#000000', 0, 0);
       ctx.fillStyle = '#FFE600';
-      ctx.font = '900 18px "Space Grotesk", sans-serif';
-      ctx.fillText('START WITH A WORKING DEMO', 1120, 111);
+      ctx.font = '900 24px "Space Grotesk", sans-serif';
+      ctx.fillText('DM "DEMO" TO TURN 1 IDEA INTO A PRODUCTION SCRIPT', 120, 1106);
 
-      ctx.fillStyle = '#111317';
-      ctx.font = '600 18px "Inter", sans-serif';
-      ctx.fillText('Send 1 topic or rough idea.', 1100, 175);
-      ctx.fillText('Get a demo hook & scene structure', 1100, 205);
-      ctx.fillText('to test our pacing first.', 1100, 235);
-
-      // CTA Button
-      drawBox(1100, 280, 280, 60, '#FFE600', '#000000', 4, 6);
-      ctx.fillStyle = '#000000';
-      ctx.font = '900 20px "Space Grotesk", sans-serif';
-      ctx.fillText('DM "DEMO" ON X', 1145, 318);
-
-      // Web Link Tag
-      ctx.fillStyle = '#000000';
-      ctx.font = '700 18px "JetBrains Mono", monospace';
-      ctx.fillText('draftsrush.com', 1170, 405);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '700 20px "JetBrains Mono", monospace';
+      ctx.fillText('DRAFTSRUSH STUDIO', 900, 1105);
     }
 
-    // Wait for fonts to load before drawing to ensure correct typography
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      for (let n = 0; n < words.length; n++) {
+        let testLine = line + words[n] + ' ';
+        let metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          ctx.fillText(line, x, y);
+          line = words[n] + ' ';
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, x, y);
+    }
+
     document.fonts.ready.then(draw);
 
-    function downloadBanner() {
+    function downloadGraphic() {
       const link = document.createElement('a');
-      link.download = 'draftsrush-x-banner-1500x500.png';
+      link.download = 'draftsrush-linkedin-direction.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
     }
