@@ -2,206 +2,149 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DraftsRush Instagram Carousel</title>
+  <title>DraftsRush X Banner Generator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #111317;
+      background: #111317;
+      color: white;
       font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
     }
-    .brand-font {
-      font-family: 'Space Grotesk', sans-serif;
-    }
-    .mono-font {
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .slide-card {
-      width: 600px;
-      height: 600px;
-      aspect-ratio: 1 / 1;
-    }
-    .brutal-box {
-      border: 3px solid #000;
-      box-shadow: 6px 6px 0px #000;
-    }
-    .brutal-box-lg {
+    canvas {
+      width: 1000px;
+      max-width: 100%;
+      height: auto;
       border: 4px solid #000;
-      box-shadow: 10px 10px 0px #000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 24px;
+    }
+    button {
+      background: #FFE600;
+      color: #000;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 14px 28px;
+      border: 3px solid #000;
+      box-shadow: 4px 4px 0px #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px #fff;
     }
   </style>
 </head>
-<body class="min-h-screen py-10 flex flex-col items-center justify-center text-[#111317]">
+<body>
 
-  <!-- Slide Selector Controls -->
-  <div class="mb-6 flex gap-3 z-10">
-    <button onclick="showSlide(1)" id="btn-1" class="px-4 py-2 border-2 border-black font-black brand-font text-sm bg-[#FFE600] shadow-[3px_3px_0px_#000]">SLIDE 1</button>
-    <button onclick="showSlide(2)" id="btn-2" class="px-4 py-2 border-2 border-black font-black brand-font text-sm bg-white shadow-[3px_3px_0px_#000]">SLIDE 2</button>
-    <button onclick="showSlide(3)" id="btn-3" class="px-4 py-2 border-2 border-black font-black brand-font text-sm bg-white shadow-[3px_3px_0px_#000]">SLIDE 3</button>
-    <button onclick="showSlide(4)" id="btn-4" class="px-4 py-2 border-2 border-black font-black brand-font text-sm bg-white shadow-[3px_3px_0px_#000]">SLIDE 4</button>
-  </div>
-
-  <!-- SLIDE 1: HOOK (COVER) -->
-  <div id="slide-1" class="slide-card bg-[#FFE600] border-4 border-black p-10 flex flex-col justify-between relative brutal-box-lg overflow-hidden">
-    <div class="flex justify-between items-center border-b-2 border-black pb-4">
-      <div class="flex items-center gap-2 bg-black text-white px-3 py-1 font-bold text-xs brand-font uppercase">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> CREATOR BOTTLENECK
-      </div>
-      <span class="mono-font font-bold text-xs tracking-wider">01 / 04</span>
-    </div>
-
-    <div class="bg-white border-4 border-black p-7 brutal-box my-auto">
-      <h1 class="text-3xl font-black brand-font leading-tight text-black mb-4 tracking-tight">
-        You want the reach.<br>
-        You do not have the script.
-      </h1>
-      <p class="text-sm font-medium text-gray-800 leading-relaxed">
-        Having an idea is easy. Turning that concept into 60 seconds of disciplined spoken pacing, dual-column visual cutaways, and high-retention hooks is where most video pipelines break down.
-      </p>
-    </div>
-
-    <div class="flex justify-between items-center border-t-2 border-black pt-4">
-      <span class="brand-font font-black text-xs uppercase tracking-wider">DRAFTSRUSH STUDIO</span>
-      <span class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font uppercase border border-black">
-        SWIPE FOR PACKAGES →
-      </span>
-    </div>
-  </div>
-
-  <!-- SLIDE 2: PACKAGES -->
-  <div id="slide-2" class="slide-card bg-[#E2E4E9] border-4 border-black p-10 hidden flex-col justify-between relative brutal-box-lg overflow-hidden">
-    <div class="flex justify-between items-center border-b-2 border-black pb-3">
-      <div class="bg-black text-white px-3 py-1 font-bold text-xs brand-font uppercase">
-        PRODUCTION TIERS
-      </div>
-      <span class="mono-font font-bold text-xs tracking-wider">02 / 04</span>
-    </div>
-
-    <div class="space-y-3.5 my-auto">
-      <!-- Tier 1 -->
-      <div class="border-2 border-black bg-white p-3.5 brutal-box">
-        <div class="flex justify-between items-center mb-1">
-          <h3 class="font-black brand-font text-sm uppercase">Short-Form Script Packs</h3>
-          <span class="bg-[#FFE600] px-1.5 py-0.5 text-[10px] font-bold border border-black">SHORTS / REELS</span>
-        </div>
-        <p class="text-[11px] font-medium text-gray-700">3 to 10 batch scripts • Dual-column AV format • 3 hook variants • Exact B-roll cues</p>
-      </div>
-
-      <!-- Tier 2 -->
-      <div class="border-2 border-black p-3.5 brutal-box" style="background-color: #FFF6CF;">
-        <div class="flex justify-between items-center mb-1">
-          <h3 class="font-black brand-font text-sm uppercase">Long-Form Video Essays</h3>
-          <span class="bg-black text-white px-1.5 py-0.5 text-[10px] font-bold border border-black">8-15 MIN</span>
-        </div>
-        <p class="text-[11px] font-medium text-gray-800">Primary-source verified research • 90s mini-arc retention resets • Pacing calibration</p>
-      </div>
-
-      <!-- Tier 3 -->
-      <div class="border-2 border-black p-3.5 brutal-box" style="background-color: #D6E4EE;">
-        <div class="flex justify-between items-center mb-1">
-          <h3 class="font-black brand-font text-sm uppercase">Agency Ghostwriting Desk</h3>
-          <span class="bg-[#FFE600] px-1.5 py-0.5 text-[10px] font-bold border border-black">WHITE-LABEL</span>
-        </div>
-        <p class="text-[11px] font-medium text-gray-800">High-volume overflow pipelines • Strict NDA compliance • Direct editor delivery</p>
-      </div>
-    </div>
-
-    <div class="flex justify-between items-center border-t-2 border-black pt-3">
-      <span class="brand-font font-black text-xs uppercase tracking-wider">DRAFTSRUSH.COM</span>
-      <span class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font uppercase border border-black">
-        TEST QUALITY FIRST →
-      </span>
-    </div>
-  </div>
-
-  <!-- SLIDE 3: ZERO RISK DEMO -->
-  <div id="slide-3" class="slide-card bg-[#E2E4E9] border-4 border-black p-10 hidden flex-col justify-between relative brutal-box-lg overflow-hidden">
-    <div class="flex justify-between items-center border-b-2 border-black pb-3">
-      <div class="bg-black text-white px-3 py-1 font-bold text-xs brand-font uppercase">
-        WORKING DEMO PROTOCOL
-      </div>
-      <span class="mono-font font-bold text-xs tracking-wider">03 / 04</span>
-    </div>
-
-    <div class="my-auto space-y-3">
-      <h2 class="text-xl font-black brand-font uppercase tracking-tight mb-2">Test The Quality First. Send 1 Idea.</h2>
-      
-      <div class="border-2 border-black bg-white p-3 brutal-box flex items-center gap-3">
-        <span class="bg-black text-white px-2 py-1 text-xs font-black brand-font">01</span>
-        <p class="text-xs font-semibold text-gray-800">Send us a single rough video concept, topic, or reference link.</p>
-      </div>
-
-      <div class="border-2 border-black bg-[#FFE600] p-3 brutal-box flex items-center gap-3">
-        <span class="bg-black text-white px-2 py-1 text-xs font-black brand-font">02</span>
-        <p class="text-xs font-semibold text-black">We draft a working demo hook and opening act within 24 hours.</p>
-      </div>
-
-      <div class="border-2 border-black bg-white p-3 brutal-box flex items-center gap-3">
-        <span class="bg-emerald-400 text-black px-2 py-1 text-xs font-black brand-font border border-black">03</span>
-        <p class="text-xs font-semibold text-gray-800">Review spoken rhythm and visual edit cues before booking a full pack.</p>
-      </div>
-
-      <div class="bg-[#FFF6CF] border-2 border-black p-2.5 text-[11px] font-bold text-center">
-        No upfront cost. If the pacing doesn't fit your delivery, you pay nothing.
-      </div>
-    </div>
-
-    <div class="flex justify-between items-center border-t-2 border-black pt-3">
-      <span class="brand-font font-black text-xs uppercase tracking-wider">TAILORED BUDGETS</span>
-      <span class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font uppercase border border-black">
-        NEXT →
-      </span>
-    </div>
-  </div>
-
-  <!-- SLIDE 4: CALL TO ACTION -->
-  <div id="slide-4" class="slide-card bg-[#FFE600] border-4 border-black p-10 hidden flex-col justify-between relative brutal-box-lg overflow-hidden">
-    <div class="flex justify-between items-center border-b-2 border-black pb-4">
-      <div class="bg-black text-white px-3 py-1 font-bold text-xs brand-font uppercase">
-        TAKE ACTION
-      </div>
-      <span class="mono-font font-bold text-xs tracking-wider">04 / 04</span>
-    </div>
-
-    <div class="bg-white border-4 border-black p-7 brutal-box my-auto text-center">
-      <h2 class="text-2xl md:text-3xl font-black brand-font leading-tight text-black mb-3 tracking-tight">
-        Stop sitting on unfilmed drafts.
-      </h2>
-      <p class="text-xs font-medium text-gray-800 leading-relaxed mb-6 max-w-sm mx-auto">
-        Tight budget? Tell us what you have to work with. We tailor every quote so lack of funds never stops your production schedule.
-      </p>
-
-      <div class="inline-block bg-black text-[#FFE600] brand-font font-black text-base px-6 py-3 border-2 border-black brutal-box tracking-wide uppercase">
-        DM "DEMO" TO START
-      </div>
-    </div>
-
-    <div class="flex justify-between items-center border-t-2 border-black pt-4">
-      <span class="brand-font font-black text-xs uppercase tracking-wider">DRAFTSRUSH STUDIO</span>
-      <span class="mono-font font-bold text-xs">care@draftsrush.com</span>
-    </div>
-  </div>
+  <canvas id="xBanner" width="1500" height="500"></canvas>
+  <button onclick="downloadBanner()">Download 1500x500 PNG for X</button>
 
   <script>
-    function showSlide(num) {
-      for (let i = 1; i <= 4; i++) {
-        const slide = document.getElementById('slide-' + i);
-        const btn = document.getElementById('btn-' + i);
-        if (i === num) {
-          slide.classList.remove('hidden');
-          slide.classList.add('flex');
-          btn.classList.remove('bg-white');
-          btn.classList.add('bg-[#FFE600]');
-        } else {
-          slide.classList.remove('flex');
-          slide.classList.add('hidden');
-          btn.classList.remove('bg-[#FFE600]');
-          btn.classList.add('bg-white');
+    const canvas = document.getElementById('xBanner');
+    const ctx = canvas.getContext('2d');
+
+    function draw() {
+      // Background
+      ctx.fillStyle = '#FFE600';
+      ctx.fillRect(0, 0, 1500, 500);
+
+      // Outer Border
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 16;
+      ctx.strokeRect(0, 0, 1500, 500);
+
+      // Helper function for Brutalist Box
+      function drawBox(x, y, w, h, fill, border = '#000000', borderWidth = 4, shadow = 8) {
+        if (shadow > 0) {
+          ctx.fillStyle = '#000000';
+          ctx.fillRect(x + shadow, y + shadow, w, h);
         }
+        ctx.fillStyle = fill;
+        ctx.fillRect(x, y, w, h);
+        ctx.strokeStyle = border;
+        ctx.lineWidth = borderWidth;
+        ctx.strokeRect(x, y, w, h);
       }
+
+      // Top Tag
+      drawBox(80, 50, 360, 46, '#000000', '#000000', 0, 0);
+      ctx.fillStyle = '#4ade80';
+      ctx.beginPath();
+      ctx.arc(106, 73, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '700 18px "Space Grotesk", sans-serif';
+      ctx.fillText('INDEPENDENT WRITING STUDIO', 126, 79);
+
+      // Main Center-Right Headline (Safe from bottom-left avatar cutout)
+      ctx.fillStyle = '#000000';
+      ctx.font = '900 58px "Space Grotesk", sans-serif';
+      ctx.fillText('RETENTION-ENGINEERED', 80, 160);
+      ctx.fillText('VIDEO SCRIPTS & BLUEPRINTS', 80, 225);
+
+      // Sub-headline Banner
+      drawBox(80, 255, 870, 52, '#FFFFFF', '#000000', 4, 6);
+      ctx.fillStyle = '#111317';
+      ctx.font = '700 21px "Inter", sans-serif';
+      ctx.fillText('Dual-Column AV Layouts • Verified Research • 24-48h Delivery Turnaround', 105, 288);
+
+      // Feature Specification Badges
+      const badges = [
+        { text: 'YouTube & Essays', fill: '#FFF6CF' },
+        { text: 'Shorts & Reels Packs', fill: '#D6E4EE' },
+        { text: 'Free Creator Utilities', fill: '#FFFFFF' }
+      ];
+
+      badges.forEach((b, i) => {
+        const xPos = 80 + (i * 260);
+        drawBox(xPos, 340, 240, 48, b.fill, '#000000', 3, 5);
+        ctx.fillStyle = '#000000';
+        ctx.font = '700 16px "Space Grotesk", sans-serif';
+        ctx.fillText(b.text, xPos + 22, 370);
+      });
+
+      // Right-Side Brutalist Anchor Card
+      drawBox(1060, 50, 360, 400, '#FFFFFF', '#000000', 6, 12);
+
+      // Studio Label Inside Card
+      drawBox(1100, 85, 280, 40, '#000000', '#000000', 0, 0);
+      ctx.fillStyle = '#FFE600';
+      ctx.font = '900 18px "Space Grotesk", sans-serif';
+      ctx.fillText('START WITH A WORKING DEMO', 1120, 111);
+
+      ctx.fillStyle = '#111317';
+      ctx.font = '600 18px "Inter", sans-serif';
+      ctx.fillText('Send 1 topic or rough idea.', 1100, 175);
+      ctx.fillText('Get a demo hook & scene structure', 1100, 205);
+      ctx.fillText('to test our pacing first.', 1100, 235);
+
+      // CTA Button
+      drawBox(1100, 280, 280, 60, '#FFE600', '#000000', 4, 6);
+      ctx.fillStyle = '#000000';
+      ctx.font = '900 20px "Space Grotesk", sans-serif';
+      ctx.fillText('DM "DEMO" ON X', 1145, 318);
+
+      // Web Link Tag
+      ctx.fillStyle = '#000000';
+      ctx.font = '700 18px "JetBrains Mono", monospace';
+      ctx.fillText('draftsrush.com', 1170, 405);
+    }
+
+    // Wait for fonts to load before drawing to ensure correct typography
+    document.fonts.ready.then(draw);
+
+    function downloadBanner() {
+      const link = document.createElement('a');
+      link.download = 'draftsrush-x-banner-1500x500.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
     }
   </script>
 </body>
