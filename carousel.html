@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LinkedIn Post Graphic Generator</title>
+  <title>LinkedIn Landscape Post Generator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
       background: #111317;
@@ -14,14 +14,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
+      padding: 30px 20px;
     }
     canvas {
-      width: 600px;
-      height: 600px;
+      width: 1000px;
       max-width: 100%;
+      height: auto;
       border: 4px solid #000;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       margin-bottom: 20px;
     }
     button {
@@ -35,28 +35,32 @@
       box-shadow: 4px 4px 0px #fff;
       cursor: pointer;
     }
+    button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px #fff;
+    }
   </style>
 </head>
 <body>
 
-  <canvas id="liCanvas" width="1200" height="1200"></canvas>
-  <button onclick="downloadGraphic()">Download 1200x1200px PNG</button>
+  <canvas id="liLandscapeCanvas" width="1200" height="627"></canvas>
+  <button onclick="downloadGraphic()">Download 1200x627 Landscape PNG</button>
 
   <script>
-    const canvas = document.getElementById('liCanvas');
+    const canvas = document.getElementById('liLandscapeCanvas');
     const ctx = canvas.getContext('2d');
 
     function draw() {
-      // Base canvas
+      // Base background
       ctx.fillStyle = '#E2E4E9';
-      ctx.fillRect(0, 0, 1200, 1200);
+      ctx.fillRect(0, 0, 1200, 627);
 
-      // Outer frame
+      // Outer border
       ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 16;
-      ctx.strokeRect(0, 0, 1200, 1200);
+      ctx.lineWidth = 14;
+      ctx.strokeRect(0, 0, 1200, 627);
 
-      function drawBox(x, y, w, h, fill, border = '#000000', borderWidth = 4, shadow = 10) {
+      function drawBox(x, y, w, h, fill, border = '#000000', borderWidth = 3, shadow = 7) {
         if (shadow > 0) {
           ctx.fillStyle = '#000000';
           ctx.fillRect(x + shadow, y + shadow, w, h);
@@ -68,85 +72,92 @@
         ctx.strokeRect(x, y, w, h);
       }
 
-      // Top Header Bar
-      drawBox(80, 80, 360, 56, '#000000', '#000000', 0, 0);
+      // Top Bar: Tag & Branding
+      drawBox(50, 36, 260, 38, '#000000', '#000000', 0, 0);
       ctx.fillStyle = '#4ade80';
       ctx.beginPath();
-      ctx.arc(112, 108, 8, 0, Math.PI * 2);
+      ctx.arc(72, 55, 6, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = '700 20px "Space Grotesk", sans-serif';
-      ctx.fillText('CONTENT BOTTLENECK', 135, 115);
+      ctx.font = '700 14px "Space Grotesk", sans-serif';
+      ctx.fillText('CONTENT BOTTLENECK', 90, 60);
 
       ctx.fillStyle = '#000000';
-      ctx.font = '700 24px "JetBrains Mono", monospace';
-      ctx.fillText('draftsrush.com', 930, 116);
+      ctx.font = '700 16px "JetBrains Mono", monospace';
+      ctx.fillText('draftsrush.com', 1010, 60);
 
-      // Main Hero Card
-      drawBox(80, 180, 1040, 290, '#FFE600', '#000000', 6, 14);
+      // LEFT COLUMN: Big Problem Card (Electric Yellow #FFE600)
+      drawBox(50, 95, 520, 440, '#FFE600', '#000000', 4, 10);
+
       ctx.fillStyle = '#000000';
-      ctx.font = '900 52px "Space Grotesk", sans-serif';
-      ctx.fillText('You have the industry insight.', 130, 270);
-      ctx.fillText('You lack the script direction.', 130, 340);
+      ctx.font = '900 38px "Space Grotesk", sans-serif';
+      ctx.fillText('You have the reach.', 85, 170);
+      ctx.fillText('You lack the script.', 85, 218);
 
-      ctx.font = '600 24px "Inter", sans-serif';
+      // White inner note box
+      drawBox(85, 255, 450, 195, '#FFFFFF', '#000000', 3, 5);
       ctx.fillStyle = '#111317';
-      ctx.fillText('Turning raw knowledge into high-retention video blueprints', 130, 410);
+      ctx.font = '600 17px "Inter", sans-serif';
+      wrapText(ctx, "Having strong ideas is easy. Turning raw notes into 60 seconds of disciplined spoken delivery, retention hooks, and exact visual cues is where videos stall out.", 105, 295, 410, 26);
 
-      // The 3 Step Framework Cards
+      ctx.font = '800 14px "Space Grotesk", sans-serif';
+      ctx.fillStyle = '#000000';
+      ctx.fillText('DUAL-COLUMN AV BLUEPRINTS • ZERO FLUFF', 105, 420);
+
+      // RIGHT COLUMN: 3-Step Working Demo Protocol
       const steps = [
         {
           num: '01',
-          tag: 'THE GAP',
-          title: 'Unstructured Thoughts',
-          desc: 'Bullet points on a notepad do not translate to visual timing. Editors guess the B-roll, pacing drops, and watch time dies.',
+          tag: 'STEP 1',
+          title: 'Send 1 Rough Topic',
+          desc: 'Share a raw note, reference URL, or brief talking point in DM.',
           bg: '#FFFFFF'
         },
         {
           num: '02',
-          tag: 'THE FIX',
-          title: 'Dual-Column AV Architecture',
-          desc: 'We map timed spoken voiceover directly against exact on-screen graphics, text hooks, and punch cues.',
+          tag: 'STEP 2',
+          title: '24-Hour Working Demo',
+          desc: 'We draft your hook and opening act in dual-column format to test pacing.',
           bg: '#FFF6CF'
         },
         {
           num: '03',
-          tag: 'THE TEST',
-          title: '24-Hour Working Demo',
-          desc: 'Send 1 topic. We draft your opening hook and narrative setup so you can review delivery before ordering a full package.',
+          tag: 'STEP 3',
+          title: 'Review Before Booking',
+          desc: 'Verify the spoken rhythm and visual edit cues before ordering a full package.',
           bg: '#D6E4EE'
         }
       ];
 
       steps.forEach((s, idx) => {
-        const yPos = 510 + (idx * 175);
-        drawBox(80, yPos, 1040, 145, s.bg, '#000000', 4, 8);
+        const yPos = 95 + (idx * 150);
+        drawBox(600, yPos, 550, 130, s.bg, '#000000', 3, 8);
 
-        // Step number badge
-        drawBox(115, yPos + 35, 75, 75, '#000000', '#000000', 0, 0);
+        // Badge
+        drawBox(625, yPos + 25, 60, 60, '#000000', '#000000', 0, 0);
         ctx.fillStyle = '#FFE600';
-        ctx.font = '900 34px "Space Grotesk", sans-serif';
-        ctx.fillText(s.num, 132, yPos + 85);
+        ctx.font = '900 28px "Space Grotesk", sans-serif';
+        ctx.fillText(s.num, 638, yPos + 66);
 
-        // Text content
+        // Content
         ctx.fillStyle = '#000000';
-        ctx.font = '900 26px "Space Grotesk", sans-serif';
-        ctx.fillText(s.title, 215, yPos + 60);
+        ctx.font = '900 22px "Space Grotesk", sans-serif';
+        ctx.fillText(s.title, 705, yPos + 48);
 
         ctx.fillStyle = '#333333';
-        ctx.font = '500 20px "Inter", sans-serif';
-        wrapText(ctx, s.desc, 215, yPos + 95, 870, 28);
+        ctx.font = '600 15px "Inter", sans-serif';
+        wrapText(ctx, s.desc, 705, yPos + 78, 425, 22);
       });
 
-      // Bottom Action Strip
-      drawBox(80, 1060, 1040, 75, '#000000', '#000000', 0, 0);
+      // Bottom Footer Bar
+      drawBox(50, 555, 1100, 42, '#000000', '#000000', 0, 0);
       ctx.fillStyle = '#FFE600';
-      ctx.font = '900 24px "Space Grotesk", sans-serif';
-      ctx.fillText('DM "DEMO" TO TURN 1 IDEA INTO A PRODUCTION SCRIPT', 120, 1106);
+      ctx.font = '900 16px "Space Grotesk", sans-serif';
+      ctx.fillText('NO UPFRONT FEE. IF THE PACING DOES NOT FIT YOUR VOICE, YOU PAY ZERO.', 75, 581);
 
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = '700 20px "JetBrains Mono", monospace';
-      ctx.fillText('DRAFTSRUSH STUDIO', 900, 1105);
+      ctx.font = '700 14px "Space Grotesk", sans-serif';
+      ctx.fillText('DM "DEMO" TO START →', 950, 581);
     }
 
     function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
@@ -170,7 +181,7 @@
 
     function downloadGraphic() {
       const link = document.createElement('a');
-      link.download = 'draftsrush-linkedin-direction.png';
+      link.download = 'draftsrush-linkedin-landscape.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
     }
