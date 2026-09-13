@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DraftsRush - 80 Film Jobs Explained (1080x1080 Carousel)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@500;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #111317;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header-panel {
+      max-width: 900px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header-panel h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: #FFE600;
+      margin-bottom: 8px;
+    }
+    .header-panel p {
+      color: #D4D7E1;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+    .btn-bulk {
+      background-color: #FFE600;
+      color: #000000;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      padding: 14px 28px;
+      border: 3px solid #000000;
+      box-shadow: 5px 5px 0px #FFFFFF;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .btn-bulk:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px #FFFFFF;
+    }
+    .btn-bulk:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #FFFFFF;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      max-width: 1400px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .card {
+      background-color: #1E2229;
+      border: 3px solid #333945;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFE600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    canvas {
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      border: 3px solid #000000;
+      display: block;
+      margin-bottom: 14px;
+      background: #E2E4E9;
+    }
+    .btn-download {
+      background-color: #E2E4E9;
+      color: #000000;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 8px 16px;
+      border: 2px solid #000000;
+      box-shadow: 3px 3px 0px #FFE600;
+      cursor: pointer;
+      width: 100%;
+      text-transform: uppercase;
+    }
+    .btn-download:hover {
+      background-color: #FFE600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-panel">
+    <h1>DraftsRush Instagram Carousel Suite</h1>
+    <p>80 Film Production Roles Detailed & Mapped to On-Screen Impact (1080x1080 Neo-Brutalist Square Graphics)</p>
+    <button class="btn-bulk" onclick="downloadAllZip()">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      Download All 9 Slides (.ZIP)
+    </button>
+  </div>
+
+  <div class="grid" id="canvasContainer"></div>
+
+  <script>
+    const slidesData = [
+      {
+        type: 'title',
+        badge: 'FILMMAKING BLUEPRINTS',
+        slideNum: '01 / 09',
+        mainHeading: '80 Film Jobs & How They Change The Movie',
+        subtext: 'Films are not crafted by directors alone. Every visual texture, audio beat, camera pan, and prop decision exists because a specific crew member engineered it.',
+        highlightBox: 'Swipe through to learn 80 essential film production roles, their exact operational duties, and how each one alters what appears on screen.',
+        cta: 'SWIPE TO BEGIN →'
+      },
+      {
+        type: 'jobs',
+        dept: 'Directing & Screenplay',
+        deptNum: '02 / 09',
+        accentBg: '#FFF6CF',
+        jobs: [
+          { role: 'Screenwriter', task: 'Writes dialogue, core scene beats, and story structure.', impact: 'Forms the narrative foundation and emotional stakes.' },
+          { role: 'Director', task: 'Directs actors and guides creative vision.', impact: 'Shapes tone, subtext, and overarching dramatic pacing.' },
+          { role: '1st Assistant Director', task: 'Runs set schedule and manages call times.', impact: 'Keeps shooting on time without sacrificing coverage.' },
+          { role: '2nd Assistant Director', task: 'Coordinates actor logistics and daily call sheets.', impact: 'Ensures actors reach makeup and set on schedule.' },
+          { role: '2nd 2nd AD', task: 'Manages background talent and lock-offs.', impact: 'Populates believable background movement on screen.' },
+          { role: '3rd AD', task: 'Directs crowd coordination and support movements.', impact: 'Prevents empty or static background frames.' },
+          { role: 'Script Supervisor', task: 'Tracks visual continuity, shot takes, and eyelines.', impact: 'Prevents editing errors where cuts jump awkwardly.' },
+          { role: 'Director’s Assistant', task: 'Executes direct creative tasks for the director.', impact: 'Frees director focus for actors and performance.' },
+          { role: 'Script Doctor', task: 'Polishes dialogue punch and restructures third acts.', impact: 'Sharpens flat scenes before shooting starts.' },
+          { role: 'Storyboard Artist', task: 'Illustrates pre-visualization scene panels.', impact: 'Plans camera framing before expensive sets build.' }
+        ]
+      },
+      {
+        type: 'jobs',
+        dept: 'Production Department',
+        deptNum: '03 / 09',
+        accentBg: '#D6E4EE',
+        jobs: [
+          { role: 'Producer', task: 'Leads package development, hiring, and distribution.', impact: 'Brings story from initial script to finished release.' },
+          { role: 'Executive Producer', task: 'Secures primary equity, slate debt, and IP rights.', impact: 'Supplies capital necessary for production scope.' },
+          { role: 'Line Producer', task: 'Allocates daily budget lines and union approvals.', impact: 'Determines what budget goes on screen vs logistics.' },
+          { role: 'Associate Producer', task: 'Handles vendor coordination and creative assets.', impact: 'Resolves day-to-day production roadblocks.' },
+          { role: 'Unit Production Mgr', task: 'Oversees physical operations, travel, and housing.', impact: 'Keeps massive locations functional for crews.' },
+          { role: 'Production Supervisor', task: 'Manages daily vendor deliverables and accounts.', impact: 'Keeps production pipeline legally clear.' },
+          { role: 'Production Coordinator', task: 'Manages logistical paperwork, crew memos, and travel.', impact: 'Maintains communication across departments.' },
+          { role: 'Production Accountant', task: 'Monitors cash flow, vendor payments, and payroll.', impact: 'Prevents overspending mid-shoot.' },
+          { role: 'Key Production Asst', task: 'Directs production assistants on location.', impact: 'Keeps base camp and physical moves orderly.' },
+          { role: 'Set Production Asst', task: 'Enforces location silence and locks doors.', impact: 'Protects clean audio and camera takes from interruptions.' }
+        ]
+      },
+      {
+        type: 'jobs',
+        dept: 'Camera Department',
+        deptNum: '04 / 09',
+        accentBg: '#FFF6CF',
+        jobs: [
+          { role: 'Director of Photography', task: 'Designs lighting schemes, camera lenses, and framing.', impact: 'Determines the exact visual mood and texture.' },
+          { role: 'Camera Operator', task: 'Physically operates and fluidly tracks the camera.', impact: 'Delivers dynamic compositions and camera motion.' },
+          { role: 'Steadicam Operator', task: 'Operates counterweight mechanical stabilization rigs.', impact: 'Creates silky, immersive walkthrough sequences.' },
+          { role: '1st AC (Focus Puller)', task: 'Calculates distances and maintains lens focus.', impact: 'Keeps actor eyes razor sharp in emotional beats.' },
+          { role: '2nd AC (Clapper)', task: 'Marks the slate clapper and logs footage metadata.', impact: 'Enables audio-visual sync for picture editors.' },
+          { role: 'DIT (Digital Imaging Tech)', task: 'Calibrates on-set LUTs and monitors exposure.', impact: 'Protects sensor color data and dynamic range.' },
+          { role: 'Data Wrangler', task: 'Backs up RAW digital files to verified RAID drives.', impact: 'Guarantees footage is never lost or corrupted.' },
+          { role: 'Camera Trainee', task: 'Assists lens changes, filters, and battery cycles.', impact: 'Eliminates camera setup delays between takes.' },
+          { role: 'Drone Pilot Operator', task: 'Flies aerial heavy-lift camera platforms.', impact: 'Captures sweeping establishing geography shots.' },
+          { role: 'Trinity Rig Specialist', task: 'Operates hybrid gimbal/stabilizer arms.', impact: 'Achieves high-to-low continuous unbroken takes.' }
+        ]
+      },
+      {
+        type: 'jobs',
+        dept: 'Lighting & Grip',
+        deptNum: '05 / 09',
+        accentBg: '#D6E4EE',
+        jobs: [
+          { role: 'Gaffer', task: 'Executes DP lighting visions via electricians.', impact: 'Controls light contrast ratios and shadows.' },
+          { role: 'Best Boy Electric', task: 'Manages lighting trucks, power loads, and inventory.', impact: 'Ensures high-output lights never trip power.' },
+          { role: 'Electrician (Juicer)', task: 'Places fixtures, runs heavy cabling, and lamps.', impact: 'Shapes beams exactly where shadows belong.' },
+          { role: 'Rigging Gaffer', task: 'Installs overhead power grids days ahead.', impact: 'Allows instant set lighting without ground clutter.' },
+          { role: 'Key Grip', task: 'Leads camera mounting, diffusion, and safety rigs.', impact: 'Prevents camera shake and diffuses hard sunlight.' },
+          { role: 'Best Boy Grip', task: 'Directs grip staging, flags, and diffusion gear.', impact: 'Keeps soundstage grip logistics running smoothly.' },
+          { role: 'Dolly Grip', task: 'Lays steel rails and pushes the camera dolly.', impact: 'Produces subtle, emotionally paced camera pushes.' },
+          { role: 'Rigging Grip', task: 'Secures truss mounts and high-risk safety lines.', impact: 'Allows cameras to hang safely over moving cars.' },
+          { role: 'Generator Operator', task: 'Maintains quiet mobile diesel generators.', impact: 'Keeps constant power without hum ruining audio.' },
+          { role: 'Lighting Console Op', task: 'Programs DMX consoles for moving lights/effects.', impact: 'Simulates strobe effects, lightning, or passing sirens.' }
+        ]
+      },
+      {
+        type: 'jobs',
+        dept: 'Production Design & Art',
+        deptNum: '06 / 09',
+        accentBg: '#FFF6CF',
+        jobs: [
+          { role: 'Production Designer', task: 'Envisions overall aesthetic, sets, colors, and textures.', impact: 'Builds the entire tangible reality of the world.' },
+          { role: 'Art Director', task: 'Oversees technical execution of drawings and builds.', impact: 'Turns concept art into physical built architecture.' },
+          { role: 'Set Decorator', task: 'Selects furniture, rugs, blinds, and wall art.', impact: 'Reveals character traits through living spaces.' },
+          { role: 'Set Dresser', task: 'Places decorative items on set before camera rolls.', impact: 'Adds lived-in authenticity to every room frame.' },
+          { role: 'Prop Master', task: 'Sources and manages items handled by actors.', impact: 'Supplies weapons and key story artifacts.' },
+          { role: 'Prop Maker', task: 'Fabricates custom props from scratch.', impact: 'Constructs futuristic or period-specific gadgets.' },
+          { role: 'Lead Scenic Painter', task: 'Ages walls and paints realistic faux textures.', impact: 'Makes new wood look like centuries-old stone.' },
+          { role: 'Construction Coord', task: 'Directs carpenters building complex interior sets.', impact: 'Constructs sturdy, multi-room filming soundstages.' },
+          { role: 'Graphic Designer', task: 'Designs screen graphics, fake logos, and books.', impact: 'Fills scenes with believable newspapers and posters.' },
+          { role: 'Greensman', task: 'Arranges real plants, dirt, and trees on set.', impact: 'Makes indoor studios look like deep outdoor forests.' }
+        ]
+      },
+      {
+        type: 'jobs',
+        dept: 'Costume, Hair & Makeup',
+        deptNum: '07 / 09',
+        accentBg: '#D6E4EE',
+        jobs: [
+          { role: 'Costume Designer', task: 'Designs and sources character wardrobe pieces.', impact: 'Signals character status, history, and personality.' },
+          { role: 'Costume Supervisor', task: 'Manages wardrobe continuity and multiples.', impact: 'Guarantees damaged clothing matches across takes.' },
+          { role: 'Key Costumer', task: 'Oversees on-set dressing and rapid changes.', impact: 'Prevents wardrobe wrinkles or wardrobe malfunctions.' },
+          { role: 'Tailor / Seamstress', task: 'Custom-fits and stitches period garments.', impact: 'Ensures costumes fit actors with zero bunching.' },
+          { role: 'Key Makeup Artist', task: 'Designs makeup palettes and leads application.', impact: 'Balances actor skin tones under harsh cinema lights.' },
+          { role: 'Makeup Artist', task: 'Applies beauty, sweat, aging, and cosmetic makeup.', impact: 'Enhances performance through character appearance.' },
+          { role: 'SFX Makeup Artist', task: 'Applies silicone prosthetics, gore, and burns.', impact: 'Brings monsters, wounds, and battle scars to life.' },
+          { role: 'Key Hair Stylist', task: 'Designs character hair cuts, shapes, and textures.', impact: 'Reflects historical era, neglect, or elegance.' },
+          { role: 'Wigmaker / Stylist', task: 'Crafts custom human-hair lace-front wigs.', impact: 'Allows actors to change eras without visible glue lines.' },
+          { role: 'Prosthetics Sculptor', task: 'Sculpts clay molds for full facial appliances.', impact: 'Transforms human actors into completely new creatures.' }
+        ]
+      },
+      {
+        type: 'jobs',
+        dept: 'Production Sound & Stunts',
+        deptNum: '08 / 09',
+        accentBg: '#FFF6CF',
+        jobs: [
+          { role: 'Sound Mixer', task: 'Balances microphone gains and tracks dialogue on set.', impact: 'Captures clean, pristine dialogue directly on location.' },
+          { role: 'Boom Operator', task: 'Positions boom mic inches outside frame line.', impact: 'Records full vocal presence without mic shadow.' },
+          { role: 'Utility Sound Tech', task: 'Hides wireless lavalier mics inside actor clothing.', impact: 'Captures clear speech in wide shots without mic visibility.' },
+          { role: 'Stunt Coordinator', task: 'Designs and choreographs stunt fight sequences.', impact: 'Delivers bone-crunching action without injuring talent.' },
+          { role: 'Stunt Double', task: 'Executes falls, wirework, and high-impact crashes.', impact: 'Allows actors to survive brutal physical sequences.' },
+          { role: 'Precision Driver', task: 'Drives stunt vehicles during drifts and chases.', impact: 'Performs near-miss high-speed driving safely.' },
+          { role: 'SFX Supervisor', task: 'Engineers practical set explosions and rain.', impact: 'Gives actors real tactile elements to react against.' },
+          { role: 'Pyrotechnician', task: 'Riggs squibs, bullet sparks, and controlled fire.', impact: 'Produces realistic combat blasts on practical sets.' },
+          { role: 'Armorer', task: 'Manages prop firearms and blanks with strict safety.', impact: 'Delivers realistic tactical firearm handling.' },
+          { role: 'Intimacy Coordinator', task: 'Choreographs physical intimacy and boundaries.', impact: 'Ensures safe, repeatable emotional vulnerability.' }
+        ]
+      },
+      {
+        type: 'jobs',
+        dept: 'Post Production',
+        deptNum: '09 / 09',
+        accentBg: '#D6E4EE',
+        jobs: [
+          { role: 'Post Supervisor', task: 'Oversees editorial, grading, and sound mix delivery.', impact: 'Delivers final master files on schedule for release.' },
+          { role: 'Picture Editor', task: 'Cuts takes together and designs scene flow.', impact: 'Constructs the emotional rhythm and pacing.' },
+          { role: 'Assistant Editor', task: 'Syncs audio, ingests footage, and organizes bins.', impact: 'Keeps thousands of hours of clips instantly accessible.' },
+          { role: 'Colorist', task: 'Grades color curves, shadows, and saturation.', impact: 'Unifies shots into an intentional cinematic palette.' },
+          { role: 'VFX Supervisor', task: 'Oversees digital CGI shots and green screen comps.', impact: 'Blends invisible digital elements into filmed plates.' },
+          { role: 'Sound Designer', task: 'Builds unique audio atmospheres and sci-fi effects.', impact: 'Creates visceral gut punches and acoustic tension.' },
+          { role: 'Foley Artist', task: 'Physically records cloth rustle, footsteps, and punches.', impact: 'Adds natural weight and intimacy back into the room.' },
+          { role: 'Film Composer', task: 'Composes original instrumental score.', impact: 'Drives viewer emotional reaction and thematic motifs.' },
+          { role: 'Music Supervisor', task: 'Licenses commercial songs and oversees cue rights.', impact: 'Anchors scenes in specific pop culture memories.' },
+          { role: 'ADR Recordist', task: 'Re-records clean actor dialogue lines in studio.', impact: 'Replaces wind-ruined set lines with crisp vocals.' }
+        ]
+      }
+    ];
+
+    const container = document.getElementById('canvasContainer');
+    const canvases = [];
+
+    // Helper: Draw Neo-Brutalist Box with Hard Drop Shadow
+    function drawBrutalBox(ctx, x, y, w, h, fill, border = '#000000', borderWidth = 4, shadowDist = 8) {
+      if (shadowDist > 0) {
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(x + shadowDist, y + shadowDist, w, h);
+      }
+      ctx.fillStyle = fill;
+      ctx.fillRect(x, y, w, h);
+      ctx.strokeStyle = border;
+      ctx.lineWidth = borderWidth;
+      ctx.strokeRect(x, y, w, h);
+    }
+
+    // Render Canvas Slides
+    slidesData.forEach((data, index) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const title = document.createElement('div');
+      title.className = 'card-title';
+      title.innerHTML = `<span>Slide ${index + 1} of 9</span><span>${data.dept || 'Cover'}</span>`;
+      card.appendChild(title);
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 1080;
+      canvas.height = 1080;
+      canvas.id = `slide-canvas-${index}`;
+      card.appendChild(canvas);
+
+      const downloadBtn = document.createElement('button');
+      downloadBtn.className = 'btn-download';
+      downloadBtn.innerText = `Download Slide ${index + 1} PNG`;
+      downloadBtn.onclick = () => downloadSingle(canvas, `draftsrush-film-jobs-slide-${index + 1}.png`);
+      card.appendChild(downloadBtn);
+
+      container.appendChild(card);
+      canvases.push(canvas);
+    });
+
+    function renderAll() {
+      slidesData.forEach((data, index) => {
+        const canvas = canvases[index];
+        const ctx = canvas.getContext('2d');
+
+        if (data.type === 'title') {
+          // Slide 1: Cover Slide
+          ctx.fillStyle = '#FFE600';
+          ctx.fillRect(0, 0, 1080, 1080);
+          ctx.lineWidth = 14;
+          ctx.strokeStyle = '#000000';
+          ctx.strokeRect(0, 0, 1080, 1080);
+
+          // Top Badge
+          drawBrutalBox(ctx, 70, 70, 420, 56, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#4ADE80';
+          ctx.beginPath();
+          ctx.arc(102, 98, 8, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#FFFFFF';
+          ctx.font = '700 20px "Space Grotesk", sans-serif';
+          ctx.fillText(data.badge, 126, 105);
+
+          // Counter
+          ctx.fillStyle = '#000000';
+          ctx.font = '700 24px "JetBrains Mono", monospace';
+          ctx.fillText(data.slideNum, 900, 105);
+
+          // Center Card
+          drawBrutalBox(ctx, 70, 180, 940, 680, '#FFFFFF', '#000000', 8, 18);
+
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 58px "Space Grotesk", sans-serif';
+          wrapText(ctx, data.mainHeading, 120, 290, 840, 68);
+
+          ctx.fillStyle = '#222222';
+          ctx.font = '500 25px "Inter", sans-serif';
+          wrapText(ctx, data.subtext, 120, 480, 840, 38);
+
+          // Inner highlight note box
+          drawBrutalBox(ctx, 120, 630, 840, 160, '#E2E4E9', '#000000', 4, 6);
+          ctx.fillStyle = '#111317';
+          ctx.font = '700 21px "Inter", sans-serif';
+          wrapText(ctx, data.highlightBox, 150, 680, 780, 32);
+
+          // Bottom Bar
+          ctx.fillStyle = '#000000';
+          ctx.font = '800 24px "Space Grotesk", sans-serif';
+          ctx.fillText('DRAFTSRUSH STUDIO', 70, 960);
+
+          drawBrutalBox(ctx, 640, 915, 370, 65, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#FFE600';
+          ctx.font = '900 22px "Space Grotesk", sans-serif';
+          ctx.fillText(data.cta, 685, 955);
+
+        } else {
+          // Slides 2 - 9: 10 Roles per department
+          ctx.fillStyle = '#E2E4E9';
+          ctx.fillRect(0, 0, 1080, 1080);
+          ctx.lineWidth = 14;
+          ctx.strokeStyle = '#000000';
+          ctx.strokeRect(0, 0, 1080, 1080);
+
+          // Top Header Bar
+          drawBrutalBox(ctx, 60, 45, 620, 52, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#FFE600';
+          ctx.font = '900 24px "Space Grotesk", sans-serif';
+          ctx.fillText(data.dept.toUpperCase(), 85, 80);
+
+          // Slide indicator
+          ctx.fillStyle = '#000000';
+          ctx.font = '700 22px "JetBrains Mono", monospace';
+          ctx.fillText(data.deptNum, 920, 80);
+
+          // 10 Job Row Tiles
+          const startY = 118;
+          const rowHeight = 78;
+          const gap = 8;
+
+          data.jobs.forEach((job, rIdx) => {
+            const y = startY + (rIdx * (rowHeight + gap));
+            const isAlt = rIdx % 2 === 1;
+            const bg = isAlt ? data.accentBg : '#FFFFFF';
+
+            // Tile frame
+            drawBrutalBox(ctx, 60, y, 960, rowHeight, bg, '#000000', 3, 5);
+
+            // Job Role Tag (Brutalist Pill)
+            drawBrutalBox(ctx, 75, y + 14, 250, 50, '#000000', '#000000', 0, 0);
+            ctx.fillStyle = '#FFE600';
+            ctx.font = '900 17px "Space Grotesk", sans-serif';
+            ctx.fillText(truncateText(ctx, job.role, 220), 90, y + 46);
+
+            // Arrow separator
+            ctx.fillStyle = '#000000';
+            ctx.font = '900 24px sans-serif';
+            ctx.fillText('→', 340, y + 48);
+
+            // Operational Task
+            ctx.fillStyle = '#111317';
+            ctx.font = '700 16px "Inter", sans-serif';
+            ctx.fillText(truncateText(ctx, job.task, 540), 380, y + 36);
+
+            // Screen Impact
+            ctx.fillStyle = '#555A65';
+            ctx.font = '600 14px "Inter", sans-serif';
+            ctx.fillText(truncateText(ctx, `On Screen: ${job.impact}`, 540), 380, y + 58);
+          });
+
+          // Bottom Bar
+          ctx.fillStyle = '#000000';
+          ctx.font = '800 18px "Space Grotesk", sans-serif';
+          ctx.fillText('DRAFTSRUSH.COM', 60, 1025);
+
+          ctx.font = '700 15px "Inter", sans-serif';
+          ctx.fillStyle = '#444852';
+          ctx.fillText('Production Standards & Dual-Column Scriptwriting', 240, 1025);
+
+          drawBrutalBox(ctx, 840, 995, 180, 42, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#FFE600';
+          ctx.font = '900 14px "Space Grotesk", sans-serif';
+          ctx.fillText(index === 8 ? 'FINAL SLIDE' : 'NEXT DEPT →', 870, 1022);
+        }
+      });
+    }
+
+    function truncateText(ctx, text, maxWidth) {
+      if (ctx.measureText(text).width <= maxWidth) return text;
+      let trimmed = text;
+      while (trimmed.length > 0 && ctx.measureText(trimmed + '...').width > maxWidth) {
+        trimmed = trimmed.slice(0, -1);
+      }
+      return trimmed + '...';
+    }
+
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      for (let n = 0; n < words.length; n++) {
+        let testLine = line + words[n] + ' ';
+        let metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          ctx.fillText(line, x, y);
+          line = words[n] + ' ';
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, x, y);
+    }
+
+    function downloadSingle(canvas, filename) {
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    async function downloadAllZip() {
+      const zip = new JSZip();
+      canvases.forEach((canvas, idx) => {
+        const dataUrl = canvas.toDataURL('image/png');
+        const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "");
+        zip.file(`draftsrush-film-jobs-slide-${idx + 1}.png`, base64Data, { base64: true });
+      });
+
+      const content = await zip.generateAsync({ type: "blob" });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(content);
+      link.download = "draftsrush-80-film-jobs-carousel.zip";
+      link.click();
+    }
+
+    // Ensure custom Google web fonts are fully loaded before rendering to canvas
+    document.fonts.ready.then(renderAll);
+  </script>
+</body>
+</html>
