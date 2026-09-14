@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DraftsRush - Photo-Annotated Cinematography Reel</title>
+  <title>DraftsRush - Cinematography Photo Annotator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
@@ -49,8 +49,8 @@
     .btn-zip:hover { transform: translate(-2px, -2px); }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
       max-width: 1400px;
       width: 100%;
     }
@@ -70,6 +70,21 @@
       margin-bottom: 12px;
       background: #E2E4E9;
     }
+    .btn-upload {
+      background: #FFFFFF;
+      color: #000;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 8px 12px;
+      border: 2px solid #000;
+      cursor: pointer;
+      width: 100%;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .btn-upload:hover { background: #FFE600; }
     .btn-single {
       background: #D6E4EE;
       color: #000;
@@ -83,13 +98,14 @@
       text-transform: uppercase;
     }
     .btn-single:hover { background: #FFE600; }
+    input[type="file"] { display: none; }
   </style>
 </head>
 <body>
 
   <div class="header-panel">
-    <h1>Photo-Annotated Cinematography Reel (1080x1920)</h1>
-    <p>Real Scene Photos + Live Vector Graphic Overlays + Script Cues</p>
+    <h1>Cinematography Photo Annotator (1080x1920)</h1>
+    <p>Upload your own stills or movie captures to render custom geometric overlays</p>
     <button class="btn-zip" onclick="downloadAll()">Download All 8 PNGs (.ZIP)</button>
   </div>
 
@@ -113,7 +129,6 @@
         tag: "SPATIAL CONTINUITY",
         bg: "#E2E4E9",
         accentCard: "#FFF6CF",
-        imgUrl: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=900&auto=format&fit=crop&q=80",
         overlayType: "180degree",
         situation: "Two characters facing each other in conversation.",
         impact: "Draws an imaginary axis between characters. Keeping cameras on one side preserves screen direction. Crossing it makes actors appear to face the wrong way.",
@@ -127,7 +142,6 @@
         tag: "POWER DYNAMICS",
         bg: "#D6E4EE",
         accentCard: "#FFFFFF",
-        imgUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=900&auto=format&fit=crop&q=80",
         overlayType: "angles",
         situation: "Confrontations, negotiations, villains, or helpless victims.",
         impact: "Shooting upward from below makes subjects appear dominant, menacing, or heroic. Shooting downward from above shrinks them into vulnerable or trapped positions.",
@@ -141,7 +155,6 @@
         tag: "PSYCHOLOGICAL UNREST",
         bg: "#E2E4E9",
         accentCard: "#FFF1F2",
-        imgUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900&auto=format&fit=crop&q=80",
         overlayType: "dutch",
         situation: "Panic, intoxication, disorientation, or narrative deception.",
         impact: "Tilting the camera 15 to 30 degrees off the horizontal axis strips stability from the room, making viewers feel instinctively uncomfortable or suspicious.",
@@ -155,7 +168,6 @@
         tag: "COMPOSITIONAL BALANCE",
         bg: "#CCD0DC",
         accentCard: "#FFFFFF",
-        imgUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&auto=format&fit=crop&q=80",
         overlayType: "thirds",
         situation: "Standard dialogue scenes, interviews, and documentary setups.",
         impact: "Splits the screen into a 3x3 grid. Placing eyes along the top horizontal third creates natural visual comfort. Centering works for tension, but thirds keep flow.",
@@ -169,7 +181,6 @@
         tag: "ACTION DIRECTION",
         bg: "#FFF6CF",
         accentCard: "#D6E4EE",
-        imgUrl: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=900&auto=format&fit=crop&q=80",
         overlayType: "leadroom",
         situation: "Moving subjects, walking shots, or driving sequences.",
         impact: "Leave open frame space in the direction the subject is looking or walking. Framing someone right against the edge feels suffocated unless that panic is intentional.",
@@ -183,7 +194,6 @@
         tag: "INTIMACY & PROXIMITY",
         bg: "#D6E4EE",
         accentCard: "#FFFFFF",
-        imgUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&auto=format&fit=crop&q=80",
         overlayType: "ots",
         situation: "Intense one-on-one arguments, romance, or interrogations.",
         impact: "Including a slice of the foreground character's shoulder or hair ties the two actors into a shared tangible space, forcing the audience into the conversation.",
@@ -203,7 +213,7 @@
 
     const container = document.getElementById('gridContainer');
     const canvases = [];
-    const loadedImages = {};
+    const userImages = {};
 
     function drawBrutalBox(ctx, x, y, w, h, fill, border = '#000000', borderWidth = 8, shadow = 16) {
       if (shadow > 0) {
@@ -234,7 +244,6 @@
       ctx.fillText(line, x, y);
     }
 
-    // Build DOM elements
     rulesData.forEach((item, idx) => {
       const card = document.createElement('div');
       card.className = 'card';
@@ -244,6 +253,21 @@
       canvas.height = 1920;
       canvas.id = `canvas-${idx}`;
       card.appendChild(canvas);
+
+      if (item.type === "rule") {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.id = `file-${idx}`;
+        fileInput.onchange = (e) => handleImageUpload(e, idx);
+        card.appendChild(fileInput);
+
+        const uploadBtn = document.createElement('label');
+        uploadBtn.className = 'btn-upload';
+        uploadBtn.htmlFor = `file-${idx}`;
+        uploadBtn.innerText = '📷 Select Scene Photo';
+        card.appendChild(uploadBtn);
+      }
 
       const btn = document.createElement('button');
       btn.className = 'btn-single';
@@ -255,7 +279,22 @@
       canvases.push(canvas);
     });
 
-    // Helper: Draw Image with "cover" fit inside target box
+    function handleImageUpload(event, idx) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          userImages[idx] = img;
+          renderAll();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
     function drawImageCover(ctx, img, x, y, w, h) {
       const imgRatio = img.width / img.height;
       const targetRatio = w / h;
@@ -275,35 +314,67 @@
       ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
     }
 
-    // Annotate Over the Real Photo
+    function drawDefaultScene(ctx, type, x, y, w, h) {
+      ctx.fillStyle = '#2A2E39';
+      ctx.fillRect(x, y, w, h);
+
+      const cx = x + w / 2;
+      const cy = y + h / 2;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      if (type === "180degree") {
+        ctx.font = '90px sans-serif';
+        ctx.fillText('🙎‍♂️', cx - 180, cy);
+        ctx.fillText('👱‍♀️', cx + 180, cy);
+      } else if (type === "angles") {
+        ctx.font = '100px sans-serif';
+        ctx.fillText('🦸‍♂️', x + 240, cy - 30);
+        ctx.font = '70px sans-serif';
+        ctx.fillText('🙍‍♂️', cx + 180, cy + 40);
+      } else if (type === "dutch") {
+        ctx.font = '110px sans-serif';
+        ctx.fillText('😵‍💫', cx, cy);
+      } else if (type === "thirds") {
+        ctx.font = '100px sans-serif';
+        ctx.fillText('👩', x + (w / 3) * 2, y + (h / 3));
+      } else if (type === "leadroom") {
+        ctx.font = '110px sans-serif';
+        ctx.fillText('🚶‍♂️', x + 160, cy + 20);
+      } else if (type === "ots") {
+        ctx.font = '220px sans-serif';
+        ctx.fillStyle = '#111317';
+        ctx.fillText('👤', x + 140, y + h + 20);
+        ctx.font = '110px sans-serif';
+        ctx.fillText('👱‍♀️', x + w - 160, cy);
+      }
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.font = '700 16px "JetBrains Mono", monospace';
+      ctx.fillText('[ TAP "SELECT SCENE PHOTO" BELOW TO REPLACE WITH REAL MOVIE STILL ]', cx, y + h - 25);
+    }
+
     function drawPhotoWithAnnotations(ctx, img, type, x, y, w, h) {
       ctx.save();
-      // Drop Shadow for frame
       ctx.fillStyle = '#000000';
       ctx.fillRect(x + 14, y + 14, w, h);
 
-      // Clip canvas to rounded/border frame
       ctx.beginPath();
       ctx.rect(x, y, w, h);
       ctx.clip();
 
-      // Render Base Photo
       if (img) {
         drawImageCover(ctx, img, x, y, w, h);
-        // Semi-transparent cinematic contrast darkener
-        ctx.fillStyle = 'rgba(17, 19, 23, 0.40)';
+        ctx.fillStyle = 'rgba(17, 19, 23, 0.35)';
         ctx.fillRect(x, y, w, h);
       } else {
-        ctx.fillStyle = '#222';
-        ctx.fillRect(x, y, w, h);
+        drawDefaultScene(ctx, type, x, y, w, h);
       }
 
       const cx = x + w / 2;
       const cy = y + h / 2;
 
-      // OVERLAYS BY RULE TYPE
       if (type === "180degree") {
-        // Red dashed axis
         ctx.strokeStyle = '#EF4444';
         ctx.lineWidth = 6;
         ctx.setLineDash([12, 12]);
@@ -313,14 +384,12 @@
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Axis Label
         drawBrutalBox(ctx, cx - 140, cy - 65, 280, 36, '#EF4444', '#000', 3, 0);
         ctx.fillStyle = '#FFF';
         ctx.font = '800 16px "JetBrains Mono", monospace';
         ctx.textAlign = 'center';
         ctx.fillText('LINE OF ACTION (AXIS)', cx, cy - 41);
 
-        // Safe 180° Green Field
         ctx.fillStyle = 'rgba(16, 185, 129, 0.25)';
         ctx.beginPath();
         ctx.arc(cx, cy, 180, 0, Math.PI, false);
@@ -343,12 +412,10 @@
         ctx.fillText('KEEP CAMERAS ON 1 SIDE', cx, cy + 177);
 
       } else if (type === "angles") {
-        // Split line
         ctx.strokeStyle = '#FFFFFF';
         ctx.lineWidth = 4;
         ctx.beginPath(); ctx.moveTo(cx, y); ctx.lineTo(cx, y + h); ctx.stroke();
 
-        // Left: Low Angle Arrow pointing UP
         ctx.strokeStyle = '#3B82F6';
         ctx.lineWidth = 8;
         ctx.beginPath();
@@ -365,7 +432,6 @@
         ctx.font = '900 18px "Space Grotesk", sans-serif';
         ctx.fillText('LOW ANGLE = POWER 👑', x + 170, cy - 111);
 
-        // Right: High Angle Arrow pointing DOWN
         ctx.strokeStyle = '#EF4444';
         ctx.lineWidth = 8;
         ctx.beginPath();
@@ -381,14 +447,12 @@
         ctx.fillText('HIGH ANGLE = WEAK 😰', cx + 180, cy + 159);
 
       } else if (type === "dutch") {
-        // Horizon reference
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
         ctx.lineWidth = 4;
         ctx.setLineDash([12, 12]);
         ctx.beginPath(); ctx.moveTo(x, cy); ctx.lineTo(x + w, cy); ctx.stroke();
         ctx.setLineDash([]);
 
-        // Tilted frame
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(-20 * Math.PI / 180);
@@ -404,7 +468,6 @@
         ctx.fillText('⟳ TILT: -20° CANTED AXIS', 0, 127);
         ctx.restore();
 
-        // Unease pill
         drawBrutalBox(ctx, cx - 180, y + 30, 360, 45, '#FFE600', '#000', 3, 4);
         ctx.fillStyle = '#000';
         ctx.font = '900 18px "Space Grotesk", sans-serif';
@@ -415,7 +478,6 @@
         const tw = w / 3;
         const th = h / 3;
 
-        // Grid lines
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.75)';
         ctx.lineWidth = 4;
         ctx.beginPath();
@@ -425,7 +487,6 @@
         ctx.moveTo(x, y + th * 2); ctx.lineTo(x + w, y + th * 2);
         ctx.stroke();
 
-        // 4 Target Intersection Bullets
         [
           [x + tw, y + th], [x + tw * 2, y + th],
           [x + tw, y + th * 2], [x + tw * 2, y + th * 2]
@@ -435,7 +496,6 @@
           ctx.strokeStyle = '#000'; ctx.lineWidth = 4; ctx.stroke();
         });
 
-        // Top Third Eye-line Anchor Banner
         drawBrutalBox(ctx, cx - 190, y + th - 24, 380, 48, '#FFE600', '#000', 3, 4);
         ctx.fillStyle = '#000';
         ctx.font = '900 18px "Space Grotesk", sans-serif';
@@ -443,7 +503,6 @@
         ctx.fillText('🎯 ANCHOR EYES ON TOP THIRD', cx, y + th + 6);
 
       } else if (type === "leadroom") {
-        // Forward Action Vector
         ctx.strokeStyle = '#10B981';
         ctx.lineWidth = 10;
         ctx.beginPath();
@@ -451,7 +510,6 @@
         ctx.lineTo(x + w - 80, cy);
         ctx.stroke();
 
-        // Arrow head
         ctx.fillStyle = '#10B981';
         ctx.beginPath();
         ctx.moveTo(x + w - 60, cy);
@@ -459,7 +517,6 @@
         ctx.lineTo(x + w - 100, cy + 30);
         ctx.fill();
 
-        // Lead Space Box Overlay
         ctx.fillStyle = 'rgba(16, 185, 129, 0.2)';
         ctx.fillRect(cx, y + 40, w / 2 - 40, h - 80);
         ctx.strokeStyle = '#10B981';
@@ -473,7 +530,6 @@
         ctx.fillText('LEAD ROOM (LOOK SPACE) 👀', cx + 150, cy + 5);
 
       } else if (type === "ots") {
-        // Sightline connecting actors
         ctx.strokeStyle = '#38BDF8';
         ctx.lineWidth = 6;
         ctx.setLineDash([12, 12]);
@@ -483,14 +539,12 @@
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Foreground Tag
         drawBrutalBox(ctx, x + 30, y + h - 70, 220, 42, '#111317', '#000', 3, 0);
         ctx.fillStyle = '#FFF';
         ctx.font = '900 16px "Space Grotesk", sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText('FOREGROUND SHOULDER', x + 140, y + h - 43);
 
-        // Subject Tag
         drawBrutalBox(ctx, cx, cy - 100, 200, 42, '#FFE600', '#000', 3, 4);
         ctx.fillStyle = '#000';
         ctx.font = '900 16px "Space Grotesk", sans-serif';
@@ -499,7 +553,6 @@
 
       ctx.restore();
 
-      // Outer Thick Border over the clipped image
       ctx.strokeStyle = '#000000';
       ctx.lineWidth = 8;
       ctx.strokeRect(x, y, w, h);
@@ -513,7 +566,6 @@
         ctx.textBaseline = 'alphabetic';
 
         if (data.type === "intro") {
-          // Cover Slide
           ctx.fillStyle = '#FFE600';
           ctx.fillRect(0, 0, 1080, 1920);
           ctx.lineWidth = 24;
@@ -561,7 +613,6 @@
           ctx.fillText('→', 930, 1735);
 
         } else if (data.type === "rule") {
-          // Rule Frame
           ctx.fillStyle = data.bg;
           ctx.fillRect(0, 0, 1080, 1920);
           ctx.lineWidth = 24;
@@ -583,10 +634,8 @@
           ctx.font = '900 46px "Space Grotesk", sans-serif';
           ctx.fillText(`${data.emoji} ${data.ruleName}`, 120, 258);
 
-          // RENDER REAL PHOTO + GRAPHIC OVERLAY
-          drawPhotoWithAnnotations(ctx, loadedImages[data.imgUrl], data.overlayType, 90, 335, 900, 480);
+          drawPhotoWithAnnotations(ctx, userImages[idx], data.overlayType, 90, 335, 900, 480);
 
-          // BEST USE CASE
           drawBrutalBox(ctx, 90, 850, 900, 220, data.accentCard, '#000000', 8, 14);
           drawBrutalBox(ctx, 130, 885, 290, 45, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#FFE600';
@@ -597,7 +646,6 @@
           ctx.font = '800 32px "Inter", sans-serif';
           wrapText(ctx, data.situation, 130, 980, 820, 44);
 
-          // PSYCHOLOGICAL IMPACT
           drawBrutalBox(ctx, 90, 1105, 900, 360, '#FFFFFF', '#000000', 8, 14);
           drawBrutalBox(ctx, 130, 1140, 370, 45, '#FB7185', '#000000', 0, 0);
           ctx.fillStyle = '#FFFFFF';
@@ -608,7 +656,6 @@
           ctx.font = '600 30px "Inter", sans-serif';
           wrapText(ctx, data.impact, 130, 1235, 820, 46);
 
-          // SCRIPT BLUEPRINT
           drawBrutalBox(ctx, 90, 1500, 900, 240, '#FFE600', '#000000', 8, 14);
           drawBrutalBox(ctx, 130, 1535, 360, 45, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#34D399';
@@ -619,7 +666,6 @@
           ctx.font = '700 27px "Inter", sans-serif';
           wrapText(ctx, data.scriptCue, 130, 1625, 820, 38);
 
-          // Footer
           ctx.fillStyle = '#000000';
           ctx.font = '800 28px "Space Grotesk", sans-serif';
           ctx.fillText('DRAFTSRUSH STUDIO', 90, 1820);
@@ -627,7 +673,6 @@
           ctx.fillText('draftsrush.com', 720, 1820);
 
         } else if (data.type === "cta") {
-          // Slide 8: Closing CTA Conversion Card
           ctx.fillStyle = '#FFE600';
           ctx.fillRect(0, 0, 1080, 1920);
           ctx.lineWidth = 24;
@@ -702,36 +747,11 @@
       const content = await zip.generateAsync({ type: "blob" });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(content);
-      link.download = "draftsrush-photo-annotated-reel.zip";
+      link.download = "draftsrush-custom-photo-reel.zip";
       link.click();
     }
 
-    // Preload all remote photos with CORS anonymous flag
-    let loadCount = 0;
-    const photoUrls = rulesData.filter(d => d.imgUrl).map(d => d.imgUrl);
-
-    photoUrls.forEach(url => {
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.onload = () => {
-        loadedImages[url] = img;
-        loadCount++;
-        if (loadCount === photoUrls.length) {
-          renderAll();
-        }
-      };
-      img.onerror = () => {
-        loadCount++;
-        if (loadCount === photoUrls.length) {
-          renderAll();
-        }
-      };
-      img.src = url;
-    });
-
-    document.fonts.ready.then(() => {
-      if (photoUrls.length === 0) renderAll();
-    });
+    document.fonts.ready.then(() => setTimeout(renderAll, 100));
   </script>
 </body>
 </html>
