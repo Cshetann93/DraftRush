@@ -1,194 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>DraftsRush - Myth vs Reality Intro Frame</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: #111317;
-      color: #FFFFFF;
-      font-family: 'Inter', sans-serif;
-      padding: 30px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .header-panel {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      color: #FFE600;
-      font-size: 26px;
-      margin-bottom: 6px;
-    }
-    p {
-      color: #D6E4EE;
-      font-size: 14px;
-      margin-bottom: 16px;
-    }
-    canvas {
-      width: 100%;
-      max-width: 360px;
-      height: auto;
-      aspect-ratio: 9 / 16;
-      border: 3px solid #000000;
-      display: block;
-      margin-bottom: 16px;
-      background: #FFE600;
-    }
-    .btn-download {
-      background: #FFE600;
-      color: #000000;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 900;
-      font-size: 15px;
-      padding: 12px 24px;
-      border: 3px solid #000000;
-      box-shadow: 4px 4px 0px #FFFFFF;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: transform 0.1s, box-shadow 0.1s;
-    }
-    .btn-download:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0px #FFFFFF;
-    }
-    .btn-download:active {
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0px #FFFFFF;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Psychology in Blockbuster Films</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #000;
+            border-bottom: 2px solid #333;
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        header p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #aaa;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .frame {
+            margin-bottom: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            background-color: #1e1e1e;
+        }
+        .color_bar {
+            height: 40px;
+            width: 100%;
+        }
+        .content {
+            padding: 30px;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+        .meta {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .meta span {
+            color: #ccc;
+            font-weight: normal;
+        }
+        p.mood {
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        .c1 { background: linear-gradient(to right, #8b0000, #dc143c, #f08080); }
+        .c2 { background: linear-gradient(to right, #003300, #556b2f, #32cd32); }
+        .c3 { background: linear-gradient(to right, #8b4500, #d2691e, #008b8b); }
+        .c4 { background: linear-gradient(to right, #1c2833, #34495e, #7fb3d5); }
+        .c5 { background: linear-gradient(to right, #555500, #b8860b, #9acd32); }
+        .c6 { background: linear-gradient(to right, #ffb6c1, #da70d6, #87ceeb); }
+        .c7 { background: linear-gradient(to right, #4b0082, #ff1493, #00ffff); }
+        .c8 { background: linear-gradient(to right, #a9a9a9, #dcdcdc, #ffffff); }
+        .c9 { background: linear-gradient(to right, #2E0854, #4B0082, #8A2BE2); }
+        .c10 { background: linear-gradient(to right, #000000, #555555, #d3d3d3); }
+        
+        .text_dark { color: #333; }
+        .bg_light { background-color: #f8f8f8; }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Color Psychology</h1>
+        <p><strong>The Unspoken Script:</strong> Color in cinema is never accidental. Long before an actor speaks, the color grade sets the emotional baseline for the audience. Directors and colorists manipulate hues to signal danger, manufacture intimacy, or trigger subconscious dread.</p>
+    </header>
+    <div class="container">
+        <div class="frame">
+            <div class="color_bar c1"></div>
+            <div class="content">
+                <h2>Frame 1: Crimson Dominance (Obsession and Isolation)</h2>
+                <div class="meta">Palette: <span>Deep vermilion, warm crimson, soft coral.</span></div>
+                <div class="meta">Film Example: <span>Her (2013)</span></div>
+                <p class="mood">Red usually triggers alarms, but Spike Jonze stripped out cool blues and flooded Theodore's world with soft reds and pastels. The hue externalizes a yearning for human connection, intimacy, and lingering melancholy while keeping the tone warm rather than aggressive.</p>
+            </div>
+        </div>
+        
+        <div class="frame">
+            <div class="color_bar c2"></div>
+            <div class="content">
+                <h2>Frame 2: Toxic Green (Corruption and Unreality)</h2>
+                <div class="meta">Palette: <span>Phosphor green, sickly olive, deep shadow tint.</span></div>
+                <div class="meta">Film Example: <span>The Matrix (1999)</span></div>
+                <p class="mood">The Wachowskis washed every frame inside the simulation with a digital, green wash reminiscent of an old monochrome CRT monitor. It evokes nausea, decay, and the persistent psychological unease that the world is artificial.</p>
+            </div>
+        </div>
 
-  <div class="header-panel">
-    <h1>Reel Intro Title Card (1080x1920)</h1>
-    <p>Opening Hook Frame for the Myth vs Reality Series</p>
-    <button class="btn-download" onclick="downloadIntro()">Download Intro Frame PNG</button>
-  </div>
+        <div class="frame">
+            <div class="color_bar c3"></div>
+            <div class="content">
+                <h2>Frame 3: High Contrast Orange and Teal (Kinetic Tension)</h2>
+                <div class="meta">Palette: <span>Saturated rust, desert ochre, electric cyan.</span></div>
+                <div class="meta">Film Example: <span>Mad Max: Fury Road (2015)</span></div>
+                <p class="mood">Orange and teal sit opposite each other on the color wheel. By blasting scorched desert sands against vivid cobalt skies, George Miller pushes visual friction to the absolute maximum, forcing human skin to pop while ramping up adrenaline.</p>
+            </div>
+        </div>
 
-  <canvas id="introCanvas" width="1080" height="1920"></canvas>
+        <div class="frame">
+            <div class="color_bar c4"></div>
+            <div class="content">
+                <h2>Frame 4: Cold Blue Desaturation (Grief and Detachment)</h2>
+                <div class="meta">Palette: <span>Slate gray, steel blue, muted navy.</span></div>
+                <div class="meta">Film Example: <span>The Batman (2022) / The Revenant (2015)</span></div>
+                <p class="mood">Pulling out warm midtones and pushing shadows toward icy blue signals physical hostility and deep emotional numbness. It strips warmth from the human body, making characters appear vulnerable, isolated, and drained of hope.</p>
+            </div>
+        </div>
 
-  <script>
-    const canvas = document.getElementById('introCanvas');
-    const ctx = canvas.getContext('2d');
+        <div class="frame">
+            <div class="color_bar c5"></div>
+            <div class="content">
+                <h2>Frame 5: Rotting Yellow (Paranoia and Instability)</h2>
+                <div class="meta">Palette: <span>Mustard, jaundiced amber, sour chartreuse.</span></div>
+                <div class="meta">Film Example: <span>Enemy (2013) / Sicario (2015)</span></div>
+                <p class="mood">Yellow typically communicates energy or warmth, but when desaturated and mixed with muddy greens, it signals rot, disease, and mental unraveling. Denis Villeneuve uses heavy yellow washes in Enemy to trap the viewer in an oppressive, suffocating state of psychological dread.</p>
+            </div>
+        </div>
 
-    function drawBrutalBox(ctx, x, y, w, h, fill, border = '#000000', borderWidth = 8, shadow = 16) {
-      if (shadow > 0) {
-        ctx.fillStyle = '#000000';
-        ctx.fillRect(x + shadow, y + shadow, w, h);
-      }
-      ctx.fillStyle = fill;
-      ctx.fillRect(x, y, w, h);
-      ctx.strokeStyle = border;
-      ctx.lineWidth = borderWidth;
-      ctx.strokeRect(x, y, w, h);
-    }
+        <div class="frame">
+            <div class="color_bar c6"></div>
+            <div class="content">
+                <h2>Frame 6: Pastel Pink and Lavender (Performative Innocence)</h2>
+                <div class="meta">Palette: <span>Bubblegum pink, powdery magenta, sky blue.</span></div>
+                <div class="meta">Film Example: <span>The Grand Budapest Hotel (2014)</span></div>
+                <p class="mood">Wes Anderson uses candy coated pastels to build a protective visual bubble. The colors convey nostalgia, charm, and innocence, which work deliberately against the looming fascism and loss unfolding underneath the story.</p>
+            </div>
+        </div>
 
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-      const words = text.split(' ');
-      let line = '';
-      for (let n = 0; n < words.length; n++) {
-        let testLine = line + words[n] + ' ';
-        let metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && n > 0) {
-          ctx.fillText(line, x, y);
-          line = words[n] + ' ';
-          y += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      ctx.fillText(line, x, y);
-    }
+        <div class="frame">
+            <div class="color_bar c7"></div>
+            <div class="content">
+                <h2>Frame 7: Neon Cyan and Hot Magenta (Futuristic Alienation)</h2>
+                <div class="meta">Palette: <span>Synthetic violet, electric pink, neon cyan.</span></div>
+                <div class="meta">Film Example: <span>Blade Runner 2049 (2017)</span></div>
+                <p class="mood">The dual clash of artificial pinks and deep blues constructs a world run on digital stimulation. The saturated neon highlights the absence of natural daylight, evoking sensory overload, corporate commodification, and deep loneliness.</p>
+            </div>
+        </div>
 
-    function renderIntro() {
-      // Background: Electric Yellow Canvas
-      ctx.fillStyle = '#FFE600';
-      ctx.fillRect(0, 0, 1080, 1920);
-      ctx.lineWidth = 24;
-      ctx.strokeStyle = '#000000';
-      ctx.strokeRect(0, 0, 1080, 1920);
+        <div class="frame">
+            <div class="color_bar c8"></div>
+            <div class="content text_dark bg_light">
+                <h2 class="text_dark">Frame 8: Bleached White and High Key Overexposure (Moral Nihilism)</h2>
+                <div class="meta text_dark">Palette: <span class="text_dark">Bone white, washed out linen, searing highlights.</span></div>
+                <div class="meta text_dark">Film Example: <span class="text_dark">Midsommar (2019)</span></div>
+                <p class="mood text_dark">Ari Aster inverts traditional horror conventions by denying the viewer the comfort of dark shadows. Overexposing the Swedish summer creates an inescapable daylight where trauma and ritual violence have nowhere to hide, producing intense claustrophobia in wide open fields.</p>
+            </div>
+        </div>
 
-      // Top Tag Bar
-      drawBrutalBox(ctx, 90, 140, 480, 75, '#000000', '#000000', 0, 0);
-      ctx.fillStyle = '#34D399';
-      ctx.beginPath();
-      ctx.arc(130, 177, 10, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '900 24px "Space Grotesk", sans-serif';
-      ctx.fillText('VIDEO SCRIPT PROTOCOL', 155, 186);
+        <div class="frame">
+            <div class="color_bar c9"></div>
+            <div class="content">
+                <h2>Frame 9: Saturated Royal Purple (Power and Illusion)</h2>
+                <div class="meta">Palette: <span>Velvet purple, deep violet, indigo.</span></div>
+                <div class="meta">Film Example: <span>Black Panther (2018)</span></div>
+                <p class="mood">Purple historically carries associations of royalty, mysticism, and high status. In Wakanda, purple lighting surrounds the ancestral plane and the vibranium suits, grounding the mood in spiritual authority, legacy, and mythical power.</p>
+            </div>
+        </div>
 
-      // Main Brutalist Container Card
-      drawBrutalBox(ctx, 90, 260, 900, 1340, '#FFFFFF', '#000000', 10, 22);
-
-      // Small Category Pill
-      drawBrutalBox(ctx, 150, 330, 360, 60, '#E2E4E9', '#000000', 4, 6);
-      ctx.fillStyle = '#111317';
-      ctx.font = '800 22px "Space Grotesk", sans-serif';
-      ctx.fillText('CONTENT BOTTLENECK', 180, 368);
-
-      // Headline Word 1: MYTH (Red/Pink Accent Box)
-      drawBrutalBox(ctx, 150, 430, 780, 200, '#FB7185', '#000000', 8, 16);
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '900 140px "Space Grotesk", sans-serif';
-      ctx.fillText('MYTH', 320, 580);
-
-      // Divider Pill: VS
-      drawBrutalBox(ctx, 450, 660, 180, 80, '#000000', '#FFE600', 6, 10);
-      ctx.fillStyle = '#FFE600';
-      ctx.font = '900 44px "Space Grotesk", sans-serif';
-      ctx.fillText('VS', 510, 718);
-
-      // Headline Word 2: REALITY (Electric Yellow Box)
-      drawBrutalBox(ctx, 150, 770, 780, 200, '#FFE600', '#000000', 8, 16);
-      ctx.fillStyle = '#000000';
-      ctx.font = '900 135px "Space Grotesk", sans-serif';
-      ctx.fillText('REALITY', 240, 920);
-
-      // Clarifying Deck Text
-      ctx.fillStyle = '#111317';
-      ctx.font = '700 38px "Inter", sans-serif';
-      const deckText = "9 production truths about scriptwriting, pacing, and retention that creators get wrong.";
-      wrapText(ctx, deckText, 150, 1060, 780, 56);
-
-      // Sub-box: Audience Notice
-      drawBrutalBox(ctx, 150, 1260, 780, 260, '#D6E4EE', '#000000', 6, 10);
-      ctx.fillStyle = '#000000';
-      ctx.font = '900 26px "Space Grotesk", sans-serif';
-      ctx.fillText('WHY VIDEOS ACTUALLY STALL', 190, 1320);
-
-      ctx.fillStyle = '#222222';
-      ctx.font = '600 24px "Inter", sans-serif';
-      wrapText(ctx, "An idea in your head is not a video script. When structure fails, viewer retention dies in seconds.", 190, 1370, 700, 38);
-
-      // Bottom Call-to-Action Strip
-      drawBrutalBox(ctx, 90, 1660, 900, 110, '#000000', '#000000', 0, 0);
-      ctx.fillStyle = '#FFE600';
-      ctx.font = '900 32px "Space Grotesk", sans-serif';
-      ctx.fillText('BLUEPRINTS BY DRAFTSRUSH.COM', 150, 1728);
-
-      // Arrow on right side of bottom CTA
-      ctx.fillStyle = '#34D399';
-      ctx.font = '900 34px sans-serif';
-      ctx.fillText('→', 910, 1728);
-    }
-
-    function downloadIntro() {
-      const link = document.createElement('a');
-      link.download = 'myth-vs-reality-00-intro.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    }
-
-    document.fonts.ready.then(renderIntro);
-  </script>
+        <div class="frame">
+            <div class="color_bar c10"></div>
+            <div class="content">
+                <h2>Frame 10: Sepia and Monochrome (Historical Reckoning and Finality)</h2>
+                <div class="meta">Palette: <span>High contrast silver, charcoal black, stark chalk white.</span></div>
+                <div class="meta">Film Example: <span>Oppenheimer (2023)</span></div>
+                <p class="mood">Christopher Nolan contrasts rich color film with custom black and white Kodak stock. The color segments carry subjective personal emotion, while the harsh black and white sequence delivers cold, objective scrutiny and political finality, removing emotional bias from the frame.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
