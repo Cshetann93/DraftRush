@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DraftsRush - Myth vs Reality (Brand Accent Palette)</title>
+  <title>DraftsRush - Myth vs Reality Intro Frame</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -20,204 +19,65 @@
     }
     .header-panel {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     h1 {
       font-family: 'Space Grotesk', sans-serif;
       color: #FFE600;
-      font-size: 28px;
-      margin-bottom: 8px;
+      font-size: 26px;
+      margin-bottom: 6px;
     }
     p {
       color: #D6E4EE;
       font-size: 14px;
-      margin-bottom: 18px;
-    }
-    .btn-zip {
-      background: #FFE600;
-      color: #000;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 900;
-      font-size: 16px;
-      padding: 12px 24px;
-      border: 3px solid #000;
-      box-shadow: 4px 4px 0px #fff;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: transform 0.1s;
-    }
-    .btn-zip:hover { transform: translate(-2px, -2px); }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      max-width: 1400px;
-      width: 100%;
-    }
-    .card {
-      background: #1C1F26;
-      border: 2px solid #333;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      margin-bottom: 16px;
     }
     canvas {
       width: 100%;
+      max-width: 360px;
       height: auto;
       aspect-ratio: 9 / 16;
-      border: 2px solid #000;
-      margin-bottom: 12px;
-      background: #E2E4E9;
+      border: 3px solid #000000;
+      display: block;
+      margin-bottom: 16px;
+      background: #FFE600;
     }
-    .btn-single {
-      background: #D6E4EE;
-      color: #000;
+    .btn-download {
+      background: #FFE600;
+      color: #000000;
       font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800;
-      font-size: 13px;
-      padding: 8px 12px;
-      border: 2px solid #000;
+      font-weight: 900;
+      font-size: 15px;
+      padding: 12px 24px;
+      border: 3px solid #000000;
+      box-shadow: 4px 4px 0px #FFFFFF;
       cursor: pointer;
-      width: 100%;
       text-transform: uppercase;
+      transition: transform 0.1s, box-shadow 0.1s;
     }
-    .btn-single:hover { background: #FFE600; }
+    .btn-download:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px #FFFFFF;
+    }
+    .btn-download:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #FFFFFF;
+    }
   </style>
 </head>
 <body>
 
   <div class="header-panel">
-    <h1>Multi-Accent Reel Frames (1080x1920)</h1>
-    <p>Balanced with DraftsRush Yellow, Slate Blue, Pink & Emerald Accents</p>
-    <button class="btn-zip" onclick="downloadAll()">Download All 10 PNGs (.ZIP)</button>
+    <h1>Reel Intro Title Card (1080x1920)</h1>
+    <p>Opening Hook Frame for the Myth vs Reality Series</p>
+    <button class="btn-download" onclick="downloadIntro()">Download Intro Frame PNG</button>
   </div>
 
-  <div class="grid" id="gridContainer"></div>
+  <canvas id="introCanvas" width="1080" height="1920"></canvas>
 
   <script>
-    const frames = [
-      {
-        num: "01",
-        tag: "TOPIC: HOOK DESIGN",
-        myth: "Say hello, state your name, and ask viewers to subscribe first.",
-        reality: "Start directly with the core problem in second zero. Zero throat clearing. Viewers decide to stay or swipe in under 3 seconds.",
-        canvasBg: "#E2E4E9",
-        mythBg: "#FFF1F2",
-        mythPill: "#FB7185", // Coral Rose Pink
-        mythPillText: "#000000",
-        realityBg: "#FFE600", // Yellow Main Anchor
-        realityPill: "#000000",
-        realityPillText: "#34D399" // Emerald Text
-      },
-      {
-        num: "02",
-        tag: "TOPIC: SCRIPT FORMAT",
-        myth: "Write a long essay draft in standard document paragraphs.",
-        reality: "Use Dual-Column AV formatting. Timed visual directions on the left, conversational dialogue on the right so editors never guess B-roll.",
-        canvasBg: "#D6E4EE", // Soft Slate Blue Canvas
-        mythBg: "#FFFFFF",
-        mythPill: "#111317",
-        mythPillText: "#FB7185", // Pink Text
-        realityBg: "#FFF6CF", // Cream Yellow
-        realityPill: "#34D399", // Emerald Green
-        realityPillText: "#000000"
-      },
-      {
-        num: "03",
-        tag: "TOPIC: DIALOGUE PACING",
-        myth: "Write complex sentences to sound intellectual and authoritative.",
-        reality: "People listen in short fragments. Write for the ear, not the eye. Keep sentences under 12 words to maintain natural spoken rhythm.",
-        canvasBg: "#E2E4E9",
-        mythBg: "#FFF1F2", // Soft Pink Tint
-        mythPill: "#FB7185", // Pink Pill
-        mythPillText: "#FFFFFF",
-        realityBg: "#FFE600", // Yellow
-        realityPill: "#111317",
-        realityPillText: "#FFE600"
-      },
-      {
-        num: "04",
-        tag: "TOPIC: MID-VIDEO DROP-OFF",
-        myth: "Once someone makes it past the hook, they will watch until the end.",
-        reality: "Attention decays every 60 to 90 seconds. You must plant mini-arcs and visual pattern interrupts to continually reset attention.",
-        canvasBg: "#CCD0DC", // Studio Metal
-        mythBg: "#FFFFFF",
-        mythPill: "#FB7185", // Pink
-        mythPillText: "#000000",
-        realityBg: "#34D399", // Emerald Green Accent Card
-        realityPill: "#000000",
-        realityPillText: "#FFE600"
-      },
-      {
-        num: "05",
-        tag: "TOPIC: PRODUCTION GEAR",
-        myth: "You need a high-end cinema camera and lighting package to look pro.",
-        reality: "Pacing and story structure carry 80% of retention. Clean audio and a disciplined script beat expensive camera bodies every time.",
-        canvasBg: "#FFF6CF", // Cream Canvas
-        mythBg: "#FFFFFF",
-        mythPill: "#111317",
-        mythPillText: "#FB7185",
-        realityBg: "#FFE600", // Yellow
-        realityPill: "#000000",
-        realityPillText: "#34D399"
-      },
-      {
-        num: "06",
-        tag: "TOPIC: FACELESS CHANNELS",
-        myth: "Faceless videos can rely on automated AI script generators.",
-        reality: "Without an on-screen host, your visual momentum must be twice as deliberate. Scripts require exact SFX and cutaway cues.",
-        canvasBg: "#D6E4EE", // Soft Slate Blue
-        mythBg: "#FFF1F2",
-        mythPill: "#FB7185", // Pink
-        mythPillText: "#000000",
-        realityBg: "#FFE600", // Yellow
-        realityPill: "#111317",
-        realityPillText: "#FFFFFF"
-      },
-      {
-        num: "07",
-        tag: "TOPIC: RESEARCH PROCESS",
-        myth: "Summarizing Wikipedia or search summaries makes a solid video essay.",
-        reality: "High retention demands primary sources, court filings, or technical studies. Generic summaries trigger instant audience bounce.",
-        canvasBg: "#E2E4E9",
-        mythBg: "#FFFFFF",
-        mythPill: "#FB7185", // Pink
-        mythPillText: "#FFFFFF",
-        realityBg: "#D6E4EE", // Soft Slate Blue Reality Box
-        realityPill: "#34D399", // Emerald
-        realityPillText: "#000000"
-      },
-      {
-        num: "08",
-        tag: "TOPIC: THE OUTRO",
-        myth: "Wrap up with a long recap and tell viewers 'Thanks for watching!'",
-        reality: "The moment a viewer senses a video ending, they leave. Cut straight from your final insight directly into your call to action.",
-        canvasBg: "#FFF6CF", // Cream
-        mythBg: "#FFF1F2",
-        mythPill: "#FB7185",
-        mythPillText: "#000000",
-        realityBg: "#FFE600", // Yellow
-        realityPill: "#000000",
-        realityPillText: "#34D399"
-      },
-      {
-        num: "09",
-        tag: "TOPIC: SCRIPT PREPARATION",
-        myth: "Rambling on camera and fixing it later during editing saves time.",
-        reality: "Unplanned footage leads to hours of painful timeline trimming. A 30-minute script blueprint saves 4 hours of editing frustration.",
-        canvasBg: "#D6E4EE", // Soft Slate Blue
-        mythBg: "#FFFFFF",
-        mythPill: "#111317",
-        mythPillText: "#FB7185",
-        realityBg: "#34D399", // Emerald Green Box
-        realityPill: "#000000",
-        realityPillText: "#FFE600"
-      }
-    ];
-
-    const container = document.getElementById('gridContainer');
-    const canvases = [];
+    const canvas = document.getElementById('introCanvas');
+    const ctx = canvas.getContext('2d');
 
     function drawBrutalBox(ctx, x, y, w, h, fill, border = '#000000', borderWidth = 8, shadow = 16) {
       if (shadow > 0) {
@@ -248,178 +108,87 @@
       ctx.fillText(line, x, y);
     }
 
-    for (let i = 0; i < 10; i++) {
-      const card = document.createElement('div');
-      card.className = 'card';
+    function renderIntro() {
+      // Background: Electric Yellow Canvas
+      ctx.fillStyle = '#FFE600';
+      ctx.fillRect(0, 0, 1080, 1920);
+      ctx.lineWidth = 24;
+      ctx.strokeStyle = '#000000';
+      ctx.strokeRect(0, 0, 1080, 1920);
 
-      const canvas = document.createElement('canvas');
-      canvas.width = 1080;
-      canvas.height = 1920;
-      canvas.id = `canvas-${i}`;
-      card.appendChild(canvas);
+      // Top Tag Bar
+      drawBrutalBox(ctx, 90, 140, 480, 75, '#000000', '#000000', 0, 0);
+      ctx.fillStyle = '#34D399';
+      ctx.beginPath();
+      ctx.arc(130, 177, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '900 24px "Space Grotesk", sans-serif';
+      ctx.fillText('VIDEO SCRIPT PROTOCOL', 155, 186);
 
-      const btn = document.createElement('button');
-      btn.className = 'btn-single';
-      btn.innerText = i < 9 ? `Download Frame ${i + 1} PNG` : 'Download CTA Frame PNG';
-      btn.onclick = () => downloadSingle(canvas, i < 9 ? `myth-vs-reality-0${i + 1}.png` : 'myth-vs-reality-cta.png');
-      card.appendChild(btn);
+      // Main Brutalist Container Card
+      drawBrutalBox(ctx, 90, 260, 900, 1340, '#FFFFFF', '#000000', 10, 22);
 
-      container.appendChild(card);
-      canvases.push(canvas);
+      // Small Category Pill
+      drawBrutalBox(ctx, 150, 330, 360, 60, '#E2E4E9', '#000000', 4, 6);
+      ctx.fillStyle = '#111317';
+      ctx.font = '800 22px "Space Grotesk", sans-serif';
+      ctx.fillText('CONTENT BOTTLENECK', 180, 368);
+
+      // Headline Word 1: MYTH (Red/Pink Accent Box)
+      drawBrutalBox(ctx, 150, 430, 780, 200, '#FB7185', '#000000', 8, 16);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '900 140px "Space Grotesk", sans-serif';
+      ctx.fillText('MYTH', 320, 580);
+
+      // Divider Pill: VS
+      drawBrutalBox(ctx, 450, 660, 180, 80, '#000000', '#FFE600', 6, 10);
+      ctx.fillStyle = '#FFE600';
+      ctx.font = '900 44px "Space Grotesk", sans-serif';
+      ctx.fillText('VS', 510, 718);
+
+      // Headline Word 2: REALITY (Electric Yellow Box)
+      drawBrutalBox(ctx, 150, 770, 780, 200, '#FFE600', '#000000', 8, 16);
+      ctx.fillStyle = '#000000';
+      ctx.font = '900 135px "Space Grotesk", sans-serif';
+      ctx.fillText('REALITY', 240, 920);
+
+      // Clarifying Deck Text
+      ctx.fillStyle = '#111317';
+      ctx.font = '700 38px "Inter", sans-serif';
+      const deckText = "9 production truths about scriptwriting, pacing, and retention that creators get wrong.";
+      wrapText(ctx, deckText, 150, 1060, 780, 56);
+
+      // Sub-box: Audience Notice
+      drawBrutalBox(ctx, 150, 1260, 780, 260, '#D6E4EE', '#000000', 6, 10);
+      ctx.fillStyle = '#000000';
+      ctx.font = '900 26px "Space Grotesk", sans-serif';
+      ctx.fillText('WHY VIDEOS ACTUALLY STALL', 190, 1320);
+
+      ctx.fillStyle = '#222222';
+      ctx.font = '600 24px "Inter", sans-serif';
+      wrapText(ctx, "An idea in your head is not a video script. When structure fails, viewer retention dies in seconds.", 190, 1370, 700, 38);
+
+      // Bottom Call-to-Action Strip
+      drawBrutalBox(ctx, 90, 1660, 900, 110, '#000000', '#000000', 0, 0);
+      ctx.fillStyle = '#FFE600';
+      ctx.font = '900 32px "Space Grotesk", sans-serif';
+      ctx.fillText('BLUEPRINTS BY DRAFTSRUSH.COM', 150, 1728);
+
+      // Arrow on right side of bottom CTA
+      ctx.fillStyle = '#34D399';
+      ctx.font = '900 34px sans-serif';
+      ctx.fillText('→', 910, 1728);
     }
 
-    function renderCards() {
-      // Render Frames 1 to 9
-      frames.forEach((f, idx) => {
-        const ctx = canvases[idx].getContext('2d');
-
-        // Background
-        ctx.fillStyle = f.canvasBg;
-        ctx.fillRect(0, 0, 1080, 1920);
-        ctx.lineWidth = 24;
-        ctx.strokeStyle = '#000000';
-        ctx.strokeRect(0, 0, 1080, 1920);
-
-        // Header Pill
-        drawBrutalBox(ctx, 90, 90, 490, 75, '#000000', '#000000', 0, 0);
-        ctx.fillStyle = '#FFE600';
-        ctx.font = '900 28px "Space Grotesk", sans-serif';
-        ctx.fillText(f.tag, 125, 140);
-
-        // Frame Counter Badge
-        drawBrutalBox(ctx, 810, 90, 180, 75, '#FFFFFF', '#000000', 4, 8);
-        ctx.fillStyle = '#000000';
-        ctx.font = '900 32px "JetBrains Mono", monospace';
-        ctx.fillText(`${f.num}/09`, 845, 140);
-
-        // MYTH SECTION
-        drawBrutalBox(ctx, 90, 220, 900, 520, f.mythBg, '#000000', 8, 16);
-        
-        // Myth Tag Label
-        drawBrutalBox(ctx, 130, 260, 240, 60, f.mythPill, '#000000', 0, 0);
-        ctx.fillStyle = f.mythPillText;
-        ctx.font = '900 28px "Space Grotesk", sans-serif';
-        ctx.fillText('THE MYTH', 170, 302);
-
-        ctx.fillStyle = '#111317';
-        ctx.font = '700 42px "Inter", sans-serif';
-        wrapText(ctx, f.myth, 130, 390, 820, 56);
-
-        // VS DIVIDER
-        drawBrutalBox(ctx, 470, 765, 140, 70, '#000000', '#FFE600', 4, 8);
-        ctx.fillStyle = '#FFE600';
-        ctx.font = '900 36px "Space Grotesk", sans-serif';
-        ctx.fillText('VS', 515, 814);
-
-        // REALITY SECTION
-        drawBrutalBox(ctx, 90, 870, 900, 780, f.realityBg, '#000000', 8, 16);
-
-        // Reality Tag Label
-        drawBrutalBox(ctx, 130, 920, 260, 60, f.realityPill, '#000000', 0, 0);
-        ctx.fillStyle = f.realityPillText;
-        ctx.font = '900 28px "Space Grotesk", sans-serif';
-        ctx.fillText('THE REALITY', 165, 962);
-
-        ctx.fillStyle = '#000000';
-        ctx.font = '800 44px "Inter", sans-serif';
-        wrapText(ctx, f.reality, 130, 1070, 820, 64);
-
-        // Footer Strip
-        ctx.fillStyle = '#000000';
-        ctx.font = '800 32px "Space Grotesk", sans-serif';
-        ctx.fillText('DRAFTSRUSH STUDIO', 90, 1780);
-
-        ctx.font = '700 28px "JetBrains Mono", monospace';
-        ctx.fillText('draftsrush.com', 710, 1780);
-      });
-
-      // Frame 10: Ending Call-To-Action Card
-      const ctx10 = canvases[9].getContext('2d');
-      ctx10.fillStyle = '#FFE600';
-      ctx10.fillRect(0, 0, 1080, 1920);
-      ctx10.lineWidth = 24;
-      ctx10.strokeStyle = '#000000';
-      ctx10.strokeRect(0, 0, 1080, 1920);
-
-      // Top Tag with Emerald Accent
-      drawBrutalBox(ctx10, 90, 120, 480, 75, '#000000', '#000000', 0, 0);
-      ctx10.fillStyle = '#34D399';
-      ctx10.beginPath();
-      ctx10.arc(130, 157, 12, 0, Math.PI * 2);
-      ctx10.fill();
-      ctx10.fillStyle = '#FFFFFF';
-      ctx10.font = '900 26px "Space Grotesk", sans-serif';
-      ctx10.fillText('TEST OUR PACING FIRST', 160, 166);
-
-      // Main White Card
-      drawBrutalBox(ctx10, 90, 240, 900, 1280, '#FFFFFF', '#000000', 10, 24);
-
-      ctx10.fillStyle = '#000000';
-      ctx10.font = '900 78px "Space Grotesk", sans-serif';
-      ctx10.fillText('STOP GUESSING.', 150, 390);
-
-      // Highlight Pink Box on "START FILMING"
-      drawBrutalBox(ctx10, 140, 430, 680, 95, '#FB7185', '#000000', 0, 0);
-      ctx10.fillStyle = '#FFFFFF';
-      ctx10.fillText('START FILMING.', 160, 502);
-
-      ctx10.fillStyle = '#111317';
-      ctx10.font = '600 36px "Inter", sans-serif';
-      const ctaBody = "You have great video ideas sitting in your notes app. We turn them into production-ready dual-column scripts with verified research and zero throat clearing.";
-      wrapText(ctx10, ctaBody, 150, 600, 780, 54);
-
-      // Offer Box (Soft Slate Blue #D6E4EE)
-      drawBrutalBox(ctx10, 150, 840, 780, 290, '#D6E4EE', '#000000', 6, 12);
-      ctx10.fillStyle = '#000000';
-      ctx10.font = '900 36px "Space Grotesk", sans-serif';
-      ctx10.fillText('FREE WORKING DEMO', 190, 915);
-
-      ctx10.fillStyle = '#222222';
-      ctx10.font = '600 30px "Inter", sans-serif';
-      wrapText(ctx10, "Send us 1 rough topic in our DM. We will draft your hook and opening act so you can review pacing before booking.", 190, 970, 700, 44);
-
-      // Action Button 1: DM (Black & Emerald)
-      drawBrutalBox(ctx10, 150, 1200, 780, 110, '#000000', '#000000', 0, 0);
-      ctx10.fillStyle = '#34D399';
-      ctx10.font = '900 38px "Space Grotesk", sans-serif';
-      ctx10.fillText('DM "DEMO" ON INSTAGRAM', 220, 1270);
-
-      // Action Button 2: Website (Electric Yellow Box)
-      drawBrutalBox(ctx10, 150, 1340, 780, 110, '#FFE600', '#000000', 6, 8);
-      ctx10.fillStyle = '#000000';
-      ctx10.font = '900 36px "Space Grotesk", sans-serif';
-      ctx10.fillText('OR VISIT DRAFTSRUSH.COM', 220, 1410);
-
-      // Footer
-      ctx10.fillStyle = '#000000';
-      ctx10.font = '800 32px "Space Grotesk", sans-serif';
-      ctx10.fillText('DRAFTSRUSH STUDIO • 2026', 90, 1780);
-    }
-
-    function downloadSingle(canvas, filename) {
+    function downloadIntro() {
       const link = document.createElement('a');
-      link.download = filename;
+      link.download = 'myth-vs-reality-00-intro.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
     }
 
-    async function downloadAll() {
-      const zip = new JSZip();
-      canvases.forEach((canvas, idx) => {
-        const dataUrl = canvas.toDataURL('image/png');
-        const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "");
-        const filename = idx < 9 ? `myth-vs-reality-0${idx + 1}.png` : 'myth-vs-reality-cta.png';
-        zip.file(filename, base64Data, { base64: true });
-      });
-
-      const content = await zip.generateAsync({ type: "blob" });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(content);
-      link.download = "draftsrush-myth-vs-reality-palette.zip";
-      link.click();
-    }
-
-    document.fonts.ready.then(renderCards);
+    document.fonts.ready.then(renderIntro);
   </script>
 </body>
 </html>
