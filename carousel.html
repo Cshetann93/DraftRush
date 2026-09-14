@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DraftsRush - Cinematography Photo Annotator</title>
+  <title>DraftsRush - Real Photo Cinematography Reel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,17 +45,15 @@
       box-shadow: 4px 4px 0px #fff;
       cursor: pointer;
       text-transform: uppercase;
-      transition: transform 0.1s;
     }
-    .btn-zip:hover { transform: translate(-2px, -2px); }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 24px;
       max-width: 1400px;
       width: 100%;
     }
-    .card {
+    .card-wrapper {
       background: #1C1F26;
       border: 2px solid #333;
       padding: 14px;
@@ -62,696 +61,468 @@
       flex-direction: column;
       align-items: center;
     }
-    canvas {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 9 / 16;
-      border: 2px solid #000;
-      margin-bottom: 12px;
-      background: #E2E4E9;
+    /* Fixed 1080x1920 layout scaled cleanly for preview */
+    .slide-frame {
+      width: 1080px;
+      height: 1920px;
+      position: relative;
+      border: 24px solid #000000;
+      transform-origin: top left;
+      /* CSS preview scale */
+      transform: scale(0.28);
+      margin-bottom: calc(-1920px * (1 - 0.28) + 14px);
+      background-color: #E2E4E9;
+      color: #111317;
+      overflow: hidden;
     }
-    .btn-upload {
-      background: #FFFFFF;
-      color: #000;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800;
-      font-size: 13px;
-      padding: 8px 12px;
-      border: 2px solid #000;
-      cursor: pointer;
-      width: 100%;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      text-align: center;
-    }
-    .btn-upload:hover { background: #FFE600; }
     .btn-single {
       background: #D6E4EE;
       color: #000;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 800;
       font-size: 13px;
-      padding: 8px 12px;
+      padding: 10px 14px;
       border: 2px solid #000;
       cursor: pointer;
       width: 100%;
       text-transform: uppercase;
+      margin-top: 10px;
     }
     .btn-single:hover { background: #FFE600; }
-    input[type="file"] { display: none; }
+
+    /* Brutalist Components */
+    .b-box {
+      border: 8px solid #000000;
+      box-shadow: 14px 14px 0px #000000;
+      position: relative;
+    }
+    .pill {
+      background: #000000;
+      color: #FFE600;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 900;
+      display: inline-block;
+      padding: 10px 24px;
+    }
+    .photo-stage {
+      width: 900px;
+      height: 480px;
+      position: relative;
+      border: 8px solid #000000;
+      box-shadow: 14px 14px 0px #000000;
+      overflow: hidden;
+      margin: 20px 0;
+      background: #000;
+    }
+    .photo-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.05);
+    }
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(17, 19, 23, 0.35);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+    }
   </style>
 </head>
 <body>
 
   <div class="header-panel">
-    <h1>Cinematography Photo Annotator (1080x1920)</h1>
-    <p>Upload your own stills or movie captures to render custom geometric overlays</p>
+    <h1>Cinematography Visual Reel (1080x1920)</h1>
+    <p>Loaded via Native HTML/CSS DOM with Pure Movie Stills</p>
     <button class="btn-zip" onclick="downloadAll()">Download All 8 PNGs (.ZIP)</button>
   </div>
 
-  <div class="grid" id="gridContainer"></div>
+  <div class="grid">
+
+    <!-- SLIDE 1: INTRO -->
+    <div class="card-wrapper">
+      <div id="slide-0" class="slide-frame" style="background: #FFE600; padding: 90px 70px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+          <div class="pill" style="font-size: 26px; color: #FFF; background: #000;">🎥 CINEMATOGRAPHY BLUEPRINTS</div>
+          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 34px;">01 / 08</div>
+        </div>
+
+        <div class="b-box" style="background: #FFFFFF; padding: 70px; height: 1380px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="b-box" style="background: #FB7185; color: #FFF; padding: 30px; font-family: 'Space Grotesk'; font-size: 96px; font-weight: 900; text-align: center; margin-bottom: 30px;">
+              TOP 6 RULES
+            </div>
+            <div class="b-box" style="background: #FFE600; color: #000; padding: 30px; font-family: 'Space Grotesk'; font-size: 96px; font-weight: 900; text-align: center; margin-bottom: 60px;">
+              OF CAMERA
+            </div>
+            <p style="font-size: 38px; line-height: 1.4; font-weight: 700; color: #111317; margin-bottom: 40px;">
+              Every angle change alters how the audience subconsciously judges your subject. When framing is arbitrary, visual storytelling dies.
+            </p>
+          </div>
+
+          <div class="b-box" style="background: #D6E4EE; padding: 40px;">
+            <div style="font-family: 'Space Grotesk'; font-size: 28px; font-weight: 900; margin-bottom: 12px;">WHY AMATEUR VIDEOS FEEL FLAT 📉</div>
+            <p style="font-size: 28px; line-height: 1.4; font-weight: 600; color: #333;">
+              6 essential geometric camera rules broken down with real movie scene stills, on-screen vector overlays, and script cues.
+            </p>
+          </div>
+        </div>
+
+        <div class="b-box" style="background: #000; color: #FFE600; padding: 30px; font-family: 'Space Grotesk'; font-size: 32px; font-weight: 900; margin-top: 40px; display: flex; justify-content: space-between;">
+          <span>SWIPE FOR 6 CAMERA BLUEPRINTS</span>
+          <span style="color: #34D399;">→</span>
+        </div>
+      </div>
+      <button class="btn-single" onclick="downloadSingle('slide-0', 'cinematography-00-intro.png')">Download Intro PNG</button>
+    </div>
+
+    <!-- SLIDE 2: RULE 1 -->
+    <div class="card-wrapper">
+      <div id="slide-1" class="slide-frame" style="background: #E2E4E9; padding: 70px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="pill" style="font-size: 24px;">RULE 01 • SPATIAL CONTINUITY</div>
+          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">02 / 08</div>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
+          🔄 THE 180° DEGREE RULE
+        </div>
+
+        <!-- REAL PHOTO STAGE WITH OVERLAYS -->
+        <div class="photo-stage">
+          <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=1200&auto=format&fit=crop&q=80" alt="Conversation">
+          <div class="photo-overlay">
+            <div style="display: flex; justify-content: space-between;">
+              <span class="pill" style="background: #EF4444; color: #FFF; font-size: 18px; padding: 6px 16px;">AXIS OF ACTION</span>
+              <span class="pill" style="background: #10B981; color: #000; font-size: 18px; padding: 6px 16px;">180° SAFE ARC ✅</span>
+            </div>
+            <div style="border-bottom: 6px dashed #EF4444; width: 100%; margin-bottom: 20px;"></div>
+            <div style="display: flex; justify-content: space-around; font-size: 32px; font-weight: 900; color: #FFF; text-shadow: 2px 2px 0px #000;">
+              <span>🎥 CAM A</span>
+              <span style="color: #EF4444;">❌ CROSSED</span>
+              <span>🎥 CAM B</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTEXT BOX -->
+        <div class="b-box" style="background: #FFF6CF; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
+          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Two characters facing each other in dialogue or confrontation.</p>
+        </div>
+
+        <!-- PSYCHOLOGY BOX -->
+        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
+          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Keeping cameras on one side preserves eyeline continuity. Crossing the axis tricks the viewer's brain into thinking actors suddenly turned their backs on each other.</p>
+        </div>
+
+        <!-- SCRIPT CUE -->
+        <div class="b-box" style="background: #FFE600; padding: 30px;">
+          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
+          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Label coverage in the left column as: 'Cam A (Host Profile) / Cam B (Guest Match)' so editors never jump the line.</p>
+        </div>
+      </div>
+      <button class="btn-single" onclick="downloadSingle('slide-1', 'cinematography-01-rule.png')">Download Rule 01 PNG</button>
+    </div>
+
+    <!-- SLIDE 3: RULE 2 -->
+    <div class="card-wrapper">
+      <div id="slide-2" class="slide-frame" style="background: #D6E4EE; padding: 70px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="pill" style="font-size: 24px;">RULE 02 • POWER DYNAMICS</div>
+          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">03 / 08</div>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
+          📐 LOW ANGLE VS HIGH ANGLE
+        </div>
+
+        <!-- REAL PHOTO STAGE -->
+        <div class="photo-stage">
+          <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1200&auto=format&fit=crop&q=80" alt="Cinematic Hero Angle">
+          <div class="photo-overlay" style="justify-content: flex-end;">
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+              <span class="pill" style="background: #3B82F6; color: #FFF; font-size: 22px;">LOW ANGLE = POWER 👑</span>
+              <span class="pill" style="background: #EF4444; color: #FFF; font-size: 22px;">HIGH ANGLE = WEAK 😰</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="b-box" style="background: #FFFFFF; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
+          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Confrontations, negotiations, intimidating villains, or cornered victims.</p>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
+          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Shooting from below physically magnifies actor stature against the ceiling or sky. Shooting from above looks down on the subject, making them appear helpless.</p>
+        </div>
+
+        <div class="b-box" style="background: #FFE600; padding: 30px;">
+          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
+          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Note '[LOW ANGLE - 35mm PUSH]' during moments of triumph, or '[HIGH ANGLE - CRANE DOWN]' to emphasize defeat.</p>
+        </div>
+      </div>
+      <button class="btn-single" onclick="downloadSingle('slide-2', 'cinematography-02-rule.png')">Download Rule 02 PNG</button>
+    </div>
+
+    <!-- SLIDE 4: RULE 3 -->
+    <div class="card-wrapper">
+      <div id="slide-3" class="slide-frame" style="background: #E2E4E9; padding: 70px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="pill" style="font-size: 24px;">RULE 03 • PSYCHOLOGICAL UNREST</div>
+          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">04 / 08</div>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
+          🌪️ THE DUTCH ANGLE (CANTED TILT)
+        </div>
+
+        <!-- REAL PHOTO STAGE -->
+        <div class="photo-stage">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80" alt="Tilted City" style="transform: rotate(-12deg) scale(1.15);">
+          <div class="photo-overlay" style="justify-content: space-between;">
+            <span class="pill" style="background: #FB7185; color: #FFF; font-size: 22px;">⟳ TILTED -20° OFF HORIZON</span>
+            <span class="pill" style="background: #FFE600; color: #000; font-size: 22px;">INSTINCTIVE PANIC ⚠️</span>
+          </div>
+        </div>
+
+        <div class="b-box" style="background: #FFF1F2; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
+          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Psychological spirals, character deceit, horror reveals, or intoxication.</p>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
+          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Humans balance the world against a level horizon. Throwing that horizon off by 15° to 30° strips away subconscious comfort, putting the audience on high alert.</p>
+        </div>
+
+        <div class="b-box" style="background: #FFE600; padding: 30px;">
+          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
+          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Add '[DUTCH ROLL / CANTED HORIZON]' right before a major reveal or when a scene's reality is questioned.</p>
+        </div>
+      </div>
+      <button class="btn-single" onclick="downloadSingle('slide-3', 'cinematography-03-rule.png')">Download Rule 03 PNG</button>
+    </div>
+
+    <!-- SLIDE 5: RULE 4 -->
+    <div class="card-wrapper">
+      <div id="slide-4" class="slide-frame" style="background: #CCD0DC; padding: 70px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="pill" style="font-size: 24px;">RULE 04 • COMPOSITIONAL BALANCE</div>
+          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">05 / 08</div>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
+          🔲 RULE OF THIRDS & EYE-LINE
+        </div>
+
+        <!-- REAL PHOTO STAGE WITH 3X3 GRID -->
+        <div class="photo-stage">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&auto=format&fit=crop&q=80" alt="Portrait Thirds">
+          <!-- Live CSS Grid Lines -->
+          <div style="position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr;">
+            <div style="border-right: 3px solid rgba(255,255,255,0.7); border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
+            <div style="border-right: 3px solid rgba(255,255,255,0.7); border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
+            <div style="border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
+            <div style="border-right: 3px solid rgba(255,255,255,0.7); border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
+            <div style="border-right: 3px solid rgba(255,255,255,0.7); border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
+            <div style="border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
+          </div>
+          <div class="photo-overlay" style="justify-content: flex-end;">
+            <span class="pill" style="background: #FFE600; color: #000; font-size: 22px;">🎯 EYE-LINE LOCKED ON UPPER HORIZONTAL THIRD</span>
+          </div>
+        </div>
+
+        <div class="b-box" style="background: #FFFFFF; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
+          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Standard talking heads, cinematic interviews, and documentary setups.</p>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
+          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Centering a subject creates formal, rigid symmetry. Placing eyes along the top third creates natural viewing comfort and opens negative space for on-screen context.</p>
+        </div>
+
+        <div class="b-box" style="background: #FFE600; padding: 30px;">
+          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
+          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Note '[FRAMED STAGE LEFT - THIRDS]' so your editor has clean open negative space to display chart pop-ups or visual assets.</p>
+        </div>
+      </div>
+      <button class="btn-single" onclick="downloadSingle('slide-4', 'cinematography-04-rule.png')">Download Rule 04 PNG</button>
+    </div>
+
+    <!-- SLIDE 6: RULE 5 -->
+    <div class="card-wrapper">
+      <div id="slide-5" class="slide-frame" style="background: #FFF6CF; padding: 70px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="pill" style="font-size: 24px;">RULE 05 • ACTION DIRECTION</div>
+          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">06 / 08</div>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
+          🏃 LEAD ROOM & LOOKING SPACE
+        </div>
+
+        <!-- REAL PHOTO STAGE -->
+        <div class="photo-stage">
+          <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=1200&auto=format&fit=crop&q=80" alt="Person Walking with Lead Room">
+          <div class="photo-overlay" style="justify-content: space-between;">
+            <span class="pill" style="background: #10B981; color: #000; font-size: 22px;">LEAD ROOM (OPEN DIRECTION) ➔</span>
+            <div style="align-self: flex-end;">
+              <span class="pill" style="background: #EF4444; color: #FFF; font-size: 20px;">AVOID: NOSE TO EDGE 🛑</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="b-box" style="background: #D6E4EE; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
+          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Tracking moving subjects, driving scenes, or characters searching a room.</p>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
+          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Audiences need to see where a subject is headed. Crowding an actor's face against the edge of frame creates claustrophobia and suffocated momentum.</p>
+        </div>
+
+        <div class="b-box" style="background: #FFE600; padding: 30px;">
+          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
+          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Write '[TRACKING SHOT - GENEROUS LEAD ROOM]' for confident momentum, or '[ZERO LEAD ROOM]' when trapping a character.</p>
+        </div>
+      </div>
+      <button class="btn-single" onclick="downloadSingle('slide-5', 'cinematography-05-rule.png')">Download Rule 05 PNG</button>
+    </div>
+
+    <!-- SLIDE 7: RULE 6 -->
+    <div class="card-wrapper">
+      <div id="slide-6" class="slide-frame" style="background: #D6E4EE; padding: 70px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="pill" style="font-size: 24px;">RULE 06 • INTIMACY & PROXIMITY</div>
+          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">07 / 08</div>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
+          🗣️ THE DIRTY OVER-THE-SHOULDER
+        </div>
+
+        <!-- REAL PHOTO STAGE -->
+        <div class="photo-stage">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80" alt="Conversation Over Shoulder">
+          <div class="photo-overlay" style="justify-content: space-between;">
+            <span class="pill" style="background: #000; color: #FFF; font-size: 20px;">FOREGROUND SILHOUETTE</span>
+            <span class="pill" style="background: #3B82F6; color: #FFF; font-size: 20px;">FOCUSED SUBJECT IN DEPTH</span>
+          </div>
+        </div>
+
+        <div class="b-box" style="background: #FFFFFF; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
+          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Intense one-on-one arguments, intimate romantic beats, or interrogations.</p>
+        </div>
+
+        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
+          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
+          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Including a slice of the listener's shoulder anchors both actors in one shared three-dimensional physical room, pulling the audience directly into the emotional tension.</p>
+        </div>
+
+        <div class="b-box" style="background: #FFE600; padding: 30px;">
+          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
+          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Note '[DIRTY OTS - TIGHT ON EYES]' to escalate conversational heat without cutting away to isolated singles.</p>
+        </div>
+      </div>
+      <button class="btn-single" onclick="downloadSingle('slide-6', 'cinematography-06-rule.png')">Download Rule 06 PNG</button>
+    </div>
+
+    <!-- SLIDE 8: CTA -->
+    <div class="card-wrapper">
+      <div id="slide-7" class="slide-frame" style="background: #FFE600; padding: 90px 70px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+          <div class="pill" style="font-size: 26px; color: #FFF; background: #000;">🎬 PRODUCTION MASTERCLASS</div>
+          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 34px;">08 / 08</div>
+        </div>
+
+        <div class="b-box" style="background: #FFFFFF; padding: 70px; height: 1380px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-family: 'Space Grotesk'; font-size: 82px; font-weight: 900; line-height: 1.1; margin-bottom: 30px;">
+              STOP SHOOTING RANDOM ANGLES.
+            </div>
+            <p style="font-size: 38px; line-height: 1.4; font-weight: 700; color: #333; margin-bottom: 50px;">
+              Cinematography only works when your script blueprints every lens, angle, and cut before the crew arrives on set.
+            </p>
+          </div>
+
+          <div class="b-box" style="background: #D6E4EE; padding: 40px;">
+            <div style="font-family: 'Space Grotesk'; font-size: 32px; font-weight: 900; margin-bottom: 14px;">DIRECT SCRIPT INTAKE & ADVICE</div>
+            <p style="font-size: 28px; line-height: 1.4; font-weight: 600; color: #222;">
+              DM us "COURSE" on Instagram for our private production shot-planning guides, or book a custom video script at draftsrush.com.
+            </p>
+          </div>
+
+          <div>
+            <div class="b-box" style="background: #000; color: #34D399; padding: 26px; font-family: 'Space Grotesk'; font-size: 36px; font-weight: 900; text-align: center; margin-bottom: 20px;">
+              📩 DM "COURSE" ON INSTAGRAM
+            </div>
+            <div class="b-box" style="background: #FFE600; color: #000; padding: 26px; font-family: 'Space Grotesk'; font-size: 36px; font-weight: 900; text-align: center;">
+              🌐 OR VISIT DRAFTSRUSH.COM
+            </div>
+          </div>
+        </div>
+
+        <div style="font-family: 'Space Grotesk'; font-weight: 900; font-size: 32px; text-align: center; margin-top: 40px;">
+          DRAFTSRUSH STUDIO • 2026
+        </div>
+      </div>
+      <button class="btn-single" onclick="downloadSingle('slide-7', 'cinematography-07-cta.png')">Download CTA PNG</button>
+    </div>
+
+  </div>
 
   <script>
-    const rulesData = [
-      {
-        type: "intro",
-        badge: "🎥 CINEMATOGRAPHY BLUEPRINTS",
-        title1: "TOP 6 RULES",
-        title2: "OF CAMERA",
-        deck: "Every angle change alters how the viewer subconsciously judges your subject. When framing is arbitrary, visual storytelling dies.",
-        subDeck: "6 essential geometric camera rules broken down with real photo stills, vector overlays, and exact script use cases."
-      },
-      {
-        type: "rule",
-        num: "01",
-        emoji: "🔄",
-        ruleName: "THE 180° RULE",
-        tag: "SPATIAL CONTINUITY",
-        bg: "#E2E4E9",
-        accentCard: "#FFF6CF",
-        overlayType: "180degree",
-        situation: "Two characters facing each other in conversation.",
-        impact: "Draws an imaginary axis between characters. Keeping cameras on one side preserves screen direction. Crossing it makes actors appear to face the wrong way.",
-        scriptCue: "In dual-column notes, label setups as 'Cam A (Host Profile) / Cam B (Guest Match)' to prevent crossed lines in the edit."
-      },
-      {
-        type: "rule",
-        num: "02",
-        emoji: "📐",
-        ruleName: "LOW VS HIGH ANGLE",
-        tag: "POWER DYNAMICS",
-        bg: "#D6E4EE",
-        accentCard: "#FFFFFF",
-        overlayType: "angles",
-        situation: "Confrontations, negotiations, villains, or helpless victims.",
-        impact: "Shooting upward from below makes subjects appear dominant, menacing, or heroic. Shooting downward from above shrinks them into vulnerable or trapped positions.",
-        scriptCue: "Add '[LOW ANGLE - 35mm PUSH]' when a protagonist takes charge, or '[HIGH ANGLE - CRANE DOWN]' to highlight defeat."
-      },
-      {
-        type: "rule",
-        num: "03",
-        emoji: "🌪️",
-        ruleName: "THE DUTCH ANGLE",
-        tag: "PSYCHOLOGICAL UNREST",
-        bg: "#E2E4E9",
-        accentCard: "#FFF1F2",
-        overlayType: "dutch",
-        situation: "Panic, intoxication, disorientation, or narrative deception.",
-        impact: "Tilting the camera 15 to 30 degrees off the horizontal axis strips stability from the room, making viewers feel instinctively uncomfortable or suspicious.",
-        scriptCue: "Use '[CANTED ANGLE / DUTCH ROLL]' right before an unexpected plot twist or during a psychological breakdown."
-      },
-      {
-        type: "rule",
-        num: "04",
-        emoji: "🔲",
-        ruleName: "THIRDS & EYE-LINE",
-        tag: "COMPOSITIONAL BALANCE",
-        bg: "#CCD0DC",
-        accentCard: "#FFFFFF",
-        overlayType: "thirds",
-        situation: "Standard dialogue scenes, interviews, and documentary setups.",
-        impact: "Splits the screen into a 3x3 grid. Placing eyes along the top horizontal third creates natural visual comfort. Centering works for tension, but thirds keep flow.",
-        scriptCue: "Note '[FRAMED STAGE LEFT - THIRDS]' so editors have dedicated negative space to pop up on-screen data or hook graphics."
-      },
-      {
-        type: "rule",
-        num: "05",
-        emoji: "🏃",
-        ruleName: "LEAD ROOM SPACE",
-        tag: "ACTION DIRECTION",
-        bg: "#FFF6CF",
-        accentCard: "#D6E4EE",
-        overlayType: "leadroom",
-        situation: "Moving subjects, walking shots, or driving sequences.",
-        impact: "Leave open frame space in the direction the subject is looking or walking. Framing someone right against the edge feels suffocated unless that panic is intentional.",
-        scriptCue: "Write '[TRACKING - GENEROUS LEAD ROOM]' for purposeful journeys, or '[NOSE TO BORDER]' when a character is backed into a corner."
-      },
-      {
-        type: "rule",
-        num: "06",
-        emoji: "🗣️",
-        ruleName: "DIRTY O.T.S.",
-        tag: "INTIMACY & PROXIMITY",
-        bg: "#D6E4EE",
-        accentCard: "#FFFFFF",
-        overlayType: "ots",
-        situation: "Intense one-on-one arguments, romance, or interrogations.",
-        impact: "Including a slice of the foreground character's shoulder or hair ties the two actors into a shared tangible space, forcing the audience into the conversation.",
-        scriptCue: "Use '[DIRTY OTS - TIGHT ON EYES]' to raise emotional tension without cutting away to an isolated, lonely single."
-      },
-      {
-        type: "cta",
-        badge: "🎬 PRODUCTION MASTERCLASS",
-        title: "WANT THE FULL BLUEPRINT?",
-        deck: "Cinematography only works when your script maps every lens, angle, and cut before the crew arrives on set.",
-        boxTitle: "DIRECT SCRIPT INTAKE & ADVICE",
-        boxText: "DM us 'COURSE' on Instagram for our private production guides and shot-planning decks, or book a custom video script at draftsrush.com.",
-        btn1: "📩 DM 'COURSE' ON INSTAGRAM",
-        btn2: "🌐 VISIT DRAFTSRUSH.COM"
+    async function downloadSingle(elementId, filename) {
+      const node = document.getElementById(elementId);
+      // Temporarily remove transform scaling to render full 1080x1920 pixels
+      const originalTransform = node.style.transform;
+      node.style.transform = 'none';
+
+      try {
+        const dataUrl = await htmlToImage.toPng(node, { pixelRatio: 1 });
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = dataUrl;
+        link.click();
+      } catch (err) {
+        console.error('Render error:', err);
+      } finally {
+        node.style.transform = originalTransform;
       }
-    ];
-
-    const container = document.getElementById('gridContainer');
-    const canvases = [];
-    const userImages = {};
-
-    function drawBrutalBox(ctx, x, y, w, h, fill, border = '#000000', borderWidth = 8, shadow = 16) {
-      if (shadow > 0) {
-        ctx.fillStyle = '#000000';
-        ctx.fillRect(x + shadow, y + shadow, w, h);
-      }
-      ctx.fillStyle = fill;
-      ctx.fillRect(x, y, w, h);
-      ctx.strokeStyle = border;
-      ctx.lineWidth = borderWidth;
-      ctx.strokeRect(x, y, w, h);
-    }
-
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-      const words = text.split(' ');
-      let line = '';
-      for (let n = 0; n < words.length; n++) {
-        let testLine = line + words[n] + ' ';
-        let metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && n > 0) {
-          ctx.fillText(line, x, y);
-          line = words[n] + ' ';
-          y += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      ctx.fillText(line, x, y);
-    }
-
-    rulesData.forEach((item, idx) => {
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      const canvas = document.createElement('canvas');
-      canvas.width = 1080;
-      canvas.height = 1920;
-      canvas.id = `canvas-${idx}`;
-      card.appendChild(canvas);
-
-      if (item.type === "rule") {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = 'image/*';
-        fileInput.id = `file-${idx}`;
-        fileInput.onchange = (e) => handleImageUpload(e, idx);
-        card.appendChild(fileInput);
-
-        const uploadBtn = document.createElement('label');
-        uploadBtn.className = 'btn-upload';
-        uploadBtn.htmlFor = `file-${idx}`;
-        uploadBtn.innerText = '📷 Select Scene Photo';
-        card.appendChild(uploadBtn);
-      }
-
-      const btn = document.createElement('button');
-      btn.className = 'btn-single';
-      btn.innerText = idx === 0 ? 'Download Title Card PNG' : (idx === 7 ? 'Download CTA Frame PNG' : `Download Rule 0${idx} PNG`);
-      btn.onclick = () => downloadSingle(canvas, idx === 0 ? 'cinematography-00-intro.png' : (idx === 7 ? 'cinematography-07-cta.png' : `cinematography-0${idx}-rule.png`));
-      card.appendChild(btn);
-
-      container.appendChild(card);
-      canvases.push(canvas);
-    });
-
-    function handleImageUpload(event, idx) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const img = new Image();
-        img.onload = function() {
-          userImages[idx] = img;
-          renderAll();
-        };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function drawImageCover(ctx, img, x, y, w, h) {
-      const imgRatio = img.width / img.height;
-      const targetRatio = w / h;
-      let sx, sy, sw, sh;
-
-      if (imgRatio > targetRatio) {
-        sh = img.height;
-        sw = img.height * targetRatio;
-        sx = (img.width - sw) / 2;
-        sy = 0;
-      } else {
-        sw = img.width;
-        sh = img.width / targetRatio;
-        sx = 0;
-        sy = (img.height - sh) / 2;
-      }
-      ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
-    }
-
-    function drawDefaultScene(ctx, type, x, y, w, h) {
-      ctx.fillStyle = '#2A2E39';
-      ctx.fillRect(x, y, w, h);
-
-      const cx = x + w / 2;
-      const cy = y + h / 2;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      if (type === "180degree") {
-        ctx.font = '90px sans-serif';
-        ctx.fillText('🙎‍♂️', cx - 180, cy);
-        ctx.fillText('👱‍♀️', cx + 180, cy);
-      } else if (type === "angles") {
-        ctx.font = '100px sans-serif';
-        ctx.fillText('🦸‍♂️', x + 240, cy - 30);
-        ctx.font = '70px sans-serif';
-        ctx.fillText('🙍‍♂️', cx + 180, cy + 40);
-      } else if (type === "dutch") {
-        ctx.font = '110px sans-serif';
-        ctx.fillText('😵‍💫', cx, cy);
-      } else if (type === "thirds") {
-        ctx.font = '100px sans-serif';
-        ctx.fillText('👩', x + (w / 3) * 2, y + (h / 3));
-      } else if (type === "leadroom") {
-        ctx.font = '110px sans-serif';
-        ctx.fillText('🚶‍♂️', x + 160, cy + 20);
-      } else if (type === "ots") {
-        ctx.font = '220px sans-serif';
-        ctx.fillStyle = '#111317';
-        ctx.fillText('👤', x + 140, y + h + 20);
-        ctx.font = '110px sans-serif';
-        ctx.fillText('👱‍♀️', x + w - 160, cy);
-      }
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-      ctx.font = '700 16px "JetBrains Mono", monospace';
-      ctx.fillText('[ TAP "SELECT SCENE PHOTO" BELOW TO REPLACE WITH REAL MOVIE STILL ]', cx, y + h - 25);
-    }
-
-    function drawPhotoWithAnnotations(ctx, img, type, x, y, w, h) {
-      ctx.save();
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(x + 14, y + 14, w, h);
-
-      ctx.beginPath();
-      ctx.rect(x, y, w, h);
-      ctx.clip();
-
-      if (img) {
-        drawImageCover(ctx, img, x, y, w, h);
-        ctx.fillStyle = 'rgba(17, 19, 23, 0.35)';
-        ctx.fillRect(x, y, w, h);
-      } else {
-        drawDefaultScene(ctx, type, x, y, w, h);
-      }
-
-      const cx = x + w / 2;
-      const cy = y + h / 2;
-
-      if (type === "180degree") {
-        ctx.strokeStyle = '#EF4444';
-        ctx.lineWidth = 6;
-        ctx.setLineDash([12, 12]);
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy);
-        ctx.lineTo(x + w - 40, cy);
-        ctx.stroke();
-        ctx.setLineDash([]);
-
-        drawBrutalBox(ctx, cx - 140, cy - 65, 280, 36, '#EF4444', '#000', 3, 0);
-        ctx.fillStyle = '#FFF';
-        ctx.font = '800 16px "JetBrains Mono", monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText('LINE OF ACTION (AXIS)', cx, cy - 41);
-
-        ctx.fillStyle = 'rgba(16, 185, 129, 0.25)';
-        ctx.beginPath();
-        ctx.arc(cx, cy, 180, 0, Math.PI, false);
-        ctx.fill();
-
-        ctx.strokeStyle = '#10B981';
-        ctx.lineWidth = 6;
-        ctx.beginPath();
-        ctx.arc(cx, cy, 180, 0, Math.PI, false);
-        ctx.stroke();
-
-        ctx.font = '50px sans-serif';
-        ctx.fillText('🎥✅', cx - 130, cy + 90);
-        ctx.fillText('🎥✅', cx + 130, cy + 90);
-        ctx.fillText('🎥❌', cx, cy - 110);
-
-        drawBrutalBox(ctx, cx - 150, cy + 150, 300, 42, '#10B981', '#000', 3, 4);
-        ctx.fillStyle = '#000';
-        ctx.font = '900 18px "Space Grotesk", sans-serif';
-        ctx.fillText('KEEP CAMERAS ON 1 SIDE', cx, cy + 177);
-
-      } else if (type === "angles") {
-        ctx.strokeStyle = '#FFFFFF';
-        ctx.lineWidth = 4;
-        ctx.beginPath(); ctx.moveTo(cx, y); ctx.lineTo(cx, y + h); ctx.stroke();
-
-        ctx.strokeStyle = '#3B82F6';
-        ctx.lineWidth = 8;
-        ctx.beginPath();
-        ctx.moveTo(x + 80, cy + 120);
-        ctx.lineTo(x + 200, cy - 40);
-        ctx.stroke();
-
-        ctx.font = '60px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('🎥', x + 80, cy + 150);
-
-        drawBrutalBox(ctx, x + 40, cy - 140, 260, 45, '#3B82F6', '#000', 3, 4);
-        ctx.fillStyle = '#FFF';
-        ctx.font = '900 18px "Space Grotesk", sans-serif';
-        ctx.fillText('LOW ANGLE = POWER 👑', x + 170, cy - 111);
-
-        ctx.strokeStyle = '#EF4444';
-        ctx.lineWidth = 8;
-        ctx.beginPath();
-        ctx.moveTo(x + w - 80, cy - 80);
-        ctx.lineTo(x + w - 200, cy + 80);
-        ctx.stroke();
-
-        ctx.fillText('🎥', x + w - 80, cy - 110);
-
-        drawBrutalBox(ctx, cx + 40, cy + 130, 280, 45, '#EF4444', '#000', 3, 4);
-        ctx.fillStyle = '#FFF';
-        ctx.font = '900 18px "Space Grotesk", sans-serif';
-        ctx.fillText('HIGH ANGLE = WEAK 😰', cx + 180, cy + 159);
-
-      } else if (type === "dutch") {
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
-        ctx.lineWidth = 4;
-        ctx.setLineDash([12, 12]);
-        ctx.beginPath(); ctx.moveTo(x, cy); ctx.lineTo(x + w, cy); ctx.stroke();
-        ctx.setLineDash([]);
-
-        ctx.save();
-        ctx.translate(cx, cy);
-        ctx.rotate(-20 * Math.PI / 180);
-
-        ctx.strokeStyle = '#FB7185';
-        ctx.lineWidth = 8;
-        ctx.strokeRect(-260, -140, 520, 280);
-
-        drawBrutalBox(ctx, -160, 100, 320, 42, '#FB7185', '#000', 3, 4);
-        ctx.fillStyle = '#FFF';
-        ctx.font = '900 18px "Space Grotesk", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('⟳ TILT: -20° CANTED AXIS', 0, 127);
-        ctx.restore();
-
-        drawBrutalBox(ctx, cx - 180, y + 30, 360, 45, '#FFE600', '#000', 3, 4);
-        ctx.fillStyle = '#000';
-        ctx.font = '900 18px "Space Grotesk", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('PRODUCES UNEASE & PANIC 🌪️', cx, y + 59);
-
-      } else if (type === "thirds") {
-        const tw = w / 3;
-        const th = h / 3;
-
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.75)';
-        ctx.lineWidth = 4;
-        ctx.beginPath();
-        ctx.moveTo(x + tw, y); ctx.lineTo(x + tw, y + h);
-        ctx.moveTo(x + tw * 2, y); ctx.lineTo(x + tw * 2, y + h);
-        ctx.moveTo(x, y + th); ctx.lineTo(x + w, y + th);
-        ctx.moveTo(x, y + th * 2); ctx.lineTo(x + w, y + th * 2);
-        ctx.stroke();
-
-        [
-          [x + tw, y + th], [x + tw * 2, y + th],
-          [x + tw, y + th * 2], [x + tw * 2, y + th * 2]
-        ].forEach(([px, py]) => {
-          ctx.fillStyle = '#38BDF8';
-          ctx.beginPath(); ctx.arc(px, py, 14, 0, Math.PI * 2); ctx.fill();
-          ctx.strokeStyle = '#000'; ctx.lineWidth = 4; ctx.stroke();
-        });
-
-        drawBrutalBox(ctx, cx - 190, y + th - 24, 380, 48, '#FFE600', '#000', 3, 4);
-        ctx.fillStyle = '#000';
-        ctx.font = '900 18px "Space Grotesk", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('🎯 ANCHOR EYES ON TOP THIRD', cx, y + th + 6);
-
-      } else if (type === "leadroom") {
-        ctx.strokeStyle = '#10B981';
-        ctx.lineWidth = 10;
-        ctx.beginPath();
-        ctx.moveTo(cx - 80, cy);
-        ctx.lineTo(x + w - 80, cy);
-        ctx.stroke();
-
-        ctx.fillStyle = '#10B981';
-        ctx.beginPath();
-        ctx.moveTo(x + w - 60, cy);
-        ctx.lineTo(x + w - 100, cy - 30);
-        ctx.lineTo(x + w - 100, cy + 30);
-        ctx.fill();
-
-        ctx.fillStyle = 'rgba(16, 185, 129, 0.2)';
-        ctx.fillRect(cx, y + 40, w / 2 - 40, h - 80);
-        ctx.strokeStyle = '#10B981';
-        ctx.lineWidth = 4;
-        ctx.strokeRect(cx, y + 40, w / 2 - 40, h - 80);
-
-        drawBrutalBox(ctx, cx + 20, cy - 25, 260, 48, '#10B981', '#000', 3, 4);
-        ctx.fillStyle = '#000';
-        ctx.font = '900 18px "Space Grotesk", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('LEAD ROOM (LOOK SPACE) 👀', cx + 150, cy + 5);
-
-      } else if (type === "ots") {
-        ctx.strokeStyle = '#38BDF8';
-        ctx.lineWidth = 6;
-        ctx.setLineDash([12, 12]);
-        ctx.beginPath();
-        ctx.moveTo(x + 160, y + h - 80);
-        ctx.lineTo(cx + 80, cy - 40);
-        ctx.stroke();
-        ctx.setLineDash([]);
-
-        drawBrutalBox(ctx, x + 30, y + h - 70, 220, 42, '#111317', '#000', 3, 0);
-        ctx.fillStyle = '#FFF';
-        ctx.font = '900 16px "Space Grotesk", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('FOREGROUND SHOULDER', x + 140, y + h - 43);
-
-        drawBrutalBox(ctx, cx, cy - 100, 200, 42, '#FFE600', '#000', 3, 4);
-        ctx.fillStyle = '#000';
-        ctx.font = '900 16px "Space Grotesk", sans-serif';
-        ctx.fillText('SUBJECT IN FOCUS 🎯', cx + 100, cy - 73);
-      }
-
-      ctx.restore();
-
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 8;
-      ctx.strokeRect(x, y, w, h);
-    }
-
-    function renderAll() {
-      rulesData.forEach((data, idx) => {
-        const canvas = canvases[idx];
-        const ctx = canvas.getContext('2d');
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'alphabetic';
-
-        if (data.type === "intro") {
-          ctx.fillStyle = '#FFE600';
-          ctx.fillRect(0, 0, 1080, 1920);
-          ctx.lineWidth = 24;
-          ctx.strokeStyle = '#000000';
-          ctx.strokeRect(0, 0, 1080, 1920);
-
-          drawBrutalBox(ctx, 90, 130, 560, 75, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#FFFFFF';
-          ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText(data.badge, 120, 178);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 32px "JetBrains Mono", monospace';
-          ctx.fillText('01 / 08', 860, 176);
-
-          drawBrutalBox(ctx, 90, 250, 900, 1360, '#FFFFFF', '#000000', 10, 24);
-
-          drawBrutalBox(ctx, 140, 320, 800, 180, '#FB7185', '#000000', 8, 14);
-          ctx.fillStyle = '#FFFFFF';
-          ctx.font = '900 105px "Space Grotesk", sans-serif';
-          ctx.fillText(data.title1, 180, 450);
-
-          drawBrutalBox(ctx, 140, 530, 800, 180, '#FFE600', '#000000', 8, 14);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 100px "Space Grotesk", sans-serif';
-          ctx.fillText(data.title2, 210, 660);
-
-          ctx.fillStyle = '#111317';
-          ctx.font = '700 36px "Inter", sans-serif';
-          wrapText(ctx, data.deck, 140, 800, 800, 52);
-
-          drawBrutalBox(ctx, 140, 1040, 800, 260, '#D6E4EE', '#000000', 6, 12);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 26px "Space Grotesk", sans-serif';
-          ctx.fillText('WHY AMATEUR VIDEOS FEEL FLAT 📉', 180, 1105);
-
-          ctx.fillStyle = '#222222';
-          ctx.font = '600 28px "Inter", sans-serif';
-          wrapText(ctx, data.subDeck, 180, 1165, 720, 42);
-
-          drawBrutalBox(ctx, 90, 1660, 900, 120, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#FFE600';
-          ctx.font = '900 32px "Space Grotesk", sans-serif';
-          ctx.fillText('SWIPE FOR 6 CAMERA BLUEPRINTS', 140, 1735);
-          ctx.fillText('→', 930, 1735);
-
-        } else if (data.type === "rule") {
-          ctx.fillStyle = data.bg;
-          ctx.fillRect(0, 0, 1080, 1920);
-          ctx.lineWidth = 24;
-          ctx.strokeStyle = '#000000';
-          ctx.strokeRect(0, 0, 1080, 1920);
-
-          drawBrutalBox(ctx, 90, 80, 520, 68, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#FFE600';
-          ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText(`RULE ${data.num} • ${data.tag}`, 115, 122);
-
-          drawBrutalBox(ctx, 840, 80, 150, 68, '#FFFFFF', '#000000', 4, 6);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 28px "JetBrains Mono", monospace';
-          ctx.fillText(`0${idx + 1}/08`, 865, 124);
-
-          drawBrutalBox(ctx, 90, 175, 900, 130, '#FFFFFF', '#000000', 8, 14);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 46px "Space Grotesk", sans-serif';
-          ctx.fillText(`${data.emoji} ${data.ruleName}`, 120, 258);
-
-          drawPhotoWithAnnotations(ctx, userImages[idx], data.overlayType, 90, 335, 900, 480);
-
-          drawBrutalBox(ctx, 90, 850, 900, 220, data.accentCard, '#000000', 8, 14);
-          drawBrutalBox(ctx, 130, 885, 290, 45, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#FFE600';
-          ctx.font = '900 22px "Space Grotesk", sans-serif';
-          ctx.fillText('📌 BEST USE CASE', 150, 916);
-
-          ctx.fillStyle = '#111317';
-          ctx.font = '800 32px "Inter", sans-serif';
-          wrapText(ctx, data.situation, 130, 980, 820, 44);
-
-          drawBrutalBox(ctx, 90, 1105, 900, 360, '#FFFFFF', '#000000', 8, 14);
-          drawBrutalBox(ctx, 130, 1140, 370, 45, '#FB7185', '#000000', 0, 0);
-          ctx.fillStyle = '#FFFFFF';
-          ctx.font = '900 22px "Space Grotesk", sans-serif';
-          ctx.fillText('🧠 ON-SCREEN PSYCHOLOGY', 150, 1171);
-
-          ctx.fillStyle = '#111317';
-          ctx.font = '600 30px "Inter", sans-serif';
-          wrapText(ctx, data.impact, 130, 1235, 820, 46);
-
-          drawBrutalBox(ctx, 90, 1500, 900, 240, '#FFE600', '#000000', 8, 14);
-          drawBrutalBox(ctx, 130, 1535, 360, 45, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#34D399';
-          ctx.font = '900 22px "Space Grotesk", sans-serif';
-          ctx.fillText('✍️ HOW TO SCRIPT IT (AV)', 150, 1566);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '700 27px "Inter", sans-serif';
-          wrapText(ctx, data.scriptCue, 130, 1625, 820, 38);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '800 28px "Space Grotesk", sans-serif';
-          ctx.fillText('DRAFTSRUSH STUDIO', 90, 1820);
-          ctx.font = '700 26px "JetBrains Mono", monospace';
-          ctx.fillText('draftsrush.com', 720, 1820);
-
-        } else if (data.type === "cta") {
-          ctx.fillStyle = '#FFE600';
-          ctx.fillRect(0, 0, 1080, 1920);
-          ctx.lineWidth = 24;
-          ctx.strokeStyle = '#000000';
-          ctx.strokeRect(0, 0, 1080, 1920);
-
-          drawBrutalBox(ctx, 90, 120, 480, 75, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#FFFFFF';
-          ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText(data.badge, 120, 166);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 32px "JetBrains Mono", monospace';
-          ctx.fillText('08 / 08', 860, 166);
-
-          drawBrutalBox(ctx, 90, 240, 900, 1280, '#FFFFFF', '#000000', 10, 24);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 78px "Space Grotesk", sans-serif';
-          ctx.fillText('STOP SHOOTING', 150, 380);
-
-          drawBrutalBox(ctx, 140, 420, 720, 95, '#FB7185', '#000000', 0, 0);
-          ctx.fillStyle = '#FFFFFF';
-          ctx.fillText('RANDOM ANGLES.', 160, 492);
-
-          ctx.fillStyle = '#111317';
-          ctx.font = '600 36px "Inter", sans-serif';
-          wrapText(ctx, data.deck, 150, 590, 780, 54);
-
-          drawBrutalBox(ctx, 150, 820, 780, 310, '#D6E4EE', '#000000', 6, 12);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 34px "Space Grotesk", sans-serif';
-          ctx.fillText(data.boxTitle, 190, 890);
-
-          ctx.fillStyle = '#222222';
-          ctx.font = '600 28px "Inter", sans-serif';
-          wrapText(ctx, data.boxText, 190, 950, 700, 42);
-
-          drawBrutalBox(ctx, 150, 1180, 780, 110, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#34D399';
-          ctx.font = '900 36px "Space Grotesk", sans-serif';
-          ctx.fillText(data.btn1, 180, 1250);
-
-          drawBrutalBox(ctx, 150, 1320, 780, 110, '#FFE600', '#000000', 6, 8);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 36px "Space Grotesk", sans-serif';
-          ctx.fillText(data.btn2, 240, 1390);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '800 32px "Space Grotesk", sans-serif';
-          ctx.fillText('DRAFTSRUSH STUDIO • 2026', 90, 1780);
-        }
-      });
-    }
-
-    function downloadSingle(canvas, filename) {
-      const link = document.createElement('a');
-      link.download = filename;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
     }
 
     async function downloadAll() {
       const zip = new JSZip();
-      canvases.forEach((canvas, idx) => {
-        const dataUrl = canvas.toDataURL('image/png');
+      const ids = ['slide-0', 'slide-1', 'slide-2', 'slide-3', 'slide-4', 'slide-5', 'slide-6', 'slide-7'];
+
+      for (let i = 0; i < ids.length; i++) {
+        const node = document.getElementById(ids[i]);
+        const originalTransform = node.style.transform;
+        node.style.transform = 'none';
+
+        const dataUrl = await htmlToImage.toPng(node, { pixelRatio: 1 });
+        node.style.transform = originalTransform;
+
         const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "");
-        const filename = idx === 0 ? 'cinematography-00-intro.png' : (idx === 7 ? 'cinematography-07-cta.png' : `cinematography-0${idx}-rule.png`);
+        const filename = i === 0 ? 'cinematography-00-intro.png' : (i === 7 ? 'cinematography-07-cta.png' : `cinematography-0${i}-rule.png`);
         zip.file(filename, base64Data, { base64: true });
-      });
+      }
 
       const content = await zip.generateAsync({ type: "blob" });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(content);
-      link.download = "draftsrush-custom-photo-reel.zip";
+      link.download = "draftsrush-cinematography-photos-reel.zip";
       link.click();
     }
-
-    document.fonts.ready.then(() => setTimeout(renderAll, 100));
   </script>
 </body>
 </html>
