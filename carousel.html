@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DraftsRush - Top 6 Rules of Cinematography</title>
+  <title>DraftsRush - Cinematography Infographics Reel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -88,8 +88,8 @@
 <body>
 
   <div class="header-panel">
-    <h1>Top 6 Cinematography Rules Reel (1080x1920)</h1>
-    <p>1 Intro Card + 6 Camera Angle Rules with Diagrams + 1 Conversion CTA</p>
+    <h1>Cinematography Infographics Reel (1080x1920)</h1>
+    <p>Enhanced Visual Blueprints with Emoji Annotations and Spatial Geometry</p>
     <button class="btn-zip" onclick="downloadAll()">Download All 8 PNGs (.ZIP)</button>
   </div>
 
@@ -99,16 +99,17 @@
     const rulesData = [
       {
         type: "intro",
-        badge: "CINEMATOGRAPHY PROTOCOL",
+        badge: "🎥 CINEMATOGRAPHY PROTOCOL",
         title1: "TOP 6 RULES",
         title2: "OF CAMERA",
         deck: "Every angle change alters how the viewer subconsciously judges your subject. When framing is arbitrary, visual storytelling dies.",
-        subDeck: "6 essential geometric camera rules broken down with diagram blueprints and exact script use cases."
+        subDeck: "6 essential geometric camera rules broken down with detailed diagram blueprints and exact script use cases."
       },
       {
         type: "rule",
         num: "01",
-        ruleName: "THE 180-DEGREE RULE",
+        emoji: "🔄",
+        ruleName: "THE 180° RULE",
         tag: "SPATIAL CONTINUITY",
         bg: "#E2E4E9",
         accentCard: "#FFF6CF",
@@ -120,7 +121,8 @@
       {
         type: "rule",
         num: "02",
-        ruleName: "LOW ANGLE VS HIGH ANGLE",
+        emoji: "📐",
+        ruleName: "LOW VS HIGH ANGLE",
         tag: "POWER DYNAMICS",
         bg: "#D6E4EE",
         accentCard: "#FFFFFF",
@@ -132,7 +134,8 @@
       {
         type: "rule",
         num: "03",
-        ruleName: "THE DUTCH ANGLE (TILT)",
+        emoji: "🌪️",
+        ruleName: "THE DUTCH ANGLE",
         tag: "PSYCHOLOGICAL UNREST",
         bg: "#E2E4E9",
         accentCard: "#FFF1F2",
@@ -144,7 +147,8 @@
       {
         type: "rule",
         num: "04",
-        ruleName: "RULE OF THIRDS & EYE-LINE",
+        emoji: "🔲",
+        ruleName: "THIRDS & EYE-LINE",
         tag: "COMPOSITIONAL BALANCE",
         bg: "#CCD0DC",
         accentCard: "#FFFFFF",
@@ -156,7 +160,8 @@
       {
         type: "rule",
         num: "05",
-        ruleName: "LEAD ROOM & LOOKING SPACE",
+        emoji: "🏃",
+        ruleName: "LEAD ROOM SPACE",
         tag: "ACTION DIRECTION",
         bg: "#FFF6CF",
         accentCard: "#D6E4EE",
@@ -168,7 +173,8 @@
       {
         type: "rule",
         num: "06",
-        ruleName: "DIRTY OVER-THE-SHOULDER",
+        emoji: "🗣️",
+        ruleName: "DIRTY O.T.S.",
         tag: "INTIMACY & PROXIMITY",
         bg: "#D6E4EE",
         accentCard: "#FFFFFF",
@@ -179,13 +185,13 @@
       },
       {
         type: "cta",
-        badge: "PRODUCTION MASTERCLASS",
+        badge: "🎬 PRODUCTION MASTERCLASS",
         title: "WANT THE FULL BLUEPRINT?",
         deck: "Cinematography only works when your script maps every lens, angle, and cut before the crew arrives on set.",
         boxTitle: "DIRECT SCRIPT INTAKE & ADVICE",
         boxText: "DM us 'COURSE' on Instagram for our private production guides and shot-planning decks, or book a custom video script at draftsrush.com.",
-        btn1: "DM 'COURSE' ON INSTAGRAM",
-        btn2: "VISIT DRAFTSRUSH.COM"
+        btn1: "📩 DM 'COURSE' ON INSTAGRAM",
+        btn2: "🌐 VISIT DRAFTSRUSH.COM"
       }
     ];
 
@@ -221,7 +227,7 @@
       ctx.fillText(line, x, y);
     }
 
-    // Build Cards
+    // Build DOM elements
     rulesData.forEach((item, idx) => {
       const card = document.createElement('div');
       card.className = 'card';
@@ -242,222 +248,313 @@
       canvases.push(canvas);
     });
 
-    // Custom Diagram Vector Drawers
+    // Custom Infographic Vector Drawers
     function drawDiagram(ctx, type, x, y, w, h) {
       ctx.save();
       // Graphic viewport box
-      drawBrutalBox(ctx, x, y, w, h, '#FFFFFF', '#000000', 6, 10);
+      drawBrutalBox(ctx, x, y, w, h, '#FFFFFF', '#000000', 8, 14);
 
       const cx = x + w / 2;
       const cy = y + h / 2;
 
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
       if (type === "180degree") {
-        // Line of action
+        // Red dashed line of action
         ctx.strokeStyle = '#EF4444';
-        ctx.lineWidth = 4;
-        ctx.setLineDash([8, 8]);
+        ctx.lineWidth = 6;
+        ctx.setLineDash([12, 12]);
         ctx.beginPath();
-        ctx.moveTo(x + 80, cy);
-        ctx.lineTo(x + w - 80, cy);
+        ctx.moveTo(x + 60, cy - 20);
+        ctx.lineTo(x + w - 60, cy - 20);
         ctx.stroke();
         ctx.setLineDash([]);
+        
+        ctx.fillStyle = '#EF4444';
+        ctx.font = '800 18px "JetBrains Mono", monospace';
+        ctx.fillText('THE AXIS OF ACTION', cx, cy - 40);
 
-        // Actor 1 & 2
-        drawBrutalBox(ctx, cx - 180, cy - 25, 60, 50, '#111317', '#000', 3, 0);
-        drawBrutalBox(ctx, cx + 120, cy - 25, 60, 50, '#111317', '#000', 3, 0);
-        ctx.fillStyle = '#FFE600';
-        ctx.font = '900 16px "Space Grotesk", sans-serif';
-        ctx.fillText('A1', cx - 165, cy + 8);
-        ctx.fillText('A2', cx + 135, cy + 8);
+        // Subjects (Bird's eye view emojis)
+        ctx.font = '75px sans-serif';
+        ctx.fillText('🙎‍♂️', cx - 180, cy - 20);
+        ctx.fillText('👱‍♀️', cx + 180, cy - 20);
 
         // Safe Arc (Green 180-deg zone)
-        ctx.strokeStyle = '#10B981';
-        ctx.lineWidth = 5;
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.15)';
         ctx.beginPath();
-        ctx.arc(cx, cy, 140, 0, Math.PI, false);
+        ctx.arc(cx, cy - 20, 160, 0, Math.PI, false);
+        ctx.fill();
+        
+        ctx.strokeStyle = '#10B981';
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.arc(cx, cy - 20, 160, 0, Math.PI, false);
         ctx.stroke();
 
-        // Cameras on safe side
-        drawBrutalBox(ctx, cx - 110, cy + 90, 50, 40, '#10B981', '#000', 3, 0);
-        drawBrutalBox(ctx, cx + 60, cy + 90, 50, 40, '#10B981', '#000', 3, 0);
+        // Cameras
+        ctx.font = '55px sans-serif';
+        // Safe Cameras
+        ctx.fillText('🎥✅', cx - 120, cy + 90);
+        ctx.fillText('🎥✅', cx + 120, cy + 90);
         
-        // Crossed Camera on forbidden side
-        drawBrutalBox(ctx, cx - 25, cy - 110, 50, 40, '#EF4444', '#000', 3, 0);
-        ctx.fillStyle = '#EF4444';
-        ctx.font = '900 24px sans-serif';
-        ctx.fillText('✕', cx - 10, cy - 80);
+        // Crossed Camera (Forbidden)
+        ctx.globalAlpha = 0.6;
+        ctx.fillText('🎥❌', cx - 80, cy - 130);
+        ctx.globalAlpha = 1.0;
 
         // Label
-        ctx.fillStyle = '#111317';
-        ctx.font = '800 16px "JetBrains Mono", monospace';
-        ctx.fillText('SAFE CAMERA ZONE (180°)', cx - 120, cy + 160);
+        drawBrutalBox(ctx, cx - 160, cy + 155, 320, 45, '#10B981', '#000', 4, 4);
+        ctx.fillStyle = '#000000';
+        ctx.font = '900 18px "Space Grotesk", sans-serif';
+        ctx.fillText('SAFE CAMERA ZONE', cx, cy + 179);
 
       } else if (type === "angles") {
-        // Low Angle Setup (Left)
-        drawBrutalBox(ctx, x + 60, cy + 60, 55, 45, '#3B82F6', '#000', 3, 0); // Cam
-        ctx.strokeStyle = '#3B82F6';
-        ctx.lineWidth = 4;
-        ctx.beginPath();
-        ctx.moveTo(x + 115, cy + 70);
-        ctx.lineTo(x + 240, cy - 60);
-        ctx.stroke();
-
-        // Subject dominant
-        drawBrutalBox(ctx, x + 240, cy - 90, 60, 110, '#FFE600', '#000', 4, 4);
-        ctx.fillStyle = '#000';
-        ctx.font = '900 14px "Space Grotesk", sans-serif';
-        ctx.fillText('HERO', x + 250, cy - 30);
-        ctx.fillStyle = '#3B82F6';
-        ctx.font = '800 15px "JetBrains Mono", monospace';
-        ctx.fillText('LOW ANGLE (POWER)', x + 50, cy + 140);
-
-        // Vertical divider
+        
+        // Divider
         ctx.strokeStyle = '#000';
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 5;
         ctx.beginPath();
-        ctx.moveTo(cx + 20, y + 30);
-        ctx.lineTo(cx + 20, y + h - 30);
+        ctx.moveTo(cx, y + 20);
+        ctx.lineTo(cx, y + h - 20);
         ctx.stroke();
 
-        // High Angle Setup (Right)
-        drawBrutalBox(ctx, x + w - 120, cy - 90, 55, 45, '#EF4444', '#000', 3, 0); // Cam
+        // LEFT: Low Angle (Power)
+        ctx.font = '60px sans-serif';
+        ctx.fillText('🎥', x + 100, cy + 100); // Cam low
+        
+        // Arrow pointing UP
+        ctx.strokeStyle = '#3B82F6';
+        ctx.lineWidth = 8;
+        ctx.beginPath();
+        ctx.moveTo(x + 130, cy + 60);
+        ctx.lineTo(x + 220, cy - 50);
+        ctx.stroke();
+        // Arrowhead
+        ctx.fillStyle = '#3B82F6';
+        ctx.beginPath(); ctx.moveTo(x + 230, cy - 60); ctx.lineTo(x + 200, cy - 60); ctx.lineTo(x + 220, cy - 25); ctx.fill();
+
+        // Huge powerful subject
+        ctx.font = '120px sans-serif';
+        ctx.fillText('🦸‍♂️', x + 280, cy - 50);
+        ctx.font = '40px sans-serif';
+        ctx.fillText('👑', x + 280, cy - 120);
+        
+        drawBrutalBox(ctx, x + 60, cy + 160, 280, 45, '#3B82F6', '#000', 4, 4);
+        ctx.fillStyle = '#FFF';
+        ctx.font = '900 18px "Space Grotesk", sans-serif';
+        ctx.fillText('LOW ANGLE = POWER', x + 200, cy + 184);
+
+        // RIGHT: High Angle (Vulnerable)
+        ctx.font = '60px sans-serif';
+        ctx.fillText('🎥', x + w - 100, cy - 100); // Cam High
+        
+        // Arrow pointing DOWN
         ctx.strokeStyle = '#EF4444';
-        ctx.lineWidth = 4;
+        ctx.lineWidth = 8;
         ctx.beginPath();
-        ctx.moveTo(x + w - 120, cy - 65);
-        ctx.lineTo(cx + 90, cy + 60);
+        ctx.moveTo(x + w - 130, cy - 60);
+        ctx.lineTo(cx + 120, cy + 50);
         ctx.stroke();
-
-        // Subject small
-        drawBrutalBox(ctx, cx + 90, cy + 30, 50, 60, '#E2E4E9', '#000', 3, 0);
+        // Arrowhead
         ctx.fillStyle = '#EF4444';
-        ctx.font = '800 15px "JetBrains Mono", monospace';
-        ctx.fillText('HIGH ANGLE (WEAK)', cx + 55, cy + 140);
+        ctx.beginPath(); ctx.moveTo(cx + 110, cy + 60); ctx.lineTo(cx + 140, cy + 60); ctx.lineTo(cx + 120, cy + 25); ctx.fill();
+
+        // Tiny vulnerable subject
+        ctx.font = '60px sans-serif';
+        ctx.fillText('🙍‍♂️', cx + 100, cy + 90);
+        ctx.font = '30px sans-serif';
+        ctx.fillText('😰', cx + 100, cy + 30);
+
+        drawBrutalBox(ctx, cx + 40, cy + 160, 310, 45, '#EF4444', '#000', 4, 4);
+        ctx.fillStyle = '#FFF';
+        ctx.font = '900 18px "Space Grotesk", sans-serif';
+        ctx.fillText('HIGH ANGLE = WEAKNESS', cx + 195, cy + 184);
 
       } else if (type === "dutch") {
-        // Tilted frame inside
+        
+        // Straight horizon line (Background context)
+        ctx.strokeStyle = '#CBD5E1';
+        ctx.lineWidth = 4;
+        ctx.setLineDash([15, 15]);
+        ctx.beginPath(); ctx.moveTo(x + 50, cy); ctx.lineTo(x + w - 50, cy); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#94A3B8';
+        ctx.font = '800 16px "JetBrains Mono", monospace';
+        ctx.fillText('NORMAL HORIZON', cx, cy - 20);
+
+        // Tilted Camera Frame
         ctx.save();
         ctx.translate(cx, cy);
         ctx.rotate(-22 * Math.PI / 180);
 
+        ctx.fillStyle = 'rgba(251, 113, 133, 0.15)'; // Pink tint
+        ctx.fillRect(-220, -120, 440, 240);
+        
         ctx.strokeStyle = '#FB7185';
-        ctx.lineWidth = 5;
-        ctx.strokeRect(-180, -110, 360, 220);
+        ctx.lineWidth = 8;
+        ctx.strokeRect(-220, -120, 440, 240);
 
-        // Subject inside tilted
-        drawBrutalBox(ctx, -30, -50, 60, 100, '#FFE600', '#000', 3, 0);
-        ctx.fillStyle = '#000';
+        // Dizzy subject
+        ctx.font = '110px sans-serif';
+        ctx.fillText('😵‍💫', 0, 10);
+        
+        // Swirls
+        ctx.font = '50px sans-serif';
+        ctx.fillText('🌪️', -120, -30);
+        ctx.fillText('❓', 120, 40);
+
+        drawBrutalBox(ctx, -140, 135, 280, 40, '#FB7185', '#000', 3, 3);
+        ctx.fillStyle = '#FFF';
         ctx.font = '900 18px "Space Grotesk", sans-serif';
-        ctx.fillText('TENSION', -38, 10);
+        ctx.fillText('CANTED / DUTCH TILT', 0, 157);
+
         ctx.restore();
 
-        // Angle indicator
+        // Angle indicator curve
+        ctx.strokeStyle = '#FB7185';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(x + 120, cy, 60, -22 * Math.PI / 180, 0);
+        ctx.stroke();
         ctx.fillStyle = '#FB7185';
-        ctx.font = '800 18px "JetBrains Mono", monospace';
-        ctx.fillText('⟳ -22° CANTED HORIZON LINE', cx - 140, y + h - 25);
+        ctx.font = '900 22px "Space Grotesk", sans-serif';
+        ctx.fillText('22°', x + 210, cy - 15);
 
       } else if (type === "thirds") {
-        // Grid lines
-        const thirdW = (w - 80) / 3;
-        const thirdH = (h - 60) / 3;
-        const gx = x + 40;
-        const gy = y + 30;
+        const tw = (w - 100) / 3;
+        const th = (h - 80) / 3;
+        const gx = x + 50;
+        const gy = y + 40;
 
+        // Draw Image Box placeholder
+        ctx.fillStyle = '#F8FAFC';
+        ctx.fillRect(gx, gy, tw * 3, th * 3);
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 6;
+        ctx.strokeRect(gx, gy, tw * 3, th * 3);
+
+        // Rule of Thirds Grid
         ctx.strokeStyle = '#94A3B8';
-        ctx.lineWidth = 3;
-        ctx.strokeRect(gx, gy, thirdW * 3, thirdH * 3);
-
-        // Vertical lines
+        ctx.lineWidth = 4;
         ctx.beginPath();
-        ctx.moveTo(gx + thirdW, gy); ctx.lineTo(gx + thirdW, gy + thirdH * 3);
-        ctx.moveTo(gx + thirdW * 2, gy); ctx.lineTo(gx + thirdW * 2, gy + thirdH * 3);
-        // Horizontal lines
-        ctx.moveTo(gx, gy + thirdH); ctx.lineTo(gx + thirdW * 3, gy + thirdH);
-        ctx.moveTo(gx, gy + thirdH * 2); ctx.lineTo(gx + thirdW * 3, gy + thirdH * 2);
+        ctx.moveTo(gx + tw, gy); ctx.lineTo(gx + tw, gy + th * 3);
+        ctx.moveTo(gx + tw * 2, gy); ctx.lineTo(gx + tw * 2, gy + th * 3);
+        ctx.moveTo(gx, gy + th); ctx.lineTo(gx + tw * 3, gy + th);
+        ctx.moveTo(gx, gy + th * 2); ctx.lineTo(gx + tw * 3, gy + th * 2);
         ctx.stroke();
 
-        // Subject placed at intersection
-        drawBrutalBox(ctx, gx + thirdW - 25, gy + thirdH - 25, 50, 90, '#FFE600', '#000', 4, 4);
-
-        // Intersection points
-        ctx.fillStyle = '#EF4444';
-        [
-          [gx + thirdW, gy + thirdH],
-          [gx + thirdW * 2, gy + thirdH],
-          [gx + thirdW, gy + thirdH * 2],
-          [gx + thirdW * 2, gy + thirdH * 2]
-        ].forEach(([px, py]) => {
-          ctx.beginPath();
-          ctx.arc(px, py, 9, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.stroke();
+        // 4 Intersections Points
+        ctx.fillStyle = '#38BDF8'; // Light Blue
+        const points = [
+          [gx + tw, gy + th], [gx + tw * 2, gy + th],
+          [gx + tw, gy + th * 2], [gx + tw * 2, gy + th * 2]
+        ];
+        points.forEach(([px, py]) => {
+          ctx.beginPath(); ctx.arc(px, py, 12, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#000'; ctx.lineWidth = 3; ctx.stroke();
         });
 
-        ctx.fillStyle = '#111317';
-        ctx.font = '800 16px "JetBrains Mono", monospace';
-        ctx.fillText('EYE-LINE ANCHORED AT TOP-THIRD INTERSECTION', cx - 210, y + h - 18);
+        // Anchor the subject to Top-Right Third
+        ctx.font = '90px sans-serif';
+        ctx.fillText('👩', gx + tw * 2, gy + th);
+        ctx.font = '40px sans-serif';
+        ctx.fillText('🎯', gx + tw * 2 + 50, gy + th - 40);
+
+        // Tag
+        drawBrutalBox(ctx, cx - 180, y + h - 25, 360, 45, '#FFE600', '#000', 4, 4);
+        ctx.fillStyle = '#000';
+        ctx.font = '900 18px "Space Grotesk", sans-serif';
+        ctx.fillText('EYE-LINE ANCHORED ON GRID', cx, y + h - 1);
 
       } else if (type === "leadroom") {
-        // Subject at left side looking right
-        drawBrutalBox(ctx, x + 80, cy - 60, 80, 120, '#111317', '#000', 4, 0);
-        ctx.fillStyle = '#FFE600';
-        ctx.font = '900 18px "Space Grotesk", sans-serif';
-        ctx.fillText('ACTOR', x + 90, cy + 5);
+        
+        // The Frame
+        const fw = w - 100;
+        const fh = h - 120;
+        const fx = x + 50;
+        const fy = y + 40;
+        ctx.strokeStyle = '#000'; ctx.lineWidth = 6; ctx.strokeRect(fx, fy, fw, fh);
 
-        // Sight Vector Arrow
+        // Subject looking right (Positioned Left)
+        ctx.font = '120px sans-serif';
+        ctx.fillText('🚶‍♂️', fx + 100, fy + fh / 2 + 20);
+        ctx.font = '50px sans-serif';
+        ctx.fillText('👀', fx + 100, fy + fh / 2 - 70);
+
+        // Huge Arrow defining Lead Room
         ctx.strokeStyle = '#10B981';
-        ctx.lineWidth = 6;
+        ctx.lineWidth = 12;
         ctx.beginPath();
-        ctx.moveTo(x + 180, cy - 20);
-        ctx.lineTo(x + w - 100, cy - 20);
+        ctx.moveTo(fx + 180, fy + fh / 2 - 20);
+        ctx.lineTo(fx + fw - 80, fy + fh / 2 - 20);
         ctx.stroke();
-
-        // Arrowhead
+        
+        // Arrow head
         ctx.fillStyle = '#10B981';
         ctx.beginPath();
-        ctx.moveTo(x + w - 90, cy - 20);
-        ctx.lineTo(x + w - 125, cy - 35);
-        ctx.lineTo(x + w - 125, cy - 5);
+        ctx.moveTo(fx + fw - 60, fy + fh / 2 - 20);
+        ctx.lineTo(fx + fw - 100, fy + fh / 2 - 50);
+        ctx.lineTo(fx + fw - 100, fy + fh / 2 + 10);
         ctx.fill();
 
-        // Green Zone Fill
-        ctx.fillStyle = 'rgba(16, 185, 129, 0.15)';
-        ctx.fillRect(x + 190, y + 40, w - 290, h - 90);
-        ctx.strokeStyle = '#10B981';
-        ctx.strokeRect(x + 190, y + 40, w - 290, h - 90);
-
+        // Label inside the lead room
         ctx.fillStyle = '#10B981';
-        ctx.font = '800 16px "JetBrains Mono", monospace';
-        ctx.fillText('NEGATIVE LEAD SPACE / SIGHT LINE', cx - 60, cy + 40);
+        ctx.font = '800 22px "JetBrains Mono", monospace';
+        ctx.fillText('NEGATIVE SPACE (LEAD)', fx + 360, fy + fh / 2 - 60);
+
+        // Tiny BAD example box at the bottom
+        drawBrutalBox(ctx, cx - 180, y + h - 60, 360, 50, '#EF4444', '#000', 4, 4);
+        ctx.fillStyle = '#FFF';
+        ctx.font = '900 18px "Space Grotesk", sans-serif';
+        ctx.fillText('BAD: 🛑🚶‍♂️ (NO ROOM TO MOVE)', cx, y + h - 33);
 
       } else if (type === "ots") {
-        // Foreground Shoulder (Left, blurred/dark)
-        drawBrutalBox(ctx, x + 30, cy + 10, 160, 170, '#111317', '#000', 4, 0);
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '800 14px "Space Grotesk", sans-serif';
-        ctx.fillText('FOREGROUND', x + 50, cy + 70);
-        ctx.fillText('SHOULDER', x + 60, cy + 90);
+        
+        // Framing Box
+        const fw = w - 80; const fh = h - 100;
+        const fx = x + 40; const fy = y + 40;
+        ctx.fillStyle = '#F8FAFC'; ctx.fillRect(fx, fy, fw, fh);
+        ctx.strokeStyle = '#000'; ctx.lineWidth = 6; ctx.strokeRect(fx, fy, fw, fh);
 
-        // Background Subject in Focus
-        drawBrutalBox(ctx, cx + 50, cy - 70, 90, 140, '#FFE600', '#000', 4, 6);
-        ctx.fillStyle = '#000000';
-        ctx.font = '900 16px "Space Grotesk", sans-serif';
-        ctx.fillText('FOCUS', cx + 70, cy - 10);
-        ctx.fillText('ACTOR', cx + 68, cy + 15);
+        // FOREGROUND SHOULDER (Huge, Dark, Left Side)
+        ctx.font = '320px sans-serif';
+        ctx.fillStyle = '#334155'; // Dark slate
+        ctx.fillText('👤', fx + 80, fy + fh);
+        
+        drawBrutalBox(ctx, fx + 20, fy + fh - 40, 160, 35, '#334155', '#000', 3, 0);
+        ctx.fillStyle = '#FFF';
+        ctx.font = '900 14px "Space Grotesk", sans-serif';
+        ctx.fillText('FOREGROUND', fx + 100, fy + fh - 21);
 
-        // Sight connection line
+        // BACKGROUND SUBJECT (Focused, Right Side)
+        ctx.font = '140px sans-serif';
+        ctx.fillText('👱‍♀️', fx + fw - 140, fy + fh / 2 + 40);
+
+        drawBrutalBox(ctx, fx + fw - 210, fy + fh / 2 + 100, 140, 35, '#FFE600', '#000', 3, 0);
+        ctx.fillStyle = '#000';
+        ctx.font = '900 14px "Space Grotesk", sans-serif';
+        ctx.fillText('FOCUS (GUEST)', fx + fw - 140, fy + fh / 2 + 119);
+
+        // Connection Line
         ctx.strokeStyle = '#3B82F6';
-        ctx.lineWidth = 4;
-        ctx.setLineDash([6, 6]);
+        ctx.lineWidth = 6;
+        ctx.setLineDash([10, 10]);
         ctx.beginPath();
-        ctx.moveTo(x + 190, cy + 30);
-        ctx.lineTo(cx + 50, cy - 10);
+        ctx.moveTo(fx + 220, fy + fh / 2);
+        ctx.lineTo(fx + fw - 220, fy + fh / 2);
         ctx.stroke();
         ctx.setLineDash([]);
 
-        ctx.fillStyle = '#3B82F6';
-        ctx.font = '800 16px "JetBrains Mono", monospace';
-        ctx.fillText('TIGHT DEPTH OF FIELD (SPATIAL TENSION)', cx - 180, y + h - 20);
+        ctx.font = '40px sans-serif';
+        ctx.fillText('👁️', fx + 200, fy + fh / 2 - 30);
+        ctx.fillText('👁️', fx + fw - 210, fy + fh / 2 - 30);
+
+        // Tag
+        drawBrutalBox(ctx, cx - 180, y + h - 40, 360, 45, '#3B82F6', '#000', 4, 4);
+        ctx.fillStyle = '#FFF';
+        ctx.font = '900 18px "Space Grotesk", sans-serif';
+        ctx.fillText('SHARED SPATIAL TENSION', cx, y + h - 17);
       }
 
       ctx.restore();
@@ -467,6 +564,7 @@
       rulesData.forEach((data, idx) => {
         const canvas = canvases[idx];
         const ctx = canvas.getContext('2d');
+        ctx.textBaseline = 'alphabetic'; // Reset for standard text
 
         if (data.type === "intro") {
           // Slide 0: High-Impact Intro Card
@@ -476,51 +574,40 @@
           ctx.strokeStyle = '#000000';
           ctx.strokeRect(0, 0, 1080, 1920);
 
-          // Top Badge
-          drawBrutalBox(ctx, 90, 130, 520, 75, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#34D399';
-          ctx.beginPath();
-          ctx.arc(130, 167, 10, 0, Math.PI * 2);
-          ctx.fill();
+          drawBrutalBox(ctx, 90, 130, 560, 75, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#FFFFFF';
           ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText(data.badge, 155, 176);
+          ctx.fillText(data.badge, 120, 178);
 
           ctx.fillStyle = '#000000';
           ctx.font = '900 32px "JetBrains Mono", monospace';
           ctx.fillText('01 / 08', 860, 176);
 
-          // Main Brutalist White Container Card
           drawBrutalBox(ctx, 90, 250, 900, 1360, '#FFFFFF', '#000000', 10, 24);
 
-          // Pill 1: TOP 6 RULES (Coral Pink)
           drawBrutalBox(ctx, 140, 320, 800, 180, '#FB7185', '#000000', 8, 14);
           ctx.fillStyle = '#FFFFFF';
           ctx.font = '900 105px "Space Grotesk", sans-serif';
           ctx.fillText(data.title1, 180, 450);
 
-          // Pill 2: OF CAMERA (Electric Yellow)
           drawBrutalBox(ctx, 140, 530, 800, 180, '#FFE600', '#000000', 8, 14);
           ctx.fillStyle = '#000000';
           ctx.font = '900 100px "Space Grotesk", sans-serif';
           ctx.fillText(data.title2, 210, 660);
 
-          // Subtext Body
           ctx.fillStyle = '#111317';
           ctx.font = '700 36px "Inter", sans-serif';
           wrapText(ctx, data.deck, 140, 800, 800, 52);
 
-          // Feature Box
           drawBrutalBox(ctx, 140, 1040, 800, 260, '#D6E4EE', '#000000', 6, 12);
           ctx.fillStyle = '#000000';
           ctx.font = '900 26px "Space Grotesk", sans-serif';
-          ctx.fillText('WHY AMATEUR VIDEOS FEEL FLAT', 180, 1105);
+          ctx.fillText('WHY AMATEUR VIDEOS FEEL FLAT 📉', 180, 1105);
 
           ctx.fillStyle = '#222222';
           ctx.font = '600 28px "Inter", sans-serif';
           wrapText(ctx, data.subDeck, 180, 1165, 720, 42);
 
-          // Bottom Action Strip
           drawBrutalBox(ctx, 90, 1660, 900, 120, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#FFE600';
           ctx.font = '900 32px "Space Grotesk", sans-serif';
@@ -528,74 +615,71 @@
           ctx.fillText('→', 930, 1735);
 
         } else if (data.type === "rule") {
-          // Rule Cards (1 through 6)
+          // Rule Cards
           ctx.fillStyle = data.bg;
           ctx.fillRect(0, 0, 1080, 1920);
           ctx.lineWidth = 24;
           ctx.strokeStyle = '#000000';
           ctx.strokeRect(0, 0, 1080, 1920);
 
-          // Top Category Header
-          drawBrutalBox(ctx, 90, 80, 480, 68, '#000000', '#000000', 0, 0);
+          drawBrutalBox(ctx, 90, 80, 520, 68, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#FFE600';
           ctx.font = '900 24px "Space Grotesk", sans-serif';
           ctx.fillText(`RULE ${data.num} • ${data.tag}`, 115, 122);
 
-          // Counter Badge
           drawBrutalBox(ctx, 840, 80, 150, 68, '#FFFFFF', '#000000', 4, 6);
           ctx.fillStyle = '#000000';
           ctx.font = '900 28px "JetBrains Mono", monospace';
           ctx.fillText(`0${idx + 1}/08`, 865, 124);
 
-          // Headline Rule Box
           drawBrutalBox(ctx, 90, 175, 900, 130, '#FFFFFF', '#000000', 8, 14);
           ctx.fillStyle = '#000000';
-          ctx.font = '900 42px "Space Grotesk", sans-serif';
-          ctx.fillText(data.ruleName, 130, 255);
+          ctx.font = '900 46px "Space Grotesk", sans-serif';
+          ctx.fillText(`${data.emoji} ${data.ruleName}`, 120, 258);
 
-          // CUSTOM VECTOR DIAGRAM BOX (Middle Visual Blueprint)
-          drawDiagram(ctx, data.diagramType, 90, 335, 900, 440);
+          // DIAGRAM (Calls external function)
+          drawDiagram(ctx, data.diagramType, 90, 335, 900, 480);
+          ctx.textBaseline = 'alphabetic'; // Reset
 
-          // WHEN TO USE IT (Context Box)
-          drawBrutalBox(ctx, 90, 810, 900, 240, data.accentCard, '#000000', 8, 14);
-          drawBrutalBox(ctx, 130, 845, 290, 45, '#000000', '#000000', 0, 0);
+          // WHEN TO USE IT
+          drawBrutalBox(ctx, 90, 850, 900, 220, data.accentCard, '#000000', 8, 14);
+          drawBrutalBox(ctx, 130, 885, 290, 45, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#FFE600';
           ctx.font = '900 22px "Space Grotesk", sans-serif';
-          ctx.fillText('BEST USE CASE', 150, 876);
+          ctx.fillText('📌 BEST USE CASE', 150, 916);
 
           ctx.fillStyle = '#111317';
           ctx.font = '800 32px "Inter", sans-serif';
-          wrapText(ctx, data.situation, 130, 935, 820, 44);
+          wrapText(ctx, data.situation, 130, 980, 820, 44);
 
-          // PSYCHOLOGICAL IMPACT (White Card)
-          drawBrutalBox(ctx, 90, 1085, 900, 360, '#FFFFFF', '#000000', 8, 14);
-          drawBrutalBox(ctx, 130, 1120, 350, 45, '#FB7185', '#000000', 0, 0);
+          // PSYCHOLOGICAL IMPACT
+          drawBrutalBox(ctx, 90, 1105, 900, 360, '#FFFFFF', '#000000', 8, 14);
+          drawBrutalBox(ctx, 130, 1140, 370, 45, '#FB7185', '#000000', 0, 0);
           ctx.fillStyle = '#FFFFFF';
           ctx.font = '900 22px "Space Grotesk", sans-serif';
-          ctx.fillText('ON-SCREEN PSYCHOLOGY', 150, 1151);
+          ctx.fillText('🧠 ON-SCREEN PSYCHOLOGY', 150, 1171);
 
           ctx.fillStyle = '#111317';
           ctx.font = '600 30px "Inter", sans-serif';
-          wrapText(ctx, data.impact, 130, 1215, 820, 46);
+          wrapText(ctx, data.impact, 130, 1235, 820, 46);
 
-          // SCRIPT BLUEPRINT CUE (Electric Yellow Box)
-          drawBrutalBox(ctx, 90, 1480, 900, 240, '#FFE600', '#000000', 8, 14);
-          drawBrutalBox(ctx, 130, 1515, 330, 45, '#000000', '#000000', 0, 0);
+          // SCRIPT BLUEPRINT CUE
+          drawBrutalBox(ctx, 90, 1500, 900, 240, '#FFE600', '#000000', 8, 14);
+          drawBrutalBox(ctx, 130, 1535, 360, 45, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#34D399';
           ctx.font = '900 22px "Space Grotesk", sans-serif';
-          ctx.fillText('HOW TO SCRIPT IT (AV)', 150, 1546);
+          ctx.fillText('✍️ HOW TO SCRIPT IT (AV)', 150, 1566);
 
           ctx.fillStyle = '#000000';
           ctx.font = '700 27px "Inter", sans-serif';
-          wrapText(ctx, data.scriptCue, 130, 1600, 820, 38);
+          wrapText(ctx, data.scriptCue, 130, 1625, 820, 38);
 
-          // Footer Strip
+          // Footer
           ctx.fillStyle = '#000000';
           ctx.font = '800 28px "Space Grotesk", sans-serif';
-          ctx.fillText('DRAFTSRUSH STUDIO', 90, 1800);
-
+          ctx.fillText('DRAFTSRUSH STUDIO', 90, 1820);
           ctx.font = '700 26px "JetBrains Mono", monospace';
-          ctx.fillText('draftsrush.com', 720, 1800);
+          ctx.fillText('draftsrush.com', 720, 1820);
 
         } else if (data.type === "cta") {
           // Slide 8: Closing CTA Conversion Card
@@ -605,21 +689,15 @@
           ctx.strokeStyle = '#000000';
           ctx.strokeRect(0, 0, 1080, 1920);
 
-          // Top Tag
           drawBrutalBox(ctx, 90, 120, 480, 75, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#34D399';
-          ctx.beginPath();
-          ctx.arc(130, 157, 12, 0, Math.PI * 2);
-          ctx.fill();
           ctx.fillStyle = '#FFFFFF';
           ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText(data.badge, 160, 166);
+          ctx.fillText(data.badge, 120, 166);
 
           ctx.fillStyle = '#000000';
           ctx.font = '900 32px "JetBrains Mono", monospace';
           ctx.fillText('08 / 08', 860, 166);
 
-          // Main White Card
           drawBrutalBox(ctx, 90, 240, 900, 1280, '#FFFFFF', '#000000', 10, 24);
 
           ctx.fillStyle = '#000000';
@@ -634,7 +712,6 @@
           ctx.font = '600 36px "Inter", sans-serif';
           wrapText(ctx, data.deck, 150, 590, 780, 54);
 
-          // Course / Blueprint Intake Box
           drawBrutalBox(ctx, 150, 820, 780, 310, '#D6E4EE', '#000000', 6, 12);
           ctx.fillStyle = '#000000';
           ctx.font = '900 34px "Space Grotesk", sans-serif';
@@ -644,19 +721,16 @@
           ctx.font = '600 28px "Inter", sans-serif';
           wrapText(ctx, data.boxText, 190, 950, 700, 42);
 
-          // Button 1: DM (Black & Emerald)
           drawBrutalBox(ctx, 150, 1180, 780, 110, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#34D399';
           ctx.font = '900 36px "Space Grotesk", sans-serif';
-          ctx.fillText(data.btn1, 230, 1250);
+          ctx.fillText(data.btn1, 180, 1250);
 
-          // Button 2: Website (Electric Yellow Box)
           drawBrutalBox(ctx, 150, 1320, 780, 110, '#FFE600', '#000000', 6, 8);
           ctx.fillStyle = '#000000';
           ctx.font = '900 36px "Space Grotesk", sans-serif';
           ctx.fillText(data.btn2, 240, 1390);
 
-          // Footer
           ctx.fillStyle = '#000000';
           ctx.font = '800 32px "Space Grotesk", sans-serif';
           ctx.fillText('DRAFTSRUSH STUDIO • 2026', 90, 1780);
@@ -683,11 +757,12 @@
       const content = await zip.generateAsync({ type: "blob" });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(content);
-      link.download = "draftsrush-cinematography-rules-reel.zip";
+      link.download = "draftsrush-cinematography-infographics-reel.zip";
       link.click();
     }
 
-    document.fonts.ready.then(renderAll);
+    // Delay render slightly to ensure fonts load completely
+    document.fonts.ready.then(() => setTimeout(renderAll, 100));
   </script>
 </body>
 </html>
