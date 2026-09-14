@@ -2,188 +2,387 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LinkedIn Landscape Post Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DraftsRush - 60-Second Scene Carousel Generator</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- html2canvas for client-side PNG export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <!-- Google Fonts matching DraftsRush design system -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@600;700;900&display=swap" rel="stylesheet">
+
   <style>
     body {
-      background: #111317;
-      color: white;
       font-family: 'Inter', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px 20px;
+      background-color: #2b2d35;
     }
-    canvas {
-      width: 1000px;
-      max-width: 100%;
-      height: auto;
-      border: 4px solid #000;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      margin-bottom: 20px;
-    }
-    button {
-      background: #FFE600;
-      color: #000;
+    .brand-font {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      font-weight: 900;
-      padding: 14px 28px;
-      border: 3px solid #000;
-      box-shadow: 4px 4px 0px #fff;
-      cursor: pointer;
     }
-    button:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0px #fff;
+    .mono-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .brutal-shadow {
+      box-shadow: 12px 12px 0px #111317;
+    }
+    .brutal-shadow-sm {
+      box-shadow: 8px 8px 0px #111317;
+    }
+    /* Fixed 4:5 Instagram Portrait Resolution (1080 x 1350) */
+    .insta-slide {
+      width: 1080px;
+      height: 1350px;
+      min-width: 1080px;
+      min-height: 1350px;
+      position: relative;
+    }
+    .control-btn:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 6px 6px 0px #000;
+    }
+    .control-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000;
     }
   </style>
 </head>
-<body>
+<body class="p-8 text-[#111317]">
 
-  <canvas id="liLandscapeCanvas" width="1200" height="627"></canvas>
-  <button onclick="downloadGraphic()">Download 1200x627 Landscape PNG</button>
+  <!-- Top Toolbar -->
+  <header class="max-w-6xl mx-auto mb-12 border-4 border-black bg-[#FFE600] p-6 brutal-shadow flex flex-col md:flex-row items-center justify-between gap-4">
+    <div>
+      <div class="inline-block bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase mb-2">
+        DraftsRush Studio Production
+      </div>
+      <h1 class="text-3xl font-black brand-font tracking-tight text-black">
+        Instagram Carousel Generator (1080 × 1350 px)
+      </h1>
+      <p class="text-sm font-semibold text-gray-800">
+        Topic: How To Write A 60-Second Scene. Click the button above any slide to export a clean PNG.
+      </p>
+    </div>
+    <div class="flex items-center gap-3">
+      <button onclick="downloadAllSlides()" class="control-btn bg-black text-white font-black brand-font px-6 py-3 border-4 border-black text-sm uppercase transition-all">
+        Download All 5 Slides
+      </button>
+    </div>
+  </header>
 
+  <!-- Slide Canvas Container -->
+  <main class="flex flex-col items-center gap-16 pb-24">
+
+    <!-- ================= SLIDE 1: COVER ================= -->
+    <div class="flex flex-col items-center gap-4">
+      <div class="flex items-center justify-between w-[1080px]">
+        <span class="bg-white border-2 border-black px-4 py-1 font-black brand-font text-sm">SLIDE 01 // COVER</span>
+        <button onclick="downloadSlide('slide-1', 'draftsrush-scene-slide-1.png')" class="control-btn bg-[#FFE600] border-2 border-black px-5 py-2 font-black brand-font text-sm uppercase transition-all">
+          Download PNG
+        </button>
+      </div>
+
+      <div id="slide-1" class="insta-slide bg-[#FFE600] border-8 border-black p-20 flex flex-col justify-between overflow-hidden">
+        <!-- Header Strip -->
+        <div class="flex justify-between items-center border-b-4 border-black pb-8">
+          <div class="bg-black text-white px-5 py-2 font-black brand-font text-xl uppercase tracking-wider">
+            DRAFTSRUSH // WRITERS ROOM
+          </div>
+          <div class="border-4 border-black bg-white px-5 py-2 font-black mono-font text-lg">
+            PACING BLUEPRINT #01
+          </div>
+        </div>
+
+        <!-- Main Focal Hero -->
+        <div class="space-y-10 my-auto">
+          <div class="inline-block bg-black text-white px-5 py-2 font-black brand-font text-xl uppercase tracking-widest">
+            Screenwriting & Vertical Video
+          </div>
+          <h2 class="text-7xl font-black brand-font leading-[1.05] tracking-tight uppercase">
+            HOW TO WRITE A 60-SECOND SCENE THAT NEVER DRAGS
+          </h2>
+          <div class="border-4 border-black bg-white p-8 brutal-shadow-sm">
+            <p class="text-2xl font-bold text-gray-900 leading-snug">
+              The 140-word ceiling, late-entry mechanics, and the end-on-decision rule.
+            </p>
+          </div>
+        </div>
+
+        <!-- Footer Strip -->
+        <div class="flex justify-between items-center border-t-4 border-black pt-8">
+          <span class="mono-font text-xl font-black uppercase text-black">
+            SWIPE FOR PRODUCTION PROTOCOL ->
+          </span>
+          <span class="font-bold text-lg text-black mono-font">
+            DRAFTSRUSH.COM
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 2: THE WORD COUNT CEILING ================= -->
+    <div class="flex flex-col items-center gap-4">
+      <div class="flex items-center justify-between w-[1080px]">
+        <span class="bg-white border-2 border-black px-4 py-1 font-black brand-font text-sm">SLIDE 02 // THE MATH</span>
+        <button onclick="downloadSlide('slide-2', 'draftsrush-scene-slide-2.png')" class="control-btn bg-[#FFE600] border-2 border-black px-5 py-2 font-black brand-font text-sm uppercase transition-all">
+          Download PNG
+        </button>
+      </div>
+
+      <div id="slide-2" class="insta-slide bg-[#E2E4E9] border-8 border-black p-20 flex flex-col justify-between overflow-hidden">
+        <div class="flex justify-between items-center border-b-4 border-black pb-8">
+          <div class="bg-black text-white px-4 py-1.5 font-black brand-font text-lg uppercase">
+            RULE 01 // SPEAKING RATE
+          </div>
+          <div class="font-black mono-font text-lg">
+            02 / 05
+          </div>
+        </div>
+
+        <div class="space-y-8 my-auto">
+          <h2 class="text-6xl font-black brand-font leading-none uppercase tracking-tight">
+            1 PAGE = 60 SECONDS.<br>
+            MOST WRITERS CRAM TOO MUCH.
+          </h2>
+
+          <div class="border-4 border-black bg-white p-10 brutal-shadow space-y-6">
+            <p class="text-2xl font-medium text-gray-800 leading-relaxed">
+              Standard screenplays assume 1 formatted page equals 1 minute of screen time.
+            </p>
+            <p class="text-2xl font-medium text-gray-800 leading-relaxed">
+              In short vertical scripts, writers often pack <span class="bg-red-200 px-2 py-0.5 font-bold border-2 border-black">200+ words</span> into 60 seconds. The speaker ends up rushing, leaving zero pauses for visual cuts.
+            </p>
+            <p class="text-2xl font-black text-black">
+              Viewer cognitive fatigue sets in, causing retention drop-off.
+            </p>
+          </div>
+
+          <!-- Benchmark Grid -->
+          <div class="grid grid-cols-2 gap-6">
+            <div class="border-4 border-black bg-[#FFF6CF] p-6 brutal-shadow-sm">
+              <span class="mono-font font-black text-sm uppercase text-gray-700">Target Range</span>
+              <div class="text-4xl font-black brand-font mt-2">130-150 WPM</div>
+              <p class="text-base font-semibold mt-2 text-gray-800">Allows natural cadence and B-roll breathing room.</p>
+            </div>
+            <div class="border-4 border-black bg-red-100 p-6 brutal-shadow-sm">
+              <span class="mono-font font-black text-sm uppercase text-red-700">Drop-Off Danger</span>
+              <div class="text-4xl font-black brand-font mt-2">&gt; 175 WPM</div>
+              <p class="text-base font-semibold mt-2 text-gray-800">Audio wall of text that viewers skip.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center border-t-4 border-black pt-8 mono-font font-bold text-lg">
+          <span>DRAFTSRUSH // SCRIPTING METHODOLOGY</span>
+          <span>SWIPE -></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 3: ARRIVE LATE, LEAVE EARLY ================= -->
+    <div class="flex flex-col items-center gap-4">
+      <div class="flex items-center justify-between w-[1080px]">
+        <span class="bg-white border-2 border-black px-4 py-1 font-black brand-font text-sm">SLIDE 03 // ENTRY POINTS</span>
+        <button onclick="downloadSlide('slide-3', 'draftsrush-scene-slide-3.png')" class="control-btn bg-[#FFE600] border-2 border-black px-5 py-2 font-black brand-font text-sm uppercase transition-all">
+          Download PNG
+        </button>
+      </div>
+
+      <div id="slide-3" class="insta-slide bg-[#E2E4E9] border-8 border-black p-20 flex flex-col justify-between overflow-hidden">
+        <div class="flex justify-between items-center border-b-4 border-black pb-8">
+          <div class="bg-black text-white px-4 py-1.5 font-black brand-font text-lg uppercase">
+            RULE 02 // THE SCENE ARC
+          </div>
+          <div class="font-black mono-font text-lg">
+            03 / 05
+          </div>
+        </div>
+
+        <div class="space-y-8 my-auto">
+          <h2 class="text-6xl font-black brand-font leading-none uppercase tracking-tight">
+            ARRIVE AT SECOND 10.<br>
+            LEAVE AT SECOND 50.
+          </h2>
+
+          <p class="text-2xl font-medium text-gray-900 leading-relaxed">
+            Cut conversational throat-clearing. In a 60-second scene, you cannot afford greetings, walking up to chairs, or settling in.
+          </p>
+
+          <div class="space-y-6">
+            <div class="border-4 border-black bg-[#D6E4EE] p-8 brutal-shadow-sm">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="bg-black text-white px-3 py-1 mono-font font-bold text-sm uppercase">Second 00:00 - 00:10</span>
+                <span class="brand-font font-black text-xl uppercase">Start In Media Res</span>
+              </div>
+              <p class="text-xl font-medium text-gray-900">
+                Start mid-argument or mid-action. One character is already holding the letter or slamming the desk.
+              </p>
+            </div>
+
+            <div class="border-4 border-black bg-[#FFF6CF] p-8 brutal-shadow-sm">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="bg-black text-white px-3 py-1 mono-font font-bold text-sm uppercase">Second 00:50 - 01:00</span>
+                <span class="brand-font font-black text-xl uppercase">Cut On The Decision</span>
+              </div>
+              <p class="text-xl font-medium text-gray-900">
+                Do not write the goodbyes or aftermath. Cut right as the character commits to the risk. Leave unresolved friction.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center border-t-4 border-black pt-8 mono-font font-bold text-lg">
+          <span>DRAFTSRUSH // RETENTION FORMULAS</span>
+          <span>SWIPE -></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 4: SIDE-BY-SIDE BREAKDOWN ================= -->
+    <div class="flex flex-col items-center gap-4">
+      <div class="flex items-center justify-between w-[1080px]">
+        <span class="bg-white border-2 border-black px-4 py-1 font-black brand-font text-sm">SLIDE 04 // SCRIPT COMPARISON</span>
+        <button onclick="downloadSlide('slide-4', 'draftsrush-scene-slide-4.png')" class="control-btn bg-[#FFE600] border-2 border-black px-5 py-2 font-black brand-font text-sm uppercase transition-all">
+          Download PNG
+        </button>
+      </div>
+
+      <div id="slide-4" class="insta-slide bg-[#E2E4E9] border-8 border-black p-20 flex flex-col justify-between overflow-hidden">
+        <div class="flex justify-between items-center border-b-4 border-black pb-8">
+          <div class="bg-black text-white px-4 py-1.5 font-black brand-font text-lg uppercase">
+            STUDIO AUDIT // SIDE-BY-SIDE
+          </div>
+          <div class="font-black mono-font text-lg">
+            04 / 05
+          </div>
+        </div>
+
+        <div class="space-y-8 my-auto">
+          <h2 class="text-5xl font-black brand-font uppercase tracking-tight">
+            SEE THE DIFFERENCE ON THE PAGE
+          </h2>
+
+          <!-- Bad Example Card -->
+          <div class="border-4 border-black bg-white p-8 brutal-shadow-sm">
+            <div class="flex items-center justify-between border-b-2 border-black pb-3 mb-4">
+              <span class="bg-red-500 text-white px-3 py-1 font-black brand-font text-sm uppercase">Weak Pacing (190 Words)</span>
+              <span class="mono-font text-xs font-bold text-red-700">Delayed Friction</span>
+            </div>
+            <p class="mono-font text-lg text-gray-700 leading-relaxed">
+              "Hey Marcus, thanks for meeting me here. I wanted to check in on the project we discussed yesterday. Did you manage to find that missing ledger in the safe? Because if we don't find it, we might be in big trouble with the partners..."
+            </p>
+          </div>
+
+          <!-- Good Example Card -->
+          <div class="border-4 border-black bg-[#FFE600] p-8 brutal-shadow">
+            <div class="flex items-center justify-between border-b-2 border-black pb-3 mb-4">
+              <span class="bg-black text-white px-3 py-1 font-black brand-font text-sm uppercase">Retention Pacing (138 Words)</span>
+              <span class="mono-font text-xs font-bold text-black">Instant Stakes</span>
+            </div>
+            <p class="mono-font text-xl text-black font-bold leading-relaxed">
+              "The safe was cleared out at noon. Three pages are gone from the ledger. We have four hours to balance this payroll, or thirty workers walk off the floor."
+            </p>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center border-t-4 border-black pt-8 mono-font font-bold text-lg">
+          <span>DRAFTSRUSH // PRODUCTION AUDITS</span>
+          <span>SWIPE -></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SLIDE 5: CTA & FREE TOOL ================= -->
+    <div class="flex flex-col items-center gap-4">
+      <div class="flex items-center justify-between w-[1080px]">
+        <span class="bg-white border-2 border-black px-4 py-1 font-black brand-font text-sm">SLIDE 05 // ACTION CTA</span>
+        <button onclick="downloadSlide('slide-5', 'draftsrush-scene-slide-5.png')" class="control-btn bg-[#FFE600] border-2 border-black px-5 py-2 font-black brand-font text-sm uppercase transition-all">
+          Download PNG
+        </button>
+      </div>
+
+      <div id="slide-5" class="insta-slide bg-[#FFE600] border-8 border-black p-20 flex flex-col justify-between overflow-hidden">
+        <div class="flex justify-between items-center border-b-4 border-black pb-8">
+          <div class="bg-black text-white px-4 py-1.5 font-black brand-font text-lg uppercase">
+            FREE CREATOR UTILITY
+          </div>
+          <div class="font-black mono-font text-lg">
+            05 / 05
+          </div>
+        </div>
+
+        <div class="space-y-10 my-auto text-center">
+          <div class="inline-block bg-white border-4 border-black px-6 py-2 font-black mono-font text-base uppercase">
+            Client-Side Utility • Zero Signups • Zero Fees
+          </div>
+
+          <h2 class="text-7xl font-black brand-font leading-[1.05] uppercase tracking-tight">
+            CALCULATE YOUR SCRIPT RUNTIME BEFORE YOU SHOOT
+          </h2>
+
+          <div class="border-4 border-black bg-white p-10 brutal-shadow text-left max-w-2xl mx-auto space-y-4">
+            <div class="text-2xl font-bold text-black brand-font uppercase mb-2">
+              The Short-Form Script Timer
+            </div>
+            <ul class="text-lg font-semibold space-y-3 mono-font text-gray-800">
+              <li>• Paste your draft for exact speaking durations</li>
+              <li>• Calibrate between 130 to 175 WPM rates</li>
+              <li>• Flags the 3-second hook cutoff automatically</li>
+            </ul>
+          </div>
+
+          <div class="border-4 border-black bg-black text-white p-6 font-black brand-font text-3xl tracking-wide uppercase inline-block brutal-shadow-sm">
+            DRAFTSRUSH.COM/TOOLS
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center border-t-4 border-black pt-8 mono-font font-bold text-lg">
+          <span>SAVE THIS POST</span>
+          <span>DRAFTSRUSH STUDIO</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Download script via html2canvas -->
   <script>
-    const canvas = document.getElementById('liLandscapeCanvas');
-    const ctx = canvas.getContext('2d');
-
-    function draw() {
-      // Base background
-      ctx.fillStyle = '#E2E4E9';
-      ctx.fillRect(0, 0, 1200, 627);
-
-      // Outer border
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 14;
-      ctx.strokeRect(0, 0, 1200, 627);
-
-      function drawBox(x, y, w, h, fill, border = '#000000', borderWidth = 3, shadow = 7) {
-        if (shadow > 0) {
-          ctx.fillStyle = '#000000';
-          ctx.fillRect(x + shadow, y + shadow, w, h);
-        }
-        ctx.fillStyle = fill;
-        ctx.fillRect(x, y, w, h);
-        ctx.strokeStyle = border;
-        ctx.lineWidth = borderWidth;
-        ctx.strokeRect(x, y, w, h);
-      }
-
-      // Top Bar: Tag & Branding
-      drawBox(50, 36, 260, 38, '#000000', '#000000', 0, 0);
-      ctx.fillStyle = '#4ade80';
-      ctx.beginPath();
-      ctx.arc(72, 55, 6, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '700 14px "Space Grotesk", sans-serif';
-      ctx.fillText('CONTENT BOTTLENECK', 90, 60);
-
-      ctx.fillStyle = '#000000';
-      ctx.font = '700 16px "JetBrains Mono", monospace';
-      ctx.fillText('draftsrush.com', 1010, 60);
-
-      // LEFT COLUMN: Big Problem Card (Electric Yellow #FFE600)
-      drawBox(50, 95, 520, 440, '#FFE600', '#000000', 4, 10);
-
-      ctx.fillStyle = '#000000';
-      ctx.font = '900 38px "Space Grotesk", sans-serif';
-      ctx.fillText('You have the reach.', 85, 170);
-      ctx.fillText('You lack the script.', 85, 218);
-
-      // White inner note box
-      drawBox(85, 255, 450, 195, '#FFFFFF', '#000000', 3, 5);
-      ctx.fillStyle = '#111317';
-      ctx.font = '600 17px "Inter", sans-serif';
-      wrapText(ctx, "Having strong ideas is easy. Turning raw notes into 60 seconds of disciplined spoken delivery, retention hooks, and exact visual cues is where videos stall out.", 105, 295, 410, 26);
-
-      ctx.font = '800 14px "Space Grotesk", sans-serif';
-      ctx.fillStyle = '#000000';
-      ctx.fillText('DUAL-COLUMN AV BLUEPRINTS • ZERO FLUFF', 105, 420);
-
-      // RIGHT COLUMN: 3-Step Working Demo Protocol
-      const steps = [
-        {
-          num: '01',
-          tag: 'STEP 1',
-          title: 'Send 1 Rough Topic',
-          desc: 'Share a raw note, reference URL, or brief talking point in DM.',
-          bg: '#FFFFFF'
-        },
-        {
-          num: '02',
-          tag: 'STEP 2',
-          title: '24-Hour Working Demo',
-          desc: 'We draft your hook and opening act in dual-column format to test pacing.',
-          bg: '#FFF6CF'
-        },
-        {
-          num: '03',
-          tag: 'STEP 3',
-          title: 'Review Before Booking',
-          desc: 'Verify the spoken rhythm and visual edit cues before ordering a full package.',
-          bg: '#D6E4EE'
-        }
-      ];
-
-      steps.forEach((s, idx) => {
-        const yPos = 95 + (idx * 150);
-        drawBox(600, yPos, 550, 130, s.bg, '#000000', 3, 8);
-
-        // Badge
-        drawBox(625, yPos + 25, 60, 60, '#000000', '#000000', 0, 0);
-        ctx.fillStyle = '#FFE600';
-        ctx.font = '900 28px "Space Grotesk", sans-serif';
-        ctx.fillText(s.num, 638, yPos + 66);
-
-        // Content
-        ctx.fillStyle = '#000000';
-        ctx.font = '900 22px "Space Grotesk", sans-serif';
-        ctx.fillText(s.title, 705, yPos + 48);
-
-        ctx.fillStyle = '#333333';
-        ctx.font = '600 15px "Inter", sans-serif';
-        wrapText(ctx, s.desc, 705, yPos + 78, 425, 22);
+    async function downloadSlide(slideId, fileName) {
+      const slide = document.getElementById(slideId);
+      if (!slide) return;
+      
+      // Render the element cleanly at 1:1 resolution (1080x1350)
+      const canvas = await html2canvas(slide, {
+        scale: 1,
+        width: 1080,
+        height: 1350,
+        useCORS: true,
+        logging: false
       });
 
-      // Bottom Footer Bar
-      drawBox(50, 555, 1100, 42, '#000000', '#000000', 0, 0);
-      ctx.fillStyle = '#FFE600';
-      ctx.font = '900 16px "Space Grotesk", sans-serif';
-      ctx.fillText('NO UPFRONT FEE. IF THE PACING DOES NOT FIT YOUR VOICE, YOU PAY ZERO.', 75, 581);
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '700 14px "Space Grotesk", sans-serif';
-      ctx.fillText('DM "DEMO" TO START →', 950, 581);
-    }
-
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-      const words = text.split(' ');
-      let line = '';
-      for (let n = 0; n < words.length; n++) {
-        let testLine = line + words[n] + ' ';
-        let metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && n > 0) {
-          ctx.fillText(line, x, y);
-          line = words[n] + ' ';
-          y += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      ctx.fillText(line, x, y);
-    }
-
-    document.fonts.ready.then(draw);
-
-    function downloadGraphic() {
       const link = document.createElement('a');
-      link.download = 'draftsrush-linkedin-landscape.png';
+      link.download = fileName;
       link.href = canvas.toDataURL('image/png');
       link.click();
+    }
+
+    async function downloadAllSlides() {
+      const slides = [
+        { id: 'slide-1', name: 'draftsrush-scene-slide-1.png' },
+        { id: 'slide-2', name: 'draftsrush-scene-slide-2.png' },
+        { id: 'slide-3', name: 'draftsrush-scene-slide-3.png' },
+        { id: 'slide-4', name: 'draftsrush-scene-slide-4.png' },
+        { id: 'slide-5', name: 'draftsrush-scene-slide-5.png' }
+      ];
+
+      for (const slide of slides) {
+        await downloadSlide(slide.id, slide.name);
+        // Small pause to prevent browser throttling downloads
+        await new Promise(resolve => setTimeout(resolve, 300));
+      }
     }
   </script>
 </body>
