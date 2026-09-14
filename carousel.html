@@ -3,23 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DraftsRush - 60-Second Scene Carousel Generator</title>
+  <title>DraftsRush - 60-Second Scene Carousel Generator (Fixed)</title>
   
-  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- html2canvas for client-side PNG export -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-  <!-- Google Fonts matching DraftsRush design system -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@600;700;900&display=swap" rel="stylesheet">
 
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #2b2d35;
+      background-color: #1e2025;
     }
     .brand-font {
       font-family: 'Space Grotesk', sans-serif;
@@ -27,13 +23,7 @@
     .mono-font {
       font-family: 'JetBrains Mono', monospace;
     }
-    .brutal-shadow {
-      box-shadow: 12px 12px 0px #111317;
-    }
-    .brutal-shadow-sm {
-      box-shadow: 8px 8px 0px #111317;
-    }
-    /* Fixed 4:5 Instagram Portrait Resolution (1080 x 1350) */
+    /* Fixed 4:5 Instagram Portrait Resolution */
     .insta-slide {
       width: 1080px;
       height: 1350px;
@@ -41,29 +31,37 @@
       min-height: 1350px;
       position: relative;
     }
-    .control-btn:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 6px 6px 0px #000;
+    /* Clean, reliable brutalist offset container without html2canvas render bugs */
+    .brutal-card-wrap {
+      position: relative;
+      background-color: #111317;
+      padding-bottom: 10px;
+      padding-right: 10px;
     }
-    .control-btn:active {
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0px #000;
+    .brutal-card-inner {
+      background-color: #ffffff;
+      border: 4px solid #111317;
+      width: 100%;
+      height: 100%;
+    }
+    .control-btn:hover {
+      transform: translate(-2px, -2px);
     }
   </style>
 </head>
 <body class="p-8 text-[#111317]">
 
   <!-- Top Toolbar -->
-  <header class="max-w-6xl mx-auto mb-12 border-4 border-black bg-[#FFE600] p-6 brutal-shadow flex flex-col md:flex-row items-center justify-between gap-4">
+  <header class="max-w-6xl mx-auto mb-12 border-4 border-black bg-[#FFE600] p-6 flex flex-col md:flex-row items-center justify-between gap-4">
     <div>
       <div class="inline-block bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase mb-2">
         DraftsRush Studio Production
       </div>
       <h1 class="text-3xl font-black brand-font tracking-tight text-black">
-        Instagram Carousel Generator (1080 × 1350 px)
+        Instagram Carousel Generator (Fixed Clean Export)
       </h1>
       <p class="text-sm font-semibold text-gray-800">
-        Topic: How To Write A 60-Second Scene. Click the button above any slide to export a clean PNG.
+        Replaced CSS box-shadows with native DOM containers to eliminate black-box render bugs.
       </p>
     </div>
     <div class="flex items-center gap-3">
@@ -101,13 +99,16 @@
           <div class="inline-block bg-black text-white px-5 py-2 font-black brand-font text-xl uppercase tracking-widest">
             Screenwriting & Vertical Video
           </div>
-          <h2 class="text-7xl font-black brand-font leading-[1.05] tracking-tight uppercase">
+          <h2 class="text-7xl font-black brand-font leading-[1.05] tracking-tight uppercase text-black">
             HOW TO WRITE A 60-SECOND SCENE THAT NEVER DRAGS
           </h2>
-          <div class="border-4 border-black bg-white p-8 brutal-shadow-sm">
-            <p class="text-2xl font-bold text-gray-900 leading-snug">
-              The 140-word ceiling, late-entry mechanics, and the end-on-decision rule.
-            </p>
+          
+          <div class="brutal-card-wrap">
+            <div class="brutal-card-inner bg-white p-8">
+              <p class="text-3xl font-black text-black leading-snug brand-font uppercase">
+                The 140-word ceiling, late-entry mechanics, and the end-on-decision rule.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -143,34 +144,41 @@
         </div>
 
         <div class="space-y-8 my-auto">
-          <h2 class="text-6xl font-black brand-font leading-none uppercase tracking-tight">
+          <h2 class="text-6xl font-black brand-font leading-none uppercase tracking-tight text-black">
             1 PAGE = 60 SECONDS.<br>
             MOST WRITERS CRAM TOO MUCH.
           </h2>
 
-          <div class="border-4 border-black bg-white p-10 brutal-shadow space-y-6">
-            <p class="text-2xl font-medium text-gray-800 leading-relaxed">
-              Standard screenplays assume 1 formatted page equals 1 minute of screen time.
-            </p>
-            <p class="text-2xl font-medium text-gray-800 leading-relaxed">
-              In short vertical scripts, writers often pack <span class="bg-red-200 px-2 py-0.5 font-bold border-2 border-black">200+ words</span> into 60 seconds. The speaker ends up rushing, leaving zero pauses for visual cuts.
-            </p>
-            <p class="text-2xl font-black text-black">
-              Viewer cognitive fatigue sets in, causing retention drop-off.
-            </p>
+          <div class="brutal-card-wrap">
+            <div class="brutal-card-inner bg-white p-10 space-y-6">
+              <p class="text-2xl font-bold text-gray-900 leading-relaxed">
+                Standard screenplays assume 1 formatted page equals 1 minute of screen time[cite: 15].
+              </p>
+              <p class="text-2xl font-bold text-gray-900 leading-relaxed">
+                In short vertical scripts, writers often pack <span class="bg-[#FFE600] text-black px-2 py-0.5 font-black border-2 border-black">200+ words</span> into 60 seconds[cite: 15]. The speaker ends up rushing, leaving zero pauses for visual cuts.
+              </p>
+              <p class="text-2xl font-black text-red-600">
+                Viewer cognitive fatigue sets in, causing retention drop-off.
+              </p>
+            </div>
           </div>
 
           <!-- Benchmark Grid -->
           <div class="grid grid-cols-2 gap-6">
-            <div class="border-4 border-black bg-[#FFF6CF] p-6 brutal-shadow-sm">
-              <span class="mono-font font-black text-sm uppercase text-gray-700">Target Range</span>
-              <div class="text-4xl font-black brand-font mt-2">130-150 WPM</div>
-              <p class="text-base font-semibold mt-2 text-gray-800">Allows natural cadence and B-roll breathing room.</p>
+            <div class="brutal-card-wrap">
+              <div class="brutal-card-inner bg-[#FFF6CF] p-6">
+                <span class="mono-font font-black text-sm uppercase text-gray-800">Target Range</span>
+                <div class="text-4xl font-black brand-font mt-2 text-black">130-150 WPM</div>
+                <p class="text-base font-bold mt-2 text-gray-800">Allows natural cadence and B-roll breathing room[cite: 15].</p>
+              </div>
             </div>
-            <div class="border-4 border-black bg-red-100 p-6 brutal-shadow-sm">
-              <span class="mono-font font-black text-sm uppercase text-red-700">Drop-Off Danger</span>
-              <div class="text-4xl font-black brand-font mt-2">&gt; 175 WPM</div>
-              <p class="text-base font-semibold mt-2 text-gray-800">Audio wall of text that viewers skip.</p>
+
+            <div class="brutal-card-wrap">
+              <div class="brutal-card-inner bg-red-100 p-6">
+                <span class="mono-font font-black text-sm uppercase text-red-700">Drop-Off Danger</span>
+                <div class="text-4xl font-black brand-font mt-2 text-red-700">&gt; 175 WPM</div>
+                <p class="text-base font-bold mt-2 text-gray-800">Audio wall of text that viewers swipe away from[cite: 15].</p>
+              </div>
             </div>
           </div>
         </div>
@@ -202,34 +210,38 @@
         </div>
 
         <div class="space-y-8 my-auto">
-          <h2 class="text-6xl font-black brand-font leading-none uppercase tracking-tight">
+          <h2 class="text-6xl font-black brand-font leading-none uppercase tracking-tight text-black">
             ARRIVE AT SECOND 10.<br>
             LEAVE AT SECOND 50.
           </h2>
 
-          <p class="text-2xl font-medium text-gray-900 leading-relaxed">
+          <p class="text-2xl font-bold text-gray-900 leading-relaxed">
             Cut conversational throat-clearing. In a 60-second scene, you cannot afford greetings, walking up to chairs, or settling in.
           </p>
 
           <div class="space-y-6">
-            <div class="border-4 border-black bg-[#D6E4EE] p-8 brutal-shadow-sm">
-              <div class="flex items-center gap-3 mb-3">
-                <span class="bg-black text-white px-3 py-1 mono-font font-bold text-sm uppercase">Second 00:00 - 00:10</span>
-                <span class="brand-font font-black text-xl uppercase">Start In Media Res</span>
+            <div class="brutal-card-wrap">
+              <div class="brutal-card-inner bg-[#D6E4EE] p-8">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="bg-black text-white px-3 py-1 mono-font font-bold text-sm uppercase">Second 00:00 - 00:10</span>
+                  <span class="brand-font font-black text-2xl uppercase text-black">Start In Media Res</span>
+                </div>
+                <p class="text-xl font-bold text-gray-900 leading-relaxed">
+                  Start mid-argument or mid-action. One character is already holding the letter or slamming the desk.
+                </p>
               </div>
-              <p class="text-xl font-medium text-gray-900">
-                Start mid-argument or mid-action. One character is already holding the letter or slamming the desk.
-              </p>
             </div>
 
-            <div class="border-4 border-black bg-[#FFF6CF] p-8 brutal-shadow-sm">
-              <div class="flex items-center gap-3 mb-3">
-                <span class="bg-black text-white px-3 py-1 mono-font font-bold text-sm uppercase">Second 00:50 - 01:00</span>
-                <span class="brand-font font-black text-xl uppercase">Cut On The Decision</span>
+            <div class="brutal-card-wrap">
+              <div class="brutal-card-inner bg-[#FFF6CF] p-8">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="bg-black text-white px-3 py-1 mono-font font-bold text-sm uppercase">Second 00:50 - 01:00</span>
+                  <span class="brand-font font-black text-2xl uppercase text-black">Cut On The Decision</span>
+                </div>
+                <p class="text-xl font-bold text-gray-900 leading-relaxed">
+                  Do not write goodbyes or consequences. Cut right as the character commits to the risk. Leave unresolved friction.
+                </p>
               </div>
-              <p class="text-xl font-medium text-gray-900">
-                Do not write the goodbyes or aftermath. Cut right as the character commits to the risk. Leave unresolved friction.
-              </p>
             </div>
           </div>
         </div>
@@ -261,30 +273,34 @@
         </div>
 
         <div class="space-y-8 my-auto">
-          <h2 class="text-5xl font-black brand-font uppercase tracking-tight">
+          <h2 class="text-5xl font-black brand-font uppercase tracking-tight text-black">
             SEE THE DIFFERENCE ON THE PAGE
           </h2>
 
           <!-- Bad Example Card -->
-          <div class="border-4 border-black bg-white p-8 brutal-shadow-sm">
-            <div class="flex items-center justify-between border-b-2 border-black pb-3 mb-4">
-              <span class="bg-red-500 text-white px-3 py-1 font-black brand-font text-sm uppercase">Weak Pacing (190 Words)</span>
-              <span class="mono-font text-xs font-bold text-red-700">Delayed Friction</span>
+          <div class="brutal-card-wrap">
+            <div class="brutal-card-inner bg-white p-8">
+              <div class="flex items-center justify-between border-b-2 border-black pb-3 mb-4">
+                <span class="bg-red-600 text-white px-3 py-1 font-black brand-font text-sm uppercase">Weak Pacing (190 Words)</span>
+                <span class="mono-font text-sm font-bold text-red-700">Delayed Friction</span>
+              </div>
+              <p class="mono-font text-xl text-gray-800 font-bold leading-relaxed">
+                "Hey Marcus, thanks for meeting me here. I wanted to check in on the project we discussed yesterday. Did you manage to find that missing ledger in the safe? Because if we don't find it, we might be in big trouble with the partners..."
+              </p>
             </div>
-            <p class="mono-font text-lg text-gray-700 leading-relaxed">
-              "Hey Marcus, thanks for meeting me here. I wanted to check in on the project we discussed yesterday. Did you manage to find that missing ledger in the safe? Because if we don't find it, we might be in big trouble with the partners..."
-            </p>
           </div>
 
           <!-- Good Example Card -->
-          <div class="border-4 border-black bg-[#FFE600] p-8 brutal-shadow">
-            <div class="flex items-center justify-between border-b-2 border-black pb-3 mb-4">
-              <span class="bg-black text-white px-3 py-1 font-black brand-font text-sm uppercase">Retention Pacing (138 Words)</span>
-              <span class="mono-font text-xs font-bold text-black">Instant Stakes</span>
+          <div class="brutal-card-wrap">
+            <div class="brutal-card-inner bg-[#FFE600] p-8">
+              <div class="flex items-center justify-between border-b-2 border-black pb-3 mb-4">
+                <span class="bg-black text-white px-3 py-1 font-black brand-font text-sm uppercase">Retention Pacing (138 Words)</span>
+                <span class="mono-font text-sm font-black text-black">Instant Stakes</span>
+              </div>
+              <p class="mono-font text-2xl text-black font-black leading-relaxed">
+                "The safe was cleared out at noon. Three pages are gone from the ledger. We have four hours to balance this payroll, or thirty workers walk off the floor."
+              </p>
             </div>
-            <p class="mono-font text-xl text-black font-bold leading-relaxed">
-              "The safe was cleared out at noon. Three pages are gone from the ledger. We have four hours to balance this payroll, or thirty workers walk off the floor."
-            </p>
           </div>
         </div>
 
@@ -315,31 +331,33 @@
         </div>
 
         <div class="space-y-10 my-auto text-center">
-          <div class="inline-block bg-white border-4 border-black px-6 py-2 font-black mono-font text-base uppercase">
-            Client-Side Utility • Zero Signups • Zero Fees
+          <div class="inline-block bg-white border-4 border-black px-6 py-2 font-black mono-font text-base uppercase text-black">
+            Client-Side Utility • Zero Signups • Zero Fees[cite: 1]
           </div>
 
-          <h2 class="text-7xl font-black brand-font leading-[1.05] uppercase tracking-tight">
+          <h2 class="text-7xl font-black brand-font leading-[1.05] uppercase tracking-tight text-black">
             CALCULATE YOUR SCRIPT RUNTIME BEFORE YOU SHOOT
           </h2>
 
-          <div class="border-4 border-black bg-white p-10 brutal-shadow text-left max-w-2xl mx-auto space-y-4">
-            <div class="text-2xl font-bold text-black brand-font uppercase mb-2">
-              The Short-Form Script Timer
+          <div class="brutal-card-wrap max-w-3xl mx-auto">
+            <div class="brutal-card-inner bg-white p-10 text-left space-y-4">
+              <div class="text-3xl font-black text-black brand-font uppercase mb-2">
+                The Short-Form Script Timer
+              </div>
+              <ul class="text-xl font-bold space-y-3 mono-font text-gray-900">
+                <li>• Paste your draft for exact speaking durations[cite: 15]</li>
+                <li>• Calibrate between 130 to 175 WPM rates[cite: 15]</li>
+                <li>• Flags the 3-second hook cutoff automatically[cite: 15]</li>
+              </ul>
             </div>
-            <ul class="text-lg font-semibold space-y-3 mono-font text-gray-800">
-              <li>• Paste your draft for exact speaking durations</li>
-              <li>• Calibrate between 130 to 175 WPM rates</li>
-              <li>• Flags the 3-second hook cutoff automatically</li>
-            </ul>
           </div>
 
-          <div class="border-4 border-black bg-black text-white p-6 font-black brand-font text-3xl tracking-wide uppercase inline-block brutal-shadow-sm">
+          <div class="border-4 border-black bg-black text-white p-6 font-black brand-font text-4xl tracking-wide uppercase inline-block">
             DRAFTSRUSH.COM/TOOLS
           </div>
         </div>
 
-        <div class="flex justify-between items-center border-t-4 border-black pt-8 mono-font font-bold text-lg">
+        <div class="flex justify-between items-center border-t-4 border-black pt-8 mono-font font-bold text-lg text-black">
           <span>SAVE THIS POST</span>
           <span>DRAFTSRUSH STUDIO</span>
         </div>
@@ -348,18 +366,18 @@
 
   </main>
 
-  <!-- Download script via html2canvas -->
+  <!-- Clean html2canvas download handler -->
   <script>
     async function downloadSlide(slideId, fileName) {
       const slide = document.getElementById(slideId);
       if (!slide) return;
       
-      // Render the element cleanly at 1:1 resolution (1080x1350)
       const canvas = await html2canvas(slide, {
         scale: 1,
         width: 1080,
         height: 1350,
         useCORS: true,
+        backgroundColor: null,
         logging: false
       });
 
@@ -380,8 +398,7 @@
 
       for (const slide of slides) {
         await downloadSlide(slide.id, slide.name);
-        // Small pause to prevent browser throttling downloads
-        await new Promise(resolve => setTimeout(resolve, 300));
+        await new Promise(resolve => setTimeout(resolve, 350));
       }
     }
   </script>
