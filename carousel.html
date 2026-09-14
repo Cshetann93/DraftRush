@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DraftsRush - Color Psychology Reel Suite</title>
+  <title>DraftsRush - Top 6 Rules of Cinematography</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
@@ -10,7 +10,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: #0B0C0E;
+      background-color: #111317;
       color: #FFFFFF;
       font-family: 'Inter', sans-serif;
       padding: 30px 20px;
@@ -55,7 +55,7 @@
       width: 100%;
     }
     .card {
-      background: #171A21;
+      background: #1C1F26;
       border: 2px solid #333;
       padding: 14px;
       display: flex;
@@ -68,7 +68,7 @@
       aspect-ratio: 9 / 16;
       border: 2px solid #000;
       margin-bottom: 12px;
-      background: #111317;
+      background: #E2E4E9;
     }
     .btn-single {
       background: #D6E4EE;
@@ -88,122 +88,104 @@
 <body>
 
   <div class="header-panel">
-    <h1>Color Psychology Reel Deck (1080x1920)</h1>
-    <p>1 Intro Card + 10 Film Reference Breakdowns in Night Studio Brutalist Theme</p>
-    <button class="btn-zip" onclick="downloadAll()">Download All 11 PNGs (.ZIP)</button>
+    <h1>Top 6 Cinematography Rules Reel (1080x1920)</h1>
+    <p>1 Intro Card + 6 Camera Angle Rules with Diagrams + 1 Conversion CTA</p>
+    <button class="btn-zip" onclick="downloadAll()">Download All 8 PNGs (.ZIP)</button>
   </div>
 
   <div class="grid" id="gridContainer"></div>
 
   <script>
-    const reelData = [
+    const rulesData = [
       {
         type: "intro",
-        badge: "CINEMA VISUAL PROTOCOL",
-        title1: "COLOR",
-        title2: "PSYCHOLOGY",
-        deck: "How blockbuster filmmakers use subconscious palette grading to manipulate viewer emotion without speaking a word.",
-        note: "10 famous movie palettes broken down with practical visual cues for your next video blueprint."
+        badge: "CINEMATOGRAPHY PROTOCOL",
+        title1: "TOP 6 RULES",
+        title2: "OF CAMERA",
+        deck: "Every angle change alters how the viewer subconsciously judges your subject. When framing is arbitrary, visual storytelling dies.",
+        subDeck: "6 essential geometric camera rules broken down with diagram blueprints and exact script use cases."
       },
       {
-        type: "case",
+        type: "rule",
         num: "01",
-        paletteName: "DIGITAL SICKNESS GREEN",
-        film: "THE MATRIX (1999)",
-        swatches: ["#021B0B", "#0D4D20", "#22B14C", "#A8F5A2"],
-        emotion: "Unnatural control, simulated artificiality, claustrophobia.",
-        analysis: "Every scene set inside the simulated Matrix runs through a sharp green tint. Skin tones turn pallid, making audiences instinctively feel uneasy and detached.",
-        cue: "Specify fluorescent green cast in your script notes whenever a scene depicts corporate fatigue or sterile screens."
+        ruleName: "THE 180-DEGREE RULE",
+        tag: "SPATIAL CONTINUITY",
+        bg: "#E2E4E9",
+        accentCard: "#FFF6CF",
+        diagramType: "180degree",
+        situation: "Two characters facing each other in conversation.",
+        impact: "Draws an imaginary axis between characters. Keeping cameras on one side preserves screen direction. Crossing it makes actors appear to face the wrong way.",
+        scriptCue: "In dual-column notes, label setups as 'Cam A (Host Profile) / Cam B (Guest Match)' to prevent crossed lines in the edit."
       },
       {
-        type: "case",
+        type: "rule",
         num: "02",
-        paletteName: "DESOLATE AMBER DUST",
-        film: "BLADE RUNNER 2049 (2017)",
-        swatches: ["#2B1100", "#783200", "#D97706", "#FDE68A"],
-        emotion: "Total isolation, ecological ruins, lost memory.",
-        analysis: "K's arrival in Las Vegas uses high-density orange-amber haze. The absence of blue or white light strips away hope and leaves the protagonist looking microscopic.",
-        cue: "Use monochromatic warm amber grading for dystopian scenarios, abandoned structures, or extreme solo quests."
+        ruleName: "LOW ANGLE VS HIGH ANGLE",
+        tag: "POWER DYNAMICS",
+        bg: "#D6E4EE",
+        accentCard: "#FFFFFF",
+        diagramType: "angles",
+        situation: "Confrontations, negotiations, villains, or helpless victims.",
+        impact: "Shooting upward from below makes subjects appear dominant, menacing, or heroic. Shooting downward from above shrinks them into vulnerable or trapped positions.",
+        scriptCue: "Add '[LOW ANGLE - 35mm PUSH]' when a protagonist takes charge, or '[HIGH ANGLE - CRANE DOWN]' to highlight defeat."
       },
       {
-        type: "case",
+        type: "rule",
         num: "03",
-        paletteName: "VULNERABLE CRIMSON & RUST",
-        film: "HER (2013)",
-        swatches: ["#3F0713", "#9F1239", "#E11D48", "#FECDD3"],
-        emotion: "Longing, emotional exposure, fragile intimacy.",
-        analysis: "Director Spike Jonze banned the color blue from set design. By bathing Theodore in soft reds, oranges, and warm woods, the film turns technology into a warm, lonely hug.",
-        cue: "Write soft red wardrobe cues for characters desperate for connection or navigating grief."
+        ruleName: "THE DUTCH ANGLE (TILT)",
+        tag: "PSYCHOLOGICAL UNREST",
+        bg: "#E2E4E9",
+        accentCard: "#FFF1F2",
+        diagramType: "dutch",
+        situation: "Panic, intoxication, disorientation, or narrative deception.",
+        impact: "Tilting the camera 15 to 30 degrees off the horizontal axis strips stability from the room, making viewers feel instinctively uncomfortable or suspicious.",
+        scriptCue: "Use '[CANTED ANGLE / DUTCH ROLL]' right before an unexpected plot twist or during a psychological breakdown."
       },
       {
-        type: "case",
+        type: "rule",
         num: "04",
-        paletteName: "KINETIC HYPER-TEAL & ORANGE",
-        film: "MAD MAX: FURY ROAD (2015)",
-        swatches: ["#064E3B", "#0E7490", "#C2410C", "#F97316"],
-        emotion: "Relentless heat, violent momentum, visceral adrenaline.",
-        analysis: "George Miller pushed desert sand to scorching nuclear orange and saturated the sky into deep cobalt teal. High complementary contrast keeps eyes glued through rapid cuts.",
-        cue: "Pair warm actor skin tones with cool background light to keep high-speed chase scenes visually separated."
+        ruleName: "RULE OF THIRDS & EYE-LINE",
+        tag: "COMPOSITIONAL BALANCE",
+        bg: "#CCD0DC",
+        accentCard: "#FFFFFF",
+        diagramType: "thirds",
+        situation: "Standard dialogue scenes, interviews, and documentary setups.",
+        impact: "Splits the screen into a 3x3 grid. Placing eyes along the top horizontal third creates natural visual comfort. Centering works for tension, but thirds keep flow.",
+        scriptCue: "Note '[FRAMED STAGE LEFT - THIRDS]' so editors have dedicated negative space to pop up on-screen data or hook graphics."
       },
       {
-        type: "case",
+        type: "rule",
         num: "05",
-        paletteName: "NOSTALGIC CONFECTION PINK",
-        film: "THE GRAND BUDAPEST HOTEL (2014)",
-        swatches: ["#4A044E", "#A21CAF", "#F472B6", "#FCE7F3"],
-        emotion: "Faded luxury, storybook whimsy, melancholic denial.",
-        analysis: "Wes Anderson builds emotional armor through pastel pinks, purples, and symmetrical framing, masking the grim advance of war with sugar-coated nostalgia.",
-        cue: "Apply saturated pastel palettes when your script explores naive characters or satirical status symbols."
+        ruleName: "LEAD ROOM & LOOKING SPACE",
+        tag: "ACTION DIRECTION",
+        bg: "#FFF6CF",
+        accentCard: "#D6E4EE",
+        diagramType: "leadroom",
+        situation: "Moving subjects, walking shots, or driving sequences.",
+        impact: "Leave open frame space in the direction the subject is looking or walking. Framing someone right against the edge feels suffocated unless that panic is intentional.",
+        scriptCue: "Write '[TRACKING - GENEROUS LEAD ROOM]' for purposeful journeys, or '[NOSE TO BORDER]' when a character is backed into a corner."
       },
       {
-        type: "case",
+        type: "rule",
         num: "06",
-        paletteName: "ROTTING OFFICE BILE & SLATE",
-        film: "FIGHT CLUB (1999)",
-        swatches: ["#141E18", "#334139", "#847B36", "#D4CE88"],
-        emotion: "Insomnia, consumerist nausea, spiritual decay.",
-        analysis: "David Fincher bathed corporate cubicles and IKEA apartments in murky dirty-yellows and fluorescent greenish slates to visualize the narrator’s mental rot.",
-        cue: "Use bilious green-yellow lighting cues to signal a character trapped in repetitive mental exhaustion."
+        ruleName: "DIRTY OVER-THE-SHOULDER",
+        tag: "INTIMACY & PROXIMITY",
+        bg: "#D6E4EE",
+        accentCard: "#FFFFFF",
+        diagramType: "ots",
+        situation: "Intense one-on-one arguments, romance, or interrogations.",
+        impact: "Including a slice of the foreground character's shoulder or hair ties the two actors into a shared tangible space, forcing the audience into the conversation.",
+        scriptCue: "Use '[DIRTY OTS - TIGHT ON EYES]' to raise emotional tension without cutting away to an isolated, lonely single."
       },
       {
-        type: "case",
-        num: "07",
-        paletteName: "COLD INDUSTRIAL CYAN",
-        film: "THE DARK KNIGHT (2008)",
-        swatches: ["#02182B", "#0B3954", "#1E6B7B", "#BEE9E8"],
-        emotion: "Moral ambiguity, institutional corruption, clinical dread.",
-        analysis: "Gotham's nights are not pure black; they are graded in cool steel-blues and shadows. Nolan uses this surgical palette to frame crime as a systemic societal infection.",
-        cue: "Call for deep desaturated cyans and steel tones when scripting crime, investigative reporting, or tense interrogation."
-      },
-      {
-        type: "case",
-        num: "08",
-        paletteName: "SATURATED FAIRYTALE COMPLEMENT",
-        film: "AMÉLIE (2001)",
-        swatches: ["#14532D", "#15803D", "#B91C1C", "#FDE047"],
-        emotion: "Playful eccentricity, childlike optimism, sensory warmth.",
-        analysis: "Jean-Pierre Jeunet keyed the whole visual world around complementary forest green, vermilion red, and luminous amber, turning everyday Paris into a magic-realist storybook.",
-        cue: "Stack red and green accents inside small interior sets to communicate quirky, whimsical worldviews."
-      },
-      {
-        type: "case",
-        num: "09",
-        paletteName: "HARSH SEPIA BORDER BLEACH",
-        film: "TRAFFIC (2000)",
-        swatches: ["#451A03", "#78350F", "#D97706", "#FBBF24"],
-        emotion: "Suffocating heat, lawlessness, unsparing exposure.",
-        analysis: "Steven Soderbergh used extreme yellow-brown tobacco filters for Mexico, cold high-grain blue for Washington DC, and sun-bleached green for San Diego to define narrative geography.",
-        cue: "Change your color profile entirely between storyline branches so the viewer immediately registers location shifts."
-      },
-      {
-        type: "case",
-        num: "10",
-        paletteName: "TWILIGHT VIOLET & PRIMARY POP",
-        film: "LA LA LAND (2016)",
-        swatches: ["#1E1B4B", "#4C1D95", "#8B5CF6", "#FDE047"],
-        emotion: "Dreamlike romanticism vs cold reality checks.",
-        analysis: "Damien Chazelle contrasts deep twilight purple-blue skies against vivid primary yellow dresses, visually dramatizing the tension between Hollywood fantasy and sacrifice.",
-        cue: "Use saturated twilight backdrops when scripting pivotal crossroads or bittersweet choices."
+        type: "cta",
+        badge: "PRODUCTION MASTERCLASS",
+        title: "WANT THE FULL BLUEPRINT?",
+        deck: "Cinematography only works when your script maps every lens, angle, and cut before the crew arrives on set.",
+        boxTitle: "DIRECT SCRIPT INTAKE & ADVICE",
+        boxText: "DM us 'COURSE' on Instagram for our private production guides and shot-planning decks, or book a custom video script at draftsrush.com.",
+        btn1: "DM 'COURSE' ON INSTAGRAM",
+        btn2: "VISIT DRAFTSRUSH.COM"
       }
     ];
 
@@ -240,7 +222,7 @@
     }
 
     // Build Cards
-    reelData.forEach((item, idx) => {
+    rulesData.forEach((item, idx) => {
       const card = document.createElement('div');
       card.className = 'card';
 
@@ -252,166 +234,432 @@
 
       const btn = document.createElement('button');
       btn.className = 'btn-single';
-      btn.innerText = idx === 0 ? 'Download Title Card PNG' : `Download Case 0${idx} PNG`;
-      btn.onclick = () => downloadSingle(canvas, idx === 0 ? 'color-psychology-00-intro.png' : `color-psychology-0${idx}.png`);
+      btn.innerText = idx === 0 ? 'Download Title Card PNG' : (idx === 7 ? 'Download CTA Frame PNG' : `Download Rule 0${idx} PNG`);
+      btn.onclick = () => downloadSingle(canvas, idx === 0 ? 'cinematography-00-intro.png' : (idx === 7 ? 'cinematography-07-cta.png' : `cinematography-0${idx}-rule.png`));
       card.appendChild(btn);
 
       container.appendChild(card);
       canvases.push(canvas);
     });
 
+    // Custom Diagram Vector Drawers
+    function drawDiagram(ctx, type, x, y, w, h) {
+      ctx.save();
+      // Graphic viewport box
+      drawBrutalBox(ctx, x, y, w, h, '#FFFFFF', '#000000', 6, 10);
+
+      const cx = x + w / 2;
+      const cy = y + h / 2;
+
+      if (type === "180degree") {
+        // Line of action
+        ctx.strokeStyle = '#EF4444';
+        ctx.lineWidth = 4;
+        ctx.setLineDash([8, 8]);
+        ctx.beginPath();
+        ctx.moveTo(x + 80, cy);
+        ctx.lineTo(x + w - 80, cy);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Actor 1 & 2
+        drawBrutalBox(ctx, cx - 180, cy - 25, 60, 50, '#111317', '#000', 3, 0);
+        drawBrutalBox(ctx, cx + 120, cy - 25, 60, 50, '#111317', '#000', 3, 0);
+        ctx.fillStyle = '#FFE600';
+        ctx.font = '900 16px "Space Grotesk", sans-serif';
+        ctx.fillText('A1', cx - 165, cy + 8);
+        ctx.fillText('A2', cx + 135, cy + 8);
+
+        // Safe Arc (Green 180-deg zone)
+        ctx.strokeStyle = '#10B981';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 140, 0, Math.PI, false);
+        ctx.stroke();
+
+        // Cameras on safe side
+        drawBrutalBox(ctx, cx - 110, cy + 90, 50, 40, '#10B981', '#000', 3, 0);
+        drawBrutalBox(ctx, cx + 60, cy + 90, 50, 40, '#10B981', '#000', 3, 0);
+        
+        // Crossed Camera on forbidden side
+        drawBrutalBox(ctx, cx - 25, cy - 110, 50, 40, '#EF4444', '#000', 3, 0);
+        ctx.fillStyle = '#EF4444';
+        ctx.font = '900 24px sans-serif';
+        ctx.fillText('✕', cx - 10, cy - 80);
+
+        // Label
+        ctx.fillStyle = '#111317';
+        ctx.font = '800 16px "JetBrains Mono", monospace';
+        ctx.fillText('SAFE CAMERA ZONE (180°)', cx - 120, cy + 160);
+
+      } else if (type === "angles") {
+        // Low Angle Setup (Left)
+        drawBrutalBox(ctx, x + 60, cy + 60, 55, 45, '#3B82F6', '#000', 3, 0); // Cam
+        ctx.strokeStyle = '#3B82F6';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(x + 115, cy + 70);
+        ctx.lineTo(x + 240, cy - 60);
+        ctx.stroke();
+
+        // Subject dominant
+        drawBrutalBox(ctx, x + 240, cy - 90, 60, 110, '#FFE600', '#000', 4, 4);
+        ctx.fillStyle = '#000';
+        ctx.font = '900 14px "Space Grotesk", sans-serif';
+        ctx.fillText('HERO', x + 250, cy - 30);
+        ctx.fillStyle = '#3B82F6';
+        ctx.font = '800 15px "JetBrains Mono", monospace';
+        ctx.fillText('LOW ANGLE (POWER)', x + 50, cy + 140);
+
+        // Vertical divider
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(cx + 20, y + 30);
+        ctx.lineTo(cx + 20, y + h - 30);
+        ctx.stroke();
+
+        // High Angle Setup (Right)
+        drawBrutalBox(ctx, x + w - 120, cy - 90, 55, 45, '#EF4444', '#000', 3, 0); // Cam
+        ctx.strokeStyle = '#EF4444';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(x + w - 120, cy - 65);
+        ctx.lineTo(cx + 90, cy + 60);
+        ctx.stroke();
+
+        // Subject small
+        drawBrutalBox(ctx, cx + 90, cy + 30, 50, 60, '#E2E4E9', '#000', 3, 0);
+        ctx.fillStyle = '#EF4444';
+        ctx.font = '800 15px "JetBrains Mono", monospace';
+        ctx.fillText('HIGH ANGLE (WEAK)', cx + 55, cy + 140);
+
+      } else if (type === "dutch") {
+        // Tilted frame inside
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(-22 * Math.PI / 180);
+
+        ctx.strokeStyle = '#FB7185';
+        ctx.lineWidth = 5;
+        ctx.strokeRect(-180, -110, 360, 220);
+
+        // Subject inside tilted
+        drawBrutalBox(ctx, -30, -50, 60, 100, '#FFE600', '#000', 3, 0);
+        ctx.fillStyle = '#000';
+        ctx.font = '900 18px "Space Grotesk", sans-serif';
+        ctx.fillText('TENSION', -38, 10);
+        ctx.restore();
+
+        // Angle indicator
+        ctx.fillStyle = '#FB7185';
+        ctx.font = '800 18px "JetBrains Mono", monospace';
+        ctx.fillText('⟳ -22° CANTED HORIZON LINE', cx - 140, y + h - 25);
+
+      } else if (type === "thirds") {
+        // Grid lines
+        const thirdW = (w - 80) / 3;
+        const thirdH = (h - 60) / 3;
+        const gx = x + 40;
+        const gy = y + 30;
+
+        ctx.strokeStyle = '#94A3B8';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(gx, gy, thirdW * 3, thirdH * 3);
+
+        // Vertical lines
+        ctx.beginPath();
+        ctx.moveTo(gx + thirdW, gy); ctx.lineTo(gx + thirdW, gy + thirdH * 3);
+        ctx.moveTo(gx + thirdW * 2, gy); ctx.lineTo(gx + thirdW * 2, gy + thirdH * 3);
+        // Horizontal lines
+        ctx.moveTo(gx, gy + thirdH); ctx.lineTo(gx + thirdW * 3, gy + thirdH);
+        ctx.moveTo(gx, gy + thirdH * 2); ctx.lineTo(gx + thirdW * 3, gy + thirdH * 2);
+        ctx.stroke();
+
+        // Subject placed at intersection
+        drawBrutalBox(ctx, gx + thirdW - 25, gy + thirdH - 25, 50, 90, '#FFE600', '#000', 4, 4);
+
+        // Intersection points
+        ctx.fillStyle = '#EF4444';
+        [
+          [gx + thirdW, gy + thirdH],
+          [gx + thirdW * 2, gy + thirdH],
+          [gx + thirdW, gy + thirdH * 2],
+          [gx + thirdW * 2, gy + thirdH * 2]
+        ].forEach(([px, py]) => {
+          ctx.beginPath();
+          ctx.arc(px, py, 9, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+        });
+
+        ctx.fillStyle = '#111317';
+        ctx.font = '800 16px "JetBrains Mono", monospace';
+        ctx.fillText('EYE-LINE ANCHORED AT TOP-THIRD INTERSECTION', cx - 210, y + h - 18);
+
+      } else if (type === "leadroom") {
+        // Subject at left side looking right
+        drawBrutalBox(ctx, x + 80, cy - 60, 80, 120, '#111317', '#000', 4, 0);
+        ctx.fillStyle = '#FFE600';
+        ctx.font = '900 18px "Space Grotesk", sans-serif';
+        ctx.fillText('ACTOR', x + 90, cy + 5);
+
+        // Sight Vector Arrow
+        ctx.strokeStyle = '#10B981';
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.moveTo(x + 180, cy - 20);
+        ctx.lineTo(x + w - 100, cy - 20);
+        ctx.stroke();
+
+        // Arrowhead
+        ctx.fillStyle = '#10B981';
+        ctx.beginPath();
+        ctx.moveTo(x + w - 90, cy - 20);
+        ctx.lineTo(x + w - 125, cy - 35);
+        ctx.lineTo(x + w - 125, cy - 5);
+        ctx.fill();
+
+        // Green Zone Fill
+        ctx.fillStyle = 'rgba(16, 185, 129, 0.15)';
+        ctx.fillRect(x + 190, y + 40, w - 290, h - 90);
+        ctx.strokeStyle = '#10B981';
+        ctx.strokeRect(x + 190, y + 40, w - 290, h - 90);
+
+        ctx.fillStyle = '#10B981';
+        ctx.font = '800 16px "JetBrains Mono", monospace';
+        ctx.fillText('NEGATIVE LEAD SPACE / SIGHT LINE', cx - 60, cy + 40);
+
+      } else if (type === "ots") {
+        // Foreground Shoulder (Left, blurred/dark)
+        drawBrutalBox(ctx, x + 30, cy + 10, 160, 170, '#111317', '#000', 4, 0);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '800 14px "Space Grotesk", sans-serif';
+        ctx.fillText('FOREGROUND', x + 50, cy + 70);
+        ctx.fillText('SHOULDER', x + 60, cy + 90);
+
+        // Background Subject in Focus
+        drawBrutalBox(ctx, cx + 50, cy - 70, 90, 140, '#FFE600', '#000', 4, 6);
+        ctx.fillStyle = '#000000';
+        ctx.font = '900 16px "Space Grotesk", sans-serif';
+        ctx.fillText('FOCUS', cx + 70, cy - 10);
+        ctx.fillText('ACTOR', cx + 68, cy + 15);
+
+        // Sight connection line
+        ctx.strokeStyle = '#3B82F6';
+        ctx.lineWidth = 4;
+        ctx.setLineDash([6, 6]);
+        ctx.beginPath();
+        ctx.moveTo(x + 190, cy + 30);
+        ctx.lineTo(cx + 50, cy - 10);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#3B82F6';
+        ctx.font = '800 16px "JetBrains Mono", monospace';
+        ctx.fillText('TIGHT DEPTH OF FIELD (SPATIAL TENSION)', cx - 180, y + h - 20);
+      }
+
+      ctx.restore();
+    }
+
     function renderAll() {
-      reelData.forEach((data, idx) => {
+      rulesData.forEach((data, idx) => {
         const canvas = canvases[idx];
         const ctx = canvas.getContext('2d');
 
         if (data.type === "intro") {
-          // Dark Canvas with Yellow Structural Card
-          ctx.fillStyle = '#111317';
-          ctx.fillRect(0, 0, 1080, 1920);
-          ctx.lineWidth = 24;
-          ctx.strokeStyle = '#FFE600';
-          ctx.strokeRect(0, 0, 1080, 1920);
-
-          // Top Badge
-          drawBrutalBox(ctx, 90, 120, 520, 75, '#FFE600', '#000000', 4, 8);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText(data.badge, 125, 168);
-
+          // Slide 0: High-Impact Intro Card
           ctx.fillStyle = '#FFE600';
-          ctx.font = '700 28px "JetBrains Mono", monospace';
-          ctx.fillText('SERIES 01', 840, 168);
-
-          // Main White Box
-          drawBrutalBox(ctx, 90, 240, 900, 1340, '#FFFFFF', '#000000', 10, 22);
-
-          // Word 1: COLOR (Electric Yellow Backing)
-          drawBrutalBox(ctx, 140, 310, 800, 180, '#FFE600', '#000000', 8, 14);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 130px "Space Grotesk", sans-serif';
-          ctx.fillText(data.title1, 300, 445);
-
-          // Word 2: PSYCHOLOGY (Dark Container)
-          drawBrutalBox(ctx, 140, 530, 800, 170, '#111317', '#000000', 8, 14);
-          ctx.fillStyle = '#FFE600';
-          ctx.font = '900 95px "Space Grotesk", sans-serif';
-          ctx.fillText(data.title2, 175, 650);
-
-          // Swatch Teaser Strip
-          const teaserColors = ['#22B14C', '#D97706', '#E11D48', '#0E7490', '#F472B6', '#BEE9E8'];
-          teaserColors.forEach((col, cIdx) => {
-            drawBrutalBox(ctx, 140 + (cIdx * 134), 740, 124, 70, col, '#000000', 4, 6);
-          });
-
-          // Explanation Body
-          ctx.fillStyle = '#111317';
-          ctx.font = '700 36px "Inter", sans-serif';
-          wrapText(ctx, data.deck, 140, 890, 800, 54);
-
-          // Highlight Sub-Box
-          drawBrutalBox(ctx, 140, 1200, 800, 260, '#D6E4EE', '#000000', 6, 10);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText('THE SCRIPTWRITER’S TOOLKIT', 180, 1260);
-
-          ctx.fillStyle = '#222222';
-          ctx.font = '600 28px "Inter", sans-serif';
-          wrapText(ctx, data.note, 180, 1315, 720, 42);
-
-          // Bottom Bar
-          drawBrutalBox(ctx, 90, 1640, 900, 120, '#FFE600', '#000000', 6, 10);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 32px "Space Grotesk", sans-serif';
-          ctx.fillText('SWIPE FOR 10 FILM FORMULAS', 140, 1715);
-          ctx.fillText('→', 930, 1715);
-
-        } else {
-          // Night Studio Brutalist Case Frame
-          ctx.fillStyle = '#111317';
           ctx.fillRect(0, 0, 1080, 1920);
           ctx.lineWidth = 24;
           ctx.strokeStyle = '#000000';
           ctx.strokeRect(0, 0, 1080, 1920);
 
-          // Top Department Banner
-          drawBrutalBox(ctx, 90, 80, 520, 70, '#FFE600', '#000000', 0, 0);
-          ctx.fillStyle = '#000000';
+          // Top Badge
+          drawBrutalBox(ctx, 90, 130, 520, 75, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#34D399';
+          ctx.beginPath();
+          ctx.arc(130, 167, 10, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#FFFFFF';
           ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText('COLOR GRADING BLUEPRINTS', 115, 124);
+          ctx.fillText(data.badge, 155, 176);
 
-          // Slide Counter
-          drawBrutalBox(ctx, 830, 80, 160, 70, '#FFFFFF', '#000000', 4, 6);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 32px "JetBrains Mono", monospace';
+          ctx.fillText('01 / 08', 860, 176);
+
+          // Main Brutalist White Container Card
+          drawBrutalBox(ctx, 90, 250, 900, 1360, '#FFFFFF', '#000000', 10, 24);
+
+          // Pill 1: TOP 6 RULES (Coral Pink)
+          drawBrutalBox(ctx, 140, 320, 800, 180, '#FB7185', '#000000', 8, 14);
+          ctx.fillStyle = '#FFFFFF';
+          ctx.font = '900 105px "Space Grotesk", sans-serif';
+          ctx.fillText(data.title1, 180, 450);
+
+          // Pill 2: OF CAMERA (Electric Yellow)
+          drawBrutalBox(ctx, 140, 530, 800, 180, '#FFE600', '#000000', 8, 14);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 100px "Space Grotesk", sans-serif';
+          ctx.fillText(data.title2, 210, 660);
+
+          // Subtext Body
+          ctx.fillStyle = '#111317';
+          ctx.font = '700 36px "Inter", sans-serif';
+          wrapText(ctx, data.deck, 140, 800, 800, 52);
+
+          // Feature Box
+          drawBrutalBox(ctx, 140, 1040, 800, 260, '#D6E4EE', '#000000', 6, 12);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 26px "Space Grotesk", sans-serif';
+          ctx.fillText('WHY AMATEUR VIDEOS FEEL FLAT', 180, 1105);
+
+          ctx.fillStyle = '#222222';
+          ctx.font = '600 28px "Inter", sans-serif';
+          wrapText(ctx, data.subDeck, 180, 1165, 720, 42);
+
+          // Bottom Action Strip
+          drawBrutalBox(ctx, 90, 1660, 900, 120, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#FFE600';
+          ctx.font = '900 32px "Space Grotesk", sans-serif';
+          ctx.fillText('SWIPE FOR 6 CAMERA BLUEPRINTS', 140, 1735);
+          ctx.fillText('→', 930, 1735);
+
+        } else if (data.type === "rule") {
+          // Rule Cards (1 through 6)
+          ctx.fillStyle = data.bg;
+          ctx.fillRect(0, 0, 1080, 1920);
+          ctx.lineWidth = 24;
+          ctx.strokeStyle = '#000000';
+          ctx.strokeRect(0, 0, 1080, 1920);
+
+          // Top Category Header
+          drawBrutalBox(ctx, 90, 80, 480, 68, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#FFE600';
+          ctx.font = '900 24px "Space Grotesk", sans-serif';
+          ctx.fillText(`RULE ${data.num} • ${data.tag}`, 115, 122);
+
+          // Counter Badge
+          drawBrutalBox(ctx, 840, 80, 150, 68, '#FFFFFF', '#000000', 4, 6);
           ctx.fillStyle = '#000000';
           ctx.font = '900 28px "JetBrains Mono", monospace';
-          ctx.fillText(`${data.num}/10`, 860, 125);
+          ctx.fillText(`0${idx + 1}/08`, 865, 124);
 
-          // Palette Name Header Card
-          drawBrutalBox(ctx, 90, 180, 900, 170, '#FFFFFF', '#000000', 8, 14);
+          // Headline Rule Box
+          drawBrutalBox(ctx, 90, 175, 900, 130, '#FFFFFF', '#000000', 8, 14);
           ctx.fillStyle = '#000000';
-          ctx.font = '900 40px "Space Grotesk", sans-serif';
-          ctx.fillText(data.paletteName, 130, 245);
+          ctx.font = '900 42px "Space Grotesk", sans-serif';
+          ctx.fillText(data.ruleName, 130, 255);
 
-          // Film Title Pill
-          drawBrutalBox(ctx, 130, 275, 480, 48, '#FFE600', '#000000', 0, 0);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 22px "JetBrains Mono", monospace';
-          ctx.fillText(`REF: ${data.film}`, 150, 308);
+          // CUSTOM VECTOR DIAGRAM BOX (Middle Visual Blueprint)
+          drawDiagram(ctx, data.diagramType, 90, 335, 900, 440);
 
-          // 4-Swatch Color Bar
-          const swatchW = 205;
-          const swatchGap = 26;
-          data.swatches.forEach((sw, sIdx) => {
-            const sx = 90 + (sIdx * (swatchW + swatchGap));
-            drawBrutalBox(ctx, sx, 380, swatchW, 110, sw, '#000000', 6, 8);
-
-            // Hex Code Tag underneath swatch
-            ctx.fillStyle = '#A0A5B1';
-            ctx.font = '700 18px "JetBrains Mono", monospace';
-            ctx.fillText(sw, sx + 25, 525);
-          });
-
-          // Emotion Card (Soft Slate Blue #D6E4EE)
-          drawBrutalBox(ctx, 90, 560, 900, 210, '#D6E4EE', '#000000', 6, 12);
-          drawBrutalBox(ctx, 130, 595, 290, 44, '#000000', '#000000', 0, 0);
+          // WHEN TO USE IT (Context Box)
+          drawBrutalBox(ctx, 90, 810, 900, 240, data.accentCard, '#000000', 8, 14);
+          drawBrutalBox(ctx, 130, 845, 290, 45, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#FFE600';
-          ctx.font = '900 20px "Space Grotesk", sans-serif';
-          ctx.fillText('EMOTIONAL TRIGGER', 150, 625);
+          ctx.font = '900 22px "Space Grotesk", sans-serif';
+          ctx.fillText('BEST USE CASE', 150, 876);
 
           ctx.fillStyle = '#111317';
-          ctx.font = '800 34px "Inter", sans-serif';
-          wrapText(ctx, data.emotion, 130, 685, 820, 44);
+          ctx.font = '800 32px "Inter", sans-serif';
+          wrapText(ctx, data.situation, 130, 935, 820, 44);
 
-          // Cinematic Analysis (Pure White Card)
-          drawBrutalBox(ctx, 90, 800, 900, 450, '#FFFFFF', '#000000', 8, 14);
-          drawBrutalBox(ctx, 130, 835, 290, 44, '#FFE600', '#000000', 0, 0);
+          // PSYCHOLOGICAL IMPACT (White Card)
+          drawBrutalBox(ctx, 90, 1085, 900, 360, '#FFFFFF', '#000000', 8, 14);
+          drawBrutalBox(ctx, 130, 1120, 350, 45, '#FB7185', '#000000', 0, 0);
+          ctx.fillStyle = '#FFFFFF';
+          ctx.font = '900 22px "Space Grotesk", sans-serif';
+          ctx.fillText('ON-SCREEN PSYCHOLOGY', 150, 1151);
+
+          ctx.fillStyle = '#111317';
+          ctx.font = '600 30px "Inter", sans-serif';
+          wrapText(ctx, data.impact, 130, 1215, 820, 46);
+
+          // SCRIPT BLUEPRINT CUE (Electric Yellow Box)
+          drawBrutalBox(ctx, 90, 1480, 900, 240, '#FFE600', '#000000', 8, 14);
+          drawBrutalBox(ctx, 130, 1515, 330, 45, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#34D399';
+          ctx.font = '900 22px "Space Grotesk", sans-serif';
+          ctx.fillText('HOW TO SCRIPT IT (AV)', 150, 1546);
+
           ctx.fillStyle = '#000000';
-          ctx.font = '900 20px "Space Grotesk", sans-serif';
-          ctx.fillText('HOW THE MOVIE USES IT', 150, 865);
+          ctx.font = '700 27px "Inter", sans-serif';
+          wrapText(ctx, data.scriptCue, 130, 1600, 820, 38);
 
-          ctx.fillStyle = '#111317';
-          ctx.font = '600 32px "Inter", sans-serif';
-          wrapText(ctx, data.analysis, 130, 930, 820, 50);
-
-          // Script & Editorial Application Box (Cream Canvas #FFF6CF)
-          drawBrutalBox(ctx, 90, 1280, 900, 380, '#FFF6CF', '#000000', 8, 14);
-          drawBrutalBox(ctx, 130, 1315, 330, 44, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#4ADE80';
-          ctx.font = '900 20px "Space Grotesk", sans-serif';
-          ctx.fillText('HOW TO WRITE IT IN SCRIPT', 150, 1345);
-
-          ctx.fillStyle = '#111317';
-          ctx.font = '700 30px "Inter", sans-serif';
-          wrapText(ctx, data.cue, 130, 1410, 820, 46);
-
-          // Footer
-          ctx.fillStyle = '#FFE600';
+          // Footer Strip
+          ctx.fillStyle = '#000000';
           ctx.font = '800 28px "Space Grotesk", sans-serif';
-          ctx.fillText('DRAFTSRUSH STUDIO', 90, 1780);
+          ctx.fillText('DRAFTSRUSH STUDIO', 90, 1800);
 
           ctx.font = '700 26px "JetBrains Mono", monospace';
+          ctx.fillText('draftsrush.com', 720, 1800);
+
+        } else if (data.type === "cta") {
+          // Slide 8: Closing CTA Conversion Card
+          ctx.fillStyle = '#FFE600';
+          ctx.fillRect(0, 0, 1080, 1920);
+          ctx.lineWidth = 24;
+          ctx.strokeStyle = '#000000';
+          ctx.strokeRect(0, 0, 1080, 1920);
+
+          // Top Tag
+          drawBrutalBox(ctx, 90, 120, 480, 75, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#34D399';
+          ctx.beginPath();
+          ctx.arc(130, 157, 12, 0, Math.PI * 2);
+          ctx.fill();
           ctx.fillStyle = '#FFFFFF';
-          ctx.fillText('draftsrush.com', 720, 1780);
+          ctx.font = '900 24px "Space Grotesk", sans-serif';
+          ctx.fillText(data.badge, 160, 166);
+
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 32px "JetBrains Mono", monospace';
+          ctx.fillText('08 / 08', 860, 166);
+
+          // Main White Card
+          drawBrutalBox(ctx, 90, 240, 900, 1280, '#FFFFFF', '#000000', 10, 24);
+
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 78px "Space Grotesk", sans-serif';
+          ctx.fillText('STOP SHOOTING', 150, 380);
+
+          drawBrutalBox(ctx, 140, 420, 720, 95, '#FB7185', '#000000', 0, 0);
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillText('RANDOM ANGLES.', 160, 492);
+
+          ctx.fillStyle = '#111317';
+          ctx.font = '600 36px "Inter", sans-serif';
+          wrapText(ctx, data.deck, 150, 590, 780, 54);
+
+          // Course / Blueprint Intake Box
+          drawBrutalBox(ctx, 150, 820, 780, 310, '#D6E4EE', '#000000', 6, 12);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 34px "Space Grotesk", sans-serif';
+          ctx.fillText(data.boxTitle, 190, 890);
+
+          ctx.fillStyle = '#222222';
+          ctx.font = '600 28px "Inter", sans-serif';
+          wrapText(ctx, data.boxText, 190, 950, 700, 42);
+
+          // Button 1: DM (Black & Emerald)
+          drawBrutalBox(ctx, 150, 1180, 780, 110, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#34D399';
+          ctx.font = '900 36px "Space Grotesk", sans-serif';
+          ctx.fillText(data.btn1, 230, 1250);
+
+          // Button 2: Website (Electric Yellow Box)
+          drawBrutalBox(ctx, 150, 1320, 780, 110, '#FFE600', '#000000', 6, 8);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 36px "Space Grotesk", sans-serif';
+          ctx.fillText(data.btn2, 240, 1390);
+
+          // Footer
+          ctx.fillStyle = '#000000';
+          ctx.font = '800 32px "Space Grotesk", sans-serif';
+          ctx.fillText('DRAFTSRUSH STUDIO • 2026', 90, 1780);
         }
       });
     }
@@ -428,14 +676,14 @@
       canvases.forEach((canvas, idx) => {
         const dataUrl = canvas.toDataURL('image/png');
         const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "");
-        const filename = idx === 0 ? 'color-psychology-00-intro.png' : `color-psychology-0${idx}.png`;
+        const filename = idx === 0 ? 'cinematography-00-intro.png' : (idx === 7 ? 'cinematography-07-cta.png' : `cinematography-0${idx}-rule.png`);
         zip.file(filename, base64Data, { base64: true });
       });
 
       const content = await zip.generateAsync({ type: "blob" });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(content);
-      link.download = "draftsrush-color-psychology-reel.zip";
+      link.download = "draftsrush-cinematography-rules-reel.zip";
       link.click();
     }
 
