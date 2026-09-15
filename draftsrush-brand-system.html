@@ -469,7 +469,7 @@
 
   <script>
     const totalSlides = 11;
-    const slideDuration = 5200; // 5.2s per slide (~57s full run)
+    const slideDuration = 6000; // 6s per slide
     let currentSlide = 0;
     let isPlaying = true;
     let timer = null;
@@ -493,7 +493,7 @@
         setTimeout(() => {
           let charIndex = 0;
           // Slower pacing: ~24ms per character across a 3.2-second typing window
-          const speed = Math.max(35, Math.floor(4000 / fullText.length));
+          const speed = Math.max(15, Math.floor(2000 / fullText.length));
 
           const interval = setInterval(() => {
             if (charIndex < fullText.length) {
