@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DraftsRush - Real Photo Cinematography Reel</title>
+  <title>DraftsRush - Continuous Story Strategy Timeline</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,15 +44,17 @@
       box-shadow: 4px 4px 0px #fff;
       cursor: pointer;
       text-transform: uppercase;
+      transition: transform 0.1s;
     }
+    .btn-zip:hover { transform: translate(-2px, -2px); }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      max-width: 1400px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1500px;
       width: 100%;
     }
-    .card-wrapper {
+    .card {
       background: #1C1F26;
       border: 2px solid #333;
       padding: 14px;
@@ -61,19 +62,13 @@
       flex-direction: column;
       align-items: center;
     }
-    /* Fixed 1080x1920 layout scaled cleanly for preview */
-    .slide-frame {
-      width: 1080px;
-      height: 1920px;
-      position: relative;
-      border: 24px solid #000000;
-      transform-origin: top left;
-      /* CSS preview scale */
-      transform: scale(0.28);
-      margin-bottom: calc(-1920px * (1 - 0.28) + 14px);
-      background-color: #E2E4E9;
-      color: #111317;
-      overflow: hidden;
+    canvas {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 16;
+      border: 2px solid #000;
+      margin-bottom: 12px;
+      background: #E2E4E9;
     }
     .btn-single {
       background: #D6E4EE;
@@ -81,448 +76,644 @@
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 800;
       font-size: 13px;
-      padding: 10px 14px;
+      padding: 8px 12px;
       border: 2px solid #000;
       cursor: pointer;
       width: 100%;
       text-transform: uppercase;
-      margin-top: 10px;
     }
     .btn-single:hover { background: #FFE600; }
-
-    /* Brutalist Components */
-    .b-box {
-      border: 8px solid #000000;
-      box-shadow: 14px 14px 0px #000000;
-      position: relative;
-    }
-    .pill {
-      background: #000000;
-      color: #FFE600;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 900;
-      display: inline-block;
-      padding: 10px 24px;
-    }
-    .photo-stage {
-      width: 900px;
-      height: 480px;
-      position: relative;
-      border: 8px solid #000000;
-      box-shadow: 14px 14px 0px #000000;
-      overflow: hidden;
-      margin: 20px 0;
-      background: #000;
-    }
-    .photo-stage img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: contrast(1.05);
-    }
-    .photo-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(17, 19, 23, 0.35);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 24px;
-    }
   </style>
 </head>
 <body>
 
   <div class="header-panel">
-    <h1>Cinematography Visual Reel (1080x1920)</h1>
-    <p>Loaded via Native HTML/CSS DOM with Pure Movie Stills</p>
-    <button class="btn-zip" onclick="downloadAll()">Download All 8 PNGs (.ZIP)</button>
+    <h1>Continuous Timeline Carousel (1080x1920)</h1>
+    <p>1 Full Overview Intro + 8 Progressive Stepped Frames + 1 Conversion CTA</p>
+    <button class="btn-zip" onclick="downloadAll()">Download All 10 PNGs (.ZIP)</button>
   </div>
 
-  <div class="grid">
-
-    <!-- SLIDE 1: INTRO -->
-    <div class="card-wrapper">
-      <div id="slide-0" class="slide-frame" style="background: #FFE600; padding: 90px 70px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
-          <div class="pill" style="font-size: 26px; color: #FFF; background: #000;">🎥 CINEMATOGRAPHY BLUEPRINTS</div>
-          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 34px;">01 / 08</div>
-        </div>
-
-        <div class="b-box" style="background: #FFFFFF; padding: 70px; height: 1380px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div class="b-box" style="background: #FB7185; color: #FFF; padding: 30px; font-family: 'Space Grotesk'; font-size: 96px; font-weight: 900; text-align: center; margin-bottom: 30px;">
-              TOP 6 RULES
-            </div>
-            <div class="b-box" style="background: #FFE600; color: #000; padding: 30px; font-family: 'Space Grotesk'; font-size: 96px; font-weight: 900; text-align: center; margin-bottom: 60px;">
-              OF CAMERA
-            </div>
-            <p style="font-size: 38px; line-height: 1.4; font-weight: 700; color: #111317; margin-bottom: 40px;">
-              Every angle change alters how the audience subconsciously judges your subject. When framing is arbitrary, visual storytelling dies.
-            </p>
-          </div>
-
-          <div class="b-box" style="background: #D6E4EE; padding: 40px;">
-            <div style="font-family: 'Space Grotesk'; font-size: 28px; font-weight: 900; margin-bottom: 12px;">WHY AMATEUR VIDEOS FEEL FLAT 📉</div>
-            <p style="font-size: 28px; line-height: 1.4; font-weight: 600; color: #333;">
-              6 essential geometric camera rules broken down with real movie scene stills, on-screen vector overlays, and script cues.
-            </p>
-          </div>
-        </div>
-
-        <div class="b-box" style="background: #000; color: #FFE600; padding: 30px; font-family: 'Space Grotesk'; font-size: 32px; font-weight: 900; margin-top: 40px; display: flex; justify-content: space-between;">
-          <span>SWIPE FOR 6 CAMERA BLUEPRINTS</span>
-          <span style="color: #34D399;">→</span>
-        </div>
-      </div>
-      <button class="btn-single" onclick="downloadSingle('slide-0', 'cinematography-00-intro.png')">Download Intro PNG</button>
-    </div>
-
-    <!-- SLIDE 2: RULE 1 -->
-    <div class="card-wrapper">
-      <div id="slide-1" class="slide-frame" style="background: #E2E4E9; padding: 70px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div class="pill" style="font-size: 24px;">RULE 01 • SPATIAL CONTINUITY</div>
-          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">02 / 08</div>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
-          🔄 THE 180° DEGREE RULE
-        </div>
-
-        <!-- REAL PHOTO STAGE WITH OVERLAYS -->
-        <div class="photo-stage">
-          <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=1200&auto=format&fit=crop&q=80" alt="Conversation">
-          <div class="photo-overlay">
-            <div style="display: flex; justify-content: space-between;">
-              <span class="pill" style="background: #EF4444; color: #FFF; font-size: 18px; padding: 6px 16px;">AXIS OF ACTION</span>
-              <span class="pill" style="background: #10B981; color: #000; font-size: 18px; padding: 6px 16px;">180° SAFE ARC ✅</span>
-            </div>
-            <div style="border-bottom: 6px dashed #EF4444; width: 100%; margin-bottom: 20px;"></div>
-            <div style="display: flex; justify-content: space-around; font-size: 32px; font-weight: 900; color: #FFF; text-shadow: 2px 2px 0px #000;">
-              <span>🎥 CAM A</span>
-              <span style="color: #EF4444;">❌ CROSSED</span>
-              <span>🎥 CAM B</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CONTEXT BOX -->
-        <div class="b-box" style="background: #FFF6CF; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
-          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Two characters facing each other in dialogue or confrontation.</p>
-        </div>
-
-        <!-- PSYCHOLOGY BOX -->
-        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
-          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Keeping cameras on one side preserves eyeline continuity. Crossing the axis tricks the viewer's brain into thinking actors suddenly turned their backs on each other.</p>
-        </div>
-
-        <!-- SCRIPT CUE -->
-        <div class="b-box" style="background: #FFE600; padding: 30px;">
-          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
-          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Label coverage in the left column as: 'Cam A (Host Profile) / Cam B (Guest Match)' so editors never jump the line.</p>
-        </div>
-      </div>
-      <button class="btn-single" onclick="downloadSingle('slide-1', 'cinematography-01-rule.png')">Download Rule 01 PNG</button>
-    </div>
-
-    <!-- SLIDE 3: RULE 2 -->
-    <div class="card-wrapper">
-      <div id="slide-2" class="slide-frame" style="background: #D6E4EE; padding: 70px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div class="pill" style="font-size: 24px;">RULE 02 • POWER DYNAMICS</div>
-          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">03 / 08</div>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
-          📐 LOW ANGLE VS HIGH ANGLE
-        </div>
-
-        <!-- REAL PHOTO STAGE -->
-        <div class="photo-stage">
-          <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1200&auto=format&fit=crop&q=80" alt="Cinematic Hero Angle">
-          <div class="photo-overlay" style="justify-content: flex-end;">
-            <div style="display: flex; justify-content: space-between; width: 100%;">
-              <span class="pill" style="background: #3B82F6; color: #FFF; font-size: 22px;">LOW ANGLE = POWER 👑</span>
-              <span class="pill" style="background: #EF4444; color: #FFF; font-size: 22px;">HIGH ANGLE = WEAK 😰</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="b-box" style="background: #FFFFFF; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
-          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Confrontations, negotiations, intimidating villains, or cornered victims.</p>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
-          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Shooting from below physically magnifies actor stature against the ceiling or sky. Shooting from above looks down on the subject, making them appear helpless.</p>
-        </div>
-
-        <div class="b-box" style="background: #FFE600; padding: 30px;">
-          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
-          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Note '[LOW ANGLE - 35mm PUSH]' during moments of triumph, or '[HIGH ANGLE - CRANE DOWN]' to emphasize defeat.</p>
-        </div>
-      </div>
-      <button class="btn-single" onclick="downloadSingle('slide-2', 'cinematography-02-rule.png')">Download Rule 02 PNG</button>
-    </div>
-
-    <!-- SLIDE 4: RULE 3 -->
-    <div class="card-wrapper">
-      <div id="slide-3" class="slide-frame" style="background: #E2E4E9; padding: 70px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div class="pill" style="font-size: 24px;">RULE 03 • PSYCHOLOGICAL UNREST</div>
-          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">04 / 08</div>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
-          🌪️ THE DUTCH ANGLE (CANTED TILT)
-        </div>
-
-        <!-- REAL PHOTO STAGE -->
-        <div class="photo-stage">
-          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80" alt="Tilted City" style="transform: rotate(-12deg) scale(1.15);">
-          <div class="photo-overlay" style="justify-content: space-between;">
-            <span class="pill" style="background: #FB7185; color: #FFF; font-size: 22px;">⟳ TILTED -20° OFF HORIZON</span>
-            <span class="pill" style="background: #FFE600; color: #000; font-size: 22px;">INSTINCTIVE PANIC ⚠️</span>
-          </div>
-        </div>
-
-        <div class="b-box" style="background: #FFF1F2; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
-          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Psychological spirals, character deceit, horror reveals, or intoxication.</p>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
-          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Humans balance the world against a level horizon. Throwing that horizon off by 15° to 30° strips away subconscious comfort, putting the audience on high alert.</p>
-        </div>
-
-        <div class="b-box" style="background: #FFE600; padding: 30px;">
-          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
-          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Add '[DUTCH ROLL / CANTED HORIZON]' right before a major reveal or when a scene's reality is questioned.</p>
-        </div>
-      </div>
-      <button class="btn-single" onclick="downloadSingle('slide-3', 'cinematography-03-rule.png')">Download Rule 03 PNG</button>
-    </div>
-
-    <!-- SLIDE 5: RULE 4 -->
-    <div class="card-wrapper">
-      <div id="slide-4" class="slide-frame" style="background: #CCD0DC; padding: 70px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div class="pill" style="font-size: 24px;">RULE 04 • COMPOSITIONAL BALANCE</div>
-          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">05 / 08</div>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
-          🔲 RULE OF THIRDS & EYE-LINE
-        </div>
-
-        <!-- REAL PHOTO STAGE WITH 3X3 GRID -->
-        <div class="photo-stage">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&auto=format&fit=crop&q=80" alt="Portrait Thirds">
-          <!-- Live CSS Grid Lines -->
-          <div style="position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr;">
-            <div style="border-right: 3px solid rgba(255,255,255,0.7); border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
-            <div style="border-right: 3px solid rgba(255,255,255,0.7); border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
-            <div style="border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
-            <div style="border-right: 3px solid rgba(255,255,255,0.7); border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
-            <div style="border-right: 3px solid rgba(255,255,255,0.7); border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
-            <div style="border-bottom: 3px solid rgba(255,255,255,0.7);"></div>
-          </div>
-          <div class="photo-overlay" style="justify-content: flex-end;">
-            <span class="pill" style="background: #FFE600; color: #000; font-size: 22px;">🎯 EYE-LINE LOCKED ON UPPER HORIZONTAL THIRD</span>
-          </div>
-        </div>
-
-        <div class="b-box" style="background: #FFFFFF; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
-          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Standard talking heads, cinematic interviews, and documentary setups.</p>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
-          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Centering a subject creates formal, rigid symmetry. Placing eyes along the top third creates natural viewing comfort and opens negative space for on-screen context.</p>
-        </div>
-
-        <div class="b-box" style="background: #FFE600; padding: 30px;">
-          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
-          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Note '[FRAMED STAGE LEFT - THIRDS]' so your editor has clean open negative space to display chart pop-ups or visual assets.</p>
-        </div>
-      </div>
-      <button class="btn-single" onclick="downloadSingle('slide-4', 'cinematography-04-rule.png')">Download Rule 04 PNG</button>
-    </div>
-
-    <!-- SLIDE 6: RULE 5 -->
-    <div class="card-wrapper">
-      <div id="slide-5" class="slide-frame" style="background: #FFF6CF; padding: 70px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div class="pill" style="font-size: 24px;">RULE 05 • ACTION DIRECTION</div>
-          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">06 / 08</div>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
-          🏃 LEAD ROOM & LOOKING SPACE
-        </div>
-
-        <!-- REAL PHOTO STAGE -->
-        <div class="photo-stage">
-          <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=1200&auto=format&fit=crop&q=80" alt="Person Walking with Lead Room">
-          <div class="photo-overlay" style="justify-content: space-between;">
-            <span class="pill" style="background: #10B981; color: #000; font-size: 22px;">LEAD ROOM (OPEN DIRECTION) ➔</span>
-            <div style="align-self: flex-end;">
-              <span class="pill" style="background: #EF4444; color: #FFF; font-size: 20px;">AVOID: NOSE TO EDGE 🛑</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="b-box" style="background: #D6E4EE; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
-          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Tracking moving subjects, driving scenes, or characters searching a room.</p>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
-          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Audiences need to see where a subject is headed. Crowding an actor's face against the edge of frame creates claustrophobia and suffocated momentum.</p>
-        </div>
-
-        <div class="b-box" style="background: #FFE600; padding: 30px;">
-          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
-          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Write '[TRACKING SHOT - GENEROUS LEAD ROOM]' for confident momentum, or '[ZERO LEAD ROOM]' when trapping a character.</p>
-        </div>
-      </div>
-      <button class="btn-single" onclick="downloadSingle('slide-5', 'cinematography-05-rule.png')">Download Rule 05 PNG</button>
-    </div>
-
-    <!-- SLIDE 7: RULE 6 -->
-    <div class="card-wrapper">
-      <div id="slide-6" class="slide-frame" style="background: #D6E4EE; padding: 70px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div class="pill" style="font-size: 24px;">RULE 06 • INTIMACY & PROXIMITY</div>
-          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 30px;">07 / 08</div>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 25px 40px; margin-top: 20px; font-family: 'Space Grotesk'; font-size: 46px; font-weight: 900;">
-          🗣️ THE DIRTY OVER-THE-SHOULDER
-        </div>
-
-        <!-- REAL PHOTO STAGE -->
-        <div class="photo-stage">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&auto=format&fit=crop&q=80" alt="Conversation Over Shoulder">
-          <div class="photo-overlay" style="justify-content: space-between;">
-            <span class="pill" style="background: #000; color: #FFF; font-size: 20px;">FOREGROUND SILHOUETTE</span>
-            <span class="pill" style="background: #3B82F6; color: #FFF; font-size: 20px;">FOCUSED SUBJECT IN DEPTH</span>
-          </div>
-        </div>
-
-        <div class="b-box" style="background: #FFFFFF; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="font-size: 20px; margin-bottom: 12px;">📌 BEST USE CASE</div>
-          <p style="font-size: 30px; font-weight: 800; line-height: 1.3;">Intense one-on-one arguments, intimate romantic beats, or interrogations.</p>
-        </div>
-
-        <div class="b-box" style="background: #FFF; padding: 30px; margin-bottom: 20px;">
-          <div class="pill" style="background: #FB7185; color: #FFF; font-size: 20px; margin-bottom: 12px;">🧠 ON-SCREEN PSYCHOLOGY</div>
-          <p style="font-size: 28px; font-weight: 600; line-height: 1.4;">Including a slice of the listener's shoulder anchors both actors in one shared three-dimensional physical room, pulling the audience directly into the emotional tension.</p>
-        </div>
-
-        <div class="b-box" style="background: #FFE600; padding: 30px;">
-          <div class="pill" style="background: #000; color: #34D399; font-size: 20px; margin-bottom: 12px;">✍️ HOW TO SCRIPT IT (AV)</div>
-          <p style="font-size: 26px; font-weight: 800; line-height: 1.3;">Note '[DIRTY OTS - TIGHT ON EYES]' to escalate conversational heat without cutting away to isolated singles.</p>
-        </div>
-      </div>
-      <button class="btn-single" onclick="downloadSingle('slide-6', 'cinematography-06-rule.png')">Download Rule 06 PNG</button>
-    </div>
-
-    <!-- SLIDE 8: CTA -->
-    <div class="card-wrapper">
-      <div id="slide-7" class="slide-frame" style="background: #FFE600; padding: 90px 70px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
-          <div class="pill" style="font-size: 26px; color: #FFF; background: #000;">🎬 PRODUCTION MASTERCLASS</div>
-          <div style="font-family: 'JetBrains Mono'; font-weight: 900; font-size: 34px;">08 / 08</div>
-        </div>
-
-        <div class="b-box" style="background: #FFFFFF; padding: 70px; height: 1380px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="font-family: 'Space Grotesk'; font-size: 82px; font-weight: 900; line-height: 1.1; margin-bottom: 30px;">
-              STOP SHOOTING RANDOM ANGLES.
-            </div>
-            <p style="font-size: 38px; line-height: 1.4; font-weight: 700; color: #333; margin-bottom: 50px;">
-              Cinematography only works when your script blueprints every lens, angle, and cut before the crew arrives on set.
-            </p>
-          </div>
-
-          <div class="b-box" style="background: #D6E4EE; padding: 40px;">
-            <div style="font-family: 'Space Grotesk'; font-size: 32px; font-weight: 900; margin-bottom: 14px;">DIRECT SCRIPT INTAKE & ADVICE</div>
-            <p style="font-size: 28px; line-height: 1.4; font-weight: 600; color: #222;">
-              DM us "COURSE" on Instagram for our private production shot-planning guides, or book a custom video script at draftsrush.com.
-            </p>
-          </div>
-
-          <div>
-            <div class="b-box" style="background: #000; color: #34D399; padding: 26px; font-family: 'Space Grotesk'; font-size: 36px; font-weight: 900; text-align: center; margin-bottom: 20px;">
-              📩 DM "COURSE" ON INSTAGRAM
-            </div>
-            <div class="b-box" style="background: #FFE600; color: #000; padding: 26px; font-family: 'Space Grotesk'; font-size: 36px; font-weight: 900; text-align: center;">
-              🌐 OR VISIT DRAFTSRUSH.COM
-            </div>
-          </div>
-        </div>
-
-        <div style="font-family: 'Space Grotesk'; font-weight: 900; font-size: 32px; text-align: center; margin-top: 40px;">
-          DRAFTSRUSH STUDIO • 2026
-        </div>
-      </div>
-      <button class="btn-single" onclick="downloadSingle('slide-7', 'cinematography-07-cta.png')">Download CTA PNG</button>
-    </div>
-
-  </div>
+  <div class="grid" id="gridContainer"></div>
 
   <script>
-    async function downloadSingle(elementId, filename) {
-      const node = document.getElementById(elementId);
-      // Temporarily remove transform scaling to render full 1080x1920 pixels
-      const originalTransform = node.style.transform;
-      node.style.transform = 'none';
-
-      try {
-        const dataUrl = await htmlToImage.toPng(node, { pixelRatio: 1 });
-        const link = document.createElement('a');
-        link.download = filename;
-        link.href = dataUrl;
-        link.click();
-      } catch (err) {
-        console.error('Render error:', err);
-      } finally {
-        node.style.transform = originalTransform;
+    const stepsData = [
+      {
+        type: "intro",
+        badge: "NARRATIVE FRAMEWORK",
+        num: "01 / 10",
+        headline: "HOW TO WRITE A STRATEGY STORY",
+        sub: "Decks are forgettable when they dump disconnected slides. Here is the continuous 8-step narrative line that turns dry concepts into an unskippable video blueprint.",
+        bg: "#FFE600"
+      },
+      {
+        type: "step",
+        stepIndex: 1,
+        num: "02 / 10",
+        badge: "STEP 01 • THE FOUNDATION",
+        mainTitle: "Start with the context.",
+        italicNote: "Present the verifiable facts.",
+        desc: "Do not open with claims or opinions. Lay down the undeniable market data or baseline condition that everyone in the room agrees on.",
+        wireType: "flat",
+        innerVisual: "factsList",
+        bg: "#E2E4E9"
+      },
+      {
+        type: "step",
+        stepIndex: 2,
+        num: "03 / 10",
+        badge: "STEP 02 • THE OBSTACLE",
+        mainTitle: "Frame the challenge.",
+        italicNote: "Answer: 'What is the *real* problem?'",
+        desc: "Surface-level complaints are symptoms. Dig down to the root bottleneck that is actively stalling growth, retention, or production.",
+        wireType: "drop",
+        innerVisual: "tangle",
+        bg: "#D6E4EE"
+      },
+      {
+        type: "step",
+        stepIndex: 3,
+        num: "04 / 10",
+        badge: "STEP 03 • THE CATALYST",
+        mainTitle: "Establish urgency.",
+        italicNote: "Why must we act right now?",
+        desc: "State the cost of inaction. If the viewer or stakeholder doesn't make this move today, what does it cost them over the next 90 days?",
+        wireType: "flat",
+        innerVisual: "exclamation",
+        bg: "#E2E4E9"
+      },
+      {
+        type: "step",
+        stepIndex: 4,
+        num: "05 / 10",
+        badge: "STEP 04 • THE BREAKTHROUGH",
+        mainTitle: "Reveal your BIG IDEA.",
+        italicNote: "This is your unique core solution.",
+        desc: "Introduce the single counter-intuitive premise or proprietary angle that solves the root problem and positions you to win.",
+        wireType: "stepUp",
+        innerVisual: "solutionCircle",
+        bg: "#FFF6CF"
+      },
+      {
+        type: "step",
+        stepIndex: 5,
+        num: "06 / 10",
+        badge: "STEP 05 • VALUE DEFINITION",
+        mainTitle: "Describe specific value.",
+        italicNote: "Feature X yields Outcome Y.",
+        desc: "Translate technical features into emotional and operational relief. Stop describing the tool; highlight the finished outcome.",
+        wireType: "stepDown",
+        innerVisual: "valueEquation",
+        bg: "#D6E4EE"
+      },
+      {
+        type: "step",
+        stepIndex: 6,
+        num: "07 / 10",
+        badge: "STEP 06 • STRATEGIC BETS",
+        mainTitle: "Select 3 to 5 choices.",
+        italicNote: "Say 'no' to noise, 'yes' to needle-movers.",
+        desc: "Strategy is sacrifice. Define the strict 3 pillars you will execute with total focus while discarding distraction projects.",
+        wireType: "branchOut",
+        innerVisual: "choicesBranch",
+        bg: "#E2E4E9"
+      },
+      {
+        type: "step",
+        stepIndex: 7,
+        num: "08 / 10",
+        badge: "STEP 07 • PROOF POINTS",
+        mainTitle: "Double-click each choice.",
+        italicNote: "Concrete initiatives and capabilities.",
+        desc: "Back up every strategic pillar with hard operational proof: primary research, pilot tests, case studies, or validated metrics.",
+        wireType: "branchIn",
+        innerVisual: "proofGrid",
+        bg: "#CCD0DC"
+      },
+      {
+        type: "step",
+        stepIndex: 8,
+        num: "09 / 10",
+        badge: "STEP 08 • ROADMAP",
+        mainTitle: "Sequence your actions.",
+        italicNote: "Build your execution timeline.",
+        desc: "A vision without sequencing is daydreaming. Plot the phased sprints, milestones, and deliverables on a structured calendar.",
+        wireType: "ganttStep",
+        innerVisual: "ganttBars",
+        bg: "#FFF6CF"
+      },
+      {
+        type: "cta",
+        badge: "SCRIPTWRITING BLUEPRINT",
+        num: "10 / 10",
+        headline: "CLOSE YOUR STORY WITH NEXT STEPS.",
+        sub: "You have the strategy in your head. DraftsRush turns raw concepts into high-retention video blueprints and dual-column scripts.",
+        bg: "#FFE600"
       }
+    ];
+
+    const container = document.getElementById('gridContainer');
+    const canvases = [];
+
+    function drawBrutalBox(ctx, x, y, w, h, fill, border = '#000000', borderWidth = 8, shadow = 16) {
+      if (shadow > 0) {
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(x + shadow, y + shadow, w, h);
+      }
+      ctx.fillStyle = fill;
+      ctx.fillRect(x, y, w, h);
+      ctx.strokeStyle = border;
+      ctx.lineWidth = borderWidth;
+      ctx.strokeRect(x, y, w, h);
+    }
+
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      for (let n = 0; n < words.length; n++) {
+        let testLine = line + words[n] + ' ';
+        let metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          ctx.fillText(line, x, y);
+          line = words[n] + ' ';
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, x, y);
+    }
+
+    stepsData.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 1080;
+      canvas.height = 1920;
+      canvas.id = `canvas-${idx}`;
+      card.appendChild(canvas);
+
+      const btn = document.createElement('button');
+      btn.className = 'btn-single';
+      btn.innerText = idx === 0 ? 'Download Overview PNG' : (idx === 9 ? 'Download CTA Slide PNG' : `Download Step 0${idx} PNG`);
+      btn.onclick = () => downloadSingle(canvas, `strategy-story-slide-${idx + 1}.png`);
+      card.appendChild(btn);
+
+      container.appendChild(card);
+      canvases.push(canvas);
+    });
+
+    // Draw the Master Continuous Line on Slide 1
+    function drawFullRoadmapShape(ctx, x, y, w, h) {
+      drawBrutalBox(ctx, x, y, w, h, '#FFFFFF', '#000000', 8, 14);
+
+      ctx.save();
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 6;
+      ctx.lineJoin = 'miter';
+
+      // Path coordinates tracking through 8 stages
+      const points = [
+        { x: x + 60, y: y + 260 },
+        { x: x + 160, y: y + 260 },
+        { x: x + 210, y: y + 360 },
+        { x: x + 290, y: y + 360 },
+        { x: x + 340, y: y + 260 },
+        { x: x + 430, y: y + 260 },
+        { x: x + 480, y: y + 160 },
+        { x: x + 560, y: y + 160 },
+        { x: x + 610, y: y + 260 },
+        { x: x + 720, y: y + 260 },
+        { x: x + 770, y: y + 360 },
+        { x: x + w - 60, y: y + 360 }
+      ];
+
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      for (let i = 1; i < points.length; i++) {
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      ctx.stroke();
+
+      // Step Milestones along the roadmap
+      const milestones = [
+        { x: x + 110, y: y + 260, label: "01 Context" },
+        { x: x + 250, y: y + 360, label: "02 Challenge" },
+        { x: x + 385, y: y + 260, label: "03 Urgency" },
+        { x: x + 520, y: y + 160, label: "04 Big Idea" },
+        { x: x + 665, y: y + 260, label: "05 Value" },
+        { x: x + 750, y: y + 310, label: "06 Choices" },
+        { x: x + 810, y: y + 360, label: "07 Proof" },
+        { x: x + w - 80, y: y + 360, label: "08 Action" }
+      ];
+
+      milestones.forEach((m, idx) => {
+        // Drop shadow for dot
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.arc(m.x + 4, m.y + 4, 18, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Dot
+        ctx.fillStyle = idx === 3 ? '#FFE600' : '#34D399';
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, 18, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        // Label Tag
+        ctx.fillStyle = '#111317';
+        ctx.font = '800 16px "JetBrains Mono", monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(m.label, m.x, idx % 2 === 0 ? m.y - 30 : m.y + 42);
+      });
+
+      ctx.restore();
+    }
+
+    // Draw Individual Stage Geometric Vectors
+    function drawStepTimeline(ctx, type, x, y, w, h, visualType) {
+      drawBrutalBox(ctx, x, y, w, h, '#FFFFFF', '#000000', 8, 14);
+
+      ctx.save();
+      const cy = y + h / 2;
+      const cx = x + w / 2;
+
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 8;
+      ctx.lineCap = 'square';
+      ctx.lineJoin = 'miter';
+
+      if (type === "flat") {
+        ctx.beginPath();
+        ctx.moveTo(x + 40, cy);
+        ctx.lineTo(x + w - 40, cy);
+        ctx.stroke();
+
+        // Node
+        drawNode(ctx, cx, cy);
+
+      } else if (type === "drop") {
+        // Step Down Notch
+        ctx.beginPath();
+        ctx.moveTo(x + 40, cy - 100);
+        ctx.lineTo(cx - 180, cy - 100);
+        ctx.lineTo(cx - 180, cy + 100);
+        ctx.lineTo(cx + 180, cy + 100);
+        ctx.lineTo(cx + 180, cy - 100);
+        ctx.lineTo(x + w - 40, cy - 100);
+        ctx.stroke();
+
+        drawNode(ctx, cx, cy + 100);
+
+      } else if (type === "stepUp") {
+        // Stepped high arch for Big Idea
+        ctx.beginPath();
+        ctx.moveTo(x + 40, cy + 110);
+        ctx.lineTo(cx - 180, cy + 110);
+        ctx.lineTo(cx - 180, cy - 90);
+        ctx.lineTo(x + w - 40, cy - 90);
+        ctx.stroke();
+
+        drawNode(ctx, cx, cy - 90);
+
+      } else if (type === "stepDown") {
+        // Stepping back down
+        ctx.beginPath();
+        ctx.moveTo(x + 40, cy - 90);
+        ctx.lineTo(cx + 180, cy - 90);
+        ctx.lineTo(cx + 180, cy + 110);
+        ctx.lineTo(x + w - 40, cy + 110);
+        ctx.stroke();
+
+        drawNode(ctx, cx - 40, cy - 90);
+
+      } else if (type === "branchOut") {
+        // Line splits into 3 choice branches
+        ctx.beginPath();
+        ctx.moveTo(x + 40, cy);
+        ctx.lineTo(cx - 160, cy);
+        ctx.stroke();
+
+        drawNode(ctx, cx - 160, cy);
+
+        // Branching forks
+        [cy - 90, cy, cy + 90].forEach(by => {
+          ctx.beginPath();
+          ctx.moveTo(cx - 80, cy);
+          ctx.lineTo(cx - 20, by);
+          ctx.lineTo(x + w - 40, by);
+          ctx.stroke();
+        });
+
+      } else if (type === "branchIn") {
+        // Branches reconverging into single line
+        [cy - 90, cy, cy + 90].forEach(by => {
+          ctx.beginPath();
+          ctx.moveTo(x + 40, by);
+          ctx.lineTo(cx + 20, by);
+          ctx.lineTo(cx + 80, cy);
+          ctx.stroke();
+        });
+
+        ctx.beginPath();
+        ctx.moveTo(cx + 80, cy);
+        ctx.lineTo(x + w - 40, cy);
+        ctx.stroke();
+
+        drawNode(ctx, cx + 180, cy);
+
+      } else if (type === "ganttStep") {
+        // Descending staircase
+        ctx.beginPath();
+        ctx.moveTo(x + 40, cy - 110);
+        ctx.lineTo(cx - 180, cy - 110);
+        ctx.lineTo(cx - 180, cy + 100);
+        ctx.lineTo(x + w - 40, cy + 100);
+        ctx.stroke();
+
+        drawNode(ctx, cx, cy + 100);
+      }
+
+      // Render Visual Accents inside the graphic stage
+      if (visualType === "factsList") {
+        [cy + 45, cy + 85, cy + 125].forEach((ly, i) => {
+          drawBrutalBox(ctx, cx - 140, ly, 280, 24, i === 0 ? '#FFE600' : '#E2E4E9', '#000', 3, 0);
+        });
+      } else if (visualType === "tangle") {
+        // Scribbled knot
+        ctx.strokeStyle = '#FB7185';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        for (let a = 0; a < Math.PI * 8; a += 0.3) {
+          const r = 40 + Math.sin(a * 4) * 20;
+          ctx.lineTo(cx + Math.cos(a) * r, (cy - 40) + Math.sin(a) * r);
+        }
+        ctx.stroke();
+      } else if (visualType === "exclamation") {
+        drawBrutalBox(ctx, cx - 140, cy - 130, 45, 90, '#FB7185', '#000', 4, 4);
+        drawBrutalBox(ctx, cx - 140, cy - 25, 45, 30, '#FB7185', '#000', 4, 4);
+      } else if (visualType === "solutionCircle") {
+        // Concentric lens
+        ctx.strokeStyle = '#34D399';
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.arc(cx, cy + 30, 65, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.strokeStyle = '#FFE600';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(cx, cy + 30, 45, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (visualType === "valueEquation") {
+        drawBrutalBox(ctx, cx - 210, cy + 20, 180, 50, '#FFE600', '#000', 3, 0);
+        ctx.fillStyle = '#000';
+        ctx.font = '800 20px "Space Grotesk", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('{FEATURE X}', cx - 120, cy + 52);
+
+        ctx.fillStyle = '#000';
+        ctx.font = '900 28px sans-serif';
+        ctx.fillText('➔', cx + 10, cy + 55);
+
+        drawBrutalBox(ctx, cx + 50, cy + 20, 180, 50, '#34D399', '#000', 3, 0);
+        ctx.fillStyle = '#000';
+        ctx.font = '800 20px "Space Grotesk", sans-serif';
+        ctx.fillText('{OUTCOME Y}', cx + 140, cy + 52);
+      } else if (visualType === "choicesBranch") {
+        ['CHOICE 1', 'CHOICE 2', 'CHOICE 3'].forEach((c, idx) => {
+          const by = (cy - 90) + (idx * 90);
+          drawBrutalBox(ctx, cx + 20, by - 26, 180, 52, '#FFFFFF', '#000', 4, 4);
+          ctx.fillStyle = '#000';
+          ctx.font = '900 18px "Space Grotesk", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(c, cx + 110, by + 6);
+        });
+      } else if (visualType === "proofGrid") {
+        ['PROOF 1', 'PROOF 2', 'PROOF 3'].forEach((p, idx) => {
+          const by = (cy - 90) + (idx * 90);
+          drawBrutalBox(ctx, cx - 220, by - 26, 180, 52, '#FFFFFF', '#000', 4, 4);
+          ctx.fillStyle = '#000';
+          ctx.font = '900 18px "Space Grotesk", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(p, cx - 130, by + 6);
+        });
+      } else if (visualType === "ganttBars") {
+        // Mini Gantt chart bars
+        [
+          { x: cx - 130, y: cy - 70, w: 120 },
+          { x: cx - 60, y: cy - 25, w: 140 },
+          { x: cx + 20, y: cy + 20, w: 150 }
+        ].forEach((bar, idx) => {
+          drawBrutalBox(ctx, bar.x, bar.y, bar.w, 32, idx === 2 ? '#34D399' : '#FFE600', '#000', 3, 0);
+        });
+      }
+
+      ctx.restore();
+    }
+
+    function drawNode(ctx, nx, ny) {
+      ctx.fillStyle = '#000000';
+      ctx.beginPath();
+      ctx.arc(nx + 6, ny + 6, 26, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#34D399';
+      ctx.beginPath();
+      ctx.arc(nx, ny, 26, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 6;
+      ctx.stroke();
+    }
+
+    function renderAll() {
+      stepsData.forEach((data, idx) => {
+        const canvas = canvases[idx];
+        const ctx = canvas.getContext('2d');
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'alphabetic';
+
+        if (data.type === "intro") {
+          // Slide 01: Master Overview & Whole Timeline Shape
+          ctx.fillStyle = data.bg;
+          ctx.fillRect(0, 0, 1080, 1920);
+          ctx.lineWidth = 24;
+          ctx.strokeStyle = '#000000';
+          ctx.strokeRect(0, 0, 1080, 1920);
+
+          drawBrutalBox(ctx, 90, 120, 520, 75, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#FFFFFF';
+          ctx.font = '900 24px "Space Grotesk", sans-serif';
+          ctx.fillText(data.badge, 120, 168);
+
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 32px "JetBrains Mono", monospace';
+          ctx.fillText(data.num, 870, 168);
+
+          // Center Box
+          drawBrutalBox(ctx, 90, 240, 900, 1370, '#FFFFFF', '#000000', 10, 24);
+
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 74px "Space Grotesk", sans-serif';
+          wrapText(ctx, data.headline, 140, 360, 800, 80);
+
+          // Master Roadmap Graphic
+          drawFullRoadmapShape(ctx, 140, 580, 800, 480);
+
+          ctx.fillStyle = '#111317';
+          ctx.font = '600 34px "Inter", sans-serif';
+          wrapText(ctx, data.sub, 140, 1140, 800, 50);
+
+          drawBrutalBox(ctx, 90, 1660, 900, 120, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#FFE600';
+          ctx.font = '900 32px "Space Grotesk", sans-serif';
+          ctx.fillText('SWIPE TO FOLLOW THE LINE', 140, 1735);
+          ctx.fillText('→', 930, 1735);
+
+        } else if (data.type === "step") {
+          // Slides 02 to 09: Progressive Steps
+          ctx.fillStyle = data.bg;
+          ctx.fillRect(0, 0, 1080, 1920);
+          ctx.lineWidth = 24;
+          ctx.strokeStyle = '#000000';
+          ctx.strokeRect(0, 0, 1080, 1920);
+
+          drawBrutalBox(ctx, 90, 80, 520, 68, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#FFE600';
+          ctx.font = '900 24px "Space Grotesk", sans-serif';
+          ctx.fillText(data.badge, 115, 122);
+
+          drawBrutalBox(ctx, 840, 80, 150, 68, '#FFFFFF', '#000000', 4, 6);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 28px "JetBrains Mono", monospace';
+          ctx.fillText(data.num, 860, 124);
+
+          // Headline Box
+          drawBrutalBox(ctx, 90, 175, 900, 180, '#FFFFFF', '#000000', 8, 14);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 50px "Space Grotesk", sans-serif';
+          ctx.fillText(data.mainTitle, 130, 255);
+
+          ctx.fillStyle = '#E11D48';
+          ctx.font = '700 32px "Space Grotesk", sans-serif';
+          ctx.fillText(data.italicNote, 130, 305);
+
+          // TIMELINE GRAPHIC STAGE
+          drawStepTimeline(ctx, data.wireType, 90, 395, 900, 540, data.innerVisual);
+
+          // STRATEGIC EXECUTION DETAILS
+          drawBrutalBox(ctx, 90, 985, 900, 360, '#FFFFFF', '#000000', 8, 14);
+          drawBrutalBox(ctx, 130, 1020, 360, 45, '#FFE600', '#000000', 0, 0);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 22px "Space Grotesk", sans-serif';
+          ctx.fillText('WHY RETENTION DEMANDS THIS', 150, 1051);
+
+          ctx.fillStyle = '#111317';
+          ctx.font = '600 34px "Inter", sans-serif';
+          wrapText(ctx, data.desc, 130, 1125, 820, 52);
+
+          // BLUEPRINT IMPLEMENTATION BAR
+          drawBrutalBox(ctx, 90, 1395, 900, 220, '#D6E4EE', '#000000', 8, 14);
+          drawBrutalBox(ctx, 130, 1430, 320, 45, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#34D399';
+          ctx.font = '900 22px "Space Grotesk", sans-serif';
+          ctx.fillText('SCRIPTWRITING BLUEPRINT', 150, 1461);
+
+          ctx.fillStyle = '#000000';
+          ctx.font = '700 28px "Inter", sans-serif';
+          wrapText(ctx, `Lock this premise before second ${data.stepIndex * 8}. Every second of throat clearing decays viewer interest.`, 130, 1515, 820, 40);
+
+          // Footer
+          ctx.fillStyle = '#000000';
+          ctx.font = '800 28px "Space Grotesk", sans-serif';
+          ctx.fillText('DRAFTSRUSH STUDIO', 90, 1820);
+          ctx.font = '700 26px "JetBrains Mono", monospace';
+          ctx.fillText('draftsrush.com', 720, 1820);
+
+        } else if (data.type === "cta") {
+          // Slide 10: Final CTA Slide
+          ctx.fillStyle = data.bg;
+          ctx.fillRect(0, 0, 1080, 1920);
+          ctx.lineWidth = 24;
+          ctx.strokeStyle = '#000000';
+          ctx.strokeRect(0, 0, 1080, 1920);
+
+          drawBrutalBox(ctx, 90, 120, 520, 75, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#FFFFFF';
+          ctx.font = '900 24px "Space Grotesk", sans-serif';
+          ctx.fillText(data.badge, 120, 168);
+
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 32px "JetBrains Mono", monospace';
+          ctx.fillText(data.num, 870, 168);
+
+          drawBrutalBox(ctx, 90, 240, 900, 1370, '#FFFFFF', '#000000', 10, 24);
+
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 72px "Space Grotesk", sans-serif';
+          wrapText(ctx, data.headline, 140, 360, 800, 78);
+
+          ctx.fillStyle = '#111317';
+          ctx.font = '600 34px "Inter", sans-serif';
+          wrapText(ctx, data.sub, 140, 580, 800, 50);
+
+          // Offer Container
+          drawBrutalBox(ctx, 140, 780, 800, 360, '#D6E4EE', '#000000', 6, 12);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 34px "Space Grotesk", sans-serif';
+          ctx.fillText('TEST OUR PACING FIRST', 180, 850);
+
+          ctx.fillStyle = '#222222';
+          ctx.font = '600 28px "Inter", sans-serif';
+          wrapText(ctx, "Send us 1 rough topic or deck in our DM. We will draft your hook and opening act in dual-column format completely free.", 180, 915, 720, 42);
+
+          // Button 1: DM
+          drawBrutalBox(ctx, 140, 1190, 800, 110, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#34D399';
+          ctx.font = '900 34px "Space Grotesk", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('📩 DM "STORY" ON INSTAGRAM', 140 + 400, 1260);
+
+          // Button 2: Web
+          drawBrutalBox(ctx, 140, 1330, 800, 110, '#FFE600', '#000000', 6, 8);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 34px "Space Grotesk", sans-serif';
+          ctx.fillText('🌐 VISIT DRAFTSRUSH.COM', 140 + 400, 1400);
+
+          ctx.textAlign = 'left';
+          ctx.fillStyle = '#000000';
+          ctx.font = '800 32px "Space Grotesk", sans-serif';
+          ctx.fillText('DRAFTSRUSH STUDIO • 2026', 90, 1780);
+        }
+      });
+    }
+
+    function downloadSingle(canvas, filename) {
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
     }
 
     async function downloadAll() {
       const zip = new JSZip();
-      const ids = ['slide-0', 'slide-1', 'slide-2', 'slide-3', 'slide-4', 'slide-5', 'slide-6', 'slide-7'];
-
-      for (let i = 0; i < ids.length; i++) {
-        const node = document.getElementById(ids[i]);
-        const originalTransform = node.style.transform;
-        node.style.transform = 'none';
-
-        const dataUrl = await htmlToImage.toPng(node, { pixelRatio: 1 });
-        node.style.transform = originalTransform;
-
+      canvases.forEach((canvas, idx) => {
+        const dataUrl = canvas.toDataURL('image/png');
         const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "");
-        const filename = i === 0 ? 'cinematography-00-intro.png' : (i === 7 ? 'cinematography-07-cta.png' : `cinematography-0${i}-rule.png`);
-        zip.file(filename, base64Data, { base64: true });
-      }
+        zip.file(`draftsrush-strategy-story-slide-${idx + 1}.png`, base64Data, { base64: true });
+      });
 
       const content = await zip.generateAsync({ type: "blob" });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(content);
-      link.download = "draftsrush-cinematography-photos-reel.zip";
+      link.download = "draftsrush-strategy-story-carousel.zip";
       link.click();
     }
+
+    document.fonts.ready.then(renderAll);
   </script>
 </body>
 </html>
