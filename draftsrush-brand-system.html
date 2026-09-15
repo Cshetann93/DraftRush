@@ -493,7 +493,7 @@
         setTimeout(() => {
           let charIndex = 0;
           // Slower pacing: ~24ms per character across a 3.2-second typing window
-          const speed = Math.max(15, Math.floor(2000 / fullText.length));
+          const speed = Math.max(5, Math.floor(1000 / fullText.length));
 
           const interval = setInterval(() => {
             if (charIndex < fullText.length) {
