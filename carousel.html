@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DraftsRush - Continuous Story Strategy Timeline</title>
+  <title>DraftsRush - Animated Reel Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: #111317;
+      background: #111317;
       color: #FFFFFF;
       font-family: 'Inter', sans-serif;
       padding: 30px 20px;
@@ -18,27 +17,32 @@
       flex-direction: column;
       align-items: center;
     }
-    .header-panel {
+    .header {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     h1 {
       font-family: 'Space Grotesk', sans-serif;
       color: #FFE600;
-      font-size: 28px;
-      margin-bottom: 8px;
+      font-size: 26px;
+      margin-bottom: 6px;
     }
     p {
       color: #D6E4EE;
       font-size: 14px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
-    .btn-zip {
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    button {
       background: #FFE600;
       color: #000;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 900;
-      font-size: 16px;
+      font-size: 15px;
       padding: 12px 24px;
       border: 3px solid #000;
       box-shadow: 4px 4px 0px #fff;
@@ -46,175 +50,62 @@
       text-transform: uppercase;
       transition: transform 0.1s;
     }
-    .btn-zip:hover { transform: translate(-2px, -2px); }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      max-width: 1500px;
-      width: 100%;
+    button:hover { transform: translate(-2px, -2px); }
+    button:disabled {
+      background: #555;
+      color: #888;
+      cursor: not-allowed;
+      box-shadow: none;
     }
-    .card {
-      background: #1C1F26;
-      border: 2px solid #333;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .status {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: #34D399;
+      margin-bottom: 12px;
+      min-height: 20px;
     }
     canvas {
       width: 100%;
+      max-width: 360px;
       height: auto;
       aspect-ratio: 9 / 16;
-      border: 2px solid #000;
-      margin-bottom: 12px;
-      background: #E2E4E9;
+      border: 3px solid #FFE600;
+      background: #111317;
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.8);
     }
-    .btn-single {
-      background: #D6E4EE;
-      color: #000;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800;
-      font-size: 13px;
-      padding: 8px 12px;
-      border: 2px solid #000;
-      cursor: pointer;
-      width: 100%;
-      text-transform: uppercase;
-    }
-    .btn-single:hover { background: #FFE600; }
   </style>
 </head>
 <body>
 
-  <div class="header-panel">
-    <h1>Continuous Timeline Carousel (1080x1920)</h1>
-    <p>1 Full Overview Intro + 8 Progressive Stepped Frames + 1 Conversion CTA</p>
-    <button class="btn-zip" onclick="downloadAll()">Download All 10 PNGs (.ZIP)</button>
+  <div class="header">
+    <h1>DraftsRush Animated Reel Engine</h1>
+    <p>Live Typewriter + Sliding Blocks + Real-time In-Browser Video Export</p>
   </div>
 
-  <div class="grid" id="gridContainer"></div>
+  <div class="controls">
+    <button id="btnPlay" onclick="restartAnimation()">▶ Play Preview</button>
+    <button id="btnRecord" onclick="startRecording()">🔴 Record Video File</button>
+  </div>
+
+  <div class="status" id="statusText">Ready to preview or record.</div>
+
+  <canvas id="reelCanvas" width="1080" height="1920"></canvas>
 
   <script>
-    const stepsData = [
-      {
-        type: "intro",
-        badge: "NARRATIVE FRAMEWORK",
-        num: "01 / 10",
-        headline: "HOW TO WRITE A STRATEGY STORY",
-        sub: "Decks are forgettable when they dump disconnected slides. Here is the continuous 8-step narrative line that turns dry concepts into an unskippable video blueprint.",
-        bg: "#FFE600"
-      },
-      {
-        type: "step",
-        stepIndex: 1,
-        num: "02 / 10",
-        badge: "STEP 01 • THE FOUNDATION",
-        mainTitle: "Start with the context.",
-        italicNote: "Present the verifiable facts.",
-        desc: "Do not open with claims or opinions. Lay down the undeniable market data or baseline condition that everyone in the room agrees on.",
-        wireType: "flat",
-        innerVisual: "factsList",
-        bg: "#E2E4E9"
-      },
-      {
-        type: "step",
-        stepIndex: 2,
-        num: "03 / 10",
-        badge: "STEP 02 • THE OBSTACLE",
-        mainTitle: "Frame the challenge.",
-        italicNote: "Answer: 'What is the *real* problem?'",
-        desc: "Surface-level complaints are symptoms. Dig down to the root bottleneck that is actively stalling growth, retention, or production.",
-        wireType: "drop",
-        innerVisual: "tangle",
-        bg: "#D6E4EE"
-      },
-      {
-        type: "step",
-        stepIndex: 3,
-        num: "04 / 10",
-        badge: "STEP 03 • THE CATALYST",
-        mainTitle: "Establish urgency.",
-        italicNote: "Why must we act right now?",
-        desc: "State the cost of inaction. If the viewer or stakeholder doesn't make this move today, what does it cost them over the next 90 days?",
-        wireType: "flat",
-        innerVisual: "exclamation",
-        bg: "#E2E4E9"
-      },
-      {
-        type: "step",
-        stepIndex: 4,
-        num: "05 / 10",
-        badge: "STEP 04 • THE BREAKTHROUGH",
-        mainTitle: "Reveal your BIG IDEA.",
-        italicNote: "This is your unique core solution.",
-        desc: "Introduce the single counter-intuitive premise or proprietary angle that solves the root problem and positions you to win.",
-        wireType: "stepUp",
-        innerVisual: "solutionCircle",
-        bg: "#FFF6CF"
-      },
-      {
-        type: "step",
-        stepIndex: 5,
-        num: "06 / 10",
-        badge: "STEP 05 • VALUE DEFINITION",
-        mainTitle: "Describe specific value.",
-        italicNote: "Feature X yields Outcome Y.",
-        desc: "Translate technical features into emotional and operational relief. Stop describing the tool; highlight the finished outcome.",
-        wireType: "stepDown",
-        innerVisual: "valueEquation",
-        bg: "#D6E4EE"
-      },
-      {
-        type: "step",
-        stepIndex: 6,
-        num: "07 / 10",
-        badge: "STEP 06 • STRATEGIC BETS",
-        mainTitle: "Select 3 to 5 choices.",
-        italicNote: "Say 'no' to noise, 'yes' to needle-movers.",
-        desc: "Strategy is sacrifice. Define the strict 3 pillars you will execute with total focus while discarding distraction projects.",
-        wireType: "branchOut",
-        innerVisual: "choicesBranch",
-        bg: "#E2E4E9"
-      },
-      {
-        type: "step",
-        stepIndex: 7,
-        num: "08 / 10",
-        badge: "STEP 07 • PROOF POINTS",
-        mainTitle: "Double-click each choice.",
-        italicNote: "Concrete initiatives and capabilities.",
-        desc: "Back up every strategic pillar with hard operational proof: primary research, pilot tests, case studies, or validated metrics.",
-        wireType: "branchIn",
-        innerVisual: "proofGrid",
-        bg: "#CCD0DC"
-      },
-      {
-        type: "step",
-        stepIndex: 8,
-        num: "09 / 10",
-        badge: "STEP 08 • ROADMAP",
-        mainTitle: "Sequence your actions.",
-        italicNote: "Build your execution timeline.",
-        desc: "A vision without sequencing is daydreaming. Plot the phased sprints, milestones, and deliverables on a structured calendar.",
-        wireType: "ganttStep",
-        innerVisual: "ganttBars",
-        bg: "#FFF6CF"
-      },
-      {
-        type: "cta",
-        badge: "SCRIPTWRITING BLUEPRINT",
-        num: "10 / 10",
-        headline: "CLOSE YOUR STORY WITH NEXT STEPS.",
-        sub: "You have the strategy in your head. DraftsRush turns raw concepts into high-retention video blueprints and dual-column scripts.",
-        bg: "#FFE600"
-      }
-    ];
+    const canvas = document.getElementById('reelCanvas');
+    const ctx = canvas.getContext('2d');
+    const statusText = document.getElementById('statusText');
+    const btnPlay = document.getElementById('btnPlay');
+    const btnRecord = document.getElementById('btnRecord');
 
-    const container = document.getElementById('gridContainer');
-    const canvases = [];
+    const TOTAL_DURATION = 15; // 15 seconds Reel
+    let startTime = null;
+    let isRecording = false;
+    let mediaRecorder = null;
+    let recordedChunks = [];
 
-    function drawBrutalBox(ctx, x, y, w, h, fill, border = '#000000', borderWidth = 8, shadow = 16) {
+    // Helper: Draw Neo-Brutalist Box
+    function drawBox(x, y, w, h, fill, border = '#000000', borderWidth = 8, shadow = 16) {
       if (shadow > 0) {
         ctx.fillStyle = '#000000';
         ctx.fillRect(x + shadow, y + shadow, w, h);
@@ -226,7 +117,8 @@
       ctx.strokeRect(x, y, w, h);
     }
 
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+    // Helper: Text Wrap
+    function wrapText(text, x, y, maxWidth, lineHeight) {
       const words = text.split(' ');
       let line = '';
       for (let n = 0; n < words.length; n++) {
@@ -243,477 +135,282 @@
       ctx.fillText(line, x, y);
     }
 
-    stepsData.forEach((item, idx) => {
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      const canvas = document.createElement('canvas');
-      canvas.width = 1080;
-      canvas.height = 1920;
-      canvas.id = `canvas-${idx}`;
-      card.appendChild(canvas);
-
-      const btn = document.createElement('button');
-      btn.className = 'btn-single';
-      btn.innerText = idx === 0 ? 'Download Overview PNG' : (idx === 9 ? 'Download CTA Slide PNG' : `Download Step 0${idx} PNG`);
-      btn.onclick = () => downloadSingle(canvas, `strategy-story-slide-${idx + 1}.png`);
-      card.appendChild(btn);
-
-      container.appendChild(card);
-      canvases.push(canvas);
-    });
-
-    // Draw the Master Continuous Line on Slide 1
-    function drawFullRoadmapShape(ctx, x, y, w, h) {
-      drawBrutalBox(ctx, x, y, w, h, '#FFFFFF', '#000000', 8, 14);
-
-      ctx.save();
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 6;
-      ctx.lineJoin = 'miter';
-
-      // Path coordinates tracking through 8 stages
-      const points = [
-        { x: x + 60, y: y + 260 },
-        { x: x + 160, y: y + 260 },
-        { x: x + 210, y: y + 360 },
-        { x: x + 290, y: y + 360 },
-        { x: x + 340, y: y + 260 },
-        { x: x + 430, y: y + 260 },
-        { x: x + 480, y: y + 160 },
-        { x: x + 560, y: y + 160 },
-        { x: x + 610, y: y + 260 },
-        { x: x + 720, y: y + 260 },
-        { x: x + 770, y: y + 360 },
-        { x: x + w - 60, y: y + 360 }
-      ];
-
-      ctx.beginPath();
-      ctx.moveTo(points[0].x, points[0].y);
-      for (let i = 1; i < points.length; i++) {
-        ctx.lineTo(points[i].x, points[i].y);
-      }
-      ctx.stroke();
-
-      // Step Milestones along the roadmap
-      const milestones = [
-        { x: x + 110, y: y + 260, label: "01 Context" },
-        { x: x + 250, y: y + 360, label: "02 Challenge" },
-        { x: x + 385, y: y + 260, label: "03 Urgency" },
-        { x: x + 520, y: y + 160, label: "04 Big Idea" },
-        { x: x + 665, y: y + 260, label: "05 Value" },
-        { x: x + 750, y: y + 310, label: "06 Choices" },
-        { x: x + 810, y: y + 360, label: "07 Proof" },
-        { x: x + w - 80, y: y + 360, label: "08 Action" }
-      ];
-
-      milestones.forEach((m, idx) => {
-        // Drop shadow for dot
-        ctx.fillStyle = '#000000';
-        ctx.beginPath();
-        ctx.arc(m.x + 4, m.y + 4, 18, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Dot
-        ctx.fillStyle = idx === 3 ? '#FFE600' : '#34D399';
-        ctx.beginPath();
-        ctx.arc(m.x, m.y, 18, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = '#000000';
-        ctx.lineWidth = 4;
-        ctx.stroke();
-
-        // Label Tag
-        ctx.fillStyle = '#111317';
-        ctx.font = '800 16px "JetBrains Mono", monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText(m.label, m.x, idx % 2 === 0 ? m.y - 30 : m.y + 42);
-      });
-
-      ctx.restore();
+    // Easing Functions
+    function easeOutBack(x) {
+      const c1 = 1.70158;
+      const c3 = c1 + 1;
+      return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
     }
 
-    // Draw Individual Stage Geometric Vectors
-    function drawStepTimeline(ctx, type, x, y, w, h, visualType) {
-      drawBrutalBox(ctx, x, y, w, h, '#FFFFFF', '#000000', 8, 14);
-
-      ctx.save();
-      const cy = y + h / 2;
-      const cx = x + w / 2;
-
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 8;
-      ctx.lineCap = 'square';
-      ctx.lineJoin = 'miter';
-
-      if (type === "flat") {
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy);
-        ctx.lineTo(x + w - 40, cy);
-        ctx.stroke();
-
-        // Node
-        drawNode(ctx, cx, cy);
-
-      } else if (type === "drop") {
-        // Step Down Notch
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy - 100);
-        ctx.lineTo(cx - 180, cy - 100);
-        ctx.lineTo(cx - 180, cy + 100);
-        ctx.lineTo(cx + 180, cy + 100);
-        ctx.lineTo(cx + 180, cy - 100);
-        ctx.lineTo(x + w - 40, cy - 100);
-        ctx.stroke();
-
-        drawNode(ctx, cx, cy + 100);
-
-      } else if (type === "stepUp") {
-        // Stepped high arch for Big Idea
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy + 110);
-        ctx.lineTo(cx - 180, cy + 110);
-        ctx.lineTo(cx - 180, cy - 90);
-        ctx.lineTo(x + w - 40, cy - 90);
-        ctx.stroke();
-
-        drawNode(ctx, cx, cy - 90);
-
-      } else if (type === "stepDown") {
-        // Stepping back down
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy - 90);
-        ctx.lineTo(cx + 180, cy - 90);
-        ctx.lineTo(cx + 180, cy + 110);
-        ctx.lineTo(x + w - 40, cy + 110);
-        ctx.stroke();
-
-        drawNode(ctx, cx - 40, cy - 90);
-
-      } else if (type === "branchOut") {
-        // Line splits into 3 choice branches
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy);
-        ctx.lineTo(cx - 160, cy);
-        ctx.stroke();
-
-        drawNode(ctx, cx - 160, cy);
-
-        // Branching forks
-        [cy - 90, cy, cy + 90].forEach(by => {
-          ctx.beginPath();
-          ctx.moveTo(cx - 80, cy);
-          ctx.lineTo(cx - 20, by);
-          ctx.lineTo(x + w - 40, by);
-          ctx.stroke();
-        });
-
-      } else if (type === "branchIn") {
-        // Branches reconverging into single line
-        [cy - 90, cy, cy + 90].forEach(by => {
-          ctx.beginPath();
-          ctx.moveTo(x + 40, by);
-          ctx.lineTo(cx + 20, by);
-          ctx.lineTo(cx + 80, cy);
-          ctx.stroke();
-        });
-
-        ctx.beginPath();
-        ctx.moveTo(cx + 80, cy);
-        ctx.lineTo(x + w - 40, cy);
-        ctx.stroke();
-
-        drawNode(ctx, cx + 180, cy);
-
-      } else if (type === "ganttStep") {
-        // Descending staircase
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy - 110);
-        ctx.lineTo(cx - 180, cy - 110);
-        ctx.lineTo(cx - 180, cy + 100);
-        ctx.lineTo(x + w - 40, cy + 100);
-        ctx.stroke();
-
-        drawNode(ctx, cx, cy + 100);
-      }
-
-      // Render Visual Accents inside the graphic stage
-      if (visualType === "factsList") {
-        [cy + 45, cy + 85, cy + 125].forEach((ly, i) => {
-          drawBrutalBox(ctx, cx - 140, ly, 280, 24, i === 0 ? '#FFE600' : '#E2E4E9', '#000', 3, 0);
-        });
-      } else if (visualType === "tangle") {
-        // Scribbled knot
-        ctx.strokeStyle = '#FB7185';
-        ctx.lineWidth = 4;
-        ctx.beginPath();
-        for (let a = 0; a < Math.PI * 8; a += 0.3) {
-          const r = 40 + Math.sin(a * 4) * 20;
-          ctx.lineTo(cx + Math.cos(a) * r, (cy - 40) + Math.sin(a) * r);
-        }
-        ctx.stroke();
-      } else if (visualType === "exclamation") {
-        drawBrutalBox(ctx, cx - 140, cy - 130, 45, 90, '#FB7185', '#000', 4, 4);
-        drawBrutalBox(ctx, cx - 140, cy - 25, 45, 30, '#FB7185', '#000', 4, 4);
-      } else if (visualType === "solutionCircle") {
-        // Concentric lens
-        ctx.strokeStyle = '#34D399';
-        ctx.lineWidth = 6;
-        ctx.beginPath();
-        ctx.arc(cx, cy + 30, 65, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.strokeStyle = '#FFE600';
-        ctx.lineWidth = 4;
-        ctx.beginPath();
-        ctx.arc(cx, cy + 30, 45, 0, Math.PI * 2);
-        ctx.stroke();
-      } else if (visualType === "valueEquation") {
-        drawBrutalBox(ctx, cx - 210, cy + 20, 180, 50, '#FFE600', '#000', 3, 0);
-        ctx.fillStyle = '#000';
-        ctx.font = '800 20px "Space Grotesk", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('{FEATURE X}', cx - 120, cy + 52);
-
-        ctx.fillStyle = '#000';
-        ctx.font = '900 28px sans-serif';
-        ctx.fillText('➔', cx + 10, cy + 55);
-
-        drawBrutalBox(ctx, cx + 50, cy + 20, 180, 50, '#34D399', '#000', 3, 0);
-        ctx.fillStyle = '#000';
-        ctx.font = '800 20px "Space Grotesk", sans-serif';
-        ctx.fillText('{OUTCOME Y}', cx + 140, cy + 52);
-      } else if (visualType === "choicesBranch") {
-        ['CHOICE 1', 'CHOICE 2', 'CHOICE 3'].forEach((c, idx) => {
-          const by = (cy - 90) + (idx * 90);
-          drawBrutalBox(ctx, cx + 20, by - 26, 180, 52, '#FFFFFF', '#000', 4, 4);
-          ctx.fillStyle = '#000';
-          ctx.font = '900 18px "Space Grotesk", sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText(c, cx + 110, by + 6);
-        });
-      } else if (visualType === "proofGrid") {
-        ['PROOF 1', 'PROOF 2', 'PROOF 3'].forEach((p, idx) => {
-          const by = (cy - 90) + (idx * 90);
-          drawBrutalBox(ctx, cx - 220, by - 26, 180, 52, '#FFFFFF', '#000', 4, 4);
-          ctx.fillStyle = '#000';
-          ctx.font = '900 18px "Space Grotesk", sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText(p, cx - 130, by + 6);
-        });
-      } else if (visualType === "ganttBars") {
-        // Mini Gantt chart bars
-        [
-          { x: cx - 130, y: cy - 70, w: 120 },
-          { x: cx - 60, y: cy - 25, w: 140 },
-          { x: cx + 20, y: cy + 20, w: 150 }
-        ].forEach((bar, idx) => {
-          drawBrutalBox(ctx, bar.x, bar.y, bar.w, 32, idx === 2 ? '#34D399' : '#FFE600', '#000', 3, 0);
-        });
-      }
-
-      ctx.restore();
+    function easeOutCubic(x) {
+      return 1 - Math.pow(1 - x, 3);
     }
 
-    function drawNode(ctx, nx, ny) {
+    function renderFrame(time) {
+      // Background base
+      ctx.fillStyle = '#111317';
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // Outer Frame
+      ctx.lineWidth = 24;
+      ctx.strokeStyle = '#FFE600';
+      ctx.strokeRect(0, 0, 1080, 1920);
+
+      // Persistent Top Brand Bar
+      drawBox(90, 80, 480, 68, '#FFE600', '#000000', 0, 0);
       ctx.fillStyle = '#000000';
-      ctx.beginPath();
-      ctx.arc(nx + 6, ny + 6, 26, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.font = '900 24px "Space Grotesk", sans-serif';
+      ctx.fillText('DRAFTSRUSH PROTOCOL', 120, 122);
 
-      ctx.fillStyle = '#34D399';
-      ctx.beginPath();
-      ctx.arc(nx, ny, 26, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 6;
-      ctx.stroke();
-    }
+      // Timecode counter
+      const secondsLeft = Math.max(0, TOTAL_DURATION - time).toFixed(1);
+      drawBox(840, 80, 150, 68, '#FFFFFF', '#000000', 4, 6);
+      ctx.fillStyle = '#000000';
+      ctx.font = '900 24px "JetBrains Mono", monospace';
+      ctx.fillText(`00:${secondsLeft < 10 ? '0' : ''}${Math.ceil(secondsLeft)}`, 865, 122);
 
-    function renderAll() {
-      stepsData.forEach((data, idx) => {
-        const canvas = canvases[idx];
-        const ctx = canvas.getContext('2d');
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'alphabetic';
+      // ==========================================
+      // SCENE 1: 0.0s to 4.5s (The Hook & Slip-In Box)
+      // ==========================================
+      if (time < 4.5) {
+        // Block 1 slides from LEFT
+        const t1 = Math.min(1, Math.max(0, (time - 0.2) / 0.6));
+        const x1 = -900 + (easeOutBack(t1) * 990);
+        drawBox(x1, 240, 900, 220, '#FB7185', '#000000', 8, 16);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '900 78px "Space Grotesk", sans-serif';
+        ctx.fillText('STOP WRITING', x1 + 60, 375);
 
-        if (data.type === "intro") {
-          // Slide 01: Master Overview & Whole Timeline Shape
-          ctx.fillStyle = data.bg;
-          ctx.fillRect(0, 0, 1080, 1920);
-          ctx.lineWidth = 24;
-          ctx.strokeStyle = '#000000';
-          ctx.strokeRect(0, 0, 1080, 1920);
+        // Block 2 slides from RIGHT
+        const t2 = Math.min(1, Math.max(0, (time - 0.6) / 0.6));
+        const x2 = 1200 - (easeOutBack(t2) * 1110);
+        drawBox(x2, 490, 900, 220, '#FFE600', '#000000', 8, 16);
+        ctx.fillStyle = '#000000';
+        ctx.font = '900 78px "Space Grotesk", sans-serif';
+        ctx.fillText('LIKE AN ESSAY.', x2 + 60, 625);
 
-          drawBrutalBox(ctx, 90, 120, 520, 75, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#FFFFFF';
-          ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText(data.badge, 120, 168);
+        // Subcard pops in from bottom
+        const t3 = Math.min(1, Math.max(0, (time - 1.2) / 0.5));
+        const y3 = 1920 - (easeOutCubic(t3) * 1150);
+        drawBox(90, y3, 900, 480, '#FFFFFF', '#000000', 8, 14);
 
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 32px "JetBrains Mono", monospace';
-          ctx.fillText(data.num, 870, 168);
-
-          // Center Box
-          drawBrutalBox(ctx, 90, 240, 900, 1370, '#FFFFFF', '#000000', 10, 24);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 74px "Space Grotesk", sans-serif';
-          wrapText(ctx, data.headline, 140, 360, 800, 80);
-
-          // Master Roadmap Graphic
-          drawFullRoadmapShape(ctx, 140, 580, 800, 480);
+        // Typewriter effect inside the white card
+        if (time > 1.6) {
+          const fullText = "When your script reads like a textbook, your viewer retention graph crashes before second 03.";
+          const charCount = Math.floor((time - 1.6) * 32); // 32 chars per second
+          const currentText = fullText.substring(0, charCount);
 
           ctx.fillStyle = '#111317';
-          ctx.font = '600 34px "Inter", sans-serif';
-          wrapText(ctx, data.sub, 140, 1140, 800, 50);
+          ctx.font = '700 36px "Inter", sans-serif';
+          wrapText(currentText, 140, y3 + 120, 800, 56);
 
-          drawBrutalBox(ctx, 90, 1660, 900, 120, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#FFE600';
-          ctx.font = '900 32px "Space Grotesk", sans-serif';
-          ctx.fillText('SWIPE TO FOLLOW THE LINE', 140, 1735);
-          ctx.fillText('→', 930, 1735);
-
-        } else if (data.type === "step") {
-          // Slides 02 to 09: Progressive Steps
-          ctx.fillStyle = data.bg;
-          ctx.fillRect(0, 0, 1080, 1920);
-          ctx.lineWidth = 24;
-          ctx.strokeStyle = '#000000';
-          ctx.strokeRect(0, 0, 1080, 1920);
-
-          drawBrutalBox(ctx, 90, 80, 520, 68, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#FFE600';
-          ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText(data.badge, 115, 122);
-
-          drawBrutalBox(ctx, 840, 80, 150, 68, '#FFFFFF', '#000000', 4, 6);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 28px "JetBrains Mono", monospace';
-          ctx.fillText(data.num, 860, 124);
-
-          // Headline Box
-          drawBrutalBox(ctx, 90, 175, 900, 180, '#FFFFFF', '#000000', 8, 14);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 50px "Space Grotesk", sans-serif';
-          ctx.fillText(data.mainTitle, 130, 255);
-
-          ctx.fillStyle = '#E11D48';
-          ctx.font = '700 32px "Space Grotesk", sans-serif';
-          ctx.fillText(data.italicNote, 130, 305);
-
-          // TIMELINE GRAPHIC STAGE
-          drawStepTimeline(ctx, data.wireType, 90, 395, 900, 540, data.innerVisual);
-
-          // STRATEGIC EXECUTION DETAILS
-          drawBrutalBox(ctx, 90, 985, 900, 360, '#FFFFFF', '#000000', 8, 14);
-          drawBrutalBox(ctx, 130, 1020, 360, 45, '#FFE600', '#000000', 0, 0);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 22px "Space Grotesk", sans-serif';
-          ctx.fillText('WHY RETENTION DEMANDS THIS', 150, 1051);
-
-          ctx.fillStyle = '#111317';
-          ctx.font = '600 34px "Inter", sans-serif';
-          wrapText(ctx, data.desc, 130, 1125, 820, 52);
-
-          // BLUEPRINT IMPLEMENTATION BAR
-          drawBrutalBox(ctx, 90, 1395, 900, 220, '#D6E4EE', '#000000', 8, 14);
-          drawBrutalBox(ctx, 130, 1430, 320, 45, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#34D399';
-          ctx.font = '900 22px "Space Grotesk", sans-serif';
-          ctx.fillText('SCRIPTWRITING BLUEPRINT', 150, 1461);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '700 28px "Inter", sans-serif';
-          wrapText(ctx, `Lock this premise before second ${data.stepIndex * 8}. Every second of throat clearing decays viewer interest.`, 130, 1515, 820, 40);
-
-          // Footer
-          ctx.fillStyle = '#000000';
-          ctx.font = '800 28px "Space Grotesk", sans-serif';
-          ctx.fillText('DRAFTSRUSH STUDIO', 90, 1820);
-          ctx.font = '700 26px "JetBrains Mono", monospace';
-          ctx.fillText('draftsrush.com', 720, 1820);
-
-        } else if (data.type === "cta") {
-          // Slide 10: Final CTA Slide
-          ctx.fillStyle = data.bg;
-          ctx.fillRect(0, 0, 1080, 1920);
-          ctx.lineWidth = 24;
-          ctx.strokeStyle = '#000000';
-          ctx.strokeRect(0, 0, 1080, 1920);
-
-          drawBrutalBox(ctx, 90, 120, 520, 75, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#FFFFFF';
-          ctx.font = '900 24px "Space Grotesk", sans-serif';
-          ctx.fillText(data.badge, 120, 168);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 32px "JetBrains Mono", monospace';
-          ctx.fillText(data.num, 870, 168);
-
-          drawBrutalBox(ctx, 90, 240, 900, 1370, '#FFFFFF', '#000000', 10, 24);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 72px "Space Grotesk", sans-serif';
-          wrapText(ctx, data.headline, 140, 360, 800, 78);
-
-          ctx.fillStyle = '#111317';
-          ctx.font = '600 34px "Inter", sans-serif';
-          wrapText(ctx, data.sub, 140, 580, 800, 50);
-
-          // Offer Container
-          drawBrutalBox(ctx, 140, 780, 800, 360, '#D6E4EE', '#000000', 6, 12);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 34px "Space Grotesk", sans-serif';
-          ctx.fillText('TEST OUR PACING FIRST', 180, 850);
-
-          ctx.fillStyle = '#222222';
-          ctx.font = '600 28px "Inter", sans-serif';
-          wrapText(ctx, "Send us 1 rough topic or deck in our DM. We will draft your hook and opening act in dual-column format completely free.", 180, 915, 720, 42);
-
-          // Button 1: DM
-          drawBrutalBox(ctx, 140, 1190, 800, 110, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#34D399';
-          ctx.font = '900 34px "Space Grotesk", sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText('📩 DM "STORY" ON INSTAGRAM', 140 + 400, 1260);
-
-          // Button 2: Web
-          drawBrutalBox(ctx, 140, 1330, 800, 110, '#FFE600', '#000000', 6, 8);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 34px "Space Grotesk", sans-serif';
-          ctx.fillText('🌐 VISIT DRAFTSRUSH.COM', 140 + 400, 1400);
-
-          ctx.textAlign = 'left';
-          ctx.fillStyle = '#000000';
-          ctx.font = '800 32px "Space Grotesk", sans-serif';
-          ctx.fillText('DRAFTSRUSH STUDIO • 2026', 90, 1780);
+          // Blinking cursor
+          if (Math.floor(time * 3) % 2 === 0 && charCount < fullText.length) {
+            ctx.fillStyle = '#E11D48';
+            ctx.fillRect(140 + ctx.measureText(currentText.split(' ').pop()).width + 10, y3 + 75, 6, 42);
+          }
         }
-      });
+      }
+
+      // ==========================================
+      // SCENE 2: 4.5s to 9.5s (The Dual-Column Breakdown)
+      // ==========================================
+      else if (time >= 4.5 && time < 9.5) {
+        const sceneTime = time - 4.5;
+
+        // Container Box Pops In
+        const tc = Math.min(1, sceneTime / 0.4);
+        const scale = easeOutBack(tc);
+        drawBox(90, 220, 900, 1340, '#FFFFFF', '#000000', 10, 20);
+
+        // Header Pill
+        drawBox(140, 280, 440, 60, '#000000', '#000000', 0, 0);
+        ctx.fillStyle = '#FFE600';
+        ctx.font = '900 24px "Space Grotesk", sans-serif';
+        ctx.fillText('THE DUAL-COLUMN SYSTEM', 165, 320);
+
+        // Subtitle
+        ctx.fillStyle = '#111317';
+        ctx.font = '900 52px "Space Grotesk", sans-serif';
+        ctx.fillText('AV FORMAT IN ACTION', 140, 410);
+
+        // Left Column: Visual (Slides from Left)
+        const tv = Math.min(1, Math.max(0, (sceneTime - 0.4) / 0.5));
+        const xv = -450 + (easeOutBack(tv) * 590);
+        drawBox(xv, 470, 380, 680, '#D6E4EE', '#000000', 6, 8);
+        drawBox(xv + 30, 500, 200, 40, '#000000', '#000000', 0, 0);
+        ctx.fillStyle = '#34D399';
+        ctx.font = '900 18px "Space Grotesk", sans-serif';
+        ctx.fillText('VIDEO (B-ROLL)', xv + 50, 526);
+
+        // Right Column: Audio (Slides from Right)
+        const ta = Math.min(1, Math.max(0, (sceneTime - 0.7) / 0.5));
+        const xa = 1100 - (easeOutBack(ta) * 550);
+        drawBox(xa, 470, 380, 680, '#FFF6CF', '#000000', 6, 8);
+        drawBox(xa + 30, 500, 200, 40, '#000000', '#000000', 0, 0);
+        ctx.fillStyle = '#E11D48';
+        ctx.font = '900 18px "Space Grotesk", sans-serif';
+        ctx.fillText('AUDIO (VOICEOVER)', xa + 50, 526);
+
+        // Typewriter in Video Column
+        if (sceneTime > 1.2) {
+          const vText = "[FAST CUT] Rapid zoom on retention drop-off graph at 00:03.";
+          const countV = Math.floor((sceneTime - 1.2) * 28);
+          ctx.fillStyle = '#111317';
+          ctx.font = '700 24px "JetBrains Mono", monospace';
+          wrapText(vText.substring(0, countV), xv + 30, 590, 320, 36);
+        }
+
+        // Typewriter in Audio Column
+        if (sceneTime > 2.0) {
+          const aText = "\"If you write long sentences, your video is already dead.\"";
+          const countA = Math.floor((sceneTime - 2.0) * 28);
+          ctx.fillStyle = '#111317';
+          ctx.font = '800 28px "Inter", sans-serif';
+          wrapText(aText.substring(0, countA), xa + 30, 600, 320, 42);
+        }
+
+        // Animated Rule Badge snaps in at 3.2s
+        if (sceneTime > 3.2) {
+          const tb = Math.min(1, (sceneTime - 3.2) / 0.3);
+          const yb = 1350 - (easeOutBack(tb) * 160);
+          drawBox(140, yb, 800, 110, '#FFE600', '#000000', 6, 10);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 30px "Space Grotesk", sans-serif';
+          ctx.fillText('RULE: 12 WORDS MAXIMUM PER LINE', 180, yb + 68);
+        }
+      }
+
+      // ==========================================
+      // SCENE 3: 9.5s to 15.0s (The Final CTA Conversion)
+      // ==========================================
+      else {
+        const sceneTime = time - 9.5;
+
+        // Cover Box expands
+        drawBox(90, 220, 900, 1380, '#FFE600', '#000000', 10, 24);
+
+        // Tag
+        drawBox(140, 280, 420, 60, '#000000', '#000000', 0, 0);
+        ctx.fillStyle = '#34D399';
+        ctx.font = '900 22px "Space Grotesk", sans-serif';
+        ctx.fillText('TEST OUR PACING FIRST', 170, 318);
+
+        // Huge Title
+        ctx.fillStyle = '#000000';
+        ctx.font = '900 78px "Space Grotesk", sans-serif';
+        ctx.fillText('YOU HAVE NOTES.', 140, 440);
+
+        // Pink Box Pops In
+        const tp = Math.min(1, sceneTime / 0.4);
+        const xp = -800 + (easeOutBack(tp) * 940);
+        drawBox(xp, 470, 800, 120, '#FB7185', '#000000', 6, 8);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '900 58px "Space Grotesk", sans-serif';
+        ctx.fillText('WE BUILD BLUEPRINTS.', xp + 30, 550);
+
+        // Body Typewriter
+        if (sceneTime > 0.6) {
+          const bodyText = "Send 1 rough topic in our DM. We will draft your opening hook in our dual-column format completely free.";
+          const cCount = Math.floor((sceneTime - 0.6) * 35);
+          ctx.fillStyle = '#111317';
+          ctx.font = '700 36px "Inter", sans-serif';
+          wrapText(bodyText.substring(0, cCount), 140, 670, 800, 54);
+        }
+
+        // Buttons Slide in from bottom
+        if (sceneTime > 2.0) {
+          const btnT = Math.min(1, (sceneTime - 2.0) / 0.4);
+          const btnY = 1600 - (easeOutBack(btnT) * 450);
+
+          drawBox(140, btnY, 800, 110, '#000000', '#000000', 0, 0);
+          ctx.fillStyle = '#34D399';
+          ctx.font = '900 34px "Space Grotesk", sans-serif';
+          ctx.fillText('📩 DM "DEMO" ON INSTAGRAM', 220, btnY + 70);
+
+          drawBox(140, btnY + 140, 800, 110, '#FFFFFF', '#000000', 6, 8);
+          ctx.fillStyle = '#000000';
+          ctx.font = '900 34px "Space Grotesk", sans-serif';
+          ctx.fillText('🌐 VISIT DRAFTSRUSH.COM', 240, btnY + 210);
+        }
+      }
+
+      // Bottom Studio Watermark
+      ctx.fillStyle = '#FFE600';
+      ctx.font = '800 26px "Space Grotesk", sans-serif';
+      ctx.fillText('DRAFTSRUSH STUDIO • 2026', 90, 1840);
     }
 
-    function downloadSingle(canvas, filename) {
-      const link = document.createElement('a');
-      link.download = filename;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
+    // Animation Loop
+    function loop(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const progress = (timestamp - startTime) / 1000;
+
+      if (progress <= TOTAL_DURATION) {
+        renderFrame(progress);
+        requestAnimationFrame(loop);
+      } else {
+        renderFrame(TOTAL_DURATION);
+        if (isRecording) {
+          stopRecording();
+        } else {
+          statusText.innerText = "Preview finished. Click 'Play Preview' to replay.";
+        }
+      }
     }
 
-    async function downloadAll() {
-      const zip = new JSZip();
-      canvases.forEach((canvas, idx) => {
-        const dataUrl = canvas.toDataURL('image/png');
-        const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "");
-        zip.file(`draftsrush-strategy-story-slide-${idx + 1}.png`, base64Data, { base64: true });
-      });
-
-      const content = await zip.generateAsync({ type: "blob" });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(content);
-      link.download = "draftsrush-strategy-story-carousel.zip";
-      link.click();
+    function restartAnimation() {
+      startTime = null;
+      statusText.innerText = "Playing 15s animated reel preview...";
+      requestAnimationFrame(loop);
     }
 
-    document.fonts.ready.then(renderAll);
+    // Canvas Video Recording Pipeline
+    function startRecording() {
+      statusText.innerText = "Recording video... please wait 15 seconds.";
+      btnPlay.disabled = true;
+      btnRecord.disabled = true;
+      isRecording = true;
+      recordedChunks = [];
+
+      // Stream 60FPS canvas
+      const stream = canvas.captureStream(60);
+      const options = { mimeType: 'video/webm;codecs=vp9' };
+
+      try {
+        mediaRecorder = new MediaRecorder(stream, options);
+      } catch (e) {
+        mediaRecorder = new MediaRecorder(stream);
+      }
+
+      mediaRecorder.ondataavailable = function(event) {
+        if (event.data.size > 0) {
+          recordedChunks.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = function() {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'draftsrush-animated-reel.webm';
+        a.click();
+
+        statusText.innerText = "Recording complete! Video file downloaded.";
+        btnPlay.disabled = false;
+        btnRecord.disabled = false;
+        isRecording = false;
+      };
+
+      mediaRecorder.start();
+      startTime = null;
+      requestAnimationFrame(loop);
+    }
+
+    document.fonts.ready.then(() => {
+      renderFrame(0);
+    });
   </script>
 </body>
 </html>
