@@ -3,372 +3,470 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DraftsRush — Live Brand & Logo Customizer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+  <title>DraftsRush - Story Strategy Frames</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
-    :root {
-      --dr-yellow: #FFE600;
-      --dr-black: #111317;
-      --dr-pure-black: #000000;
-      --dr-white: #FFFFFF;
-      --dr-slate-blue: #D6E4EE;
-      --dr-cream: #FFF6CF;
-      --dr-light-grey: #E2E4E9;
-      --dr-pink: #FB7185;
-      --dr-emerald: #34D399;
-      
-      --font-display: 'Space Grotesk', -apple-system, sans-serif;
-      --font-body: 'Inter', -apple-system, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+    body { font-family: 'Inter', sans-serif; background-color: #111317; }
+    .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    
+    /* 9:16 Frame Geometry */
+    .reel-frame {
+      width: 405px;
+      height: 720px;
+      position: relative;
+      flex-shrink: 0;
+      border: 4px solid #111317;
+      box-shadow: 10px 10px 0px #000;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background-color: #0B0C0E;
-      color: #E2E4E9;
-      font-family: var(--font-body);
-      line-height: 1.5;
-      padding: 30px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .container {
-      max-width: 1050px;
-      width: 100%;
-    }
-
-    .card {
-      background: var(--dr-white);
-      color: var(--dr-black);
-      border: 4px solid var(--dr-pure-black);
-      box-shadow: 10px 10px 0px var(--dr-pure-black);
-      padding: 30px;
-      margin-bottom: 30px;
-    }
-
-    .card.dark {
-      background: #171A21;
-      color: #FFFFFF;
-      border-color: #333842;
-      box-shadow: 10px 10px 0px #000000;
-    }
-
-    .hero {
-      background: var(--dr-yellow);
-      color: var(--dr-black);
-      border: 5px solid var(--dr-pure-black);
-      box-shadow: 10px 10px 0px #FFFFFF;
-      padding: 32px;
-      margin-bottom: 30px;
-    }
-
-    .pill {
-      display: inline-block;
-      background: var(--dr-pure-black);
-      color: var(--dr-yellow);
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 13px;
-      padding: 6px 12px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-family: var(--font-display);
-      font-size: 40px;
-      font-weight: 900;
-      line-height: 1.1;
-      text-transform: uppercase;
-      letter-spacing: -1px;
-      margin-bottom: 8px;
-    }
-
-    h2 {
-      font-family: var(--font-display);
-      font-size: 24px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: -0.5px;
-      margin-bottom: 16px;
-      border-bottom: 3px solid var(--dr-pure-black);
-      padding-bottom: 6px;
-    }
-
-    .dark h2 {
-      border-bottom-color: #333842;
-      color: var(--dr-yellow);
-    }
-
-    /* Input Form Controls */
-    .input-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 14px;
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    label {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 14px;
-      text-transform: uppercase;
-      color: #111;
-    }
-
-    input {
-      background: #F4F5F7;
-      border: 3px solid var(--dr-pure-black);
-      padding: 12px;
-      font-family: var(--font-display);
-      font-size: 16px;
-      font-weight: 700;
-      color: #000;
-      outline: none;
-    }
-
-    input:focus {
-      background: #FFE600;
-    }
-
-    /* Live Logo Stage */
-    .logo-stage {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: center;
-      background: #E2E4E9;
-      border: 3px solid var(--dr-pure-black);
-      padding: 24px;
-      margin-top: 20px;
-    }
-
-    .btn {
-      background: var(--dr-yellow);
-      color: var(--dr-black);
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 14px;
-      padding: 12px 20px;
-      border: 3px solid var(--dr-pure-black);
-      box-shadow: 4px 4px 0px var(--dr-pure-black);
-      cursor: pointer;
-      text-transform: uppercase;
-      display: inline-block;
-      margin-top: 14px;
-    }
-
-    .btn:hover {
-      background: #FFF;
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0px var(--dr-pure-black);
-    }
-
-    .btn:active {
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0px var(--dr-pure-black);
-    }
-
-    /* Live Prompt Output Box */
-    .prompt-box {
-      background: #0B0C0E;
-      color: #34D399;
-      border: 3px solid #282C34;
-      padding: 20px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      overflow-x: auto;
-      max-height: 420px;
-      margin-top: 14px;
-    }
+    .brutal-shadow { box-shadow: 6px 6px 0px #111317; }
+    .brutal-shadow-sm { box-shadow: 4px 4px 0px #111317; }
+    .brutal-shadow-lg { box-shadow: 8px 8px 0px #111317; }
   </style>
 </head>
-<body>
+<body class="p-8 text-[#111317]">
 
-  <div class="container">
-
-    <div class="hero">
-      <div class="pill">LIVE ASSET GENERATOR</div>
-      <h1>Brand & Logo Identity Customizer</h1>
-      <p style="font-size: 16px; font-weight: 700; color: #111;">
-        Type your exact logo name and brand parameters below. The preview and the AI Master Prompt will automatically update in real time.
-      </p>
+  <!-- Top Action Bar -->
+  <div class="max-w-7xl mx-auto mb-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FFE600] border-4 border-black p-6 brutal-shadow">
+    <div>
+      <h1 class="brand-font font-black text-2xl uppercase tracking-tight">Strategy: How to Write Your Next Story</h1>
+      <p class="text-xs font-bold text-gray-800 uppercase tracking-wider mt-1">11 Clean 9:16 Instagram Reel Frames</p>
     </div>
+    <button id="download-btn" onclick="downloadAllFrames()" class="bg-black text-white font-black brand-font text-sm uppercase px-6 py-3 border-2 border-black brutal-shadow hover:bg-white hover:text-black transition-all">
+      Download All 11 Frames (PNG)
+    </button>
+  </div>
 
-    <!-- 1. LIVE INPUT CONTROLS -->
-    <div class="card">
-      <h2>Step 1: Enter Your Exact Brand Info</h2>
-      <div class="input-grid">
-        <div class="field-group">
-          <label for="inputBrandName">Brand / Logo Name</label>
-          <input type="text" id="inputBrandName" value="DRAFTSRUSH" placeholder="e.g. DRAFTSRUSH">
+  <!-- Frames Grid -->
+  <div class="flex flex-wrap gap-10 justify-center items-start max-w-7xl mx-auto">
+
+    <!-- FRAME 01: Cover / Hook -->
+    <div id="frame-01" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            STORY STRATEGY
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            01/11
+          </div>
         </div>
-        <div class="field-group">
-          <label for="inputInitials">Initials / Monogram Icon</label>
-          <input type="text" id="inputInitials" value="DR" maxlength="4" placeholder="e.g. DR">
+
+        <div class="bg-[#FFE600] border-4 border-black p-6 brutal-shadow mb-6">
+          <span class="bg-black text-white px-2 py-0.5 text-[11px] font-bold brand-font uppercase">The Dilemma</span>
+          <h2 class="text-3xl font-black brand-font leading-tight mt-3 text-black">
+            Always confused by too many ideas?
+          </h2>
         </div>
-        <div class="field-group">
-          <label for="inputTagline">Tagline / Subtext</label>
-          <input type="text" id="inputTagline" value="STUDIO BLUEPRINT" placeholder="e.g. STUDIO BLUEPRINT">
+
+        <div class="bg-white border-4 border-black p-6 brutal-shadow space-y-4">
+          <p class="text-base font-bold text-gray-900 leading-snug">
+            Having 50 plot thoughts at once kills the basics of your story.
+          </p>
+          <p class="text-sm font-semibold text-gray-700 leading-relaxed">
+            When you try to fit every thought into page one, your narrative loses flow, pacing, and focus.
+          </p>
         </div>
-        <div class="field-group">
-          <label for="inputDomain">Website URL / Handle</label>
-          <input type="text" id="inputDomain" value="draftsrush.com" placeholder="e.g. draftsrush.com">
-        </div>
+      </div>
+
+      <div class="bg-black text-white p-4 border-2 border-black flex items-center justify-between">
+        <span class="brand-font font-bold text-xs uppercase tracking-wider">Follow this simple blueprint</span>
+        <span class="text-[#FFE600] font-black text-sm">→</span>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- 2. REAL-TIME LOGO PREVIEW -->
-    <div class="card">
-      <h2>Step 2: Real-Time Vector Logo Preview</h2>
-      <p style="color: #333; font-size: 14px;">
-        Here is how your logo appears with the official neo-brutalist shadow tile and lettermark badge:
-      </p>
+    <!-- FRAME 02: Step 1 Context -->
+    <div id="frame-02" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            PHASE 01: THE BASELINE
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            02/11
+          </div>
+        </div>
 
-      <div class="logo-stage">
-        <!-- Horizontal Master Logo -->
-        <svg id="svgMasterLogo" width="340" height="90" viewBox="0 0 340 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="8" width="324" height="74" fill="#000000" />
-          <rect x="2" y="2" width="324" height="74" fill="#FFE600" stroke="#000000" stroke-width="4" />
-          <!-- Monogram Box -->
-          <rect x="16" y="16" width="46" height="46" fill="#111317" />
-          <text id="svgInitials" x="39" y="48" fill="#FFE600" font-family="'Space Grotesk', sans-serif" font-weight="900" font-size="24" text-anchor="middle">DR</text>
-          <!-- Text Name -->
-          <text id="svgBrandName" x="76" y="42" fill="#111317" font-family="'Space Grotesk', sans-serif" font-weight="900" font-size="22" letter-spacing="-0.5">DRAFTSRUSH</text>
-          <text id="svgTagline" x="78" y="58" fill="#111317" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="9" letter-spacing="2">STUDIO BLUEPRINT</text>
-        </svg>
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step One</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Start With The Context</h3>
+        </div>
 
-        <!-- Square Icon Mark -->
-        <svg id="svgSquareLogo" width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="6" y="6" width="78" height="78" fill="#000000" />
-          <rect x="2" y="2" width="78" height="78" fill="#111317" stroke="#FFE600" stroke-width="4" />
-          <rect x="18" y="18" width="44" height="44" fill="#FFE600" />
-          <text id="svgSquareInitials" x="40" y="50" fill="#111317" font-family="'Space Grotesk', sans-serif" font-weight="900" font-size="26" text-anchor="middle">DR</text>
-        </svg>
+        <div class="bg-[#FFF6CF] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Lay Down The Plain Facts</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            Do not jump straight into complex plot twists. 
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Establish the baseline world immediately. What is standard normal life for your character before everything goes off the rails?
+          </p>
+        </div>
       </div>
 
-      <button class="btn" onclick="downloadLogoSVG()">💾 Download Custom Logo (SVG)</button>
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
     </div>
 
-    <!-- 3. DYNAMIC MASTER PROMPT -->
-    <div class="card dark">
-      <h2>Step 3: Auto-Generated Prompt for New Chats</h2>
-      <p style="color: #A0A5B1; font-size: 14px;">
-        This prompt has been dynamically updated with the brand details you typed above. Copy and paste this as your first message in a new chat:
-      </p>
+    <!-- FRAME 03: Step 2 Problem -->
+    <div id="frame-03" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            PHASE 02: FRICTION
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            03/11
+          </div>
+        </div>
 
-      <div class="prompt-box" id="masterPromptText"></div>
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Two</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Frame The Core Problem</h3>
+        </div>
 
-      <button class="btn" onclick="copyPrompt()">📋 Copy Updated Prompt to Clipboard</button>
+        <div class="bg-[#D6E4EE] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">What Broke?</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            A story does not start until something breaks down.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Isolate one distinct problem. If your protagonist has five unrelated life crises in chapter one, your audience has zero reasons to care about any of them.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 04: Step 3 Urgency -->
+    <div id="frame-04" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            PHASE 03: THE CLOCK
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            04/11
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Three</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Introduce The Urgency</h3>
+        </div>
+
+        <div class="bg-[#FFE600] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Why Now?</div>
+          <p class="text-sm font-bold text-black leading-relaxed">
+            Why must this issue be solved today instead of next year?
+          </p>
+          <p class="text-xs font-semibold text-black leading-relaxed">
+            Add a ticking clock or a rising cost of doing nothing. If walking away costs nothing, you do not have a story.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 05: Step 4 The Core Shift -->
+    <div id="frame-05" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            PHASE 04: THE CATALYST
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            05/11
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Four</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Reveal The Decision</h3>
+        </div>
+
+        <div class="bg-[#EFE4D6] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">No Turning Back</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            Your character chooses a specific path to tackle the problem.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            This is the big thesis of your script. It must be unique, high-stakes, and completely cut off their old way of living.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 06: Step 5 The Value -->
+    <div id="frame-06" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            PHASE 05: THE STAKES
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            06/11
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Five</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Define The Value</h3>
+        </div>
+
+        <div class="bg-[#DDE8DF] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">What Is Won Or Lost?</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            State the exact payoff of success.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            If they pull this off, what does their life look like? Keep the target concrete so your audience can cheer for a clear finish line.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 07: Step 6 Filter The Noise -->
+    <div id="frame-07" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            PHASE 06: EDITING IDEAS
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            07/11
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Six</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Pick 3 Major Steps</h3>
+        </div>
+
+        <div class="bg-[#FFF6CF] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Say No To The Rest</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            This is where most writers get stuck.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Filter out your 20 random ideas. Select only 3 crucial actions your protagonist must complete to hit their goal. Discard everything else.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 08: Step 7 Back Every Action -->
+    <div id="frame-08" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            PHASE 07: VERIFICATION
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            08/11
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Seven</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Add Logical Proof</h3>
+        </div>
+
+        <div class="bg-[#D6E4EE] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">No Easy Miracles</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            Every action step must earn its solution.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Do not let characters magically resolve obstacles. Force them to sacrifice, negotiate, or use real technical skills to move forward.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 09: Step 8 Sequence -->
+    <div id="frame-09" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            PHASE 08: THE BLUEPRINT
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            09/11
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Eight</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Build The Sequence</h3>
+        </div>
+
+        <div class="bg-[#FFE600] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Order Your Actions</div>
+          <p class="text-sm font-bold text-black leading-relaxed">
+            Arrange scenes so that each one causes the next.
+          </p>
+          <p class="text-xs font-semibold text-black leading-relaxed">
+            Replace 'and then' with 'therefore' or 'but'. When action A fails, action B becomes mandatory. That is how real pacing works.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 10: Step 9 Closing -->
+    <div id="frame-10" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            PHASE 09: EXECUTION
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            10/11
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Nine</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Close Out & Publish</h3>
+        </div>
+
+        <div class="bg-white border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Stop Rewriting Draft 1</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            Finish the blueprint, write page one to the end, and ship it.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Perfectionism is just procrastination. A finished 1,000-word draft teaches you more than three years of untouched brainstorms.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 11: Call To Action (Full Yellow Takeover) -->
+    <div id="frame-11" class="reel-frame bg-[#FFE600] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-white px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            NEXT ACTION
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            11/11
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-6 brutal-shadow mb-5 space-y-4">
+          <h2 class="text-3xl font-black brand-font text-black leading-tight">
+            STOP GUESSING.<br>START FILMING.
+          </h2>
+          <p class="text-xs font-bold text-gray-800 leading-relaxed">
+            Have ideas sitting in your notes app? We turn them into production-ready dual-column scripts with verified facts and zero filler.
+          </p>
+
+          <!-- Free Demo Box -->
+          <div class="bg-[#D6E4EE] border-2 border-black p-4 brutal-shadow-sm space-y-1">
+            <span class="text-[10px] font-black brand-font uppercase bg-black text-white px-1.5 py-0.5">Free Hook Demo</span>
+            <p class="text-xs font-bold text-gray-900 pt-1">
+              DM us 1 rough topic on Instagram. We will draft your hook and opening act for free.
+            </p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-2.5">
+          <div class="bg-black text-[#2ECC71] text-center font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-shadow-sm">
+            DM "DEMO" ON INSTAGRAM
+          </div>
+          <div class="bg-[#FFE600] text-black text-center font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-shadow-sm">
+            OR VISIT DRAFTSRUSH.COM
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-3">
+        DRAFTSRUSH STUDIO • 2026
+      </div>
     </div>
 
   </div>
 
+  <!-- Download Automation Logic -->
   <script>
-    const inputBrandName = document.getElementById('inputBrandName');
-    const inputInitials = document.getElementById('inputInitials');
-    const inputTagline = document.getElementById('inputTagline');
-    const inputDomain = document.getElementById('inputDomain');
+    async function downloadAllFrames() {
+      const btn = document.getElementById('download-btn');
+      btn.innerText = 'RENDERING 11 FRAMES...';
+      btn.disabled = true;
 
-    const svgBrandName = document.getElementById('svgBrandName');
-    const svgInitials = document.getElementById('svgInitials');
-    const svgSquareInitials = document.getElementById('svgSquareInitials');
-    const svgTagline = document.getElementById('svgTagline');
-    const masterPromptText = document.getElementById('masterPromptText');
+      for (let i = 1; i <= 11; i++) {
+        const frameId = `frame-${i < 10 ? '0' + i : i}`;
+        const element = document.getElementById(frameId);
 
-    function updateAll() {
-      const brand = inputBrandName.value.trim().toUpperCase() || "DRAFTSRUSH";
-      const initials = inputInitials.value.trim().toUpperCase() || "DR";
-      const tagline = inputTagline.value.trim().toUpperCase() || "STUDIO BLUEPRINT";
-      const domain = inputDomain.value.trim().toLowerCase() || "draftsrush.com";
+        try {
+          const canvas = await html2canvas(element, {
+            scale: 2.6666, // Scales 405x720 up to exact 1080x1920 Instagram Story resolution
+            useCORS: true,
+            backgroundColor: null
+          });
 
-      // Update SVG preview text
-      svgBrandName.textContent = brand;
-      svgInitials.textContent = initials;
-      svgSquareInitials.textContent = initials;
-      svgTagline.textContent = tagline;
+          const link = document.createElement('a');
+          link.download = `draftsrush-story-strategy-${i < 10 ? '0' + i : i}.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          await new Promise(resolve => setTimeout(resolve, 300));
+        } catch (err) {
+          console.error(`Error capturing ${frameId}:`, err);
+        }
+      }
 
-      // Update Auto-Generated Prompt
-      masterPromptText.textContent = `You are the Principal Art Director and Visual Designer for "${brand}" (${domain}).
-
-Before generating or designing any visuals, Instagram reels, or Canva templates, you MUST strictly adhere to the official Brand Identity System below:
-
-==============================================
-1. OFFICIAL LOGO & BRANDMARK SPECIFICATION
-==============================================
-- PRIMARY BRAND NAME: "${brand}"
-- MONOGRAM / ICON INITIALS: "${initials}" (Displayed in bold black inside a sharp square tile)
-- TAGLINE: "${tagline}"
-- WEBSITE / SIGN-OFF: "${domain}"
-- SIGNATURE LOGO TILE: A crisp neo-brutalist horizontal badge with an Electric Yellow (#FFE600) body, 4px solid black border, 6px solid black drop shadow, featuring the black '${initials}' square on the left, followed by '${brand}' in bold Space Grotesk (weight 900) and '${tagline}' in JetBrains Mono.
-
-==============================================
-2. COLOR PALETTE ARCHITECTURE
-==============================================
-- Primary Energy Accent: Electric Yellow (#FFE600)
-- Structural Framing: Pure Black (#000000) & Jet Charcoal (#111317)
-- Editorial Neutral Canvases: Soft Slate Blue (#D6E4EE), Pale Butter (#FFF6CF), Concrete Grey (#E2E4E9)
-- Action / Friction: Coral Rose Pink (#FB7185)
-- Milestone / Success Node: Emerald Green (#34D399)
-- Central Cards: Clean Solid White (#FFFFFF)
-
-==============================================
-3. TYPOGRAPHY & TEXT RULES
-==============================================
-- Headlines / Hooks: "Space Grotesk" or "Syne" (Weight: 900 / Extra Bold, ALL CAPS).
-- Body / Dialogue: "Inter" (Weight: 600 Semi-Bold, maximum 12 words per line for spoken rhythm).
-- Cues & Timecodes: "JetBrains Mono" (e.g., [HOOK], [STEP 01/10], [00:03]).
-
-==============================================
-4. SPATIAL DESIGN RULES (DO NOT MAKE CLUNKY WIREFRAMES)
-==============================================
-- NEVER frame every single paragraph inside its own black box. Leave generous, clean whitespace.
-- Corners: Strict 90-degree sharp corners (0px border-radius). No rounded bubbly cards.
-- Shadows: Hard solid black drop shadows (0px blur, +10px X, +10px Y). No soft fuzzy drop shadows.
-- Visual Architecture: Use thin, deliberate technical lines (continuous timeline roadmap line with an emerald milestone dot #34D399) or side-by-side Dual-Column AV blocks (Slate Blue for visuals, Pale Butter for dialogue).
-
-Confirm you have logged the official logo for "${brand}" and show me your design concept following these exact rules.`;
+      btn.innerText = 'DOWNLOAD ALL 11 FRAMES (PNG)';
+      btn.disabled = false;
     }
-
-    // Event listeners for live updates
-    inputBrandName.addEventListener('input', updateAll);
-    inputInitials.addEventListener('input', updateAll);
-    inputTagline.addEventListener('input', updateAll);
-    inputDomain.addEventListener('input', updateAll);
-
-    function copyPrompt() {
-      navigator.clipboard.writeText(masterPromptText.textContent).then(() => {
-        alert('Master Brand Prompt copied to clipboard! Paste it into your new chat.');
-      });
-    }
-
-    function downloadLogoSVG() {
-      const svgData = document.getElementById('svgMasterLogo').outerHTML;
-      const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${inputBrandName.value.toLowerCase() || 'brand'}-logo.svg`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    // Run once on load
-    updateAll();
   </script>
+
 </body>
 </html>
