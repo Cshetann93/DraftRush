@@ -68,16 +68,16 @@
     }
 
     .active .animate-block-1 {
-      animation: slideFromLeftSlow 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: slideFromLeftSlow 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .active .animate-block-2 {
-      animation: slideFromLeftSlow 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+      animation: slideFromLeftSlow 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
       opacity: 0;
     }
 
     .active .animate-block-3 {
-      animation: slideFromLeftSlow 0.75s cubic-bezier(0.22, 1, 0.36, 1) 1.05s forwards;
+      animation: slideFromLeftSlow 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.05s forwards;
       opacity: 0;
     }
 
@@ -493,7 +493,7 @@
         setTimeout(() => {
           let charIndex = 0;
           // Slower pacing: ~24ms per character across a 3.2-second typing window
-          const speed = Math.max(22, Math.floor(3200 / fullText.length));
+          const speed = Math.max(35, Math.floor(4000 / fullText.length));
 
           const interval = setInterval(() => {
             if (charIndex < fullText.length) {
