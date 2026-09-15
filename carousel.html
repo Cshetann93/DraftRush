@@ -2,67 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DraftsRush - Story Strategy Animated Reel (55s)</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+  <title>DraftsRush - Story Strategy Animated Studio</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: #111317;
       color: #FFFFFF;
-      font-family: 'Inter', sans-serif;
-      padding: 30px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 24px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
     .header {
       text-align: center;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     h1 {
-      font-family: 'Space Grotesk', sans-serif;
       color: #FFE600;
-      font-size: 26px;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
       margin-bottom: 6px;
     }
     p {
       color: #D6E4EE;
-      font-size: 14px;
-      margin-bottom: 16px;
+      font-size: 13px;
+      margin-bottom: 14px;
     }
     .controls {
       display: flex;
-      gap: 12px;
-      margin-bottom: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      max-width: 500px;
     }
     button {
       background: #FFE600;
       color: #000;
-      font-family: 'Space Grotesk', sans-serif;
       font-weight: 900;
-      font-size: 15px;
-      padding: 12px 24px;
+      font-size: 13px;
+      padding: 10px 18px;
       border: 3px solid #000;
-      box-shadow: 4px 4px 0px #fff;
+      box-shadow: 3px 3px 0px #fff;
       cursor: pointer;
       text-transform: uppercase;
-      transition: transform 0.1s;
     }
-    button:hover { transform: translate(-2px, -2px); }
+    button:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px #fff;
+    }
     button:disabled {
       background: #444;
       color: #777;
-      cursor: not-allowed;
       box-shadow: none;
+      cursor: not-allowed;
     }
-    .status {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
+    .btn-secondary {
+      background: #D6E4EE;
+    }
+    .status-bar {
+      background: #1C1F26;
+      border: 2px solid #333;
+      padding: 8px 16px;
+      font-family: monospace;
+      font-size: 13px;
       color: #34D399;
       margin-bottom: 14px;
-      min-height: 20px;
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
     }
     canvas {
       width: 100%;
@@ -71,23 +81,25 @@
       aspect-ratio: 9 / 16;
       border: 3px solid #FFE600;
       background: #111317;
-      box-shadow: 0px 10px 30px rgba(0,0,0,0.8);
+      box-shadow: 0px 12px 32px rgba(0,0,0,0.8);
+      display: block;
     }
   </style>
 </head>
 <body>
 
   <div class="header">
-    <h1>DraftsRush Story Strategy Reel (55s)</h1>
-    <p>Smooth Kinetic Brutalism + Real-Time Typewriter + Native Video Export</p>
+    <h1>DraftsRush Story Strategy Studio</h1>
+    <p>55-Second Smooth Timeline Animation Engine</p>
   </div>
 
   <div class="controls">
-    <button id="btnPlay" onclick="restartAnimation()">▶ Play Preview</button>
-    <button id="btnRecord" onclick="startRecording()">🔴 Record Video File</button>
+    <button id="btnPlay" onclick="handlePlay()">▶ Play Preview</button>
+    <button id="btnRecord" onclick="handleRecord()">🔴 Record & Download Video</button>
+    <button class="btn-secondary" onclick="downloadCurrentPNG()">📸 Download Frame PNG</button>
   </div>
 
-  <div class="status" id="statusText">Ready to preview or record (Total runtime: ~55s).</div>
+  <div class="status-bar" id="statusText">Status: Engine Ready. Click Play.</div>
 
   <canvas id="reelCanvas" width="1080" height="1920"></canvas>
 
@@ -98,8 +110,7 @@
     const btnPlay = document.getElementById('btnPlay');
     const btnRecord = document.getElementById('btnRecord');
 
-    // 10 Scenes, ~5.5s each = 55 Seconds Total Runtime
-    const SCENE_DURATION = 5.5;
+    const SCENE_DURATION = 5.5; // 5.5s per slide
     const SCENES = [
       {
         id: 0,
@@ -119,7 +130,6 @@
         badge: "STEP 01 • THE FOUNDATION",
         counter: "02 / 10",
         bg: "#E2E4E9",
-        accent: "#FFF6CF",
         mainTitle: "Start with the context.",
         italicNote: "Present the verifiable facts.",
         desc: "Do not open with ungrounded speculation. Establish the baseline reality, world rules, and core character situation everyone accepts.",
@@ -133,7 +143,6 @@
         badge: "STEP 02 • THE OBSTACLE",
         counter: "03 / 10",
         bg: "#D6E4EE",
-        accent: "#FFFFFF",
         mainTitle: "Frame the challenge.",
         italicNote: "Answer: 'What is the *real* problem?'",
         desc: "Surface events are just noise. Pinpoint the root internal or external conflict actively breaking the protagonist's normal world.",
@@ -147,7 +156,6 @@
         badge: "STEP 03 • THE CATALYST",
         counter: "04 / 10",
         bg: "#E2E4E9",
-        accent: "#FFF1F2",
         mainTitle: "Establish urgency.",
         italicNote: "Why must we act right now?",
         desc: "Without stakes, narrative flow dies. Define what happens if the protagonist hesitates or fails to make a decision today.",
@@ -161,7 +169,6 @@
         badge: "STEP 04 • THE BREAKTHROUGH",
         counter: "05 / 10",
         bg: "#FFF6CF",
-        accent: "#FFFFFF",
         mainTitle: "Reveal your BIG IDEA.",
         italicNote: "This is your unique core solution.",
         desc: "Introduce the singular premise, motive, or counter-intuitive mechanism that changes the game and drives the second act.",
@@ -175,7 +182,6 @@
         badge: "STEP 05 • VALUE DEFINITION",
         counter: "06 / 10",
         bg: "#D6E4EE",
-        accent: "#FFE600",
         mainTitle: "Describe specific value.",
         italicNote: "Feature X yields Outcome Y.",
         desc: "Make emotional and narrative consequences clear. Show how each specific choice triggers an unmistakable dramatic payoff.",
@@ -189,7 +195,6 @@
         badge: "STEP 06 • STRATEGIC BETS",
         counter: "07 / 10",
         bg: "#E2E4E9",
-        accent: "#FFFFFF",
         mainTitle: "Select 3 to 5 choices.",
         italicNote: "Say 'no' to noise, 'yes' to needle-movers.",
         desc: "Too many subplots ruin narrative flow. Focus exclusively on 3 critical story turns and discard distracting filler ideas.",
@@ -203,7 +208,6 @@
         badge: "STEP 07 • PROOF POINTS",
         counter: "08 / 10",
         bg: "#CCD0DC",
-        accent: "#FFFFFF",
         mainTitle: "Double-click each choice.",
         italicNote: "Concrete initiatives and capabilities.",
         desc: "Earn every story payoff. Demonstrate character competence and verified cause-and-effect instead of relying on coincidences.",
@@ -217,7 +221,6 @@
         badge: "STEP 08 • ROADMAP",
         counter: "09 / 10",
         bg: "#FFF6CF",
-        accent: "#D6E4EE",
         mainTitle: "Sequence your actions.",
         italicNote: "Build your execution timeline.",
         desc: "Turn scenes into an unbroken timeline. Sequence scenes so each beat naturally forces the next without dragging.",
@@ -235,13 +238,14 @@
       }
     ];
 
-    const TOTAL_DURATION = SCENES.length * SCENE_DURATION; // 55 Seconds
+    const TOTAL_DURATION = SCENES.length * SCENE_DURATION; // 55.0 Seconds
     let startTime = null;
+    let animFrameId = null;
     let isRecording = false;
     let mediaRecorder = null;
     let recordedChunks = [];
+    let currentTotalTime = 0;
 
-    // Helper: Neo-Brutalist Box with Offset Shadow
     function drawBox(x, y, w, h, fill, border = '#000000', borderWidth = 8, shadow = 16) {
       if (shadow > 0) {
         ctx.fillStyle = '#000000';
@@ -254,9 +258,8 @@
       ctx.strokeRect(x, y, w, h);
     }
 
-    // Helper: Clean Text Wrap
     function wrapText(text, x, y, maxWidth, lineHeight) {
-      const words = text.split(' ');
+      const words = String(text).split(' ');
       let line = '';
       for (let n = 0; n < words.length; n++) {
         let testLine = line + words[n] + ' ';
@@ -272,39 +275,18 @@
       ctx.fillText(line, x, y);
     }
 
-    // Easing Functions for Kinetic Transitions
     function easeOutBack(x) {
       const c1 = 1.70158;
       const c3 = c1 + 1;
       return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
     }
 
-    function easeOutCubic(x) {
-      return 1 - Math.pow(1 - x, 3);
-    }
-
-    function drawNode(nx, ny) {
-      ctx.fillStyle = '#000000';
-      ctx.beginPath();
-      ctx.arc(nx + 6, ny + 6, 26, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = '#34D399';
-      ctx.beginPath();
-      ctx.arc(nx, ny, 26, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 6;
-      ctx.stroke();
-    }
-
-    function drawFullRoadmapShape(x, y, w, h, progressRatio) {
+    function drawRoadmapLine(x, y, w, h) {
       drawBox(x, y, w, h, '#FFFFFF', '#000000', 8, 14);
 
       ctx.save();
       ctx.strokeStyle = '#000000';
       ctx.lineWidth = 6;
-      ctx.lineJoin = 'miter';
 
       const points = [
         { x: x + 60, y: y + 210 },
@@ -321,7 +303,6 @@
         { x: x + w - 60, y: y + 290 }
       ];
 
-      // Draw path animated with stroke dash
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
       for (let i = 1; i < points.length; i++) {
@@ -355,12 +336,26 @@
         ctx.stroke();
 
         ctx.fillStyle = '#111317';
-        ctx.font = '800 15px "JetBrains Mono", monospace';
+        ctx.font = '800 15px monospace';
         ctx.textAlign = 'center';
         ctx.fillText(m.label, m.x, idx % 2 === 0 ? m.y - 26 : m.y + 36);
       });
-
       ctx.restore();
+    }
+
+    function drawSingleNode(nx, ny) {
+      ctx.fillStyle = '#000000';
+      ctx.beginPath();
+      ctx.arc(nx + 6, ny + 6, 26, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#34D399';
+      ctx.beginPath();
+      ctx.arc(nx, ny, 26, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 6;
+      ctx.stroke();
     }
 
     function drawStepTimeline(type, x, y, w, h, visualType, lineProgress) {
@@ -373,14 +368,13 @@
       ctx.strokeStyle = '#000000';
       ctx.lineWidth = 8;
       ctx.lineCap = 'square';
-      ctx.lineJoin = 'miter';
 
       if (type === "flat") {
         ctx.beginPath();
         ctx.moveTo(x + 40, cy);
         ctx.lineTo(x + 40 + (w - 80) * lineProgress, cy);
         ctx.stroke();
-        if (lineProgress > 0.5) drawNode(cx, cy);
+        if (lineProgress > 0.5) drawSingleNode(cx, cy);
 
       } else if (type === "drop") {
         ctx.beginPath();
@@ -391,7 +385,7 @@
         ctx.lineTo(cx + 180, cy - 100);
         ctx.lineTo(x + w - 40, cy - 100);
         ctx.stroke();
-        if (lineProgress > 0.4) drawNode(cx, cy + 100);
+        if (lineProgress > 0.4) drawSingleNode(cx, cy + 100);
 
       } else if (type === "stepUp") {
         ctx.beginPath();
@@ -400,7 +394,7 @@
         ctx.lineTo(cx - 180, cy - 90);
         ctx.lineTo(x + w - 40, cy - 90);
         ctx.stroke();
-        if (lineProgress > 0.4) drawNode(cx, cy - 90);
+        if (lineProgress > 0.4) drawSingleNode(cx, cy - 90);
 
       } else if (type === "stepDown") {
         ctx.beginPath();
@@ -409,14 +403,14 @@
         ctx.lineTo(cx + 180, cy + 110);
         ctx.lineTo(x + w - 40, cy + 110);
         ctx.stroke();
-        if (lineProgress > 0.4) drawNode(cx - 40, cy - 90);
+        if (lineProgress > 0.4) drawSingleNode(cx - 40, cy - 90);
 
       } else if (type === "branchOut") {
         ctx.beginPath();
         ctx.moveTo(x + 40, cy);
         ctx.lineTo(cx - 160, cy);
         ctx.stroke();
-        drawNode(cx - 160, cy);
+        drawSingleNode(cx - 160, cy);
 
         [cy - 90, cy, cy + 90].forEach(by => {
           ctx.beginPath();
@@ -438,7 +432,7 @@
         ctx.moveTo(cx + 80, cy);
         ctx.lineTo(x + w - 40, cy);
         ctx.stroke();
-        drawNode(cx + 180, cy);
+        drawSingleNode(cx + 180, cy);
 
       } else if (type === "ganttStep") {
         ctx.beginPath();
@@ -447,10 +441,9 @@
         ctx.lineTo(cx - 180, cy + 100);
         ctx.lineTo(x + w - 40, cy + 100);
         ctx.stroke();
-        drawNode(ctx, cx, cy + 100);
+        drawSingleNode(cx, cy + 100);
       }
 
-      // Inner Visual Graphic Elements
       if (visualType === "factsList") {
         [cy + 45, cy + 85, cy + 125].forEach((ly, i) => {
           drawBox(cx - 140, ly, 280, 24, i === 0 ? '#FFE600' : '#E2E4E9', '#000', 3, 0);
@@ -473,32 +466,24 @@
         ctx.beginPath();
         ctx.arc(cx, cy + 30, 65, 0, Math.PI * 2);
         ctx.stroke();
-        ctx.strokeStyle = '#FFE600';
-        ctx.lineWidth = 4;
-        ctx.beginPath();
-        ctx.arc(cx, cy + 30, 45, 0, Math.PI * 2);
-        ctx.stroke();
       } else if (visualType === "valueEquation") {
         drawBox(cx - 210, cy + 20, 180, 50, '#FFE600', '#000', 3, 0);
         ctx.fillStyle = '#000';
-        ctx.font = '800 20px "Space Grotesk", sans-serif';
+        ctx.font = '900 18px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText('{FEATURE X}', cx - 120, cy + 52);
 
-        ctx.fillStyle = '#000';
-        ctx.font = '900 28px sans-serif';
-        ctx.fillText('➔', cx + 10, cy + 55);
+        ctx.fillText('➔', cx + 10, cy + 54);
 
         drawBox(cx + 50, cy + 20, 180, 50, '#34D399', '#000', 3, 0);
         ctx.fillStyle = '#000';
-        ctx.font = '800 20px "Space Grotesk", sans-serif';
         ctx.fillText('{OUTCOME Y}', cx + 140, cy + 52);
       } else if (visualType === "choicesBranch") {
         ['CHOICE 1', 'CHOICE 2', 'CHOICE 3'].forEach((c, idx) => {
           const by = (cy - 90) + (idx * 90);
           drawBox(cx + 20, by - 26, 180, 52, '#FFFFFF', '#000', 4, 4);
           ctx.fillStyle = '#000';
-          ctx.font = '900 18px "Space Grotesk", sans-serif';
+          ctx.font = '900 16px sans-serif';
           ctx.textAlign = 'center';
           ctx.fillText(c, cx + 110, by + 6);
         });
@@ -507,7 +492,7 @@
           const by = (cy - 90) + (idx * 90);
           drawBox(cx - 220, by - 26, 180, 52, '#FFFFFF', '#000', 4, 4);
           ctx.fillStyle = '#000';
-          ctx.font = '900 18px "Space Grotesk", sans-serif';
+          ctx.font = '900 16px sans-serif';
           ctx.textAlign = 'center';
           ctx.fillText(p, cx - 130, by + 6);
         });
@@ -524,292 +509,254 @@
       ctx.restore();
     }
 
-    function renderFrame(totalTime) {
+    function render(totalTime) {
+      currentTotalTime = totalTime;
       const sceneIndex = Math.min(SCENES.length - 1, Math.floor(totalTime / SCENE_DURATION));
       const sceneTime = totalTime - (sceneIndex * SCENE_DURATION);
       const data = SCENES[sceneIndex];
 
-      // Base Canvas
       ctx.fillStyle = data.bg;
       ctx.fillRect(0, 0, 1080, 1920);
 
-      // Outer Solid Brutalist Border
       ctx.lineWidth = 24;
       ctx.strokeStyle = '#000000';
       ctx.strokeRect(0, 0, 1080, 1920);
 
-      // Top Tag Bar
       drawBox(90, 90, 520, 72, '#000000', '#000000', 0, 0);
       ctx.fillStyle = '#FFE600';
-      ctx.font = '900 24px "Space Grotesk", sans-serif';
+      ctx.font = '900 24px sans-serif';
       ctx.textAlign = 'left';
       ctx.fillText(data.badge, 120, 136);
 
-      // Top Counter Pill
       drawBox(840, 90, 150, 72, '#FFFFFF', '#000000', 4, 6);
       ctx.fillStyle = '#000000';
-      ctx.font = '900 28px "JetBrains Mono", monospace';
+      ctx.font = '900 28px monospace';
       ctx.fillText(data.counter, 860, 136);
 
-      // ==========================================
-      // SCENE 0: INTRO HOOK (0s - 5.5s)
-      // ==========================================
       if (data.type === "intro") {
-        // Center Card
         drawBox(90, 200, 900, 1420, '#FFFFFF', '#000000', 10, 24);
 
-        // Title whips in from top
         const tTitle = Math.min(1, sceneTime / 0.6);
         const yTitle = 100 + (easeOutBack(tTitle) * 210);
         ctx.fillStyle = '#000000';
-        ctx.font = '900 68px "Space Grotesk", sans-serif';
+        ctx.font = '900 68px sans-serif';
         wrapText(data.headline, 140, yTitle, 800, 76);
 
-        // Master Roadmap Line animates
-        const lineProg = Math.min(1, Math.max(0, (sceneTime - 0.5) / 0.8));
-        drawFullRoadmapShape(140, 480, 800, 360, lineProg);
+        drawRoadmapLine(140, 480, 800, 360);
 
-        // Problem Box 1 slides from left (at 1.4s)
-        if (sceneTime > 1.4) {
-          const tP1 = Math.min(1, (sceneTime - 1.4) / 0.5);
+        if (sceneTime > 1.2) {
+          const tP1 = Math.min(1, (sceneTime - 1.2) / 0.5);
           const xP1 = -700 + (easeOutBack(tP1) * 840);
           drawBox(xP1, 880, 800, 180, '#FFF1F2', '#000000', 6, 10);
           ctx.fillStyle = '#E11D48';
-          ctx.font = '900 24px "Space Grotesk", sans-serif';
+          ctx.font = '900 24px sans-serif';
           ctx.fillText('CONFUSION', xP1 + 30, 925);
 
-          // Typewriter Problem 1
-          const p1Chars = Math.floor((sceneTime - 1.6) * 32);
+          const p1Chars = Math.floor((sceneTime - 1.4) * 32);
           ctx.fillStyle = '#111317';
-          ctx.font = '700 30px "Inter", sans-serif';
+          ctx.font = '700 30px sans-serif';
           wrapText(data.problem1.substring(0, p1Chars), xP1 + 30, 975, 740, 42);
         }
 
-        // Problem Box 2 slides from right (at 2.6s)
-        if (sceneTime > 2.6) {
-          const tP2 = Math.min(1, (sceneTime - 2.6) / 0.5);
+        if (sceneTime > 2.4) {
+          const tP2 = Math.min(1, (sceneTime - 2.4) / 0.5);
           const xP2 = 1100 - (easeOutBack(tP2) * 960);
           drawBox(xP2, 1090, 800, 180, '#D6E4EE', '#000000', 6, 10);
           ctx.fillStyle = '#000000';
-          ctx.font = '900 24px "Space Grotesk", sans-serif';
+          ctx.font = '900 24px sans-serif';
           ctx.fillText('RUINED FLOW', xP2 + 30, 1135);
 
-          const p2Chars = Math.floor((sceneTime - 2.8) * 32);
+          const p2Chars = Math.floor((sceneTime - 2.6) * 32);
           ctx.fillStyle = '#111317';
-          ctx.font = '700 30px "Inter", sans-serif';
+          ctx.font = '700 30px sans-serif';
           wrapText(data.problem2.substring(0, p2Chars), xP2 + 30, 1185, 740, 42);
         }
 
-        // Solution Callout Pops up (at 3.8s)
-        if (sceneTime > 3.8) {
-          const tCta = Math.min(1, (sceneTime - 3.8) / 0.5);
+        if (sceneTime > 3.6) {
+          const tCta = Math.min(1, (sceneTime - 3.6) / 0.5);
           const yCta = 1500 - (easeOutBack(tCta) * 190);
           drawBox(140, yCta, 800, 150, '#FFE600', '#000000', 6, 10);
           ctx.fillStyle = '#000000';
-          ctx.font = '900 34px "Space Grotesk", sans-serif';
+          ctx.font = '900 34px sans-serif';
           wrapText(data.cta, 170, yCta + 60, 740, 44);
         }
 
-        // Bottom Swipe Bar
         drawBox(90, 1680, 900, 110, '#000000', '#000000', 0, 0);
         ctx.fillStyle = '#FFE600';
-        ctx.font = '900 30px "Space Grotesk", sans-serif';
+        ctx.font = '900 30px sans-serif';
         ctx.fillText('SWIPE TO FOLLOW THE LINE', 140, 1748);
         ctx.fillText('→', 930, 1748);
-      }
 
-      // ==========================================
-      // SCENES 1 TO 8: STEPPED TIMELINE (5.5s - 49.5s)
-      // ==========================================
-      else if (data.type === "step") {
-        // Headline Card slides in from Left
+      } else if (data.type === "step") {
         const tHead = Math.min(1, sceneTime / 0.5);
         const xHead = -850 + (easeOutBack(tHead) * 940);
         drawBox(xHead, 190, 900, 180, '#FFFFFF', '#000000', 8, 14);
 
         ctx.fillStyle = '#000000';
-        ctx.font = '900 48px "Space Grotesk", sans-serif';
+        ctx.font = '900 48px sans-serif';
         ctx.fillText(data.mainTitle, xHead + 40, 270);
 
         ctx.fillStyle = '#E11D48';
-        ctx.font = '700 32px "Space Grotesk", sans-serif';
+        ctx.font = '700 32px sans-serif';
         ctx.fillText(data.italicNote, xHead + 40, 320);
 
-        // Timeline Graphic Stage Pops In
         const tStage = Math.min(1, Math.max(0, (sceneTime - 0.4) / 0.5));
         const yStage = 600 - (easeOutBack(tStage) * 200);
         const lineProg = Math.min(1, Math.max(0, (sceneTime - 0.7) / 0.6));
         drawStepTimeline(data.wireType, 90, yStage, 900, 520, data.innerVisual, lineProg);
 
-        // Execution Details Card (at 1.6s)
-        const tCard = Math.min(1, Math.max(0, (sceneTime - 1.6) / 0.5));
+        const tCard = Math.min(1, Math.max(0, (sceneTime - 1.4) / 0.5));
         const yCard = 1180 - (easeOutBack(tCard) * 220);
         drawBox(90, yCard, 900, 360, '#FFFFFF', '#000000', 8, 14);
 
         drawBox(130, yCard + 35, 360, 45, '#FFE600', '#000000', 0, 0);
         ctx.fillStyle = '#000000';
-        ctx.font = '900 22px "Space Grotesk", sans-serif';
+        ctx.font = '900 22px sans-serif';
         ctx.fillText('WHY RETENTION DEMANDS THIS', 150, yCard + 66);
 
-        // Typewriter body text (starts at 2.1s)
-        if (sceneTime > 2.1) {
-          const charCount = Math.floor((sceneTime - 2.1) * 30);
+        if (sceneTime > 1.8) {
+          const charCount = Math.floor((sceneTime - 1.8) * 30);
           const currentText = data.desc.substring(0, charCount);
           ctx.fillStyle = '#111317';
-          ctx.font = '600 34px "Inter", sans-serif';
+          ctx.font = '600 34px sans-serif';
           wrapText(currentText, 130, yCard + 140, 820, 52);
 
-          // Blinking cursor
           if (Math.floor(sceneTime * 3) % 2 === 0 && charCount < data.desc.length) {
             ctx.fillStyle = '#E11D48';
             ctx.fillRect(130 + ctx.measureText(currentText.split(' ').pop()).width + 8, yCard + 105, 6, 38);
           }
         }
 
-        // Lower Blueprint Advice Pill (slides in from bottom at 3.4s)
-        if (sceneTime > 3.4) {
-          const tPill = Math.min(1, (sceneTime - 3.4) / 0.4);
+        if (sceneTime > 3.0) {
+          const tPill = Math.min(1, (sceneTime - 3.0) / 0.4);
           const yPill = 1600 - (easeOutBack(tPill) * 220);
           drawBox(90, yPill, 900, 180, '#D6E4EE', '#000000', 8, 14);
 
           drawBox(130, yPill + 25, 330, 40, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#34D399';
-          ctx.font = '900 20px "Space Grotesk", sans-serif';
+          ctx.font = '900 20px sans-serif';
           ctx.fillText('SCRIPTWRITING BLUEPRINT', 150, yPill + 52);
 
           ctx.fillStyle = '#000000';
-          ctx.font = '700 28px "Inter", sans-serif';
+          ctx.font = '700 28px sans-serif';
           wrapText(`Lock this premise before second ${data.stepIndex * 8}. Every second of throat clearing decays viewer interest.`, 130, yPill + 105, 820, 38);
         }
 
-        // Footer
         ctx.fillStyle = '#000000';
-        ctx.font = '800 28px "Space Grotesk", sans-serif';
+        ctx.font = '800 28px sans-serif';
         ctx.fillText('DRAFTSRUSH STUDIO', 90, 1830);
-        ctx.font = '700 26px "JetBrains Mono", monospace';
+        ctx.font = '700 26px monospace';
         ctx.fillText('draftsrush.com', 720, 1830);
-      }
 
-      // ==========================================
-      // SCENE 9: CLOSING CTA CONVERSION (49.5s - 55s)
-      // ==========================================
-      else if (data.type === "cta") {
+      } else if (data.type === "cta") {
         drawBox(90, 200, 900, 1420, '#FFFFFF', '#000000', 10, 24);
 
-        // Headline
         ctx.fillStyle = '#000000';
-        ctx.font = '900 70px "Space Grotesk", sans-serif';
+        ctx.font = '900 70px sans-serif';
         wrapText(data.headline, 140, 340, 800, 78);
 
-        // Subtitle Typewriter
         const subChars = Math.floor(sceneTime * 32);
         ctx.fillStyle = '#111317';
-        ctx.font = '600 34px "Inter", sans-serif';
+        ctx.font = '600 34px sans-serif';
         wrapText(data.sub.substring(0, subChars), 140, 540, 800, 50);
 
-        // Offer Box (at 1.4s)
-        if (sceneTime > 1.4) {
-          const tOffer = Math.min(1, (sceneTime - 1.4) / 0.5);
+        if (sceneTime > 1.2) {
+          const tOffer = Math.min(1, (sceneTime - 1.2) / 0.5);
           const yOffer = 960 - (easeOutBack(tOffer) * 200);
           drawBox(140, yOffer, 800, 340, '#D6E4EE', '#000000', 6, 12);
           ctx.fillStyle = '#000000';
-          ctx.font = '900 34px "Space Grotesk", sans-serif';
+          ctx.font = '900 34px sans-serif';
           ctx.fillText('TEST OUR PACING FIRST', 180, yOffer + 70);
 
           ctx.fillStyle = '#222222';
-          ctx.font = '600 28px "Inter", sans-serif';
+          ctx.font = '600 28px sans-serif';
           wrapText("Send us 1 rough topic or notes outline in our DM. We will draft your hook and opening act in dual-column format completely free.", 180, yOffer + 130, 720, 42);
         }
 
-        // Action Buttons (at 2.6s)
-        if (sceneTime > 2.6) {
-          const tBtn = Math.min(1, (sceneTime - 2.6) / 0.5);
+        if (sceneTime > 2.4) {
+          const tBtn = Math.min(1, (sceneTime - 2.4) / 0.5);
           const yBtn = 1380 - (easeOutBack(tBtn) * 220);
 
           drawBox(140, yBtn, 800, 110, '#000000', '#000000', 0, 0);
           ctx.fillStyle = '#34D399';
-          ctx.font = '900 34px "Space Grotesk", sans-serif';
+          ctx.font = '900 34px sans-serif';
           ctx.textAlign = 'center';
           ctx.fillText('📩 DM "STORY" ON INSTAGRAM', 140 + 400, yBtn + 70);
 
           drawBox(140, yBtn + 140, 800, 110, '#FFE600', '#000000', 6, 8);
           ctx.fillStyle = '#000000';
-          ctx.font = '900 34px "Space Grotesk", sans-serif';
+          ctx.font = '900 34px sans-serif';
           ctx.fillText('🌐 VISIT DRAFTSRUSH.COM', 140 + 400, yBtn + 210);
         }
 
         ctx.textAlign = 'left';
         ctx.fillStyle = '#000000';
-        ctx.font = '800 32px "Space Grotesk", sans-serif';
+        ctx.font = '800 32px sans-serif';
         ctx.fillText('DRAFTSRUSH STUDIO • 2026', 90, 1780);
       }
     }
 
-    // Animation Loop Controller
-    function loop(timestamp) {
+    function animLoop(timestamp) {
       if (!startTime) startTime = timestamp;
       const progress = (timestamp - startTime) / 1000;
 
       if (progress <= TOTAL_DURATION) {
-        renderFrame(progress);
-        const currentSec = Math.floor(progress);
+        render(progress);
+        const curSec = Math.floor(progress);
         const activeScene = Math.min(SCENES.length, Math.floor(progress / SCENE_DURATION) + 1);
-        if (isRecording) {
-          statusText.innerText = `Recording: Scene ${activeScene}/10 • Time: ${currentSec}s / 55s`;
-        }
-        requestAnimationFrame(loop);
+        statusText.innerText = `Scene ${activeScene}/10 • Time: ${curSec}s / 55s`;
+        animFrameId = requestAnimationFrame(animLoop);
       } else {
-        renderFrame(TOTAL_DURATION);
+        render(TOTAL_DURATION);
         if (isRecording) {
-          stopRecording();
+          stopMediaRecorder();
         } else {
-          statusText.innerText = "Preview finished (55s). Click 'Play Preview' to replay.";
+          statusText.innerText = "Status: Preview complete (55s).";
+          btnPlay.disabled = false;
+          btnRecord.disabled = false;
         }
       }
     }
 
-    function restartAnimation() {
+    function handlePlay() {
+      if (animFrameId) cancelAnimationFrame(animFrameId);
       startTime = null;
-      statusText.innerText = "Playing full 55s animated sequence...";
-      requestAnimationFrame(loop);
+      btnPlay.disabled = true;
+      statusText.innerText = "Playing preview...";
+      animFrameId = requestAnimationFrame(animLoop);
     }
 
-    // In-Browser Video Recording Pipeline
-    function startRecording() {
-      statusText.innerText = "Starting 55s video recording... please do not close the tab.";
+    function handleRecord() {
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+      statusText.innerText = "Recording full 55s video... Do not close tab.";
       btnPlay.disabled = true;
       btnRecord.disabled = true;
       isRecording = true;
       recordedChunks = [];
 
-      const stream = canvas.captureStream(60); // 60 FPS
-      let options = { mimeType: 'video/webm;codecs=vp9' };
-
-      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
-        options = { mimeType: 'video/webm' };
-      }
+      const stream = canvas.captureStream(30); // 30 FPS
+      let mime = 'video/webm;codecs=vp9';
+      if (!MediaRecorder.isTypeSupported(mime)) mime = 'video/webm';
 
       try {
-        mediaRecorder = new MediaRecorder(stream, options);
-      } catch (e) {
+        mediaRecorder = new MediaRecorder(stream, { mimeType: mime });
+      } catch (err) {
         mediaRecorder = new MediaRecorder(stream);
       }
 
-      mediaRecorder.ondataavailable = function(event) {
-        if (event.data && event.data.size > 0) {
-          recordedChunks.push(event.data);
-        }
+      mediaRecorder.ondataavailable = e => {
+        if (e.data && e.data.size > 0) recordedChunks.push(e.data);
       };
 
-      mediaRecorder.onstop = function() {
+      mediaRecorder.onstop = () => {
         const blob = new Blob(recordedChunks, { type: 'video/webm' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'story-strategy-animated-reel.webm';
+        a.download = 'story-strategy-reel-55s.webm';
         a.click();
 
-        statusText.innerText = "Video successfully generated and downloaded!";
+        statusText.innerText = "Done: Video downloaded successfully!";
         btnPlay.disabled = false;
         btnRecord.disabled = false;
         isRecording = false;
@@ -817,17 +764,25 @@
 
       mediaRecorder.start();
       startTime = null;
-      requestAnimationFrame(loop);
+      animFrameId = requestAnimationFrame(animLoop);
     }
 
-    function stopRecording() {
+    function stopMediaRecorder() {
       if (mediaRecorder && mediaRecorder.state !== "inactive") {
         mediaRecorder.stop();
       }
     }
 
-    document.fonts.ready.then(() => {
-      renderFrame(0);
+    function downloadCurrentPNG() {
+      const link = document.createElement('a');
+      link.download = `story-strategy-frame-${Math.floor(currentTotalTime)}s.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    // Initial first frame render immediately on load
+    window.addEventListener('DOMContentLoaded', () => {
+      render(0);
     });
   </script>
 </body>
