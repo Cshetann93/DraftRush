@@ -3,50 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DraftsRush - Story Strategy Frames</title>
+  <title>DraftsRush - Animated Story Strategy Reel</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #111317; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #111317;
+      color: #111317;
+      margin: 0;
+      padding: 20px;
+    }
     .brand-font { font-family: 'Space Grotesk', sans-serif; }
-    
-    /* 9:16 Frame Geometry */
-    .reel-frame {
+
+    /* 9:16 Exact Reel Container */
+    #reel-stage {
       width: 405px;
       height: 720px;
       position: relative;
-      flex-shrink: 0;
-      border: 4px solid #111317;
-      box-shadow: 10px 10px 0px #000;
+      overflow: hidden;
+      border: 4px solid #000;
+      box-shadow: 12px 12px 0px #FFE600;
+      background-color: #E2E4E9;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 10;
     }
 
     .brutal-shadow { box-shadow: 6px 6px 0px #111317; }
     .brutal-shadow-sm { box-shadow: 4px 4px 0px #111317; }
-    .brutal-shadow-lg { box-shadow: 8px 8px 0px #111317; }
+
+    /* Slide-in Block Animation */
+    @keyframes slideFromLeft {
+      0% {
+        transform: translateX(-120%);
+        opacity: 0;
+      }
+      80% {
+        transform: translateX(8px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .active .animate-block-1 {
+      animation: slideFromLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .active .animate-block-2 {
+      animation: slideFromLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+      opacity: 0;
+    }
+
+    .active .animate-block-3 {
+      animation: slideFromLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+      opacity: 0;
+    }
+
+    /* Typewriter Cursor */
+    .typing-cursor::after {
+      content: '▋';
+      display: inline-block;
+      margin-left: 3px;
+      color: #111317;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
   </style>
 </head>
-<body class="p-8 text-[#111317]">
+<body class="flex flex-col items-center justify-center min-h-screen">
 
-  <!-- Top Action Bar -->
-  <div class="max-w-7xl mx-auto mb-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FFE600] border-4 border-black p-6 brutal-shadow">
-    <div>
-      <h1 class="brand-font font-black text-2xl uppercase tracking-tight">Strategy: How to Write Your Next Story</h1>
-      <p class="text-xs font-bold text-gray-800 uppercase tracking-wider mt-1">11 Clean 9:16 Instagram Reel Frames</p>
+  <!-- Controls Deck -->
+  <div class="mb-6 w-full max-w-[405px] flex items-center justify-between gap-2 bg-[#FFE600] border-4 border-black p-3 brutal-shadow">
+    <div class="flex gap-2">
+      <button id="btn-toggle" onclick="togglePlay()" class="bg-black text-white font-bold text-xs uppercase px-3 py-2 border-2 border-black">
+        Pause
+      </button>
+      <button onclick="resetReel()" class="bg-white text-black font-bold text-xs uppercase px-3 py-2 border-2 border-black">
+        Restart
+      </button>
     </div>
-    <button id="download-btn" onclick="downloadAllFrames()" class="bg-black text-white font-black brand-font text-sm uppercase px-6 py-3 border-2 border-black brutal-shadow hover:bg-white hover:text-black transition-all">
-      Download All 11 Frames (PNG)
+    <div class="text-xs font-black brand-font tracking-wider" id="timeline-indicator">
+      SLIDE 1 / 11
+    </div>
+    <button id="btn-record" onclick="toggleRecording()" class="bg-black text-[#FFE600] font-black text-xs uppercase px-3 py-2 border-2 border-black">
+      Record Video
     </button>
   </div>
 
-  <!-- Frames Grid -->
-  <div class="flex flex-wrap gap-10 justify-center items-start max-w-7xl mx-auto">
+  <!-- Stage (9:16) -->
+  <div id="reel-stage">
 
-    <!-- FRAME 01: Cover / Hook -->
-    <div id="frame-01" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+    <!-- FRAME 01 -->
+    <div class="slide active" id="slide-0">
       <div>
-        <div class="flex items-center justify-between mb-8">
-          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
             STORY STRATEGY
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
@@ -54,39 +130,35 @@
           </div>
         </div>
 
-        <div class="bg-[#FFE600] border-4 border-black p-6 brutal-shadow mb-6">
-          <span class="bg-black text-white px-2 py-0.5 text-[11px] font-bold brand-font uppercase">The Dilemma</span>
-          <h2 class="text-3xl font-black brand-font leading-tight mt-3 text-black">
+        <div class="bg-[#FFE600] border-4 border-black p-5 brutal-shadow mb-6 animate-block-1">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">The Dilemma</span>
+          <h2 class="text-2xl font-black brand-font leading-tight mt-2 text-black">
             Always confused by too many ideas?
           </h2>
         </div>
 
-        <div class="bg-white border-4 border-black p-6 brutal-shadow space-y-4">
-          <p class="text-base font-bold text-gray-900 leading-snug">
-            Having 50 plot thoughts at once kills the basics of your story.
-          </p>
-          <p class="text-sm font-semibold text-gray-700 leading-relaxed">
-            When you try to fit every thought into page one, your narrative loses flow, pacing, and focus.
-          </p>
+        <div class="bg-white border-4 border-black p-5 brutal-shadow space-y-3 animate-block-2">
+          <p class="text-sm font-bold text-gray-900 leading-snug type-text" data-text="Having 50 plot thoughts at once kills the basic flow of your story. When you try to force every thought into page one, your script loses focus."></p>
         </div>
       </div>
 
-      <div class="bg-black text-white p-4 border-2 border-black flex items-center justify-between">
-        <span class="brand-font font-bold text-xs uppercase tracking-wider">Follow this simple blueprint</span>
-        <span class="text-[#FFE600] font-black text-sm">→</span>
-      </div>
-
-      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
-        <span>DRAFTSRUSH STUDIO</span>
-        <span>draftsrush.com</span>
+      <div class="animate-block-3">
+        <div class="bg-black text-white p-3 border-2 border-black flex items-center justify-between mb-3">
+          <span class="brand-font font-bold text-xs uppercase tracking-wider">Follow this simple strategy</span>
+          <span class="text-[#FFE600] font-black text-sm">→</span>
+        </div>
+        <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+          <span>DRAFTSRUSH STUDIO</span>
+          <span>draftsrush.com</span>
+        </div>
       </div>
     </div>
 
-    <!-- FRAME 02: Step 1 Context -->
-    <div id="frame-02" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+    <!-- FRAME 02 -->
+    <div class="slide" id="slide-1">
       <div>
-        <div class="flex items-center justify-between mb-8">
-          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
             PHASE 01: THE BASELINE
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
@@ -94,33 +166,28 @@
           </div>
         </div>
 
-        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5 animate-block-1">
           <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step One</span>
-          <h3 class="text-2xl font-black brand-font mt-2">Start With The Context</h3>
+          <h3 class="text-2xl font-black brand-font mt-1">Start With The Context</h3>
         </div>
 
-        <div class="bg-[#FFF6CF] border-4 border-black p-6 brutal-shadow space-y-3">
-          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Lay Down The Plain Facts</div>
-          <p class="text-sm font-bold text-gray-900 leading-relaxed">
-            Do not jump straight into complex plot twists. 
-          </p>
-          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
-            Establish the baseline world immediately. What is standard normal life for your character before everything goes off the rails?
-          </p>
+        <div class="bg-[#FFF6CF] border-4 border-black p-5 brutal-shadow space-y-2 animate-block-2">
+          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Present The Plain Facts</div>
+          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-text" data-text="Do not jump into complex drama yet. Ground your audience in normal reality first. What does regular life look like before everything falls apart?"></p>
         </div>
       </div>
 
-      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black animate-block-3">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- FRAME 03: Step 2 Problem -->
-    <div id="frame-03" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+    <!-- FRAME 03 -->
+    <div class="slide" id="slide-2">
       <div>
-        <div class="flex items-center justify-between mb-8">
-          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
             PHASE 02: FRICTION
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
@@ -128,33 +195,28 @@
           </div>
         </div>
 
-        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5 animate-block-1">
           <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Two</span>
-          <h3 class="text-2xl font-black brand-font mt-2">Frame The Core Problem</h3>
+          <h3 class="text-2xl font-black brand-font mt-1">Frame The Challenge</h3>
         </div>
 
-        <div class="bg-[#D6E4EE] border-4 border-black p-6 brutal-shadow space-y-3">
-          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">What Broke?</div>
-          <p class="text-sm font-bold text-gray-900 leading-relaxed">
-            A story does not start until something breaks down.
-          </p>
-          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
-            Isolate one distinct problem. If your protagonist has five unrelated life crises in chapter one, your audience has zero reasons to care about any of them.
-          </p>
+        <div class="bg-[#D6E4EE] border-4 border-black p-5 brutal-shadow space-y-2 animate-block-2">
+          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">What Broke Down?</div>
+          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-text" data-text="A real story begins when an obstacle shatters normal life. Pick one primary problem. If your protagonist has ten minor problems, your viewer cares about none."></p>
         </div>
       </div>
 
-      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black animate-block-3">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- FRAME 04: Step 3 Urgency -->
-    <div id="frame-04" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+    <!-- FRAME 04 -->
+    <div class="slide" id="slide-3">
       <div>
-        <div class="flex items-center justify-between mb-8">
-          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
             PHASE 03: THE CLOCK
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
@@ -162,33 +224,28 @@
           </div>
         </div>
 
-        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5 animate-block-1">
           <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Three</span>
-          <h3 class="text-2xl font-black brand-font mt-2">Introduce The Urgency</h3>
+          <h3 class="text-2xl font-black brand-font mt-1">Establish Urgency</h3>
         </div>
 
-        <div class="bg-[#FFE600] border-4 border-black p-6 brutal-shadow space-y-3">
-          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Why Now?</div>
-          <p class="text-sm font-bold text-black leading-relaxed">
-            Why must this issue be solved today instead of next year?
-          </p>
-          <p class="text-xs font-semibold text-black leading-relaxed">
-            Add a ticking clock or a rising cost of doing nothing. If walking away costs nothing, you do not have a story.
-          </p>
+        <div class="bg-[#FFE600] border-4 border-black p-5 brutal-shadow space-y-2 animate-block-2">
+          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Why Act Today?</div>
+          <p class="text-sm font-semibold text-black leading-relaxed type-text" data-text="Why solve this immediately instead of waiting a week? Build a ticking clock or rising cost. If inaction costs nothing, your audience tunes out."></p>
         </div>
       </div>
 
-      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black animate-block-3">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- FRAME 05: Step 4 The Core Shift -->
-    <div id="frame-05" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+    <!-- FRAME 05 -->
+    <div class="slide" id="slide-4">
       <div>
-        <div class="flex items-center justify-between mb-8">
-          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
             PHASE 04: THE CATALYST
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
@@ -196,33 +253,28 @@
           </div>
         </div>
 
-        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5 animate-block-1">
           <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Four</span>
-          <h3 class="text-2xl font-black brand-font mt-2">Reveal The Decision</h3>
+          <h3 class="text-2xl font-black brand-font mt-1">Reveal The Big Choice</h3>
         </div>
 
-        <div class="bg-[#EFE4D6] border-4 border-black p-6 brutal-shadow space-y-3">
-          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">No Turning Back</div>
-          <p class="text-sm font-bold text-gray-900 leading-relaxed">
-            Your character chooses a specific path to tackle the problem.
-          </p>
-          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
-            This is the big thesis of your script. It must be unique, high-stakes, and completely cut off their old way of living.
-          </p>
+        <div class="bg-[#EFE4D6] border-4 border-black p-5 brutal-shadow space-y-2 animate-block-2">
+          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Point Of No Return</div>
+          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-text" data-text="Your protagonist picks a bold, irreversible strategy to defeat the threat. This is your core narrative angle. It completely shuts the door to their old safety."></p>
         </div>
       </div>
 
-      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black animate-block-3">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- FRAME 06: Step 5 The Value -->
-    <div id="frame-06" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+    <!-- FRAME 06 -->
+    <div class="slide" id="slide-5">
       <div>
-        <div class="flex items-center justify-between mb-8">
-          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
             PHASE 05: THE STAKES
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
@@ -230,67 +282,57 @@
           </div>
         </div>
 
-        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5 animate-block-1">
           <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Five</span>
-          <h3 class="text-2xl font-black brand-font mt-2">Define The Value</h3>
+          <h3 class="text-2xl font-black brand-font mt-1">Define The Payoff</h3>
         </div>
 
-        <div class="bg-[#DDE8DF] border-4 border-black p-6 brutal-shadow space-y-3">
-          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">What Is Won Or Lost?</div>
-          <p class="text-sm font-bold text-gray-900 leading-relaxed">
-            State the exact payoff of success.
-          </p>
-          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
-            If they pull this off, what does their life look like? Keep the target concrete so your audience can cheer for a clear finish line.
-          </p>
+        <div class="bg-[#DDE8DF] border-4 border-black p-5 brutal-shadow space-y-2 animate-block-2">
+          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">The Win Condition</div>
+          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-text" data-text="State the exact tangible outcome. If they survive this ordeal, what changes? Keep the prize specific so your viewers know what victory looks like."></p>
         </div>
       </div>
 
-      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black animate-block-3">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- FRAME 07: Step 6 Filter The Noise -->
-    <div id="frame-07" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+    <!-- FRAME 07 -->
+    <div class="slide" id="slide-6">
       <div>
-        <div class="flex items-center justify-between mb-8">
-          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
-            PHASE 06: EDITING IDEAS
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
+            PHASE 06: FOCUS
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
             07/11
           </div>
         </div>
 
-        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5 animate-block-1">
           <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Six</span>
-          <h3 class="text-2xl font-black brand-font mt-2">Pick 3 Major Steps</h3>
+          <h3 class="text-2xl font-black brand-font mt-1">Pick 3 Major Steps</h3>
         </div>
 
-        <div class="bg-[#FFF6CF] border-4 border-black p-6 brutal-shadow space-y-3">
-          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Say No To The Rest</div>
-          <p class="text-sm font-bold text-gray-900 leading-relaxed">
-            This is where most writers get stuck.
-          </p>
-          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
-            Filter out your 20 random ideas. Select only 3 crucial actions your protagonist must complete to hit their goal. Discard everything else.
-          </p>
+        <div class="bg-[#FFF6CF] border-4 border-black p-5 brutal-shadow space-y-2 animate-block-2">
+          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Say No To The Rest</div>
+          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-text" data-text="This rescues your flow. Take your list of 20 brainstormed scenes and cut 17 of them. Keep only 3 essential obstacles your character must overcome."></p>
         </div>
       </div>
 
-      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black animate-block-3">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- FRAME 08: Step 7 Back Every Action -->
-    <div id="frame-08" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+    <!-- FRAME 08 -->
+    <div class="slide" id="slide-7">
       <div>
-        <div class="flex items-center justify-between mb-8">
-          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
             PHASE 07: VERIFICATION
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
@@ -298,33 +340,28 @@
           </div>
         </div>
 
-        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5 animate-block-1">
           <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Seven</span>
-          <h3 class="text-2xl font-black brand-font mt-2">Add Logical Proof</h3>
+          <h3 class="text-2xl font-black brand-font mt-1">Back Every Action</h3>
         </div>
 
-        <div class="bg-[#D6E4EE] border-4 border-black p-6 brutal-shadow space-y-3">
-          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">No Easy Miracles</div>
-          <p class="text-sm font-bold text-gray-900 leading-relaxed">
-            Every action step must earn its solution.
-          </p>
-          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
-            Do not let characters magically resolve obstacles. Force them to sacrifice, negotiate, or use real technical skills to move forward.
-          </p>
+        <div class="bg-[#D6E4EE] border-4 border-black p-5 brutal-shadow space-y-2 animate-block-2">
+          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">No Easy Coincidences</div>
+          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-text" data-text="Every victory must feel earned through physical friction or sacrifice. When luck or plot armor rescues characters, tension dies instantly."></p>
         </div>
       </div>
 
-      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black animate-block-3">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- FRAME 09: Step 8 Sequence -->
-    <div id="frame-09" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+    <!-- FRAME 09 -->
+    <div class="slide" id="slide-8">
       <div>
-        <div class="flex items-center justify-between mb-8">
-          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
             PHASE 08: THE BLUEPRINT
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
@@ -332,33 +369,28 @@
           </div>
         </div>
 
-        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5 animate-block-1">
           <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Eight</span>
-          <h3 class="text-2xl font-black brand-font mt-2">Build The Sequence</h3>
+          <h3 class="text-2xl font-black brand-font mt-1">Sequence Your Actions</h3>
         </div>
 
-        <div class="bg-[#FFE600] border-4 border-black p-6 brutal-shadow space-y-3">
-          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Order Your Actions</div>
-          <p class="text-sm font-bold text-black leading-relaxed">
-            Arrange scenes so that each one causes the next.
-          </p>
-          <p class="text-xs font-semibold text-black leading-relaxed">
-            Replace 'and then' with 'therefore' or 'but'. When action A fails, action B becomes mandatory. That is how real pacing works.
-          </p>
+        <div class="bg-[#FFE600] border-4 border-black p-5 brutal-shadow space-y-2 animate-block-2">
+          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Cause And Consequence</div>
+          <p class="text-sm font-semibold text-black leading-relaxed type-text" data-text="Replace 'and then' with 'therefore' or 'but'. Because Step 1 failed, Step 2 is now mandatory. That cause-and-effect chain is the engine of pacing."></p>
         </div>
       </div>
 
-      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black animate-block-3">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- FRAME 10: Step 9 Closing -->
-    <div id="frame-10" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+    <!-- FRAME 10 -->
+    <div class="slide" id="slide-9">
       <div>
-        <div class="flex items-center justify-between mb-8">
-          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
             PHASE 09: EXECUTION
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
@@ -366,33 +398,28 @@
           </div>
         </div>
 
-        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5 animate-block-1">
           <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Step Nine</span>
-          <h3 class="text-2xl font-black brand-font mt-2">Close Out & Publish</h3>
+          <h3 class="text-2xl font-black brand-font mt-1">Close Out & Publish</h3>
         </div>
 
-        <div class="bg-white border-4 border-black p-6 brutal-shadow space-y-3">
-          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Stop Rewriting Draft 1</div>
-          <p class="text-sm font-bold text-gray-900 leading-relaxed">
-            Finish the blueprint, write page one to the end, and ship it.
-          </p>
-          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
-            Perfectionism is just procrastination. A finished 1,000-word draft teaches you more than three years of untouched brainstorms.
-          </p>
+        <div class="bg-white border-4 border-black p-5 brutal-shadow space-y-2 animate-block-2">
+          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Stop Rewriting Notes</div>
+          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-text" data-text="Finish the skeleton, draft line one, and see it through to the end. One completed draft teaches you more about story mechanics than three years of outlining."></p>
         </div>
       </div>
 
-      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black animate-block-3">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- FRAME 11: Call To Action (Full Yellow Takeover) -->
-    <div id="frame-11" class="reel-frame bg-[#FFE600] p-7 flex flex-col justify-between">
+    <!-- FRAME 11: CTA -->
+    <div class="slide" id="slide-10" style="background-color: #FFE600;">
       <div>
         <div class="flex items-center justify-between mb-6">
-          <div class="bg-black text-white px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+          <div class="bg-black text-white px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black animate-block-1">
             NEXT ACTION
           </div>
           <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
@@ -400,25 +427,21 @@
           </div>
         </div>
 
-        <div class="bg-white border-4 border-black p-6 brutal-shadow mb-5 space-y-4">
-          <h2 class="text-3xl font-black brand-font text-black leading-tight">
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5 space-y-3 animate-block-1">
+          <h2 class="text-2xl font-black brand-font text-black leading-tight">
             STOP GUESSING.<br>START FILMING.
           </h2>
-          <p class="text-xs font-bold text-gray-800 leading-relaxed">
-            Have ideas sitting in your notes app? We turn them into production-ready dual-column scripts with verified facts and zero filler.
-          </p>
+          <p class="text-xs font-bold text-gray-800 leading-relaxed type-text" data-text="Have video ideas stuck in your head? We build dual-column scripts with tight pacing, verified research, and zero throat clearing."></p>
 
-          <!-- Free Demo Box -->
-          <div class="bg-[#D6E4EE] border-2 border-black p-4 brutal-shadow-sm space-y-1">
-            <span class="text-[10px] font-black brand-font uppercase bg-black text-white px-1.5 py-0.5">Free Hook Demo</span>
+          <div class="bg-[#D6E4EE] border-2 border-black p-3 brutal-shadow-sm space-y-1">
+            <span class="text-[9px] font-black brand-font uppercase bg-black text-white px-1.5 py-0.5">Free Hook Demo</span>
             <p class="text-xs font-bold text-gray-900 pt-1">
               DM us 1 rough topic on Instagram. We will draft your hook and opening act for free.
             </p>
           </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="space-y-2.5">
+        <div class="space-y-2 animate-block-2">
           <div class="bg-black text-[#2ECC71] text-center font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-shadow-sm">
             DM "DEMO" ON INSTAGRAM
           </div>
@@ -428,45 +451,141 @@
         </div>
       </div>
 
-      <div class="text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-3">
+      <div class="text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-2 animate-block-3">
         DRAFTSRUSH STUDIO • 2026
       </div>
     </div>
 
   </div>
 
-  <!-- Download Automation Logic -->
   <script>
-    async function downloadAllFrames() {
-      const btn = document.getElementById('download-btn');
-      btn.innerText = 'RENDERING 11 FRAMES...';
-      btn.disabled = true;
+    const totalSlides = 11;
+    const slideDuration = 4800; // 4.8s per slide (52.8 seconds total reel runtime)
+    let currentSlide = 0;
+    let isPlaying = true;
+    let timer = null;
+    let typingInterval = null;
 
-      for (let i = 1; i <= 11; i++) {
-        const frameId = `frame-${i < 10 ? '0' + i : i}`;
-        const element = document.getElementById(frameId);
+    function playTypewriter(slideElement) {
+      if (typingInterval) clearInterval(typingInterval);
 
-        try {
-          const canvas = await html2canvas(element, {
-            scale: 2.6666, // Scales 405x720 up to exact 1080x1920 Instagram Story resolution
-            useCORS: true,
-            backgroundColor: null
-          });
+      const textContainers = slideElement.querySelectorAll('.type-text');
+      textContainers.forEach(container => {
+        const fullText = container.getAttribute('data-text') || '';
+        container.textContent = '';
+        container.classList.add('typing-cursor');
 
-          const link = document.createElement('a');
-          link.download = `draftsrush-story-strategy-${i < 10 ? '0' + i : i}.png`;
-          link.href = canvas.toDataURL('image/png');
-          link.click();
-          await new Promise(resolve => setTimeout(resolve, 300));
-        } catch (err) {
-          console.error(`Error capturing ${frameId}:`, err);
+        // Delay typing slightly so the sliding card fits into place first
+        setTimeout(() => {
+          let charIndex = 0;
+          const speed = Math.max(12, Math.floor(2200 / fullText.length)); // Smooth typing window (~2.2s)
+          
+          const interval = setInterval(() => {
+            if (charIndex < fullText.length) {
+              container.textContent += fullText.charAt(charIndex);
+              charIndex++;
+            } else {
+              clearInterval(interval);
+              container.classList.remove('typing-cursor');
+            }
+          }, speed);
+        }, 550);
+      });
+    }
+
+    function showSlide(index) {
+      const slides = document.querySelectorAll('.slide');
+      slides.forEach(s => s.classList.remove('active'));
+
+      currentSlide = (index + totalSlides) % totalSlides;
+      const target = document.getElementById(`slide-${currentSlide}`);
+      target.classList.add('active');
+
+      document.getElementById('timeline-indicator').innerText = `SLIDE ${currentSlide + 1} / ${totalSlides}`;
+      playTypewriter(target);
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function startTimer() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => {
+        if (isPlaying) {
+          nextSlide();
         }
+      }, slideDuration);
+    }
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      document.getElementById('btn-toggle').innerText = isPlaying ? 'Pause' : 'Play';
+    }
+
+    function resetReel() {
+      showSlide(0);
+      if (isPlaying) startTimer();
+    }
+
+    // Initialize first slide on load
+    window.addEventListener('DOMContentLoaded', () => {
+      showSlide(0);
+      startTimer();
+    });
+
+    // In-browser WebM recording of the live animated canvas
+    let mediaRecorder = null;
+    let recordedChunks = [];
+
+    async function toggleRecording() {
+      const recordBtn = document.getElementById('btn-record');
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        recordBtn.innerText = 'Record Video';
+        return;
       }
 
-      btn.innerText = 'DOWNLOAD ALL 11 FRAMES (PNG)';
-      btn.disabled = false;
+      resetReel();
+      const stage = document.getElementById('reel-stage');
+
+      try {
+        const stream = await navigator.mediaDevices.getDisplayMedia({
+          video: { displaySurface: "browser" },
+          audio: false
+        });
+
+        recordedChunks = [];
+        mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9' });
+
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) recordedChunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          const blob = new Blob(recordedChunks, { type: 'video/webm' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'draftsrush-story-strategy-reel.webm';
+          a.click();
+        };
+
+        mediaRecorder.start();
+        recordBtn.innerText = 'Stop Recording';
+
+        // Auto stop after full reel run
+        setTimeout(() => {
+          if (mediaRecorder && mediaRecorder.state === 'recording') {
+            mediaRecorder.stop();
+            recordBtn.innerText = 'Record Video';
+          }
+        }, totalSlides * slideDuration + 1000);
+
+      } catch (err) {
+        alert("Screen capture was canceled or is not supported by your browser.");
+      }
     }
   </script>
-
 </body>
 </html>
