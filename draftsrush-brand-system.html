@@ -6,13 +6,14 @@
   <title>DraftsRush - Animated Story Strategy Reel</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
       background-color: #111317;
       color: #111317;
       margin: 0;
-      padding: 20px;
+      padding: 24px;
     }
     .brand-font { font-family: 'Space Grotesk', sans-serif; }
 
@@ -38,7 +39,7 @@
       justify-content: space-between;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s ease-out;
+      transition: opacity 0.35s ease-out;
     }
 
     .slide.active {
@@ -50,14 +51,14 @@
     .brutal-shadow { box-shadow: 6px 6px 0px #111317; }
     .brutal-shadow-sm { box-shadow: 4px 4px 0px #111317; }
 
-    /* Slide-in Block Animation */
-    @keyframes slideFromLeft {
+    /* Deliberate, Smooth Slide-in Block Animation */
+    @keyframes slideFromLeftSlow {
       0% {
         transform: translateX(-120%);
         opacity: 0;
       }
-      80% {
-        transform: translateX(8px);
+      75% {
+        transform: translateX(4px);
         opacity: 1;
       }
       100% {
@@ -67,16 +68,16 @@
     }
 
     .active .animate-block-1 {
-      animation: slideFromLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: slideFromLeftSlow 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .active .animate-block-2 {
-      animation: slideFromLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+      animation: slideFromLeftSlow 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
       opacity: 0;
     }
 
     .active .animate-block-3 {
-      animation: slideFromLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+      animation: slideFromLeftSlow 0.75s cubic-bezier(0.22, 1, 0.36, 1) 1.05s forwards;
       opacity: 0;
     }
 
@@ -98,21 +99,29 @@
 <body class="flex flex-col items-center justify-center min-h-screen">
 
   <!-- Controls Deck -->
-  <div class="mb-6 w-full max-w-[405px] flex items-center justify-between gap-2 bg-[#FFE600] border-4 border-black p-3 brutal-shadow">
-    <div class="flex gap-2">
-      <button id="btn-toggle" onclick="togglePlay()" class="bg-black text-white font-bold text-xs uppercase px-3 py-2 border-2 border-black">
-        Pause
+  <div class="mb-6 w-full max-w-[405px] flex flex-col gap-2.5 bg-[#FFE600] border-4 border-black p-3.5 brutal-shadow">
+    <div class="flex items-center justify-between">
+      <div class="flex gap-2">
+        <button id="btn-toggle" onclick="togglePlay()" class="bg-black text-white font-bold text-xs uppercase px-3 py-1.5 border-2 border-black hover:bg-gray-800">
+          Pause
+        </button>
+        <button onclick="resetReel()" class="bg-white text-black font-bold text-xs uppercase px-3 py-1.5 border-2 border-black hover:bg-gray-100">
+          Restart
+        </button>
+      </div>
+      <div class="text-xs font-black brand-font tracking-wider" id="timeline-indicator">
+        SLIDE 1 / 11
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 gap-2 pt-1 border-t-2 border-black">
+      <button id="btn-record" onclick="toggleRecording()" class="bg-black text-[#FFE600] font-black text-[11px] uppercase py-2 border-2 border-black hover:bg-gray-900">
+        Record Video (.webm)
       </button>
-      <button onclick="resetReel()" class="bg-white text-black font-bold text-xs uppercase px-3 py-2 border-2 border-black">
-        Restart
+      <button id="btn-download-stills" onclick="downloadAllStills()" class="bg-white text-black font-black text-[11px] uppercase py-2 border-2 border-black hover:bg-gray-100">
+        Download All (.png)
       </button>
     </div>
-    <div class="text-xs font-black brand-font tracking-wider" id="timeline-indicator">
-      SLIDE 1 / 11
-    </div>
-    <button id="btn-record" onclick="toggleRecording()" class="bg-black text-[#FFE600] font-black text-xs uppercase px-3 py-2 border-2 border-black">
-      Record Video
-    </button>
   </div>
 
   <!-- Stage (9:16) -->
@@ -460,14 +469,19 @@
 
   <script>
     const totalSlides = 11;
-    const slideDuration = 4800; // 4.8s per slide (52.8 seconds total reel runtime)
+    const slideDuration = 5200; // 5.2s per slide (~57s full run)
     let currentSlide = 0;
     let isPlaying = true;
     let timer = null;
-    let typingInterval = null;
+    let activeIntervals = [];
+
+    function clearAllTyping() {
+      activeIntervals.forEach(id => clearInterval(id));
+      activeIntervals = [];
+    }
 
     function playTypewriter(slideElement) {
-      if (typingInterval) clearInterval(typingInterval);
+      clearAllTyping();
 
       const textContainers = slideElement.querySelectorAll('.type-text');
       textContainers.forEach(container => {
@@ -475,11 +489,12 @@
         container.textContent = '';
         container.classList.add('typing-cursor');
 
-        // Delay typing slightly so the sliding card fits into place first
+        // Let the blocks slide and fit into place first (1.1s delay)
         setTimeout(() => {
           let charIndex = 0;
-          const speed = Math.max(12, Math.floor(2200 / fullText.length)); // Smooth typing window (~2.2s)
-          
+          // Slower pacing: ~24ms per character across a 3.2-second typing window
+          const speed = Math.max(22, Math.floor(3200 / fullText.length));
+
           const interval = setInterval(() => {
             if (charIndex < fullText.length) {
               container.textContent += fullText.charAt(charIndex);
@@ -489,7 +504,9 @@
               container.classList.remove('typing-cursor');
             }
           }, speed);
-        }, 550);
+
+          activeIntervals.push(interval);
+        }, 1100);
       });
     }
 
@@ -520,7 +537,7 @@
 
     function togglePlay() {
       isPlaying = !isPlaying;
-      document.getElementById('btn-toggle').innerText = isPlaying ? 'Pause' : 'Play';
+      document.getElementById('btn-toggle').innerText = isPlaying ? 'Play' : 'Pause';
     }
 
     function resetReel() {
@@ -528,13 +545,12 @@
       if (isPlaying) startTimer();
     }
 
-    // Initialize first slide on load
     window.addEventListener('DOMContentLoaded', () => {
       showSlide(0);
       startTimer();
     });
 
-    // In-browser WebM recording of the live animated canvas
+    // 1. In-browser WebM recording of the canvas playback
     let mediaRecorder = null;
     let recordedChunks = [];
 
@@ -542,12 +558,11 @@
       const recordBtn = document.getElementById('btn-record');
       if (mediaRecorder && mediaRecorder.state === 'recording') {
         mediaRecorder.stop();
-        recordBtn.innerText = 'Record Video';
+        recordBtn.innerText = 'Record Video (.webm)';
         return;
       }
 
       resetReel();
-      const stage = document.getElementById('reel-stage');
 
       try {
         const stream = await navigator.mediaDevices.getDisplayMedia({
@@ -574,17 +589,58 @@
         mediaRecorder.start();
         recordBtn.innerText = 'Stop Recording';
 
-        // Auto stop after full reel run
         setTimeout(() => {
           if (mediaRecorder && mediaRecorder.state === 'recording') {
             mediaRecorder.stop();
-            recordBtn.innerText = 'Record Video';
+            recordBtn.innerText = 'Record Video (.webm)';
           }
         }, totalSlides * slideDuration + 1000);
 
       } catch (err) {
-        alert("Screen capture was canceled or is not supported by your browser.");
+        alert("Screen recording was canceled or is not supported by your browser.");
       }
+    }
+
+    // 2. Download all 11 frames as individual 9:16 PNG files
+    async function downloadAllStills() {
+      const btn = document.getElementById('btn-download-stills');
+      btn.innerText = 'CAPTURING...';
+      btn.disabled = true;
+      if (isPlaying) togglePlay();
+
+      for (let i = 0; i < totalSlides; i++) {
+        showSlide(i);
+        // Force typewriter text to be completely filled for still images
+        const slide = document.getElementById(`slide-${i}`);
+        const textElements = slide.querySelectorAll('.type-text');
+        textElements.forEach(el => {
+          el.textContent = el.getAttribute('data-text') || '';
+          el.classList.remove('typing-cursor');
+        });
+
+        await new Promise(r => setTimeout(r, 600));
+
+        try {
+          const canvas = await html2canvas(document.getElementById('reel-stage'), {
+            scale: 2.6666, // Scales to 1080x1920 Instagram Story / Reel size
+            useCORS: true,
+            backgroundColor: null
+          });
+
+          const link = document.createElement('a');
+          link.download = `draftsrush-slide-${i + 1 < 10 ? '0' + (i + 1) : (i + 1)}.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          await new Promise(r => setTimeout(r, 200));
+        } catch (err) {
+          console.error(`Error capturing slide ${i}:`, err);
+        }
+      }
+
+      btn.innerText = 'Download All (.png)';
+      btn.disabled = false;
+      resetReel();
+      togglePlay();
     }
   </script>
 </body>
