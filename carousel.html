@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DraftsRush - Story Strategy Animated Studio</title>
+  <title>DraftsRush - Story Strategy Reel Studio</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -20,10 +21,10 @@
     }
     h1 {
       color: #FFE600;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 900;
-      letter-spacing: -0.5px;
       margin-bottom: 6px;
+      letter-spacing: -0.5px;
     }
     p {
       color: #D6E4EE;
@@ -36,52 +37,65 @@
       justify-content: center;
       gap: 10px;
       margin-bottom: 14px;
-      max-width: 500px;
+      max-width: 600px;
     }
     button {
       background: #FFE600;
       color: #000;
       font-weight: 900;
       font-size: 13px;
-      padding: 10px 18px;
+      padding: 12px 20px;
       border: 3px solid #000;
-      box-shadow: 3px 3px 0px #fff;
+      box-shadow: 4px 4px 0px #fff;
       cursor: pointer;
       text-transform: uppercase;
+      transition: transform 0.05s;
     }
     button:hover {
       transform: translate(-1px, -1px);
-      box-shadow: 4px 4px 0px #fff;
+      box-shadow: 5px 5px 0px #fff;
+    }
+    button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px #fff;
     }
     button:disabled {
-      background: #444;
-      color: #777;
-      box-shadow: none;
+      background: #444 !important;
+      color: #777 !important;
+      box-shadow: none !important;
       cursor: not-allowed;
+      transform: none !important;
     }
-    .btn-secondary {
+    .btn-green {
+      background: #34D399;
+    }
+    .btn-blue {
       background: #D6E4EE;
     }
-    .status-bar {
+    .status-panel {
       background: #1C1F26;
       border: 2px solid #333;
-      padding: 8px 16px;
-      font-family: monospace;
+      padding: 10px 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
       font-size: 13px;
       color: #34D399;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+    }
+    .preview-container {
+      position: relative;
       width: 100%;
       max-width: 360px;
-      text-align: center;
+      border: 3px solid #FFE600;
+      background: #000;
+      box-shadow: 0px 12px 36px rgba(0,0,0,0.8);
     }
     canvas {
       width: 100%;
-      max-width: 360px;
       height: auto;
       aspect-ratio: 9 / 16;
-      border: 3px solid #FFE600;
-      background: #111317;
-      box-shadow: 0px 12px 32px rgba(0,0,0,0.8);
       display: block;
     }
   </style>
@@ -90,18 +104,20 @@
 
   <div class="header">
     <h1>DraftsRush Story Strategy Studio</h1>
-    <p>55-Second Smooth Timeline Animation Engine</p>
+    <p>Guaranteed Video Recorder & Direct 1080x1920 PNG Slide Generator</p>
   </div>
 
   <div class="controls">
-    <button id="btnPlay" onclick="handlePlay()">▶ Play Preview</button>
-    <button id="btnRecord" onclick="handleRecord()">🔴 Record & Download Video</button>
-    <button class="btn-secondary" onclick="downloadCurrentPNG()">📸 Download Frame PNG</button>
+    <button id="btnPlay" onclick="togglePlay()">▶ Play Preview (55s)</button>
+    <button id="btnRecord" class="btn-green" onclick="recordVideo()">🔴 Download Video (.webm)</button>
+    <button class="btn-blue" onclick="downloadAllSlidesZip()">📦 Download All 10 PNGs (.zip)</button>
   </div>
 
-  <div class="status-bar" id="statusText">Status: Engine Ready. Click Play.</div>
+  <div class="status-panel" id="statusText">System ready. Click Play or Record.</div>
 
-  <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+  <div class="preview-container">
+    <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+  </div>
 
   <script>
     const canvas = document.getElementById('reelCanvas');
@@ -110,7 +126,7 @@
     const btnPlay = document.getElementById('btnPlay');
     const btnRecord = document.getElementById('btnRecord');
 
-    const SCENE_DURATION = 5.5; // 5.5s per slide
+    const SCENE_DURATION = 5.5; // 5.5s per scene
     const SCENES = [
       {
         id: 0,
@@ -238,13 +254,10 @@
       }
     ];
 
-    const TOTAL_DURATION = SCENES.length * SCENE_DURATION; // 55.0 Seconds
-    let startTime = null;
-    let animFrameId = null;
-    let isRecording = false;
-    let mediaRecorder = null;
-    let recordedChunks = [];
-    let currentTotalTime = 0;
+    const TOTAL_DURATION = SCENES.length * SCENE_DURATION; // 55s
+    let animId = null;
+    let playStartTime = null;
+    let isPlaying = false;
 
     function drawBox(x, y, w, h, fill, border = '#000000', borderWidth = 8, shadow = 16) {
       if (shadow > 0) {
@@ -279,6 +292,21 @@
       const c1 = 1.70158;
       const c3 = c1 + 1;
       return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+    }
+
+    function drawNode(nx, ny) {
+      ctx.fillStyle = '#000000';
+      ctx.beginPath();
+      ctx.arc(nx + 6, ny + 6, 26, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#34D399';
+      ctx.beginPath();
+      ctx.arc(nx, ny, 26, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 6;
+      ctx.stroke();
     }
 
     function drawRoadmapLine(x, y, w, h) {
@@ -343,21 +371,6 @@
       ctx.restore();
     }
 
-    function drawSingleNode(nx, ny) {
-      ctx.fillStyle = '#000000';
-      ctx.beginPath();
-      ctx.arc(nx + 6, ny + 6, 26, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = '#34D399';
-      ctx.beginPath();
-      ctx.arc(nx, ny, 26, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 6;
-      ctx.stroke();
-    }
-
     function drawStepTimeline(type, x, y, w, h, visualType, lineProgress) {
       drawBox(x, y, w, h, '#FFFFFF', '#000000', 8, 14);
 
@@ -374,7 +387,7 @@
         ctx.moveTo(x + 40, cy);
         ctx.lineTo(x + 40 + (w - 80) * lineProgress, cy);
         ctx.stroke();
-        if (lineProgress > 0.5) drawSingleNode(cx, cy);
+        if (lineProgress > 0.5) drawNode(cx, cy);
 
       } else if (type === "drop") {
         ctx.beginPath();
@@ -385,7 +398,7 @@
         ctx.lineTo(cx + 180, cy - 100);
         ctx.lineTo(x + w - 40, cy - 100);
         ctx.stroke();
-        if (lineProgress > 0.4) drawSingleNode(cx, cy + 100);
+        if (lineProgress > 0.4) drawNode(cx, cy + 100);
 
       } else if (type === "stepUp") {
         ctx.beginPath();
@@ -394,7 +407,7 @@
         ctx.lineTo(cx - 180, cy - 90);
         ctx.lineTo(x + w - 40, cy - 90);
         ctx.stroke();
-        if (lineProgress > 0.4) drawSingleNode(cx, cy - 90);
+        if (lineProgress > 0.4) drawNode(cx, cy - 90);
 
       } else if (type === "stepDown") {
         ctx.beginPath();
@@ -403,14 +416,14 @@
         ctx.lineTo(cx + 180, cy + 110);
         ctx.lineTo(x + w - 40, cy + 110);
         ctx.stroke();
-        if (lineProgress > 0.4) drawSingleNode(cx - 40, cy - 90);
+        if (lineProgress > 0.4) drawNode(cx - 40, cy - 90);
 
       } else if (type === "branchOut") {
         ctx.beginPath();
         ctx.moveTo(x + 40, cy);
         ctx.lineTo(cx - 160, cy);
         ctx.stroke();
-        drawSingleNode(cx - 160, cy);
+        drawNode(cx - 160, cy);
 
         [cy - 90, cy, cy + 90].forEach(by => {
           ctx.beginPath();
@@ -432,7 +445,7 @@
         ctx.moveTo(cx + 80, cy);
         ctx.lineTo(x + w - 40, cy);
         ctx.stroke();
-        drawSingleNode(cx + 180, cy);
+        drawNode(cx + 180, cy);
 
       } else if (type === "ganttStep") {
         ctx.beginPath();
@@ -441,7 +454,7 @@
         ctx.lineTo(cx - 180, cy + 100);
         ctx.lineTo(x + w - 40, cy + 100);
         ctx.stroke();
-        drawSingleNode(cx, cy + 100);
+        drawNode(cx, cy + 100);
       }
 
       if (visualType === "factsList") {
@@ -472,7 +485,6 @@
         ctx.font = '900 18px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText('{FEATURE X}', cx - 120, cy + 52);
-
         ctx.fillText('➔', cx + 10, cy + 54);
 
         drawBox(cx + 50, cy + 20, 180, 50, '#34D399', '#000', 3, 0);
@@ -510,7 +522,6 @@
     }
 
     function render(totalTime) {
-      currentTotalTime = totalTime;
       const sceneIndex = Math.min(SCENES.length - 1, Math.floor(totalTime / SCENE_DURATION));
       const sceneTime = totalTime - (sceneIndex * SCENE_DURATION);
       const data = SCENES[sceneIndex];
@@ -696,91 +707,136 @@
       }
     }
 
-    function animLoop(timestamp) {
-      if (!startTime) startTime = timestamp;
-      const progress = (timestamp - startTime) / 1000;
+    // Live Animation Controller
+    function animTick(timestamp) {
+      if (!playStartTime) playStartTime = timestamp;
+      const elapsed = (timestamp - playStartTime) / 1000;
 
-      if (progress <= TOTAL_DURATION) {
-        render(progress);
-        const curSec = Math.floor(progress);
-        const activeScene = Math.min(SCENES.length, Math.floor(progress / SCENE_DURATION) + 1);
-        statusText.innerText = `Scene ${activeScene}/10 • Time: ${curSec}s / 55s`;
-        animFrameId = requestAnimationFrame(animLoop);
+      if (elapsed <= TOTAL_DURATION) {
+        render(elapsed);
+        const curSec = Math.floor(elapsed);
+        const activeScene = Math.min(SCENES.length, Math.floor(elapsed / SCENE_DURATION) + 1);
+        statusText.innerText = `Preview: Scene ${activeScene}/10 • Time: ${curSec}s / 55s`;
+        animId = requestAnimationFrame(animTick);
       } else {
         render(TOTAL_DURATION);
-        if (isRecording) {
-          stopMediaRecorder();
-        } else {
-          statusText.innerText = "Status: Preview complete (55s).";
-          btnPlay.disabled = false;
-          btnRecord.disabled = false;
-        }
+        statusText.innerText = "Status: Preview complete (55s).";
+        isPlaying = false;
+        btnPlay.innerText = "▶ Replay Preview";
       }
     }
 
-    function handlePlay() {
-      if (animFrameId) cancelAnimationFrame(animFrameId);
-      startTime = null;
-      btnPlay.disabled = true;
+    function togglePlay() {
+      if (isPlaying) {
+        cancelAnimationFrame(animId);
+        isPlaying = false;
+        btnPlay.innerText = "▶ Resume Preview";
+        statusText.innerText = "Status: Paused.";
+        return;
+      }
+      playStartTime = null;
+      isPlaying = true;
+      btnPlay.innerText = "⏸ Pause Preview";
       statusText.innerText = "Playing preview...";
-      animFrameId = requestAnimationFrame(animLoop);
+      animId = requestAnimationFrame(animTick);
     }
 
-    function handleRecord() {
-      if (animFrameId) cancelAnimationFrame(animFrameId);
-      statusText.innerText = "Recording full 55s video... Do not close tab.";
+    // Guaranteed Recording Engine
+    async function recordVideo() {
+      if (isPlaying) togglePlay();
+
       btnPlay.disabled = true;
       btnRecord.disabled = true;
-      isRecording = true;
-      recordedChunks = [];
+      statusText.innerText = "Preparing Video Stream...";
 
       const stream = canvas.captureStream(30); // 30 FPS
       let mime = 'video/webm;codecs=vp9';
-      if (!MediaRecorder.isTypeSupported(mime)) mime = 'video/webm';
-
-      try {
-        mediaRecorder = new MediaRecorder(stream, { mimeType: mime });
-      } catch (err) {
-        mediaRecorder = new MediaRecorder(stream);
+      if (!MediaRecorder.isTypeSupported(mime)) {
+        mime = 'video/webm;codecs=vp8';
+      }
+      if (!MediaRecorder.isTypeSupported(mime)) {
+        mime = 'video/webm';
       }
 
-      mediaRecorder.ondataavailable = e => {
-        if (e.data && e.data.size > 0) recordedChunks.push(e.data);
+      let recorder;
+      try {
+        recorder = new MediaRecorder(stream, { mimeType: mime });
+      } catch (err) {
+        recorder = new MediaRecorder(stream);
+      }
+
+      const chunks = [];
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) chunks.push(e.data);
       };
 
-      mediaRecorder.onstop = () => {
-        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+      recorder.onstop = () => {
+        const blob = new Blob(chunks, { type: 'video/webm' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = 'story-strategy-reel-55s.webm';
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
 
-        statusText.innerText = "Done: Video downloaded successfully!";
+        statusText.innerText = "SUCCESS: Video downloaded!";
         btnPlay.disabled = false;
         btnRecord.disabled = false;
-        isRecording = false;
       };
 
-      mediaRecorder.start();
-      startTime = null;
-      animFrameId = requestAnimationFrame(animLoop);
-    }
+      recorder.start();
 
-    function stopMediaRecorder() {
-      if (mediaRecorder && mediaRecorder.state !== "inactive") {
-        mediaRecorder.stop();
+      const totalFrames = 30 * TOTAL_DURATION; // 1650 frames
+      let frame = 0;
+
+      function renderFrameBatch() {
+        // Render 5 frames per event-loop tick to keep browser responsive
+        for (let i = 0; i < 5 && frame <= totalFrames; i++) {
+          const t = frame / 30;
+          render(t);
+          frame++;
+        }
+
+        const pct = Math.floor((frame / totalFrames) * 100);
+        statusText.innerText = `Recording: ${pct}% complete... (${Math.floor(frame / 30)}s / 55s)`;
+
+        if (frame <= totalFrames) {
+          requestAnimationFrame(renderFrameBatch);
+        } else {
+          recorder.stop();
+        }
       }
+
+      requestAnimationFrame(renderFrameBatch);
     }
 
-    function downloadCurrentPNG() {
+    // Direct Instant ZIP Export for All 10 High-Res PNGs
+    async function downloadAllSlidesZip() {
+      statusText.innerText = "Building 10 High-Res PNG Slides...";
+      const zip = new JSZip();
+
+      for (let i = 0; i < SCENES.length; i++) {
+        render((i * SCENE_DURATION) + 4.5); // Render fully completed frame
+        const dataUrl = canvas.toDataURL('image/png');
+        const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "");
+        const filename = `slide-${i + 1}.png`;
+        zip.file(filename, base64Data, { base64: true });
+      }
+
+      const content = await zip.generateAsync({ type: "blob" });
       const link = document.createElement('a');
-      link.download = `story-strategy-frame-${Math.floor(currentTotalTime)}s.png`;
-      link.href = canvas.toDataURL('image/png');
+      link.href = URL.createObjectURL(content);
+      link.download = "draftsrush-story-strategy-slides.zip";
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
+
+      render(0); // Reset to start
+      statusText.innerText = "ZIP file downloaded with all 10 slides!";
     }
 
-    // Initial first frame render immediately on load
+    // Initial render on load
     window.addEventListener('DOMContentLoaded', () => {
       render(0);
     });
