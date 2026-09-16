@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DraftsRush - Short Film Strategy Frames</title>
+  <title>DraftsRush - Short Film Strategy Frames (Fixed Spacing)</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     * {
@@ -22,7 +22,7 @@
     }
     .brand-font { font-family: 'Space Grotesk', sans-serif; }
 
-    /* Exact 9:16 Instagram Reel/Story Card (1080x1920 native scale) */
+    /* Exact 9:16 Frame (Rendered at 405x720, captured at 1080x1920) */
     .reel-frame {
       width: 405px;
       height: 720px;
@@ -34,24 +34,27 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 24px 22px 20px 22px;
+      padding: 26px 22px 22px 22px;
       overflow: hidden;
     }
 
-    /* Reliable Brutalist Block Shadows */
+    /* Solid Neo-Brutalist Cards */
     .b-card {
       border: 3.5px solid #111317;
       box-shadow: 5px 5px 0px #111317;
       background-color: #FFFFFF;
+      padding: 18px;
     }
     .b-card-sm {
       border: 2.5px solid #111317;
       box-shadow: 3.5px 3.5px 0px #111317;
     }
 
-    /* Fixed Tag System - Zero Overlap */
-    .tag-badge {
-      display: inline-block;
+    /* Fixed Tag Badge System - Zero Clipping, Perfect Center */
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background-color: #111317;
       color: #FFFFFF;
       font-family: 'Space Grotesk', sans-serif;
@@ -59,15 +62,56 @@
       text-transform: uppercase;
       font-size: 10px;
       letter-spacing: 0.05em;
-      padding: 3px 8px;
-      line-height: 1.2;
-      border: 1.5px solid #111317;
-      margin-bottom: 8px;
+      padding: 5px 9px;
+      line-height: 1;
+      height: 24px;
+      margin-bottom: 12px;
       width: fit-content;
+      border: 1px solid #111317;
     }
-    .tag-badge-yellow {
-      background-color: #FFE600;
+
+    .badge-header {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #111317;
+      color: #FFE600;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
+      line-height: 1;
+      height: 30px;
+      border: 2px solid #111317;
+    }
+
+    .counter-header {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #FFFFFF;
       color: #111317;
+      font-family: monospace;
+      font-weight: 800;
+      font-size: 12px;
+      padding: 6px 10px;
+      line-height: 1;
+      height: 30px;
+      border: 2px solid #111317;
+    }
+
+    /* Lower Infographic Block Centering */
+    .info-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 8px;
+      line-height: 1;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 10px;
       border: 2px solid #111317;
     }
   </style>
@@ -78,7 +122,7 @@
   <div class="w-full max-w-6xl mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FFE600] border-4 border-black p-5 b-card">
     <div>
       <h1 class="brand-font font-black text-2xl uppercase tracking-tight">How to Write a Short Film That Gets Noticed</h1>
-      <p class="text-xs font-bold text-gray-800 uppercase tracking-wider mt-1">12 Static Frames (9:16 Format // Pure Visual Layout)</p>
+      <p class="text-xs font-bold text-gray-800 uppercase tracking-wider mt-1">12 Static Frames // Corrected Box Spacing</p>
     </div>
     <button id="download-btn" onclick="downloadAllFrames()" class="bg-black text-white font-black brand-font text-xs uppercase px-6 py-3 border-2 border-black b-card hover:bg-white hover:text-black transition-colors">
       Download All 12 Frames (.png)
@@ -92,26 +136,19 @@
          FRAME 01: COVER & HOOK
     =========================================== -->
     <div id="frame-01" class="reel-frame">
-      <!-- Top Track -->
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          SCREENPLAY LAB
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          01/12
-        </div>
+        <div class="badge-header">SCREENPLAY LAB</div>
+        <div class="counter-header">01/12</div>
       </div>
 
-      <!-- Title Box -->
-      <div class="b-card bg-[#FFE600] p-4 my-3">
-        <div class="tag-badge mb-1">THE REALITY CHECK</div>
+      <div class="b-card bg-[#FFE600]">
+        <div class="badge-pill">THE REALITY CHECK</div>
         <h2 class="text-2xl font-black brand-font leading-tight text-black">
           Why 90% of short films get rejected.
         </h2>
       </div>
 
-      <!-- Main Copy -->
-      <div class="b-card p-4">
+      <div class="b-card">
         <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
           Writers treat short films like miniature feature films.
         </p>
@@ -120,23 +157,21 @@
         </p>
       </div>
 
-      <!-- Infographic: Acceptance Funnel -->
-      <div class="b-card bg-[#FFF6CF] p-3.5 my-2">
-        <div class="tag-badge text-[9px] mb-2">FESTIVAL SUBMISSION FILTER</div>
-        <div class="space-y-1.5 font-mono text-[10px] font-bold">
-          <div class="flex items-center justify-between bg-white border-2 border-black p-1.5">
+      <div class="b-card bg-[#FFF6CF]">
+        <div class="badge-pill">FESTIVAL SUBMISSION FILTER</div>
+        <div class="space-y-2 font-mono text-[10px] font-bold">
+          <div class="flex items-center justify-between bg-white border-2 border-black p-2">
             <span>20-30 MIN SPRAWL</span>
-            <span class="bg-[#FF6B6B] text-black px-1.5 py-0.5 border border-black">8% PASS RATE</span>
+            <span class="bg-[#FF6B6B] text-black px-2 py-0.5 border border-black font-extrabold">8% PASS RATE</span>
           </div>
-          <div class="flex items-center justify-between bg-white border-2 border-black p-1.5">
+          <div class="flex items-center justify-between bg-white border-2 border-black p-2">
             <span>8-12 MIN CONTAINED</span>
-            <span class="bg-[#2ECC71] text-black px-1.5 py-0.5 border border-black">82% PASS RATE</span>
+            <span class="bg-[#2ECC71] text-black px-2 py-0.5 border border-black font-extrabold">82% PASS RATE</span>
           </div>
         </div>
       </div>
 
-      <!-- Footer -->
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
@@ -147,21 +182,17 @@
     =========================================== -->
     <div id="frame-02" class="reel-frame">
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          RULE 01: SCOPE
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          02/12
-        </div>
+        <div class="badge-header">RULE 01: SCOPE</div>
+        <div class="counter-header">02/12</div>
       </div>
 
-      <div class="b-card p-4 my-3">
-        <div class="tag-badge mb-1">CORE CONCEPT</div>
-        <h3 class="text-2xl font-black brand-font">Find a Small World</h3>
+      <div class="b-card">
+        <div class="badge-pill">CORE CONCEPT</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Find a Small World</h3>
       </div>
 
-      <div class="b-card bg-[#FFF6CF] p-4">
-        <div class="tag-badge mb-1.5">ONE ARENA, ZERO SPRAWL</div>
+      <div class="b-card bg-[#FFF6CF]">
+        <div class="badge-pill">ONE ARENA, ZERO SPRAWL</div>
         <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
           A short film cannot support five subplots, ten locations, or four flashbacks.
         </p>
@@ -170,20 +201,16 @@
         </p>
       </div>
 
-      <!-- Infographic: Spatial Restraint Arena Diagram -->
-      <div class="b-card bg-white p-3.5 my-2">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-[9px] font-black brand-font uppercase tracking-wider">LOCATION ARCHITECTURE</span>
-          <span class="text-[9px] font-mono font-bold bg-[#FFE600] border border-black px-1.5">1 SETTING</span>
-        </div>
+      <div class="b-card bg-white">
+        <div class="badge-pill">LOCATION ARCHITECTURE</div>
         <div class="border-2 border-black p-2 bg-[#E2E4E9] flex items-center justify-around font-mono text-[10px] font-bold">
-          <div class="bg-white border border-black px-2 py-1">POINT A: CONFLICT</div>
+          <div class="info-item bg-white">POINT A: CONFLICT</div>
           <div class="font-black text-sm">↔</div>
-          <div class="bg-white border border-black px-2 py-1">POINT B: DECISION</div>
+          <div class="info-item bg-white">POINT B: DECISION</div>
         </div>
       </div>
 
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
@@ -194,21 +221,17 @@
     =========================================== -->
     <div id="frame-03" class="reel-frame">
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          RULE 02: PACING
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          03/12
-        </div>
+        <div class="badge-header">RULE 02: PACING</div>
+        <div class="counter-header">03/12</div>
       </div>
 
-      <div class="b-card p-4 my-3">
-        <div class="tag-badge mb-1">SCENE TIMING</div>
-        <h3 class="text-2xl font-black brand-font">Enter Late, Leave Early</h3>
+      <div class="b-card">
+        <div class="badge-pill">SCENE TIMING</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Enter Late, Leave Early</h3>
       </div>
 
-      <div class="b-card bg-[#D6E4EE] p-4">
-        <div class="tag-badge mb-1.5">CUT THE WARM-UP</div>
+      <div class="b-card bg-[#D6E4EE]">
+        <div class="badge-pill">CUT THE WARM-UP</div>
         <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
           Never show characters waking up, parking cars, or greeting each other.
         </p>
@@ -217,20 +240,16 @@
         </p>
       </div>
 
-      <!-- Infographic: Timeline Cut Points -->
-      <div class="b-card bg-white p-3.5 my-2">
-        <div class="flex justify-between items-center mb-1.5">
-          <span class="text-[9px] font-black brand-font uppercase">SCENE TIMELINE SURGERY</span>
-          <span class="text-[9px] font-mono font-bold text-red-600">CUT 60%</span>
-        </div>
-        <div class="grid grid-cols-3 gap-1 text-center font-mono text-[9px] font-bold">
-          <div class="bg-gray-200 border border-black p-1 line-through text-gray-500">EXPOSITION</div>
-          <div class="bg-[#2ECC71] border border-black p-1 text-black">ENTRY BEAT</div>
-          <div class="bg-[#FFE600] border border-black p-1 text-black">EXIT CUT</div>
+      <div class="b-card bg-white">
+        <div class="badge-pill">SCENE TIMELINE SURGERY</div>
+        <div class="grid grid-cols-3 gap-1.5 text-center font-mono text-[9px] font-bold">
+          <div class="info-item bg-gray-200 line-through text-gray-500">EXPOSITION</div>
+          <div class="info-item bg-[#2ECC71] text-black">ENTRY BEAT</div>
+          <div class="info-item bg-[#FFE600] text-black">EXIT CUT</div>
         </div>
       </div>
 
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
@@ -241,21 +260,17 @@
     =========================================== -->
     <div id="frame-04" class="reel-frame">
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          RULE 03: MOTIVATION
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          04/12
-        </div>
+        <div class="badge-header">RULE 03: MOTIVATION</div>
+        <div class="counter-header">04/12</div>
       </div>
 
-      <div class="b-card p-4 my-3">
-        <div class="tag-badge mb-1">CHARACTER GOAL</div>
-        <h3 class="text-2xl font-black brand-font">Isolate a Single Want</h3>
+      <div class="b-card">
+        <div class="badge-pill">CHARACTER GOAL</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Isolate a Single Want</h3>
       </div>
 
-      <div class="b-card bg-[#FFE600] p-4">
-        <div class="tag-badge mb-1.5">ONE OBJECTIVE</div>
+      <div class="b-card bg-[#FFE600]">
+        <div class="badge-pill">ONE OBJECTIVE</div>
         <p class="text-[13px] font-bold text-black leading-snug mb-2">
           Your protagonist needs one concrete target within the first 60 seconds.
         </p>
@@ -264,16 +279,16 @@
         </p>
       </div>
 
-      <!-- Infographic: Concrete Objective Arrow -->
-      <div class="b-card bg-white p-3.5 my-2">
+      <div class="b-card bg-white">
+        <div class="badge-pill">OBJECTIVE CLARITY</div>
         <div class="flex items-center justify-between text-[10px] font-mono font-bold">
-          <span class="bg-[#111317] text-white px-2 py-1">MINUTE 01: GOAL</span>
-          <span class="font-black text-lg">➔</span>
-          <span class="bg-[#FFE600] border border-black px-2 py-1">MINUTE 10: RESOLUTION</span>
+          <div class="info-item bg-[#111317] text-white">MINUTE 01: WANT</div>
+          <div class="font-black text-sm">➔</div>
+          <div class="info-item bg-[#FFE600] text-black">MINUTE 10: PAYOFF</div>
         </div>
       </div>
 
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
@@ -284,21 +299,17 @@
     =========================================== -->
     <div id="frame-05" class="reel-frame">
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          RULE 04: PRACTICALITY
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          05/12
-        </div>
+        <div class="badge-header">RULE 04: PRACTICALITY</div>
+        <div class="counter-header">05/12</div>
       </div>
 
-      <div class="b-card p-4 my-3">
-        <div class="tag-badge mb-1">PRODUCTION REALITY</div>
-        <h3 class="text-2xl font-black brand-font">Write for Real Assets</h3>
+      <div class="b-card">
+        <div class="badge-pill">PRODUCTION REALITY</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Write for Real Assets</h3>
       </div>
 
-      <div class="b-card bg-[#EFE4D6] p-4">
-        <div class="tag-badge mb-1.5">AUDIT BEFORE WRITING</div>
+      <div class="b-card bg-[#EFE4D6]">
+        <div class="badge-pill">AUDIT BEFORE WRITING</div>
         <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
           Do not write exploding cars or neon cityscapes on an indie budget.
         </p>
@@ -307,16 +318,16 @@
         </p>
       </div>
 
-      <!-- Infographic: Asset Matrix -->
-      <div class="b-card bg-white p-3 my-2">
+      <div class="b-card bg-white">
+        <div class="badge-pill">INDIE EQUATION</div>
         <div class="grid grid-cols-3 gap-1.5 font-mono text-[9px] font-bold text-center">
-          <div class="border-2 border-black bg-gray-100 p-1.5">1 LOCATION</div>
-          <div class="border-2 border-black bg-gray-100 p-1.5">2 ACTORS</div>
-          <div class="border-2 border-black bg-[#2ECC71] p-1.5 text-black">HIGH TENSION</div>
+          <div class="info-item bg-gray-100">1 LOCATION</div>
+          <div class="info-item bg-gray-100">2 ACTORS</div>
+          <div class="info-item bg-[#2ECC71] text-black">HIGH VALUE</div>
         </div>
       </div>
 
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
@@ -327,21 +338,17 @@
     =========================================== -->
     <div id="frame-06" class="reel-frame">
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          RULE 05: SHOW VS TELL
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          06/12
-        </div>
+        <div class="badge-header">RULE 05: SHOW VS TELL</div>
+        <div class="counter-header">06/12</div>
       </div>
 
-      <div class="b-card p-4 my-3">
-        <div class="tag-badge mb-1">CINEMATIC WEIGHT</div>
-        <h3 class="text-2xl font-black brand-font">Cut 50% of Dialogue</h3>
+      <div class="b-card">
+        <div class="badge-pill">CINEMATIC WEIGHT</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Cut 50% of Dialogue</h3>
       </div>
 
-      <div class="b-card bg-[#DDE8DF] p-4">
-        <div class="tag-badge mb-1.5">ACTIONS OVER SPEECHES</div>
+      <div class="b-card bg-[#DDE8DF]">
+        <div class="badge-pill">ACTIONS OVER SPEECHES</div>
         <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
           Beginner scripts explain emotion through conversation.
         </p>
@@ -350,11 +357,11 @@
         </p>
       </div>
 
-      <!-- Infographic: Visual Split Ratio -->
-      <div class="b-card bg-white p-3.5 my-2">
-        <div class="flex justify-between text-[9px] font-mono font-bold mb-1">
-          <span>VISUAL BEHAVIOR: 75%</span>
-          <span>SPOKEN DIALOGUE: 25%</span>
+      <div class="b-card bg-white">
+        <div class="badge-pill">EXPRESSION RATIO</div>
+        <div class="flex justify-between text-[9px] font-mono font-bold mb-1.5">
+          <span>VISUAL ACTION: 75%</span>
+          <span>SPOKEN WORDS: 25%</span>
         </div>
         <div class="w-full h-4 border-2 border-black flex">
           <div class="h-full bg-black w-3/4"></div>
@@ -362,7 +369,7 @@
         </div>
       </div>
 
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
@@ -373,21 +380,17 @@
     =========================================== -->
     <div id="frame-07" class="reel-frame">
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          RULE 06: RUNTIME
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          07/12
-        </div>
+        <div class="badge-header">RULE 06: RUNTIME</div>
+        <div class="counter-header">07/12</div>
       </div>
 
-      <div class="b-card p-4 my-3">
-        <div class="tag-badge mb-1">THE PROGRAMMER'S SWEET SPOT</div>
-        <h3 class="text-2xl font-black brand-font">Target 8 to 12 Pages</h3>
+      <div class="b-card">
+        <div class="badge-pill">THE PROGRAMMER'S SWEET SPOT</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Target 8 to 12 Pages</h3>
       </div>
 
-      <div class="b-card bg-[#FFF6CF] p-4">
-        <div class="tag-badge mb-1.5">FESTIVAL MATHEMATICS</div>
+      <div class="b-card bg-[#FFF6CF]">
+        <div class="badge-pill">FESTIVAL MATHEMATICS</div>
         <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
           A 25-minute short kills festival acceptance odds.
         </p>
@@ -396,16 +399,16 @@
         </p>
       </div>
 
-      <!-- Infographic: Page-to-Screen Metric -->
-      <div class="b-card bg-white p-3 my-2">
+      <div class="b-card bg-white">
+        <div class="badge-pill">SCREENPLAY BENCHMARK</div>
         <div class="flex items-center justify-between font-mono text-[10px] font-bold">
-          <div class="bg-[#FFE600] border border-black p-1.5">1 PAGE SCRIPT</div>
-          <span class="text-xs">≈</span>
-          <div class="bg-black text-white p-1.5">1 MINUTE SCREEN</div>
+          <div class="info-item bg-[#FFE600] text-black">1 PAGE SCRIPT</div>
+          <span class="text-xs font-black">≈</span>
+          <div class="info-item bg-black text-white">1 MINUTE FILM</div>
         </div>
       </div>
 
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
@@ -416,21 +419,17 @@
     =========================================== -->
     <div id="frame-08" class="reel-frame">
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          RULE 07: RETENTION
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          08/12
-        </div>
+        <div class="badge-header">RULE 07: RETENTION</div>
+        <div class="counter-header">08/12</div>
       </div>
 
-      <div class="b-card p-4 my-3">
-        <div class="tag-badge mb-1">TENSION ESCALATION</div>
-        <h3 class="text-2xl font-black brand-font">Escalate Every 90s</h3>
+      <div class="b-card">
+        <div class="badge-pill">TENSION ESCALATION</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Escalate Every 90s</h3>
       </div>
 
-      <div class="b-card bg-[#D6E4EE] p-4">
-        <div class="tag-badge mb-1.5">NO MID-SCRIPT SLUMPS</div>
+      <div class="b-card bg-[#D6E4EE]">
+        <div class="badge-pill">NO MID-SCRIPT SLUMPS</div>
         <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
           Every 90 seconds, shift the balance of power between characters.
         </p>
@@ -439,21 +438,17 @@
         </p>
       </div>
 
-      <!-- Infographic: 90s Wave Resets -->
-      <div class="b-card bg-white p-3 my-2">
-        <div class="flex justify-between items-center text-[9px] font-mono font-bold mb-1.5">
-          <span>TENSION RESETS</span>
-          <span class="bg-[#FFE600] px-1 border border-black">90s INTERVAL</span>
-        </div>
-        <div class="grid grid-cols-4 gap-1 text-center font-mono text-[9px] font-bold">
-          <div class="border border-black bg-gray-100 p-1">0:00</div>
-          <div class="border border-black bg-[#FFE600] p-1">+1:30</div>
-          <div class="border border-black bg-[#FFE600] p-1">+3:00</div>
-          <div class="border border-black bg-[#2ECC71] p-1">CLIMAX</div>
+      <div class="b-card bg-white">
+        <div class="badge-pill">TENSION INTERVALS</div>
+        <div class="grid grid-cols-4 gap-1.5 text-center font-mono text-[9px] font-bold">
+          <div class="info-item bg-gray-100">0:00</div>
+          <div class="info-item bg-[#FFE600] text-black">+1:30</div>
+          <div class="info-item bg-[#FFE600] text-black">+3:00</div>
+          <div class="info-item bg-[#2ECC71] text-black">CLIMAX</div>
         </div>
       </div>
 
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
@@ -464,21 +459,17 @@
     =========================================== -->
     <div id="frame-09" class="reel-frame">
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          RULE 08: THE CLIMAX
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          09/12
-        </div>
+        <div class="badge-header">RULE 08: THE CLIMAX</div>
+        <div class="counter-header">09/12</div>
       </div>
 
-      <div class="b-card p-4 my-3">
-        <div class="tag-badge mb-1">THE FINAL BEAT</div>
-        <h3 class="text-2xl font-black brand-font">Avoid Gimmick Endings</h3>
+      <div class="b-card">
+        <div class="badge-pill">THE FINAL BEAT</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Avoid Gimmick Endings</h3>
       </div>
 
-      <div class="b-card bg-[#FFE600] p-4">
-        <div class="tag-badge mb-1.5">INEVITABILITY</div>
+      <div class="b-card bg-[#FFE600]">
+        <div class="badge-pill">INEVITABILITY</div>
         <p class="text-[13px] font-bold text-black leading-snug mb-2">
           "It was all a dream" or sudden unearned twists cheat your audience.
         </p>
@@ -487,16 +478,16 @@
         </p>
       </div>
 
-      <!-- Infographic: Logic Flow vs Gimmick -->
-      <div class="b-card bg-white p-3 my-2">
+      <div class="b-card bg-white">
+        <div class="badge-pill">RESOLUTION ENGINE</div>
         <div class="flex items-center justify-between text-[10px] font-mono font-bold">
-          <span class="line-through text-red-600">RANDOM TWIST</span>
-          <span class="text-xs font-black">➔</span>
-          <span class="bg-[#2ECC71] text-black px-2 py-0.5 border border-black">EARNED CHOICE</span>
+          <div class="info-item bg-gray-100 line-through text-red-600">RANDOM TWIST</div>
+          <span class="font-black text-xs">➔</span>
+          <div class="info-item bg-[#2ECC71] text-black">EARNED CHOICE</div>
         </div>
       </div>
 
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
@@ -507,21 +498,17 @@
     =========================================== -->
     <div id="frame-10" class="reel-frame">
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          RULE 09: STANDARDS
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          10/12
-        </div>
+        <div class="badge-header">RULE 09: STANDARDS</div>
+        <div class="counter-header">10/12</div>
       </div>
 
-      <div class="b-card p-4 my-3">
-        <div class="tag-badge mb-1">PRESENTATION</div>
-        <h3 class="text-2xl font-black brand-font">Respect Screenplay Standards</h3>
+      <div class="b-card">
+        <div class="badge-pill">PRESENTATION</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Respect Screenplay Standards</h3>
       </div>
 
-      <div class="b-card bg-[#EFE4D6] p-4">
-        <div class="tag-badge mb-1.5">COURIER 12PT RULES</div>
+      <div class="b-card bg-[#EFE4D6]">
+        <div class="badge-pill">COURIER 12PT RULES</div>
         <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
           Producers and script readers evaluate formatting discipline on page one.
         </p>
@@ -530,40 +517,36 @@
         </p>
       </div>
 
-      <!-- Infographic: Action Block Density Metric -->
-      <div class="b-card bg-white p-3 my-2">
+      <div class="b-card bg-white">
+        <div class="badge-pill">WHITE SPACE RATIO</div>
         <div class="grid grid-cols-2 gap-2 text-center font-mono text-[9px] font-bold">
-          <div class="border border-black bg-red-100 p-1.5 line-through">PARAGRAPH WALLS</div>
-          <div class="border border-black bg-[#2ECC71] p-1.5">2-LINE ACTION BLOCKS</div>
+          <div class="info-item bg-red-100 line-through text-red-700">PARAGRAPH WALLS</div>
+          <div class="info-item bg-[#2ECC71] text-black">2-LINE CLUSTERS</div>
         </div>
       </div>
 
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
     <!-- ==========================================
-         FRAME 11: RULE 10 - SHIP THE FIRST DRAFT
+         FRAME 11: RULE 10 - SHIP THE FIRST DRAFT (FIXED)
     =========================================== -->
     <div id="frame-11" class="reel-frame">
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          RULE 10: EXECUTION
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          11/12
-        </div>
+        <div class="badge-header">RULE 10: EXECUTION</div>
+        <div class="counter-header">11/12</div>
       </div>
 
-      <div class="b-card p-4 my-3">
-        <div class="tag-badge mb-1">THE FINAL STEP</div>
-        <h3 class="text-2xl font-black brand-font">Ship the First Draft</h3>
+      <div class="b-card">
+        <div class="badge-pill">THE FINAL STEP</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Ship the First Draft</h3>
       </div>
 
-      <div class="b-card bg-[#DDE8DF] p-4">
-        <div class="tag-badge mb-1.5">WRITING IS REWRITING</div>
+      <div class="b-card bg-[#DDE8DF]">
+        <div class="badge-pill">WRITING IS REWRITING</div>
         <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
           You cannot fix an empty screen.
         </p>
@@ -572,18 +555,19 @@
         </p>
       </div>
 
-      <!-- Infographic: Drafting Cycle -->
-      <div class="b-card bg-white p-3 my-2">
+      <!-- Infographic: Clean, centered, and fully spaced -->
+      <div class="b-card bg-white">
+        <div class="badge-pill">PRODUCTION CYCLE</div>
         <div class="flex justify-between items-center font-mono text-[9px] font-bold">
-          <span class="border border-black p-1 bg-gray-100">DRAFT 1: SKELETON</span>
-          <span>➔</span>
-          <span class="border border-black p-1 bg-gray-100">TABLE READ</span>
-          <span>➔</span>
-          <span class="border border-black p-1 bg-[#2ECC71] text-black">LOCKED SHOOTER</span>
+          <div class="info-item bg-gray-100">DRAFT 1: CORE</div>
+          <span class="font-black text-xs">➔</span>
+          <div class="info-item bg-gray-100">TABLE READ</div>
+          <span class="font-black text-xs">➔</span>
+          <div class="info-item bg-[#2ECC71] text-black">LOCKED SCRIPT</div>
         </div>
       </div>
 
-      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
@@ -593,18 +577,12 @@
          FRAME 12: CTA - FULL YELLOW TAKEOVER
     =========================================== -->
     <div id="frame-12" class="reel-frame" style="background-color: #FFE600;">
-      <!-- Top Track -->
       <div class="flex items-center justify-between">
-        <div class="tag-badge bg-black text-white text-[11px] px-3 py-1 mb-0 border-2 border-black">
-          NEXT STEP
-        </div>
-        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
-          12/12
-        </div>
+        <div class="badge-header bg-black text-white">NEXT STEP</div>
+        <div class="counter-header">12/12</div>
       </div>
 
-      <!-- Main Headline Card -->
-      <div class="b-card bg-white p-5 my-3">
+      <div class="b-card bg-white">
         <h2 class="text-2xl font-black brand-font text-black leading-tight mb-2">
           STOP OUTLINING.<br>START PRODUCTION.
         </h2>
@@ -612,17 +590,15 @@
           Have an indie short or video essay idea? We write tight, formatted scripts with proven pacing and clean visual direction.
         </p>
 
-        <!-- Sub-offer box with rigid static spacing -->
         <div class="border-2 border-black bg-[#D6E4EE] p-3 b-card-sm">
-          <div class="tag-badge text-[9px] mb-1.5">FREE SCRIPT AUDIT</div>
+          <div class="badge-pill mb-2">FREE SCRIPT AUDIT</div>
           <p class="text-[11px] font-bold text-gray-900 leading-snug">
             DM us your short film logline. We will review your hook, pacing structure, and budget viability for free.
           </p>
         </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="space-y-2 mb-2">
+      <div class="space-y-2.5">
         <div class="bg-black text-[#2ECC71] text-center font-black brand-font text-xs uppercase py-3 border-2 border-black b-card-sm">
           DM "FILM" ON INSTAGRAM
         </div>
@@ -631,8 +607,7 @@
         </div>
       </div>
 
-      <!-- Footer -->
-      <div class="text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-2">
+      <div class="text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-3">
         DRAFTSRUSH STUDIO • 2026
       </div>
     </div>
@@ -652,7 +627,7 @@
 
         try {
           const canvas = await html2canvas(element, {
-            scale: 2.6666, // Scales 405x720 up to exact 1080x1920 Instagram Story/Reel resolution
+            scale: 2.6666, // Exact 1080x1920 Instagram Story/Reel resolution
             useCORS: true,
             backgroundColor: null
           });
