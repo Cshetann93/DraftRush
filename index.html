@@ -3,60 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DraftsRush | High-Retention Video Scripts & Creator Tools</title>
+  <title>DraftsRush | Video Screenplay Studio, Browser Tools & Storytelling Hub</title>
+  <meta name="description" content="Independent video screenplay studio and creator knowledge base. Access free browser-based script writing tools, retention breakdowns, format guides, or commission custom drafts.">
 
-  <!-- Favicon References for Browsers & Google Search -->
+  <!-- Favicon References -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
-<!-- Brand Knowledge Graph Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "DraftsRush",
-  "alternateName": "Drafts Rush",
-  "url": "https://www.draftsrush.com",
-  "logo": "https://www.draftsrush.com/favicon.png",
-  "email": "care@draftsrush.com"
-}
-</script>
-<!-- Pre-compiled Tailwind CSS (No runtime blocking) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 
-<!-- Custom Branding & Brutalist Styles -->
-<style>
-  .bg-\[\#FFE600\] { background-color: #FFE600 !important; }
-  .text-\[\#FFE600\] { color: #FFE600 !important; }
-  .border-\[\#FFE600\] { border-color: #FFE600 !important; }
-  .brutal-box {
-    border: 2px solid #000;
-    box-shadow: 4px 4px 0px #000;
+  <!-- Brand Knowledge Graph Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DraftsRush",
+    "alternateName": "Drafts Rush",
+    "url": "https://www.draftsrush.com",
+    "logo": "https://www.draftsrush.com/favicon.png",
+    "email": "care@draftsrush.com"
   }
-  .brand-font {
-    font-family: 'Space Grotesk', sans-serif;
-  }
-</style>
- <!-- Preconnect to speed up font handshake -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  </script>
+
+  <!-- Pre-compiled Tailwind CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 
   <!-- Non-blocking font load -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" media="print" onload="this.media='all'">
   <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
   </noscript>
+
+  <!-- Custom Brutalist Styles -->
   <style>
     body { 
       font-family: 'Inter', sans-serif; 
       background-color: #E2E4E9 !important;
     }
     h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
-    .brutal-box { box-shadow: 4px 4px 0px #111317; }
-    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
-    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
-    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .bg-\[\#FFE600\] { background-color: #FFE600 !important; }
+    .text-\[\#FFE600\] { color: #FFE600 !important; }
+    .brutal-box {
+      border: 2px solid #000;
+      box-shadow: 4px 4px 0px #111317;
+    }
+    .brutal-box-lg {
+      border: 4px solid #000;
+      box-shadow: 8px 8px 0px #111317;
+    }
+    .brutal-btn {
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .brutal-btn:hover { 
+      transform: translate(-2px, -2px); 
+      box-shadow: 6px 6px 0px #111317; 
+    }
+    .brutal-btn:active { 
+      transform: translate(2px, 2px); 
+      box-shadow: 2px 2px 0px #111317; 
+    }
   </style>
 </head>
 <body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black" style="background-color: #E2E4E9;">
@@ -73,25 +81,25 @@
           class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
         />
       </a>
-     <nav class="hidden md:flex items-center gap-4 font-bold text-xs tracking-wider brand-font">
-  <a href="/scripts" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    SCRIPTS
-  </a>
-  <a href="/tools" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    FREE TOOLS
-  </a>
-  <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    WRITERS ROOM
-  </a>
-  <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
-    ABOUT
-  </a>
-</nav>
+      <nav class="hidden md:flex items-center gap-4 font-bold text-xs tracking-wider brand-font">
+        <a href="/scripts" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          SCRIPTS
+        </a>
+        <a href="/tools" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          FREE TOOLS
+        </a>
+        <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          WRITERS ROOM
+        </a>
+        <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          ABOUT
+        </a>
+      </nav>
       <button aria-label="Toggle Navigation Menu" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
       </button>
     </div>
-   <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-[#F0F2F5] p-6 space-y-4 font-bold brand-font">
+    <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-[#F0F2F5] p-6 space-y-4 font-bold brand-font">
       <a href="/scripts" class="block border-b border-gray-300 pb-2">SCRIPTS</a>
       <a href="/tools" class="block border-b border-gray-300 pb-2">FREE TOOLS</a>
       <a href="/writers-room" class="block border-b border-gray-300 pb-2">WRITER'S ROOM</a>
@@ -102,27 +110,43 @@
   </header>
 
   <main class="flex-grow">
-    <!-- Hero Section -->
-    <section class="max-w-6xl mx-auto px-6 pt-12 pb-16">
-      <div class="bg-[#FFE600] border-4 border-black brutal-box-lg p-8 md:p-14 relative overflow-hidden">
-        <div class="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase mb-6">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Rapid Production Studio
+    
+    <!-- Hero Section: Service + Craft Education Platform -->
+    <section class="max-w-6xl mx-auto px-6 pt-12 pb-14">
+      <div class="bg-[#FFE600] border-4 border-black brutal-box-lg p-8 md:p-14 relative">
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          <span class="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Script Studio & Creator Workshop
+          </span>
+          <span class="bg-white border-2 border-black px-3 py-1 font-mono text-xs font-bold uppercase">
+            100% Client-Side Free Tools
+          </span>
         </div>
+
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-none mb-6 text-black tracking-tight">
-          Precision scripts for creators. <br>High retention by design.
+          Where video stories are engineered.
         </h1>
-        <p class="text-lg md:text-xl font-medium max-w-2xl mb-4 leading-relaxed text-black">
-          We draft high-retention video screenplays built for YouTube, Shorts, and Reels, backed by disciplined hook frameworks, pacing calculators, and structured scene direction.
+        
+        <p class="text-lg md:text-xl font-medium max-w-3xl mb-6 leading-relaxed text-black">
+          DraftsRush operates at the intersection of production and storytelling education. Commission research-backed, high-retention video screenplays for your channel, or build your own drafts using our in-browser script tools and production teardowns.
         </p>
-        <p class="text-base font-bold text-black mb-8 border-l-4 border-black pl-3 bg-[#f2da00] py-1 inline-block">
-          Tight budget? Tell us what you have to work with. We tailor every quote so lack of funds never stops your project.
-        </p>
+
+        <!-- Budget Callout Strip -->
+        <div class="mb-8 border-l-4 border-black pl-4 py-1.5 bg-[#F4DB00] max-w-2xl">
+          <p class="text-sm md:text-base font-bold text-black leading-snug">
+            Have an active video project on a strict budget? Reach out directly. We match our drafting deliverables so lack of funds never delays production.
+          </p>
+        </div>
+
         <div class="flex flex-wrap gap-4 items-center">
-          <a href="/scripts" class="bg-black text-white brand-font font-black text-lg px-8 py-3.5 border-2 border-black brutal-box brutal-btn">
-            Explore Script Services
+          <a href="/script-editor" class="bg-black text-white brand-font font-black text-base md:text-lg px-7 py-3.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Launch Script Editor →
           </a>
-          <a href="/tools" class="bg-[#F0F2F5] text-black brand-font font-black text-lg px-8 py-3.5 border-2 border-black brutal-box brutal-btn">
-            Explore Free Tools
+          <a href="/writers-room" class="bg-[#F0F2F5] text-black brand-font font-black text-base md:text-lg px-7 py-3.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Explore Writer's Room
+          </a>
+          <a href="/scripts" class="bg-white text-black brand-font font-black text-base md:text-lg px-7 py-3.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Script Services
           </a>
         </div>
       </div>
@@ -131,125 +155,278 @@
     <!-- Operational Metrics Strip -->
     <section class="border-y-4 border-black bg-[#D4D7E1] py-8">
       <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div class="border-r-0 md:border-r-2 border-black last:border-none">
-          <div class="text-3xl md:text-4xl font-black brand-font mb-1">24-48h</div>
-          <p class="text-xs font-bold text-gray-700 uppercase tracking-wide">Average Turnaround</p>
+        <div class="border-r-0 md:border-r-2 border-black">
+          <div class="text-3xl md:text-4xl font-black brand-font mb-1">In-Browser</div>
+          <p class="text-xs font-bold text-gray-700 uppercase tracking-wide">Screenplay Studio</p>
         </div>
-        <div class="border-r-0 md:border-r-2 border-black last:border-none">
-          <div class="text-3xl md:text-4xl font-black brand-font mb-1">Flexible</div>
-          <p class="text-xs font-bold text-gray-700 uppercase tracking-wide">Budget-Friendly Plans</p>
+        <div class="border-r-0 md:border-r-2 border-black">
+          <div class="text-3xl md:text-4xl font-black brand-font mb-1">16+ Guides</div>
+          <p class="text-xs font-bold text-gray-700 uppercase tracking-wide">Writer's Room Library</p>
         </div>
-        <div class="border-r-0 md:border-r-2 border-black last:border-none">
-          <div class="text-3xl md:text-4xl font-black brand-font mb-1">100% Free</div>
-          <p class="text-xs font-bold text-gray-700 uppercase tracking-wide">Browser Creator Tools</p>
+        <div class="border-r-0 md:border-r-2 border-black">
+          <div class="text-3xl md:text-4xl font-black brand-font mb-1">12 Free</div>
+          <p class="text-xs font-bold text-gray-700 uppercase tracking-wide">Creator Utilities</p>
         </div>
         <div>
-          <div class="text-3xl md:text-4xl font-black brand-font mb-1">&lt;3 Sec</div>
-          <p class="text-xs font-bold text-gray-700 uppercase tracking-wide">Short Script Hook Window</p>
+          <div class="text-3xl md:text-4xl font-black brand-font mb-1">24-48h</div>
+          <p class="text-xs font-bold text-gray-700 uppercase tracking-wide">Custom Draft Delivery</p>
         </div>
       </div>
     </section>
 
-    <!-- Deliverables Showcase -->
+    <!-- Featured Flagship Interactive Tool: The Script Editor -->
+    <section class="max-w-6xl mx-auto px-6 py-16">
+      <div class="border-4 border-black bg-white p-8 md:p-12 brutal-box-lg flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="max-w-2xl">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="bg-[#FFE600] border-2 border-black px-2.5 py-0.5 text-xs font-black brand-font uppercase">Online Tool</span>
+            <span class="font-mono text-xs font-bold text-gray-600">Zero Signup Required</span>
+          </div>
+          <h2 class="text-3xl md:text-5xl font-black brand-font tracking-tight mb-4">
+            Online Script Editor & Story-to-Script Converter
+          </h2>
+          <p class="font-medium text-gray-800 text-base leading-relaxed mb-4">
+            Format screenplay pages directly in your browser with automated element styling (Sluglines, Action, Character Cues, Dialogue). Don't know formatting rules yet? Type your story in plain narrative English, and our parser transforms it into production-ready script blocks.
+          </p>
+          <ul class="space-y-2 text-xs md:text-sm font-mono font-bold text-gray-800 mb-6">
+            <li class="flex items-center gap-2">✓ Automatic 12pt Courier margin geometry and tab controls</li>
+            <li class="flex items-center gap-2">✓ Plain text story auto-converter for dialogue and scene headers</li>
+            <li class="flex items-center gap-2">✓ One-click export to TXT, Fountain, and PDF format</li>
+          </ul>
+          <a href="/script-editor" class="inline-block bg-[#FFE600] text-black font-black brand-font text-base px-8 py-4 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Open Script Editor →
+          </a>
+        </div>
+
+        <!-- Simulated Editor Preview Card -->
+        <div class="w-full lg:w-96 border-2 border-black bg-[#FAF9F5] p-5 font-mono text-xs brutal-box shadow-md">
+          <div class="flex justify-between items-center border-b border-gray-300 pb-2 mb-3 text-gray-500 text-[10px]">
+            <span>EDITOR PREVIEW</span>
+            <span>12PT COURIER</span>
+          </div>
+          <p class="font-bold text-black mb-2">INT. ARCHIVE ROOM - NIGHT</p>
+          <p class="text-gray-800 mb-3 leading-tight">Amber beacons sweep through concrete pillars. Rain drips onto terminal consoles.</p>
+          <p class="text-center font-bold text-black mb-0">ELENA</p>
+          <p class="text-center italic text-gray-600 text-[11px] mb-1">(into radio)</p>
+          <p class="px-4 text-gray-900 leading-tight mb-3">The backup core is intact. Moving to the secondary conduit now.</p>
+          <p class="text-right font-bold text-black text-[11px]">CUT TO:</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Writer's Room: Educational Master Guides -->
+    <section class="border-t-4 border-black bg-[#EFE4D6] py-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider bg-black text-white px-2.5 py-1 brand-font">Knowledge Base</span>
+            <h2 class="text-3xl md:text-5xl font-black mt-2 tracking-tight">The Writer's Room</h2>
+            <p class="font-medium text-gray-800 text-base mt-2 max-w-xl">
+              In-depth craft manuals, retention case studies, and production blueprints designed for working writers and video creators.
+            </p>
+          </div>
+          <a href="/writers-room" class="bg-black text-white font-black brand-font text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider whitespace-nowrap self-start md:self-auto">
+            View All Guides & Blueprints →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Guide 1: Format Mastery -->
+          <article class="border-4 border-black bg-white p-6 brutal-box flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="bg-[#FFE600] border-2 border-black px-2 py-0.5 text-xs font-black brand-font uppercase">Technical Spec</span>
+                <span class="font-mono text-xs font-bold text-gray-600">Free .DOCX</span>
+              </div>
+              <h3 class="text-xl font-black brand-font mb-2">
+                <a href="/screenplay-format-guide" class="hover:underline">Screenplay Format Mastery</a>
+              </h3>
+              <p class="text-sm font-medium text-gray-700 leading-relaxed mb-6">
+                The complete technical breakdown of 16 screenplay elements, standard 12pt Courier margin geometry, and a downloadable specimen template.
+              </p>
+            </div>
+            <a href="/screenplay-format-guide" class="inline-block text-center bg-[#F0F2F5] text-black font-black brand-font text-xs py-2.5 border-2 border-black brutal-box brutal-btn uppercase">
+              Study Format Rules →
+            </a>
+          </article>
+
+          <!-- Guide 2: Story Endings -->
+          <article class="border-4 border-black bg-white p-6 brutal-box flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="bg-[#D6E4EE] border-2 border-black px-2 py-0.5 text-xs font-black brand-font uppercase">Craft Mechanics</span>
+                <span class="font-mono text-xs font-bold text-gray-600">6 Ending Models</span>
+              </div>
+              <h3 class="text-xl font-black brand-font mb-2">
+                <a href="/how-to-end-a-story" class="hover:underline">How to End a Story</a>
+              </h3>
+              <p class="text-sm font-medium text-gray-700 leading-relaxed mb-6">
+                A great hook wins attention, but the ending dictates retention. Compare resolved, circular, twist, bittersweet, and expanded horizon payoffs.
+              </p>
+            </div>
+            <a href="/how-to-end-a-story" class="inline-block text-center bg-[#F0F2F5] text-black font-black brand-font text-xs py-2.5 border-2 border-black brutal-box brutal-btn uppercase">
+              Study Resolutions →
+            </a>
+          </article>
+
+          <!-- Guide 3: Narrative Techniques -->
+          <article class="border-4 border-black bg-white p-6 brutal-box flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="bg-[#FFF6CF] border-2 border-black px-2 py-0.5 text-xs font-black brand-font uppercase">Retention Tools</span>
+                <span class="font-mono text-xs font-bold text-gray-600">8 Core Tools</span>
+              </div>
+              <h3 class="text-xl font-black brand-font mb-2">
+                <a href="/narrative-techniques" class="hover:underline">Top 8 Narrative Techniques</a>
+              </h3>
+              <p class="text-sm font-medium text-gray-700 leading-relaxed mb-6">
+                Break out of chronological storytelling. Master dramatic irony, in media res, unreliable narration, Chekhov's gun, and recurring visual motifs.
+              </p>
+            </div>
+            <a href="/narrative-techniques" class="inline-block text-center bg-[#F0F2F5] text-black font-black brand-font text-xs py-2.5 border-2 border-black brutal-box brutal-btn uppercase">
+              Study Narrative Tools →
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Free Browser Creator Tools Matrix -->
     <section class="max-w-6xl mx-auto px-6 py-16">
       <div class="mb-10">
-        <span class="text-xs font-bold uppercase tracking-wider bg-black text-white px-2 py-1 brand-font">Specifications</span>
-        <h2 class="text-3xl md:text-4xl font-black mt-2 tracking-tight">Structured For Direct Implementation</h2>
+        <span class="text-xs font-bold uppercase tracking-wider bg-black text-white px-2.5 py-1 brand-font">Software Suite</span>
+        <h2 class="text-3xl md:text-5xl font-black mt-2 tracking-tight">Free Client-Side Creator Tools</h2>
+        <p class="font-medium text-gray-800 text-base mt-2 max-w-2xl">
+          Zero subscriptions, no sign-ups, and no paywalls. Fast browser utilities built to audit, prune, and time your video scripts before shooting.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        <!-- Script Sample Card -->
-        <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
+        <div class="border-4 border-black bg-white p-5 brutal-box flex flex-col justify-between">
           <div>
-            <div class="flex justify-between items-center mb-4 pb-2 border-b-2 border-black">
-              <span class="font-bold text-sm brand-font uppercase">Video Script Protocol</span>
-              <span class="bg-[#FFE600] px-2 py-0.5 text-xs font-bold border border-black">Google Docs / Dual-Column</span>
-            </div>
-            <div class="bg-[#DDE0E7] p-4 border-2 border-black font-mono text-xs mb-4 space-y-2">
-              <p class="text-gray-600 font-bold">// SAMPLE OUTLINE STRUCTURE</p>
-              <p><strong class="text-red-700">[00:00 - 00:03] HOOK:</strong> "Most creators lose 40% of their viewers right here..."</p>
-              <p><strong class="text-blue-700">[VISUAL CUE]:</strong> Fast cut to retention graph drop-off + red text highlight.</p>
-              <p><strong class="text-emerald-800">[RETENTION ANCHOR]:</strong> Unresolved curiosity gap before chapter reveal at second 00:28.</p>
-            </div>
-            <p class="text-sm font-medium text-gray-800 leading-relaxed mb-6">
-              Every short-form script comes equipped with precise pacing cues, text hook overlays, and B-roll guidance so your video editor never guesses what asset to use.
+            <span class="font-mono text-xs font-bold text-gray-500 block mb-1">TOOL // 01</span>
+            <h4 class="text-lg font-black brand-font mb-2">Script Pacing Timer</h4>
+            <p class="text-xs font-medium text-gray-700 leading-relaxed mb-4">
+              Calculates spoken runtime against calibrated speaking speeds (130–160 WPM) for YouTube and Reels.
             </p>
           </div>
-          <a href="/scripts" class="block text-center bg-[#FFE600] text-black font-black brand-font py-3 border-2 border-black brutal-btn">
-            View Script Services
-          </a>
+          <a href="/tools/script-timer" class="text-xs font-mono font-bold uppercase hover:underline">Launch Tool →</a>
         </div>
 
-        <!-- Hook Retention & Tools Protocol (Replaced Standard Card) -->
-        <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box flex flex-col justify-between">
+        <div class="border-4 border-black bg-white p-5 brutal-box flex flex-col justify-between">
           <div>
-            <div class="flex justify-between items-center mb-4 pb-2 border-b-2 border-black">
-              <span class="font-bold text-sm brand-font uppercase">Hook & Pacing Mechanics</span>
-              <span class="bg-[#C8CBD5] px-2 py-0.5 text-xs font-bold border border-black">Retention-Engineered</span>
-            </div>
-            <div class="bg-[#DDE0E7] p-4 border-2 border-black font-mono text-xs mb-4 space-y-2">
-              <p class="text-gray-600 font-bold">// HOOK PACING PROTOCOL</p>
-              <p>• <strong>The First 3 Seconds:</strong> Immediate high-stakes premise, zero throat clearing.</p>
-              <p>• <strong>Mini-Arc Resets:</strong> Retention anchors placed every 90s to stop viewer drop-off.</p>
-              <p>• <strong>Pacing Calibration:</strong> Script word counts matched to speech speed (130-160 WPM).</p>
-            </div>
-            <p class="text-sm font-medium text-gray-800 leading-relaxed mb-6">
-              Use our free creator calculators to plan your script duration, or access multiple tailored script packages designed to maximize watch time.
+            <span class="font-mono text-xs font-bold text-gray-500 block mb-1">TOOL // 02</span>
+            <h4 class="text-lg font-black brand-font mb-2">5-Sec Hook Analyzer</h4>
+            <p class="text-xs font-medium text-gray-700 leading-relaxed mb-4">
+              Audits initial script lines for open curiosity loops, stake establishment, and drop-off risks.
             </p>
           </div>
-          <a href="/tools" class="block text-center bg-black text-white font-black brand-font py-3 border-2 border-black brutal-btn">
-            Launch Free Creator Tools
-          </a>
+          <a href="/tools/hook-analyzer" class="text-xs font-mono font-bold uppercase hover:underline">Launch Tool →</a>
+        </div>
+
+        <div class="border-4 border-black bg-white p-5 brutal-box flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs font-bold text-gray-500 block mb-1">TOOL // 03</span>
+            <h4 class="text-lg font-black brand-font mb-2">Dialogue Word Pruner</h4>
+            <p class="text-xs font-medium text-gray-700 leading-relaxed mb-4">
+              Isolates stiff on-the-nose lines, removes throat-clearing fluff, and tightens dialogue rhythm.
+            </p>
+          </div>
+          <a href="/tools/dialogue-pruner" class="text-xs font-mono font-bold uppercase hover:underline">Launch Tool →</a>
+        </div>
+
+        <div class="border-4 border-black bg-white p-5 brutal-box flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs font-bold text-gray-500 block mb-1">TOOL // 04</span>
+            <h4 class="text-lg font-black brand-font mb-2">Dual-Column Converter</h4>
+            <p class="text-xs font-medium text-gray-700 leading-relaxed mb-4">
+              Converts narrative script paragraphs into clean, editor-ready two-column AV production layouts.
+            </p>
+          </div>
+          <a href="/tools/format-converter" class="text-xs font-mono font-bold uppercase hover:underline">Launch Tool →</a>
         </div>
 
       </div>
+
+      <div class="mt-8 text-center">
+        <a href="/tools" class="inline-block bg-[#FFE600] text-black font-black brand-font text-xs md:text-sm px-8 py-3.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+          Browse All 12 Free Tools →
+        </a>
+      </div>
     </section>
 
-    <!-- Delivery Flow -->
-    <section class="border-t-4 border-black bg-[#CCD0DC] py-16">
+    <!-- Custom Script Production Services Strip -->
+    <section class="border-t-4 border-black bg-[#DDE1E8] py-16">
       <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center max-w-xl mx-auto mb-12">
-          <h2 class="text-3xl md:text-4xl font-black brand-font tracking-tight mb-2">How An Order Executes</h2>
-          <p class="font-medium text-gray-700">Straightforward delivery with zero unnecessary back-and-forth.</p>
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider bg-black text-white px-2.5 py-1 brand-font">Commission Studio</span>
+            <h2 class="text-3xl md:text-5xl font-black mt-2 tracking-tight">Custom Scriptwriting Services</h2>
+            <p class="font-medium text-gray-800 text-base mt-2 max-w-xl">
+              Need video scripts written for you? We research, outline, and draft complete production-ready scripts.
+            </p>
+          </div>
+          <a href="/scripts" class="bg-[#FFE600] text-black font-black brand-font text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider whitespace-nowrap self-start md:self-auto">
+            View Script Packages →
+          </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box relative">
-            <span class="absolute -top-5 left-4 bg-black text-white px-3 py-1 font-black brand-font text-lg border-2 border-black">01</span>
-            <h3 class="text-xl font-black brand-font mt-2 mb-2">Brief Transmission</h3>
-            <p class="text-sm font-medium text-gray-800 leading-relaxed">
-              Submit your channel link, video concept, or reference material along with your target turnaround time.
-            </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div class="border-4 border-black bg-white p-6 brutal-box flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-mono font-bold text-gray-600 mb-1">DELIVERABLE 01</div>
+              <h3 class="text-xl font-black brand-font mb-3">Short-Form Script Packs</h3>
+              <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
+                Engineered for Reels, TikTok, and Shorts. Formatted with 3-second hook variations, text overlay cues, and rapid retention pacing.
+              </p>
+            </div>
+            <a href="/scripts" class="block text-center bg-[#F0F2F5] text-black font-black brand-font text-xs py-2.5 border-2 border-black brutal-box brutal-btn uppercase">
+              Explore Short Packs
+            </a>
           </div>
 
-          <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box relative">
-            <span class="absolute -top-5 left-4 bg-[#FFE600] text-black px-3 py-1 font-black brand-font text-lg border-2 border-black">02</span>
-            <h3 class="text-xl font-black brand-font mt-2 mb-2">Drafting & Pacing</h3>
-            <p class="text-sm font-medium text-gray-800 leading-relaxed">
-              Scripts receive strict pacing cues, multiple hook variations, and dual-column visual cutaway notes.
-            </p>
+          <div class="border-4 border-black bg-white p-6 brutal-box flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-mono font-bold text-gray-600 mb-1">DELIVERABLE 02</div>
+              <h3 class="text-xl font-black brand-font mb-3">Long-Form Video Essays</h3>
+              <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
+                Comprehensive 8 to 20-minute video essays and documentary screenplays built with dual-column AV notes, B-roll cues, and mini-arc resets.
+              </p>
+            </div>
+            <a href="/scripts" class="block text-center bg-[#F0F2F5] text-black font-black brand-font text-xs py-2.5 border-2 border-black brutal-box brutal-btn uppercase">
+              Explore Long-Form
+            </a>
           </div>
 
-          <div class="border-4 border-black bg-[#F0F2F5] p-6 brutal-box relative">
-            <span class="absolute -top-5 left-4 bg-emerald-400 text-black px-3 py-1 font-black brand-font text-lg border-2 border-black">03</span>
-            <h3 class="text-xl font-black brand-font mt-2 mb-2">Delivery & Revisions</h3>
-            <p class="text-sm font-medium text-gray-800 leading-relaxed">
-              You receive clean, production-ready Google Docs or Final Draft deliverables within the agreed 24 to 48-hour timeline.
-            </p>
+          <div class="border-4 border-black bg-white p-6 brutal-box flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-mono font-bold text-gray-600 mb-1">DELIVERABLE 03</div>
+              <h3 class="text-xl font-black brand-font mb-3">Commercials & Agency Overflow</h3>
+              <p class="text-sm font-medium text-gray-700 leading-relaxed mb-4">
+                White-label ghostwriting and overflow script production for marketing agencies and video houses under strict NDA protection.
+              </p>
+            </div>
+            <a href="/partner" class="block text-center bg-[#F0F2F5] text-black font-black brand-font text-xs py-2.5 border-2 border-black brutal-box brutal-btn uppercase">
+              Partner With Us
+            </a>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Agency & Production Partner Strip -->
+    <!-- Agency & Studio Partner Banner -->
     <section class="border-t-4 border-black bg-[#FFE600] py-12">
       <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Agencies & Studios</span>
-          <h2 class="text-3xl md:text-4xl font-black brand-font tracking-tight mt-2 mb-2">Need a reliable third-party script desk?</h2>
+          <h2 class="text-3xl md:text-4xl font-black brand-font tracking-tight mt-2 mb-2">Need a reliable external script desk?</h2>
           <p class="font-medium text-gray-900 max-w-xl">
-            We handle white-label ghostwriting and overflow script production for marketing agencies and video teams under strict NDAs.
+            We handle white-label ghostwriting and rapid script execution for digital agencies and production houses.
           </p>
         </div>
         <a href="/partner" class="bg-black text-white brand-font font-black text-base px-8 py-4 border-2 border-black brutal-box brutal-btn whitespace-nowrap">
@@ -264,32 +441,33 @@
       <div class="space-y-4">
         
         <div class="border-2 border-black bg-[#F0F2F5] p-5 brutal-box">
-          <h4 class="font-black brand-font text-lg mb-1">What if I have a very low budget?</h4>
+          <h4 class="font-black brand-font text-lg mb-1">Are the tools on this website really free?</h4>
           <p class="text-sm text-gray-700 font-medium leading-relaxed">
-            Reach out anyway. We build flexible solutions and can scope drafts, batch scripts, or adjust deliverables to make your project work within your exact budget.
+            Yes. The online script editor, read-time timer, hook analyzer, and formatting templates run entirely in your browser with zero sign-ups, fees, or data collection.
           </p>
         </div>
 
         <div class="border-2 border-black bg-[#F0F2F5] p-5 brutal-box">
-          <h4 class="font-black brand-font text-lg mb-1">What formats are scripts delivered in?</h4>
+          <h4 class="font-black brand-font text-lg mb-1">What if I have a very limited budget for custom scripts?</h4>
           <p class="text-sm text-gray-700 font-medium leading-relaxed">
-            Short-form scripts are provided in structured, dual-column Google Docs (Visual cues on the left, Audio/Dialogue on the right). Narrative screenplays and video essays are delivered as standard industry-compliant Final Draft PDFs.
+            Reach out via our contact desk. We work with solo creators, bootstrapped channels, and independent brands to adjust deliverables, batch drafts, or modify scope to fit what you have to work with.
           </p>
         </div>
 
         <div class="border-2 border-black bg-[#F0F2F5] p-5 brutal-box">
-          <h4 class="font-black brand-font text-lg mb-1">Are the tools really free to use?</h4>
+          <h4 class="font-black brand-font text-lg mb-1">How are custom scripts delivered?</h4>
           <p class="text-sm text-gray-700 font-medium leading-relaxed">
-            Yes. All our browser-based script calculators, read-time estimators, and pacing tools run client-side with zero sign-ups, subscriptions, or fees.
+            Short-form scripts are provided in structured dual-column Google Docs with clear visual/audio directions. Narrative screenplays are delivered as industry-standard PDFs formatted in 12pt Courier.
           </p>
         </div>
 
       </div>
     </section>
+
   </main>
 
-   <!-- Universal Footer -->
-<footer class="border-t-4 border-black py-12 mt-auto" style="background-color: #D6E4EE !important;">
+  <!-- Universal Footer -->
+  <footer class="border-t-4 border-black py-12 mt-auto" style="background-color: #D6E4EE !important;">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <div class="col-span-1 md:col-span-2">
         <a href="/" class="block mb-4" aria-label="DraftsRush Home">
@@ -323,8 +501,6 @@
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
           </a>
-
-          
 
           <!-- YouTube -->
           <a href="https://www.youtube.com/channel/UCEQ4hAWrJyFXdDgesf2U03Q" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
@@ -370,54 +546,8 @@
     </div>
   </footer>
 
-  <!-- Submission Script -->
-  <script>
-    const contactForm = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const successBox = document.getElementById('form-success');
-    const errorBox = document.getElementById('form-error');
-
-    contactForm.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      submitBtn.disabled = true;
-      submitBtn.innerText = 'TRANSMITTING...';
-      successBox.classList.add('hidden');
-      errorBox.classList.add('hidden');
-
-      const formData = new FormData(contactForm);
-
-      try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          successBox.classList.remove('hidden');
-          contactForm.reset();
-          submitBtn.innerText = 'SUBMIT PROJECT BRIEF';
-          submitBtn.disabled = false;
-
-          setTimeout(() => {
-            successBox.classList.add('hidden');
-          }, 6000);
-        } else {
-          errorBox.classList.remove('hidden');
-          submitBtn.innerText = 'TRY AGAIN';
-          submitBtn.disabled = false;
-        }
-      } catch (err) {
-        errorBox.classList.remove('hidden');
-        submitBtn.innerText = 'TRY AGAIN';
-        submitBtn.disabled = false;
-      }
-    });
-  </script>
-
-   <!-- Floating Contact Widget (Only element that stays outside the footer) -->
-  <a href="/contact.html" 
+  <!-- Floating Contact Widget -->
+  <a href="/contact" 
      aria-label="Contact Desk"
      class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#FFE600] text-black font-black brand-font text-xs uppercase px-4 py-3 border-2 border-black brutal-box brutal-btn transition-transform select-none">
     <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
