@@ -3,665 +3,672 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Short Film Strategy - Animated Reel Player</title>
+  <title>DraftsRush - Short Film Strategy Frames</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
       -webkit-font-smoothing: antialiased;
     }
     body {
       font-family: 'Inter', sans-serif;
       background-color: #111317;
       color: #111317;
-      margin: 0;
-      padding: 24px;
+      padding: 30px;
     }
     .brand-font { font-family: 'Space Grotesk', sans-serif; }
 
-    /* Single Active 9:16 Screen Viewport */
-    #reel-stage {
+    /* Exact 9:16 Instagram Reel/Story Card (1080x1920 native scale) */
+    .reel-frame {
       width: 405px;
       height: 720px;
       position: relative;
-      overflow: hidden;
-      border: 4px solid #000;
-      box-shadow: 12px 12px 0px #FFE600;
-      background-color: #E2E4E9;
-    }
-
-    .slide {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      padding: 24px 24px 20px 24px;
-      display: none;
+      flex-shrink: 0;
+      border: 4px solid #111317;
+      box-shadow: 10px 10px 0px #000000;
+      background-color: #DDE1E8;
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
+      padding: 24px 22px 20px 22px;
+      overflow: hidden;
     }
 
-    .slide.is-playing {
-      display: flex;
-    }
-
-    /* Reliable Brutalist Shadows */
-    .brutal-shadow {
-      border: 3px solid #111317;
+    /* Reliable Brutalist Block Shadows */
+    .b-card {
+      border: 3.5px solid #111317;
       box-shadow: 5px 5px 0px #111317;
+      background-color: #FFFFFF;
     }
-    .brutal-shadow-sm {
-      border: 2px solid #111317;
-      box-shadow: 3px 3px 0px #111317;
-    }
-
-    /* Deliberate, smooth slide-in block animation */
-    @keyframes slideFromLeftSlow {
-      0% {
-        transform: translateX(-125%);
-        opacity: 0;
-      }
-      75% {
-        transform: translateX(3px);
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
+    .b-card-sm {
+      border: 2.5px solid #111317;
+      box-shadow: 3.5px 3.5px 0px #111317;
     }
 
-    .run-anim-1 {
-      animation: slideFromLeftSlow 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
-    }
-
-    .run-anim-2 {
-      animation: slideFromLeftSlow 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards !important;
-      opacity: 0;
-    }
-
-    .run-anim-3 {
-      animation: slideFromLeftSlow 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards !important;
-      opacity: 0;
-    }
-
-    .typing-cursor::after {
-      content: '▋';
+    /* Fixed Tag System - Zero Overlap */
+    .tag-badge {
       display: inline-block;
-      margin-left: 2px;
-      color: #111317;
-      animation: blink 0.7s infinite;
+      background-color: #111317;
+      color: #FFFFFF;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      line-height: 1.2;
+      border: 1.5px solid #111317;
+      margin-bottom: 8px;
+      width: fit-content;
     }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
+    .tag-badge-yellow {
+      background-color: #FFE600;
+      color: #111317;
+      border: 2px solid #111317;
     }
   </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen">
+<body class="flex flex-col items-center justify-center">
 
-  <!-- Player Controls -->
-  <div class="mb-5 w-full max-w-[405px] flex flex-col gap-2.5 bg-[#FFE600] border-4 border-black p-3.5 brutal-shadow">
-    <div class="flex items-center justify-between">
-      <div class="flex gap-2">
-        <button id="btn-toggle" onclick="togglePlay()" class="bg-black text-white font-bold text-xs uppercase px-3 py-1.5 border-2 border-black hover:bg-gray-800">
-          Pause
-        </button>
-        <button onclick="prevSlide()" class="bg-white text-black font-bold text-xs px-2.5 py-1.5 border-2 border-black hover:bg-gray-100">
-          ◀
-        </button>
-        <button onclick="nextSlide()" class="bg-white text-black font-bold text-xs px-2.5 py-1.5 border-2 border-black hover:bg-gray-100">
-          ▶
-        </button>
-        <button onclick="resetReel()" class="bg-white text-black font-bold text-xs uppercase px-2.5 py-1.5 border-2 border-black hover:bg-gray-100">
-          Restart
-        </button>
-      </div>
-      <div class="text-xs font-black brand-font tracking-wider" id="timeline-indicator">
-        SLIDE 1 / 12
-      </div>
+  <!-- Download & Action Bar -->
+  <div class="w-full max-w-6xl mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FFE600] border-4 border-black p-5 b-card">
+    <div>
+      <h1 class="brand-font font-black text-2xl uppercase tracking-tight">How to Write a Short Film That Gets Noticed</h1>
+      <p class="text-xs font-bold text-gray-800 uppercase tracking-wider mt-1">12 Static Frames (9:16 Format // Pure Visual Layout)</p>
     </div>
-    
-    <div class="grid grid-cols-2 gap-2 pt-1 border-t-2 border-black">
-      <button id="btn-record" onclick="toggleRecording()" class="bg-black text-[#FFE600] font-black text-[11px] uppercase py-2 border-2 border-black hover:bg-gray-900">
-        Record Video (.webm)
-      </button>
-      <button id="btn-download-stills" onclick="downloadAllStills()" class="bg-white text-black font-black text-[11px] uppercase py-2 border-2 border-black hover:bg-gray-100">
-        Download All (.png)
-      </button>
-    </div>
+    <button id="download-btn" onclick="downloadAllFrames()" class="bg-black text-white font-black brand-font text-xs uppercase px-6 py-3 border-2 border-black b-card hover:bg-white hover:text-black transition-colors">
+      Download All 12 Frames (.png)
+    </button>
   </div>
 
-  <!-- Stage (9:16) -->
-  <div id="reel-stage">
+  <!-- Frames Grid -->
+  <div class="flex flex-wrap gap-8 justify-center items-start max-w-7xl mx-auto">
 
-    <!-- SLIDE 01 -->
-    <div class="slide is-playing" id="slide-0" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            SCREENPLAY LAB
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            01/12
-          </div>
+    <!-- ==========================================
+         FRAME 01: COVER & HOOK
+    =========================================== -->
+    <div id="frame-01" class="reel-frame">
+      <!-- Top Track -->
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          SCREENPLAY LAB
         </div>
-        <div class="box-anim-1 bg-[#FFE600] p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">The Reality Check</span>
-          <h2 class="text-2xl font-black brand-font leading-tight mt-2 text-black">
-            Why 90% of short films get rejected.
-          </h2>
-        </div>
-        <div class="box-anim-2 bg-white p-5 brutal-shadow">
-          <p class="text-[13px] font-bold text-gray-900 leading-relaxed type-target" data-copy="Writers treat short films like compressed feature films. Festivals and audiences do not want miniature epics; they want singular, high-stakes friction."></p>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          01/12
         </div>
       </div>
-      <div class="box-anim-3 pt-2">
-        <div class="bg-black text-white p-3 border-2 border-black flex items-center justify-between mb-3">
-          <span class="brand-font font-bold text-xs uppercase tracking-wider">The 10 Short Film Rules</span>
-          <span class="text-[#FFE600] font-black text-sm">→</span>
-        </div>
-        <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
-          <span>DRAFTSRUSH STUDIO</span>
-          <span>draftsrush.com</span>
-        </div>
-      </div>
-    </div>
 
-    <!-- SLIDE 02 -->
-    <div class="slide" id="slide-1" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            RULE 01: SCOPE
+      <!-- Title Box -->
+      <div class="b-card bg-[#FFE600] p-4 my-3">
+        <div class="tag-badge mb-1">THE REALITY CHECK</div>
+        <h2 class="text-2xl font-black brand-font leading-tight text-black">
+          Why 90% of short films get rejected.
+        </h2>
+      </div>
+
+      <!-- Main Copy -->
+      <div class="b-card p-4">
+        <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
+          Writers treat short films like miniature feature films.
+        </p>
+        <p class="text-[12px] font-semibold text-gray-700 leading-relaxed">
+          Festivals, producers, and audiences do not want compressed epics. They look for sharp, singular tension with zero wasted screen time.
+        </p>
+      </div>
+
+      <!-- Infographic: Acceptance Funnel -->
+      <div class="b-card bg-[#FFF6CF] p-3.5 my-2">
+        <div class="tag-badge text-[9px] mb-2">FESTIVAL SUBMISSION FILTER</div>
+        <div class="space-y-1.5 font-mono text-[10px] font-bold">
+          <div class="flex items-center justify-between bg-white border-2 border-black p-1.5">
+            <span>20-30 MIN SPRAWL</span>
+            <span class="bg-[#FF6B6B] text-black px-1.5 py-0.5 border border-black">8% PASS RATE</span>
           </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            02/12
+          <div class="flex items-center justify-between bg-white border-2 border-black p-1.5">
+            <span>8-12 MIN CONTAINED</span>
+            <span class="bg-[#2ECC71] text-black px-1.5 py-0.5 border border-black">82% PASS RATE</span>
           </div>
-        </div>
-        <div class="box-anim-1 bg-white p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Core Concept</span>
-          <h3 class="text-2xl font-black brand-font mt-1.5">Find a Small World</h3>
-        </div>
-        <div class="box-anim-2 bg-[#FFF6CF] p-5 brutal-shadow flex flex-col gap-2.5">
-          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">One Arena, Zero Sprawl</div>
-          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="A short film cannot support five subplots or four locations. Pick one contained arena: a late-night diner or an elevator. Spatial restraint forces pure human tension."></p>
         </div>
       </div>
-      <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+
+      <!-- Footer -->
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- SLIDE 03 -->
-    <div class="slide" id="slide-2" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            RULE 02: PACING
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            03/12
-          </div>
+    <!-- ==========================================
+         FRAME 02: RULE 1 - FIND A SMALL WORLD
+    =========================================== -->
+    <div id="frame-02" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          RULE 01: SCOPE
         </div>
-        <div class="box-anim-1 bg-white p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Scene Timing</span>
-          <h3 class="text-2xl font-black brand-font mt-1.5">Enter Late, Leave Early</h3>
-        </div>
-        <div class="box-anim-2 bg-[#D6E4EE] p-5 brutal-shadow flex flex-col gap-2.5">
-          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Cut The Warm-Up</div>
-          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="Never show characters waking up, parking cars, or greeting each other. Open at the final second before a decision happens, and cut the instant the consequence lands."></p>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          02/12
         </div>
       </div>
-      <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+
+      <div class="b-card p-4 my-3">
+        <div class="tag-badge mb-1">CORE CONCEPT</div>
+        <h3 class="text-2xl font-black brand-font">Find a Small World</h3>
+      </div>
+
+      <div class="b-card bg-[#FFF6CF] p-4">
+        <div class="tag-badge mb-1.5">ONE ARENA, ZERO SPRAWL</div>
+        <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
+          A short film cannot support five subplots, ten locations, or four flashbacks.
+        </p>
+        <p class="text-[12px] font-semibold text-gray-700 leading-relaxed">
+          Pick one contained arena: a late-night diner booth, an interrogation desk, or a stalled elevator. Spatial restraint forces pure character tension.
+        </p>
+      </div>
+
+      <!-- Infographic: Spatial Restraint Arena Diagram -->
+      <div class="b-card bg-white p-3.5 my-2">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-[9px] font-black brand-font uppercase tracking-wider">LOCATION ARCHITECTURE</span>
+          <span class="text-[9px] font-mono font-bold bg-[#FFE600] border border-black px-1.5">1 SETTING</span>
+        </div>
+        <div class="border-2 border-black p-2 bg-[#E2E4E9] flex items-center justify-around font-mono text-[10px] font-bold">
+          <div class="bg-white border border-black px-2 py-1">POINT A: CONFLICT</div>
+          <div class="font-black text-sm">↔</div>
+          <div class="bg-white border border-black px-2 py-1">POINT B: DECISION</div>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- SLIDE 04 -->
-    <div class="slide" id="slide-3" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            RULE 03: MOTIVATION
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            04/12
-          </div>
+    <!-- ==========================================
+         FRAME 03: RULE 2 - ENTER LATE, LEAVE EARLY
+    =========================================== -->
+    <div id="frame-03" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          RULE 02: PACING
         </div>
-        <div class="box-anim-1 bg-white p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Character Goal</span>
-          <h3 class="text-2xl font-black brand-font mt-1.5">Isolate a Single Want</h3>
-        </div>
-        <div class="box-anim-2 bg-[#FFE600] p-5 brutal-shadow flex flex-col gap-2.5">
-          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">One Objective</div>
-          <p class="text-[13px] font-semibold text-black leading-relaxed type-target" data-copy="Give your protagonist one concrete goal in the first 60 seconds: unlocking a safe, reaching a phone before it dies, or hiding evidence. Make the physical objective clear."></p>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          03/12
         </div>
       </div>
-      <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+
+      <div class="b-card p-4 my-3">
+        <div class="tag-badge mb-1">SCENE TIMING</div>
+        <h3 class="text-2xl font-black brand-font">Enter Late, Leave Early</h3>
+      </div>
+
+      <div class="b-card bg-[#D6E4EE] p-4">
+        <div class="tag-badge mb-1.5">CUT THE WARM-UP</div>
+        <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
+          Never show characters waking up, parking cars, or greeting each other.
+        </p>
+        <p class="text-[12px] font-semibold text-gray-700 leading-relaxed">
+          Open the scene at the final second before a decision happens. Cut away the instant the consequence lands. Every page must fight for its runtime.
+        </p>
+      </div>
+
+      <!-- Infographic: Timeline Cut Points -->
+      <div class="b-card bg-white p-3.5 my-2">
+        <div class="flex justify-between items-center mb-1.5">
+          <span class="text-[9px] font-black brand-font uppercase">SCENE TIMELINE SURGERY</span>
+          <span class="text-[9px] font-mono font-bold text-red-600">CUT 60%</span>
+        </div>
+        <div class="grid grid-cols-3 gap-1 text-center font-mono text-[9px] font-bold">
+          <div class="bg-gray-200 border border-black p-1 line-through text-gray-500">EXPOSITION</div>
+          <div class="bg-[#2ECC71] border border-black p-1 text-black">ENTRY BEAT</div>
+          <div class="bg-[#FFE600] border border-black p-1 text-black">EXIT CUT</div>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- SLIDE 05 -->
-    <div class="slide" id="slide-4" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            RULE 04: PRACTICALITY
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            05/12
-          </div>
+    <!-- ==========================================
+         FRAME 04: RULE 3 - ISOLATE A SINGLE WANT
+    =========================================== -->
+    <div id="frame-04" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          RULE 03: MOTIVATION
         </div>
-        <div class="box-anim-1 bg-white p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Production Reality</span>
-          <h3 class="text-2xl font-black brand-font mt-1.5">Write for Real Assets</h3>
-        </div>
-        <div class="box-anim-2 bg-[#EFE4D6] p-5 brutal-shadow flex flex-col gap-2.5">
-          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Audit Before Writing</div>
-          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="Catalog what you already own: a storage basement, a tool shed, or two strong actors. Avoid writing car chases or CGI sets that derail an indie budget."></p>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          04/12
         </div>
       </div>
-      <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+
+      <div class="b-card p-4 my-3">
+        <div class="tag-badge mb-1">CHARACTER GOAL</div>
+        <h3 class="text-2xl font-black brand-font">Isolate a Single Want</h3>
+      </div>
+
+      <div class="b-card bg-[#FFE600] p-4">
+        <div class="tag-badge mb-1.5">ONE OBJECTIVE</div>
+        <p class="text-[13px] font-bold text-black leading-snug mb-2">
+          Your protagonist needs one concrete target within the first 60 seconds.
+        </p>
+        <p class="text-[12px] font-semibold text-black leading-relaxed">
+          Not "finding inner peace," but unlocking a safe, reaching a dying phone, or concealing evidence. Make the physical finish line unmistakable.
+        </p>
+      </div>
+
+      <!-- Infographic: Concrete Objective Arrow -->
+      <div class="b-card bg-white p-3.5 my-2">
+        <div class="flex items-center justify-between text-[10px] font-mono font-bold">
+          <span class="bg-[#111317] text-white px-2 py-1">MINUTE 01: GOAL</span>
+          <span class="font-black text-lg">➔</span>
+          <span class="bg-[#FFE600] border border-black px-2 py-1">MINUTE 10: RESOLUTION</span>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- SLIDE 06 -->
-    <div class="slide" id="slide-5" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            RULE 05: SHOW VS TELL
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            06/12
-          </div>
+    <!-- ==========================================
+         FRAME 05: RULE 4 - WRITE FOR REAL ASSETS
+    =========================================== -->
+    <div id="frame-05" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          RULE 04: PRACTICALITY
         </div>
-        <div class="box-anim-1 bg-white p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Cinematic Weight</span>
-          <h3 class="text-2xl font-black brand-font mt-1.5">Cut 50% of Dialogue</h3>
-        </div>
-        <div class="box-anim-2 bg-[#DDE8DF] p-5 brutal-shadow flex flex-col gap-2.5">
-          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Actions Over Speeches</div>
-          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="Cinema communicates through physical behavior: trembling hands, sliding a deadbolt, or refusing eye contact. If an action conveys the truth, delete the line."></p>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          05/12
         </div>
       </div>
-      <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+
+      <div class="b-card p-4 my-3">
+        <div class="tag-badge mb-1">PRODUCTION REALITY</div>
+        <h3 class="text-2xl font-black brand-font">Write for Real Assets</h3>
+      </div>
+
+      <div class="b-card bg-[#EFE4D6] p-4">
+        <div class="tag-badge mb-1.5">AUDIT BEFORE WRITING</div>
+        <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
+          Do not write exploding cars or neon cityscapes on an indie budget.
+        </p>
+        <p class="text-[12px] font-semibold text-gray-700 leading-relaxed">
+          Catalog assets you control: a tool shed, a basement storage room, or two talented actors. Turn actual physical limitations into deliberate cinematic style.
+        </p>
+      </div>
+
+      <!-- Infographic: Asset Matrix -->
+      <div class="b-card bg-white p-3 my-2">
+        <div class="grid grid-cols-3 gap-1.5 font-mono text-[9px] font-bold text-center">
+          <div class="border-2 border-black bg-gray-100 p-1.5">1 LOCATION</div>
+          <div class="border-2 border-black bg-gray-100 p-1.5">2 ACTORS</div>
+          <div class="border-2 border-black bg-[#2ECC71] p-1.5 text-black">HIGH TENSION</div>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- SLIDE 07 -->
-    <div class="slide" id="slide-6" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            RULE 06: RUNTIME
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            07/12
-          </div>
+    <!-- ==========================================
+         FRAME 06: RULE 5 - CUT 50% OF DIALOGUE
+    =========================================== -->
+    <div id="frame-06" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          RULE 05: SHOW VS TELL
         </div>
-        <div class="box-anim-1 bg-white p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">The Sweet Spot</span>
-          <h3 class="text-2xl font-black brand-font mt-1.5">Target 8 to 12 Pages</h3>
-        </div>
-        <div class="box-anim-2 bg-[#FFF6CF] p-5 brutal-shadow flex flex-col gap-2.5">
-          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Festival Mathematics</div>
-          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="A 25-minute short kills festival acceptance because programmers can fit two 10-minute shorts in that block. Keep your screenplay to 8-12 pages maximum."></p>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          06/12
         </div>
       </div>
-      <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+
+      <div class="b-card p-4 my-3">
+        <div class="tag-badge mb-1">CINEMATIC WEIGHT</div>
+        <h3 class="text-2xl font-black brand-font">Cut 50% of Dialogue</h3>
+      </div>
+
+      <div class="b-card bg-[#DDE8DF] p-4">
+        <div class="tag-badge mb-1.5">ACTIONS OVER SPEECHES</div>
+        <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
+          Beginner scripts explain emotion through conversation.
+        </p>
+        <p class="text-[12px] font-semibold text-gray-700 leading-relaxed">
+          Cinema communicates through physical behavior: trembling hands, sliding a deadbolt, or breaking eye contact. If action proves it, delete the dialogue line.
+        </p>
+      </div>
+
+      <!-- Infographic: Visual Split Ratio -->
+      <div class="b-card bg-white p-3.5 my-2">
+        <div class="flex justify-between text-[9px] font-mono font-bold mb-1">
+          <span>VISUAL BEHAVIOR: 75%</span>
+          <span>SPOKEN DIALOGUE: 25%</span>
+        </div>
+        <div class="w-full h-4 border-2 border-black flex">
+          <div class="h-full bg-black w-3/4"></div>
+          <div class="h-full bg-[#FFE600] w-1/4"></div>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- SLIDE 08 -->
-    <div class="slide" id="slide-7" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            RULE 07: RETENTION
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            08/12
-          </div>
+    <!-- ==========================================
+         FRAME 07: RULE 6 - TARGET 8 TO 12 PAGES
+    =========================================== -->
+    <div id="frame-07" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          RULE 06: RUNTIME
         </div>
-        <div class="box-anim-1 bg-white p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Tension Shifts</span>
-          <h3 class="text-2xl font-black brand-font mt-1.5">Escalate Every 90s</h3>
-        </div>
-        <div class="box-anim-2 bg-[#D6E4EE] p-5 brutal-shadow flex flex-col gap-2.5">
-          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">No Mid-Script Slumps</div>
-          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="Every 90 seconds, shift the balance of power. Whenever characters make progress, introduce a fresh consequence or reveal counter-evidence to prevent flatlines."></p>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          07/12
         </div>
       </div>
-      <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+
+      <div class="b-card p-4 my-3">
+        <div class="tag-badge mb-1">THE PROGRAMMER'S SWEET SPOT</div>
+        <h3 class="text-2xl font-black brand-font">Target 8 to 12 Pages</h3>
+      </div>
+
+      <div class="b-card bg-[#FFF6CF] p-4">
+        <div class="tag-badge mb-1.5">FESTIVAL MATHEMATICS</div>
+        <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
+          A 25-minute short kills festival acceptance odds.
+        </p>
+        <p class="text-[12px] font-semibold text-gray-700 leading-relaxed">
+          Programmers can screen two 10-minute shorts in the exact same time slot. Aim for 8 to 12 formatted pages to keep acceptance rates high and viewer pacing tight.
+        </p>
+      </div>
+
+      <!-- Infographic: Page-to-Screen Metric -->
+      <div class="b-card bg-white p-3 my-2">
+        <div class="flex items-center justify-between font-mono text-[10px] font-bold">
+          <div class="bg-[#FFE600] border border-black p-1.5">1 PAGE SCRIPT</div>
+          <span class="text-xs">≈</span>
+          <div class="bg-black text-white p-1.5">1 MINUTE SCREEN</div>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- SLIDE 09 -->
-    <div class="slide" id="slide-8" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            RULE 08: THE CLIMAX
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            09/12
-          </div>
+    <!-- ==========================================
+         FRAME 08: RULE 7 - ESCALATE EVERY 90 SECONDS
+    =========================================== -->
+    <div id="frame-08" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          RULE 07: RETENTION
         </div>
-        <div class="box-anim-1 bg-white p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">The Final Beat</span>
-          <h3 class="text-2xl font-black brand-font mt-1.5">Avoid Gimmick Endings</h3>
-        </div>
-        <div class="box-anim-2 bg-[#FFE600] p-5 brutal-shadow flex flex-col gap-2.5">
-          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Inevitability</div>
-          <p class="text-[13px] font-semibold text-black leading-relaxed type-target" data-copy="'It was all a dream' or sudden unearned twists cheat your audience. The climax must feel surprising yet inevitable, born entirely from your character's choices."></p>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          08/12
         </div>
       </div>
-      <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+
+      <div class="b-card p-4 my-3">
+        <div class="tag-badge mb-1">TENSION ESCALATION</div>
+        <h3 class="text-2xl font-black brand-font">Escalate Every 90s</h3>
+      </div>
+
+      <div class="b-card bg-[#D6E4EE] p-4">
+        <div class="tag-badge mb-1.5">NO MID-SCRIPT SLUMPS</div>
+        <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
+          Every 90 seconds, shift the balance of power between characters.
+        </p>
+        <p class="text-[12px] font-semibold text-gray-700 leading-relaxed">
+          Whenever a character makes progress, introduce a fresh consequence or reveal counter-evidence. Keep viewers from settling into comfort.
+        </p>
+      </div>
+
+      <!-- Infographic: 90s Wave Resets -->
+      <div class="b-card bg-white p-3 my-2">
+        <div class="flex justify-between items-center text-[9px] font-mono font-bold mb-1.5">
+          <span>TENSION RESETS</span>
+          <span class="bg-[#FFE600] px-1 border border-black">90s INTERVAL</span>
+        </div>
+        <div class="grid grid-cols-4 gap-1 text-center font-mono text-[9px] font-bold">
+          <div class="border border-black bg-gray-100 p-1">0:00</div>
+          <div class="border border-black bg-[#FFE600] p-1">+1:30</div>
+          <div class="border border-black bg-[#FFE600] p-1">+3:00</div>
+          <div class="border border-black bg-[#2ECC71] p-1">CLIMAX</div>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- SLIDE 10 -->
-    <div class="slide" id="slide-9" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            RULE 09: INDUSTRY STANDARD
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            10/12
-          </div>
+    <!-- ==========================================
+         FRAME 09: RULE 8 - AVOID GIMMICK ENDINGS
+    =========================================== -->
+    <div id="frame-09" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          RULE 08: THE CLIMAX
         </div>
-        <div class="box-anim-1 bg-white p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Presentation</span>
-          <h3 class="text-2xl font-black brand-font mt-1.5">Use Proper Formatting</h3>
-        </div>
-        <div class="box-anim-2 bg-[#EFE4D6] p-5 brutal-shadow flex flex-col gap-2.5">
-          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Courier 12pt Standard</div>
-          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="Producers judge script discipline within 30 seconds. Keep action lines to two-line clusters and stop directing camera moves on the page. Clean layouts get read first."></p>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          09/12
         </div>
       </div>
-      <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+
+      <div class="b-card p-4 my-3">
+        <div class="tag-badge mb-1">THE FINAL BEAT</div>
+        <h3 class="text-2xl font-black brand-font">Avoid Gimmick Endings</h3>
+      </div>
+
+      <div class="b-card bg-[#FFE600] p-4">
+        <div class="tag-badge mb-1.5">INEVITABILITY</div>
+        <p class="text-[13px] font-bold text-black leading-snug mb-2">
+          "It was all a dream" or sudden unearned twists cheat your audience.
+        </p>
+        <p class="text-[12px] font-semibold text-black leading-relaxed">
+          The climax must feel surprising yet inevitable. The resolution has to come directly from your protagonist's decisions, not convenient chance.
+        </p>
+      </div>
+
+      <!-- Infographic: Logic Flow vs Gimmick -->
+      <div class="b-card bg-white p-3 my-2">
+        <div class="flex items-center justify-between text-[10px] font-mono font-bold">
+          <span class="line-through text-red-600">RANDOM TWIST</span>
+          <span class="text-xs font-black">➔</span>
+          <span class="bg-[#2ECC71] text-black px-2 py-0.5 border border-black">EARNED CHOICE</span>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- SLIDE 11 -->
-    <div class="slide" id="slide-10" data-bg="#E2E4E9">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            RULE 10: EXECUTION
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            11/12
-          </div>
+    <!-- ==========================================
+         FRAME 10: RULE 9 - RESPECT INDUSTRY FORMATS
+    =========================================== -->
+    <div id="frame-10" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          RULE 09: STANDARDS
         </div>
-        <div class="box-anim-1 bg-white p-4 brutal-shadow">
-          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">The Final Step</span>
-          <h3 class="text-2xl font-black brand-font mt-1.5">Ship the First Draft</h3>
-        </div>
-        <div class="box-anim-2 bg-[#DDE8DF] p-5 brutal-shadow flex flex-col gap-2.5">
-          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Writing Is Rewriting</div>
-          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="You cannot fix an empty page. Finish draft one from start to end without editing. Then perform a cold table read, eliminate vocal filler, and lock your draft."></p>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          10/12
         </div>
       </div>
-      <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+
+      <div class="b-card p-4 my-3">
+        <div class="tag-badge mb-1">PRESENTATION</div>
+        <h3 class="text-2xl font-black brand-font">Respect Screenplay Standards</h3>
+      </div>
+
+      <div class="b-card bg-[#EFE4D6] p-4">
+        <div class="tag-badge mb-1.5">COURIER 12PT RULES</div>
+        <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
+          Producers and script readers evaluate formatting discipline on page one.
+        </p>
+        <p class="text-[12px] font-semibold text-gray-700 leading-relaxed">
+          Keep action lines to two-line clusters. Stop directing camera angles in the script. Clean, readable white space earns an immediate read.
+        </p>
+      </div>
+
+      <!-- Infographic: Action Block Density Metric -->
+      <div class="b-card bg-white p-3 my-2">
+        <div class="grid grid-cols-2 gap-2 text-center font-mono text-[9px] font-bold">
+          <div class="border border-black bg-red-100 p-1.5 line-through">PARAGRAPH WALLS</div>
+          <div class="border border-black bg-[#2ECC71] p-1.5">2-LINE ACTION BLOCKS</div>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
         <span>DRAFTSRUSH STUDIO</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- SLIDE 12: CTA (Fixed Alignment & Padding) -->
-    <div class="slide" id="slide-11" data-bg="#FFE600">
-      <div class="flex flex-col gap-4">
-        <div class="flex items-center justify-between">
-          <div class="box-anim-1 inline-flex items-center bg-black text-white px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
-            NEXT ACTION
-          </div>
-          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
-            12/12
-          </div>
+    <!-- ==========================================
+         FRAME 11: RULE 10 - SHIP THE FIRST DRAFT
+    =========================================== -->
+    <div id="frame-11" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-[#FFE600] text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          RULE 10: EXECUTION
         </div>
-
-        <div class="box-anim-1 bg-white p-5 brutal-shadow flex flex-col gap-3">
-          <h2 class="text-2xl font-black brand-font text-black leading-tight">
-            STOP OUTLINING.<br>START FILMING.
-          </h2>
-          <p class="text-[12px] font-bold text-gray-800 leading-snug type-target" data-copy="Need your short film or narrative video essay formatted to industry standards? We write tight, retention-backed screenplays ready for production."></p>
-          
-          <!-- Explicitly Spaced Sub-Box -->
-          <div class="bg-[#D6E4EE] p-3.5 brutal-shadow-sm flex flex-col gap-1.5 mt-1">
-            <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider w-fit leading-tight">
-              FREE OPENING ACT PASS
-            </span>
-            <p class="text-[11px] font-bold text-gray-900 leading-snug pt-0.5">
-              DM us your short film logline. We will review your premise and pacing breakdown for free.
-            </p>
-          </div>
-        </div>
-
-        <div class="box-anim-2 flex flex-col gap-2">
-          <div class="bg-black text-[#2ECC71] text-center font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-shadow-sm">
-            DM "FILM" ON INSTAGRAM
-          </div>
-          <div class="bg-[#FFE600] text-black text-center font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-shadow-sm">
-            OR VISIT DRAFTSRUSH.COM
-          </div>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          11/12
         </div>
       </div>
 
-      <div class="box-anim-3 text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-3">
+      <div class="b-card p-4 my-3">
+        <div class="tag-badge mb-1">THE FINAL STEP</div>
+        <h3 class="text-2xl font-black brand-font">Ship the First Draft</h3>
+      </div>
+
+      <div class="b-card bg-[#DDE8DF] p-4">
+        <div class="tag-badge mb-1.5">WRITING IS REWRITING</div>
+        <p class="text-[13px] font-bold text-gray-900 leading-snug mb-2">
+          You cannot fix an empty screen.
+        </p>
+        <p class="text-[12px] font-semibold text-gray-700 leading-relaxed">
+          Finish your script from page one to the end without stopping to polish. Do a cold table read, eliminate passive descriptions, and lock the draft.
+        </p>
+      </div>
+
+      <!-- Infographic: Drafting Cycle -->
+      <div class="b-card bg-white p-3 my-2">
+        <div class="flex justify-between items-center font-mono text-[9px] font-bold">
+          <span class="border border-black p-1 bg-gray-100">DRAFT 1: SKELETON</span>
+          <span>➔</span>
+          <span class="border border-black p-1 bg-gray-100">TABLE READ</span>
+          <span>➔</span>
+          <span class="border border-black p-1 bg-[#2ECC71] text-black">LOCKED SHOOTER</span>
+        </div>
+      </div>
+
+      <div class="pt-2 border-t-2 border-black flex items-center justify-between text-[11px] font-bold tracking-wider">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         FRAME 12: CTA - FULL YELLOW TAKEOVER
+    =========================================== -->
+    <div id="frame-12" class="reel-frame" style="background-color: #FFE600;">
+      <!-- Top Track -->
+      <div class="flex items-center justify-between">
+        <div class="tag-badge bg-black text-white text-[11px] px-3 py-1 mb-0 border-2 border-black">
+          NEXT STEP
+        </div>
+        <div class="bg-white text-black font-mono font-bold text-xs px-2.5 py-1 border-2 border-black">
+          12/12
+        </div>
+      </div>
+
+      <!-- Main Headline Card -->
+      <div class="b-card bg-white p-5 my-3">
+        <h2 class="text-2xl font-black brand-font text-black leading-tight mb-2">
+          STOP OUTLINING.<br>START PRODUCTION.
+        </h2>
+        <p class="text-[12px] font-bold text-gray-800 leading-relaxed mb-3">
+          Have an indie short or video essay idea? We write tight, formatted scripts with proven pacing and clean visual direction.
+        </p>
+
+        <!-- Sub-offer box with rigid static spacing -->
+        <div class="border-2 border-black bg-[#D6E4EE] p-3 b-card-sm">
+          <div class="tag-badge text-[9px] mb-1.5">FREE SCRIPT AUDIT</div>
+          <p class="text-[11px] font-bold text-gray-900 leading-snug">
+            DM us your short film logline. We will review your hook, pacing structure, and budget viability for free.
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-2 mb-2">
+        <div class="bg-black text-[#2ECC71] text-center font-black brand-font text-xs uppercase py-3 border-2 border-black b-card-sm">
+          DM "FILM" ON INSTAGRAM
+        </div>
+        <div class="bg-[#FFE600] text-black text-center font-black brand-font text-xs uppercase py-2.5 border-2 border-black b-card-sm">
+          OR VISIT DRAFTSRUSH.COM
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-2">
         DRAFTSRUSH STUDIO • 2026
       </div>
     </div>
 
   </div>
 
+  <!-- Download Automation -->
   <script>
-    const totalSlides = 12;
-    const slideDuration = 6000;
-    let currentSlide = 0;
-    let isPlaying = true;
-    let timer = null;
-    let typeInterval = null;
-    let delayTimeout = null;
-
-    function triggerSlideAnimation(slideElement) {
-      if (typeInterval) clearInterval(typeInterval);
-      if (delayTimeout) clearTimeout(delayTimeout);
-
-      const anim1 = slideElement.querySelectorAll('.box-anim-1');
-      const anim2 = slideElement.querySelectorAll('.box-anim-2');
-      const anim3 = slideElement.querySelectorAll('.box-anim-3');
-
-      [...anim1, ...anim2, ...anim3].forEach(el => {
-        el.classList.remove('run-anim-1', 'run-anim-2', 'run-anim-3');
-        void el.offsetWidth;
-      });
-
-      anim1.forEach(el => el.classList.add('run-anim-1'));
-      anim2.forEach(el => el.classList.add('run-anim-2'));
-      anim3.forEach(el => el.classList.add('run-anim-3'));
-
-      const target = slideElement.querySelector('.type-target');
-      if (target) {
-        const fullText = target.getAttribute('data-copy') || '';
-        target.textContent = '';
-        target.classList.add('typing-cursor');
-
-        delayTimeout = setTimeout(() => {
-          let i = 0;
-          const speed = Math.max(22, Math.floor(1800 / fullText.length));
-
-          typeInterval = setInterval(() => {
-            if (i < fullText.length) {
-              target.textContent += fullText.charAt(i);
-              i++;
-            } else {
-              clearInterval(typeInterval);
-              target.classList.remove('typing-cursor');
-            }
-          }, speed);
-        }, 600);
-      }
-    }
-
-    function showSlide(index) {
-      const slides = document.querySelectorAll('.slide');
-      slides.forEach(s => s.classList.remove('is-playing'));
-
-      currentSlide = (index + totalSlides) % totalSlides;
-      const target = document.getElementById(`slide-${currentSlide}`);
-      
-      const bg = target.getAttribute('data-bg') || '#E2E4E9';
-      document.getElementById('reel-stage').style.backgroundColor = bg;
-      
-      target.classList.add('is-playing');
-      document.getElementById('timeline-indicator').innerText = `SLIDE ${currentSlide + 1} / ${totalSlides}`;
-
-      triggerSlideAnimation(target);
-    }
-
-    function nextSlide() {
-      showSlide(currentSlide + 1);
-    }
-
-    function prevSlide() {
-      showSlide(currentSlide - 1);
-    }
-
-    function startTimer() {
-      if (timer) clearInterval(timer);
-      timer = setInterval(() => {
-        if (isPlaying) nextSlide();
-      }, slideDuration);
-    }
-
-    function togglePlay() {
-      isPlaying = !isPlaying;
-      document.getElementById('btn-toggle').innerText = isPlaying ? 'Pause' : 'Play';
-    }
-
-    function resetReel() {
-      showSlide(0);
-      if (isPlaying) startTimer();
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      showSlide(0);
-      startTimer();
-    });
-
-    // 1. Direct WebM Video Recording
-    let mediaRecorder = null;
-    let recordedChunks = [];
-
-    async function toggleRecording() {
-      const recordBtn = document.getElementById('btn-record');
-      if (mediaRecorder && mediaRecorder.state === 'recording') {
-        mediaRecorder.stop();
-        recordBtn.innerText = 'Record Video (.webm)';
-        return;
-      }
-
-      resetReel();
-
-      try {
-        const stream = await navigator.mediaDevices.getDisplayMedia({
-          video: { displaySurface: "browser" },
-          audio: false
-        });
-
-        recordedChunks = [];
-        mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9' });
-
-        mediaRecorder.ondataavailable = (e) => {
-          if (e.data.size > 0) recordedChunks.push(e.data);
-        };
-
-        mediaRecorder.onstop = () => {
-          const blob = new Blob(recordedChunks, { type: 'video/webm' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'short-film-strategy-reel.webm';
-          a.click();
-        };
-
-        mediaRecorder.start();
-        recordBtn.innerText = 'Stop Recording';
-
-        setTimeout(() => {
-          if (mediaRecorder && mediaRecorder.state === 'recording') {
-            mediaRecorder.stop();
-            recordBtn.innerText = 'Record Video (.webm)';
-          }
-        }, totalSlides * slideDuration + 1000);
-
-      } catch (err) {
-        alert("Screen capture was canceled or not supported by browser.");
-      }
-    }
-
-    // 2. High-Res PNG Capture of All 12 Frames
-    async function downloadAllStills() {
-      const btn = document.getElementById('btn-download-stills');
-      btn.innerText = 'CAPTURING...';
+    async function downloadAllFrames() {
+      const btn = document.getElementById('download-btn');
+      btn.innerText = 'CAPTURING 12 CLEAN FRAMES...';
       btn.disabled = true;
-      if (isPlaying) togglePlay();
 
-      for (let i = 0; i < totalSlides; i++) {
-        showSlide(i);
-        const slide = document.getElementById(`slide-${i}`);
-        const target = slide.querySelector('.type-target');
-        if (target) {
-          target.textContent = target.getAttribute('data-copy') || '';
-          target.classList.remove('typing-cursor');
-        }
-
-        await new Promise(r => setTimeout(r, 600));
+      for (let i = 1; i <= 12; i++) {
+        const frameId = `frame-${i < 10 ? '0' + i : i}`;
+        const element = document.getElementById(frameId);
 
         try {
-          const canvas = await html2canvas(document.getElementById('reel-stage'), {
-            scale: 2.6666, // Exact 1080x1920 Instagram Story / Reel resolution
+          const canvas = await html2canvas(element, {
+            scale: 2.6666, // Scales 405x720 up to exact 1080x1920 Instagram Story/Reel resolution
             useCORS: true,
             backgroundColor: null
           });
 
           const link = document.createElement('a');
-          link.download = `draftsrush-shortfilm-${i + 1 < 10 ? '0' + (i + 1) : (i + 1)}.png`;
+          link.download = `draftsrush-shortfilm-${i < 10 ? '0' + i : i}.png`;
           link.href = canvas.toDataURL('image/png');
           link.click();
-          await new Promise(r => setTimeout(r, 200));
+          await new Promise(resolve => setTimeout(resolve, 250));
         } catch (err) {
-          console.error(`Error capturing slide ${i}:`, err);
+          console.error(`Error capturing ${frameId}:`, err);
         }
       }
 
-      btn.innerText = 'Download All (.png)';
+      btn.innerText = 'DOWNLOAD ALL 12 FRAMES (.PNG)';
       btn.disabled = false;
-      resetReel();
-      togglePlay();
     }
   </script>
 </body>
