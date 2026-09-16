@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Write a Short Film That Gets Noticed | DraftsRush</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #111317; color: #111317; }
+    .brand-font { font-family: 'Space Grotesk', sans-serif; }
+
+    /* Exact 9:16 Geometry */
+    .reel-frame {
+      width: 405px;
+      height: 720px;
+      position: relative;
+      flex-shrink: 0;
+      border: 4px solid #111317;
+      box-shadow: 10px 10px 0px #000;
+    }
+
+    .brutal-shadow { box-shadow: 6px 6px 0px #111317; }
+    .brutal-shadow-sm { box-shadow: 4px 4px 0px #111317; }
+  </style>
+</head>
+<body class="p-8">
+
+  <!-- Top Action Bar -->
+  <div class="max-w-7xl mx-auto mb-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FFE600] border-4 border-black p-6 brutal-shadow">
+    <div>
+      <h1 class="brand-font font-black text-2xl uppercase tracking-tight">How to Write a Short Film That Gets Noticed</h1>
+      <p class="text-xs font-bold text-gray-800 uppercase tracking-wider mt-1">12 Production Frames (9:16 Instagram Reel Format)</p>
+    </div>
+    <button id="download-btn" onclick="downloadAllFrames()" class="bg-black text-white font-black brand-font text-sm uppercase px-6 py-3 border-2 border-black brutal-shadow hover:bg-white hover:text-black transition-all">
+      Download All 12 Frames (.png)
+    </button>
+  </div>
+
+  <!-- Frames Grid -->
+  <div class="flex flex-wrap gap-10 justify-center items-start max-w-7xl mx-auto">
+
+    <!-- FRAME 01: Hook Title Frame -->
+    <div id="frame-01" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            SCREENPLAY LAB
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            01/12
+          </div>
+        </div>
+
+        <div class="bg-[#FFE600] border-4 border-black p-6 brutal-shadow mb-6">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">The Reality Check</span>
+          <h2 class="text-3xl font-black brand-font leading-tight mt-3 text-black">
+            Why 90% of short films get rejected.
+          </h2>
+        </div>
+
+        <div class="bg-white border-4 border-black p-6 brutal-shadow space-y-3">
+          <p class="text-base font-bold text-gray-900 leading-snug">
+            Most short films fail before production ever begins.
+          </p>
+          <p class="text-xs font-semibold text-gray-700 leading-relaxed">
+            Writers treat short films like miniature feature films. Festivals, producers, and audiences do not want compressed epics; they want precise, singular friction.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="bg-black text-white p-3 border-2 border-black flex items-center justify-between mb-3">
+          <span class="brand-font font-bold text-xs uppercase tracking-wider">The 10 Short Film Rules</span>
+          <span class="text-[#FFE600] font-black text-sm">→</span>
+        </div>
+        <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
+          <span>DRAFTSRUSH STUDIO</span>
+          <span>draftsrush.com</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRAME 02: Rule 1 - Find a Small World -->
+    <div id="frame-02" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            RULE 01: SCOPE
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            02/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Core Concept</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Find a Small World</h3>
+        </div>
+
+        <div class="bg-[#FFF6CF] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">One Arena, Zero Sprawl</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            A short film cannot support five subplots, ten locations, or four flashbacks.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Pick one contained arena: a late-night diner, an interrogation desk, or an elevator between floors. Spatial restraint forces you to focus entirely on human tension.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 03: Rule 2 - Start Late, Leave Early -->
+    <div id="frame-03" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            RULE 02: PACING
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            03/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Scene Timing</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Enter Late, Leave Early</h3>
+        </div>
+
+        <div class="bg-[#D6E4EE] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Cut The Warm-Up</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            Never show characters waking up, parking cars, or exchanging greetings.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Open the scene at the final second before a decision happens. Cut away the instant the consequence lands. Every page must fight for its screen time.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 04: Rule 3 - Isolate a Single Want -->
+    <div id="frame-04" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            RULE 03: MOTIVATION
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            04/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Character Goal</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Isolate a Single Want</h3>
+        </div>
+
+        <div class="bg-[#FFE600] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">One Objective</div>
+          <p class="text-sm font-bold text-black leading-relaxed">
+            Your protagonist needs one concrete target within the first 60 seconds.
+          </p>
+          <p class="text-xs font-semibold text-black leading-relaxed">
+            Not "finding inner happiness," but unlocking a safe, reaching a phone before it dies, or hiding evidence. Make the physical objective unmistakable.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 05: Rule 4 - Write for the Budget You Have -->
+    <div id="frame-05" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            RULE 04: PRACTICALITY
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            05/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Production Reality</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Write for Real Assets</h3>
+        </div>
+
+        <div class="bg-[#EFE4D6] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Audit Before Writing</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            Do not write exploding warehouses or police chases on an indie budget.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Catalog what you already control: a friend’s tool shed, a basement storage room, or two talented actors. Build a premise that turns your actual constraints into visual style.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 06: Rule 5 - Visuals Over Dialogue -->
+    <div id="frame-06" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            RULE 05: SHOW VS TELL
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            06/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Cinematic Weight</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Cut 50% of the Dialogue</h3>
+        </div>
+
+        <div class="bg-[#DDE8DF] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Actions Over Speeches</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            Beginner scripts explain emotion through conversation.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Cinema communicates through physical behavior: nervous hands, locking a deadbolt, or refusing to make eye contact. If an action conveys the truth, delete the line.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 07: Rule 6 - Target 8 to 12 Pages -->
+    <div id="frame-07" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            RULE 06: RUNTIME
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            07/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">The Programmer's Rule</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Hit the 10-Minute Sweet Spot</h3>
+        </div>
+
+        <div class="bg-[#FFF6CF] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Festival Math</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            A 25-minute short kills festival chances. Programmers can screen two 10-minute shorts in the same programming block.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Aim for 8 to 12 pages in standard format. Tight pacing keeps submission acceptance rates high and viewer drop-off low.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 08: Rule 7 - Escalate Every 90 Seconds -->
+    <div id="frame-08" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            RULE 07: RETENTION
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            08/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Tension Maintenance</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Turn the Screws Often</h3>
+        </div>
+
+        <div class="bg-[#D6E4EE] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">No Mid-Script Slumps</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            Every 90 seconds, alter the balance of power.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Whenever characters make progress, introduce a fresh consequence or reveal counter-evidence. Sustained tension prevents audience attention from flatlining.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 09: Rule 8 - Earned Endings Over Cheap Twists -->
+    <div id="frame-09" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            RULE 08: THE CLIMAX
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            09/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">The Final Beat</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Avoid Gimmick Endings</h3>
+        </div>
+
+        <div class="bg-[#FFE600] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Inevitability</div>
+          <p class="text-sm font-bold text-black leading-relaxed">
+            "It was all a dream" or sudden unearned deaths leave audiences feeling cheated.
+          </p>
+          <p class="text-xs font-semibold text-black leading-relaxed">
+            Your climax should feel surprising yet inevitable. The resolution must come directly from your character's choices, not convenient coincidence.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 10: Rule 9 - Master Formatting -->
+    <div id="frame-10" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            RULE 09: INDUSTRY STANDARD
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            10/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Presentation</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Respect Industry Formats</h3>
+        </div>
+
+        <div class="bg-[#EFE4D6] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Courier 12pt Standard</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            Readers judge scripts within the first 30 seconds of reading.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Use standard screenplay margins, avoid directing the camera in action blocks, and keep action descriptions to two-line clusters. Clean pages get read first.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 11: Rule 10 - Finish and Ship -->
+    <div id="frame-11" class="reel-frame bg-[#E2E4E9] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <div class="bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            RULE 10: EXECUTION
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            11/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-5 brutal-shadow mb-5">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">The Final Step</span>
+          <h3 class="text-2xl font-black brand-font mt-2">Ship the First Draft</h3>
+        </div>
+
+        <div class="bg-[#DDE8DF] border-4 border-black p-6 brutal-shadow space-y-3">
+          <div class="bg-black text-white px-2 py-1 text-[11px] font-bold brand-font uppercase w-fit">Writing Is Rewriting</div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed">
+            You cannot fix an empty screen.
+          </p>
+          <p class="text-xs font-semibold text-gray-800 leading-relaxed">
+            Write your rough draft from page one to the end without stopping to polish. Give it a cold table read, eliminate passive exposition, and lock your shooting script.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-[11px] font-bold tracking-wider pt-3 border-t-2 border-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 12: CTA Frame (Full Yellow Takeover) -->
+    <div id="frame-12" class="reel-frame bg-[#FFE600] p-7 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <div class="bg-black text-white px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+            NEXT STEP
+          </div>
+          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+            12/12
+          </div>
+        </div>
+
+        <div class="bg-white border-4 border-black p-6 brutal-shadow mb-5 space-y-4">
+          <h2 class="text-3xl font-black brand-font text-black leading-tight">
+            STOP OUTLINING.<br>START PRODUCTION.
+          </h2>
+          <p class="text-xs font-bold text-gray-800 leading-relaxed">
+            Need your short film or narrative video essay formatted to industry standards? We write tight, retention-backed screenplays ready for the festival circuit.
+          </p>
+
+          <!-- Free Demo Box -->
+          <div class="bg-[#D6E4EE] border-2 border-black p-4 brutal-shadow-sm space-y-1">
+            <span class="text-[10px] font-black brand-font uppercase bg-black text-white px-1.5 py-0.5">Free Opening Act Pass</span>
+            <p class="text-xs font-bold text-gray-900 pt-1">
+              DM us your short film logline. We will review your premise and pacing breakdown for free.
+            </p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-2.5">
+          <div class="bg-black text-[#2ECC71] text-center font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-shadow-sm">
+            DM "FILM" ON INSTAGRAM
+          </div>
+          <div class="bg-[#FFE600] text-black text-center font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-shadow-sm">
+            OR VISIT DRAFTSRUSH.COM
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-3">
+        DRAFTSRUSH STUDIO • 2026
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Download Automation -->
+  <script>
+    async function downloadAllFrames() {
+      const btn = document.getElementById('download-btn');
+      btn.innerText = 'CAPTURING 12 FRAMES...';
+      btn.disabled = true;
+
+      for (let i = 1; i <= 12; i++) {
+        const frameId = `frame-${i < 10 ? '0' + i : i}`;
+        const element = document.getElementById(frameId);
+
+        try {
+          const canvas = await html2canvas(element, {
+            scale: 2.6666, // Scales 405x720 up to exact 1080x1920 Instagram Story/Reel resolution
+            useCORS: true,
+            backgroundColor: null
+          });
+
+          const link = document.createElement('a');
+          link.download = `draftsrush-short-film-${i < 10 ? '0' + i : i}.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+          await new Promise(resolve => setTimeout(resolve, 300));
+        } catch (err) {
+          console.error(`Error capturing ${frameId}:`, err);
+        }
+      }
+
+      btn.innerText = 'DOWNLOAD ALL 12 FRAMES (.PNG)';
+      btn.disabled = false;
+    }
+  </script>
+
+</body>
+</html>
