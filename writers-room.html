@@ -3,29 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Writer's Room | Production Notes | DraftsRush</title>
-  <meta name="description" content="Tactical script breakdowns, retention studies, and pacing frameworks for creators and video production teams.">
+  <title>The Writer's Room | Production Notes & Knowledge Base | DraftsRush</title>
+  <meta name="description" content="Tactical script breakdowns, retention frameworks, formatting checklists, and production toolkits for screenwriters and digital video creators.">
+  <link rel="canonical" href="https://www.draftsrush.com/writers-room">
+
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
   <style>
     body { 
       font-family: 'Inter', sans-serif; 
       background-color: #E2E4E9 !important; 
     }
     h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
     .brutal-box { box-shadow: 4px 4px 0px #111317; }
     .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
     .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
     .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
-    .list-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
-    .list-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+    .filter-btn.active {
+      background-color: #111317 !important;
+      color: #FFFFFF !important;
+    }
   </style>
 </head>
 <body class="text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black" style="background-color: #E2E4E9;">
 
+  <!-- Header -->
   <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between">
       <a href="/" class="inline-flex items-center" aria-label="DraftsRush Home">
@@ -66,443 +74,358 @@
   </header>
 
   <main class="flex-grow">
-    <!-- Hero Box (Clean Light Slate Grey) -->
-    <section class="max-w-6xl mx-auto px-6 pt-12 pb-10">
-      <div class="border-4 border-black brutal-box-lg p-8 md:p-14 relative" style="background-color: #DDE1E8;">
-        <div class="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase mb-6">
-          Production Notes & Knowledge Base
+    <!-- Hero Box -->
+    <section class="max-w-6xl mx-auto px-6 pt-12 pb-8">
+      <div class="border-4 border-black brutal-box-lg p-8 md:p-12 relative" style="background-color: #DDE1E8;">
+        <div class="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-bold text-xs brand-font tracking-wider uppercase mb-4">
+          Production Notes & Field Guides
         </div>
-        <h1 class="text-4xl md:text-6xl font-black leading-none mb-6 tracking-tight">
+        <h1 class="text-4xl md:text-6xl font-black leading-none mb-4 tracking-tight">
           The Writer's Room
         </h1>
-        <p class="text-lg md:text-xl font-medium max-w-3xl mb-0 leading-relaxed text-gray-800">
-          Our core directory of downloadable scripting frameworks, retention studies, terminology indexes, and edit room cut logs.
+        <p class="text-base md:text-lg font-medium max-w-2xl text-gray-800 leading-relaxed">
+          Tactical reference manuals, downloadable templates, retention case studies, and craft blueprints for screenwriters and video teams.
         </p>
       </div>
     </section>
 
-    <section class="max-w-6xl mx-auto px-6 pb-20">
-      <div class="space-y-6">
+    <!-- Interactive Category Filter Bar -->
+    <section class="max-w-6xl mx-auto px-6 mb-8">
+      <div class="border-4 border-black bg-[#FFE600] p-4 brutal-box flex flex-wrap items-center justify-between gap-4">
+        <span class="font-mono text-xs font-black uppercase tracking-wider text-black">Filter By Category:</span>
+        <div class="flex flex-wrap gap-2 text-xs font-black brand-font uppercase">
+          <button onclick="filterResources('all')" class="filter-btn active bg-white text-black border-2 border-black px-3 py-1.5 brutal-box brutal-btn transition-colors">
+            All (<span id="count-all">16</span>)
+          </button>
+          <button onclick="filterResources('craft')" class="filter-btn bg-white text-black border-2 border-black px-3 py-1.5 brutal-box brutal-btn transition-colors">
+            Craft & Structure
+          </button>
+          <button onclick="filterResources('production')" class="filter-btn bg-white text-black border-2 border-black px-3 py-1.5 brutal-box brutal-btn transition-colors">
+            Production & Templates
+          </button>
+          <button onclick="filterResources('tech')" class="filter-btn bg-white text-black border-2 border-black px-3 py-1.5 brutal-box brutal-btn transition-colors">
+            Tools & Software
+          </button>
+          <button onclick="filterResources('learning')" class="filter-btn bg-white text-black border-2 border-black px-3 py-1.5 brutal-box brutal-btn transition-colors">
+            Learning & Audio
+          </button>
+        </div>
+      </div>
+    </section>
 
-        <!-- Block 1: Templates (Soft Muted Butter Yellow) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #FFF6CF;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 01 // Workspace
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">3 Formats Available</span>
+    <!-- 2-Column Responsive Card Grid -->
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+      <div id="resource-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- 01: Visual Storytelling Blueprints -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="craft" style="background-color: #FFF6CF;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-[#FFE600] border-2 border-black text-black px-2 py-0.5 text-xs font-black brand-font uppercase">Cheatsheets</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">6 Visual Models</span>
             </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/storytelling-blueprints" class="hover:underline">Visual Storytelling & Narrative Mechanics</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Deconstruct subtext, plot twists, cliffhangers, dramatic stakes, conflict generation, and worldbuilding rules.
+            </p>
+          </div>
+          <a href="/storytelling-blueprints" class="inline-block text-center bg-black text-white brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Open Blueprints →
+          </a>
+        </article>
+
+        <!-- 02: Script Breakdown Sheet -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="production" style="background-color: #E2F0D9;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-black text-white px-2 py-0.5 text-xs font-black brand-font uppercase">Template & Guide</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">Pre-Production</span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/script-breakdown-sheet" class="hover:underline">Script Breakdown Sheet & Production Guide</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Convert scripts into an executable shoot schedule. Learn the 1/8 page rule, industry color codes, and digital B-roll tracking.
+            </p>
+          </div>
+          <a href="/script-breakdown-sheet" class="inline-block text-center bg-[#FFE600] text-black brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Get Breakdown Template →
+          </a>
+        </article>
+
+        <!-- 03: Narrative Techniques -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="craft" style="background-color: #FFF6CF;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-[#FFE600] border-2 border-black text-black px-2 py-0.5 text-xs font-black brand-font uppercase">Craft Guide</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">8 Core Techniques</span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/narrative-techniques" class="hover:underline">Top 8 Narrative Techniques to Hook Audiences</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Move beyond linear chronology. Master dramatic irony, in media res, unreliable narrators, Chekhov's gun, and recurring motifs.
+            </p>
+          </div>
+          <a href="/narrative-techniques" class="inline-block text-center bg-black text-white brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Read Guide →
+          </a>
+        </article>
+
+        <!-- 04: Production Script Templates -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="production" style="background-color: #D6E4EE;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-black text-white px-2 py-0.5 text-xs font-black brand-font uppercase">Workspace</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">3 Script Layouts</span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
               <a href="/templates" class="hover:underline">Production Script Templates</a>
             </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Production ready formats formatted for immediate export. Includes our 10-minute video essay framework, 60-second vertical reels structure, and two-column commercial AV layouts.
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Ready-to-use formats: 10-minute video essay framework, 60-second vertical reels structure, and two-column commercial AV layouts.
             </p>
           </div>
-          <div class="flex-shrink-0">
-            <a href="/templates" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Get Templates →
-            </a>
-          </div>
-        </div>
+          <a href="/templates" class="inline-block text-center bg-[#FFE600] text-black brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Get Templates →
+          </a>
+        </article>
 
-        <!-- Block: Visual Storytelling Blueprints -->
-<div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #FFF6CF;">
-  <div class="max-w-3xl">
-    <div class="flex items-center gap-3 mb-3">
-      <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-        Resource // Visual Cheatsheets
-      </span>
-      <span class="text-xs font-bold text-gray-700 font-mono">7 Framework Blueprints</span>
-    </div>
-    <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-      <a href="/storytelling-blueprints" class="hover:underline">Visual Storytelling & Narrative Mechanics</a>
-    </h2>
-    <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-      Quick visual blueprints for script construction. Deconstruct subtext, plot twists, cliffhangers, stakes, dramatic conflict, foreshadowing, and worldbuilding rules.
-    </p>
-  </div>
-  <div class="flex-shrink-0">
-    <a href="/storytelling-blueprints" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-      Open Blueprints →
-    </a>
-  </div>
-</div>
-
-        <!-- Block: Narrative Techniques Guide -->
-<div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #FFF6CF;">
-  <div class="max-w-3xl">
-    <div class="flex items-center gap-3 mb-3">
-      <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-        Resource // Craft Mechanics
-      </span>
-      <span class="text-xs font-bold text-gray-700 font-mono">8 Core Techniques</span>
-    </div>
-    <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-      <a href="/narrative-techniques" class="hover:underline">Top 8 Narrative Techniques to Hook Audiences</a>
-    </h2>
-    <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-      Break free from chronological storytelling. Master dramatic irony, in media res, unreliable narration, Chekhov's gun, and recurring motifs.
-    </p>
-  </div>
-  <div class="flex-shrink-0">
-    <a href="/narrative-techniques" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-      Read Guide →
-    </a>
-  </div>
-</div>
-
-        <!-- Block 2: Teardowns (Soft Slate Ice Blue) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #D6E4EE;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 02 // Analytics
-              </span>
+        <!-- 05: Retention Teardowns -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="craft" style="background-color: #D6E4EE;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-black text-white px-2 py-0.5 text-xs font-black brand-font uppercase">Analytics</span>
               <span class="text-xs font-bold text-gray-700 font-mono">4 Case Studies</span>
             </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/retention-teardowns" class="hover:underline">Retention Teardowns</a>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/retention-teardowns" class="hover:underline">Retention Teardowns & Pacing Curves</a>
             </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Second-by-second dissections of high-performing video scripts. Learn how creators use open loops, 90-second mini-arcs, and non-linear narrative structures to prevent drop-off cliffs.
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Second-by-second dissections of high-performing video scripts. See how open loops and 90-second mini-arcs prevent drop-off cliffs.
             </p>
           </div>
-          <div class="flex-shrink-0">
-            <a href="/retention-teardowns" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Read Teardowns →
-            </a>
-          </div>
-        </div>
+          <a href="/retention-teardowns" class="inline-block text-center bg-black text-white brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Read Teardowns →
+          </a>
+        </article>
 
-        <!-- Block 3: Visual Comparisons (Soft Warm Parchment) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #EFE4D6;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 03 // Technical Workflow
-              </span>
+        <!-- 06: Visual Script Comparisons -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="production" style="background-color: #EFE4D6;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-[#FFE600] border-2 border-black text-black px-2 py-0.5 text-xs font-black brand-font uppercase">Workflow</span>
               <span class="text-xs font-bold text-gray-700 font-mono">Script To Screen</span>
             </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
               <a href="/visual-comparisons" class="hover:underline">Visual Script Comparisons</a>
             </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Side-by-side production proofs showing written visual/audio instructions paired against precise NLE timeline cut logs, scale punch-ins, audio mastering cues, and frame pacing.
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Side-by-side production proofs showing written AV directions paired against NLE cut logs, punch-in cues, and frame pacing.
             </p>
           </div>
-          <div class="flex-shrink-0">
-            <a href="/visual-comparisons" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              View Comparisons →
-            </a>
-          </div>
-        </div>
+          <a href="/visual-comparisons" class="inline-block text-center bg-black text-white brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            View Proofs →
+          </a>
+        </article>
 
-        <!-- Block 4: Glossary (Soft Sage Mint Green) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #DDE8DF;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 04 // Knowledge Base
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">Video Terminology</span>
+        <!-- 07: Free Screenwriting Software -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="tech" style="background-color: #E2F0D9;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-black text-white px-2 py-0.5 text-xs font-black brand-font uppercase">Software</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">5 Free Tools</span>
             </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/glossary" class="hover:underline">Production Terminology Index</a>
-            </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              The complete reference manual for digital scriptwriting, pacing rates, retention engineering, audio visual scripting, and production vocabulary.
-            </p>
-          </div>
-          <div class="flex-shrink-0">
-            <a href="/glossary" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Browse Index →
-            </a>
-          </div>
-        </div>
-
-        <!-- Block: Podcasts Guide -->
-<div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #EFE4D6;">
-  <div class="max-w-3xl">
-    <div class="flex items-center gap-3 mb-3">
-      <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-        Resource // Audio Masterclasses
-      </span>
-      <span class="text-xs font-bold text-gray-700 font-mono">5 Curated Feeds</span>
-    </div>
-    <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-      <a href="/best-filmmaking-and-screenwriting-podcasts" class="hover:underline">Top 5 Screenwriting & Filmmaking Podcasts</a>
-    </h2>
-    <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-      Learn narrative structure, visual blocking, and the business of film from working showrunners and Oscar-winning cinematographers.
-    </p>
-  </div>
-  <div class="flex-shrink-0">
-    <a href="/best-filmmaking-and-screenwriting-podcasts" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-      View Podcasts →
-    </a>
-  </div>
-</div>
-
-        <!-- Block 5: Screenplay Reading Directory (Soft Violet Slate) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #E8E5F2;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 05 // Study Guide
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">5 Script Archives</span>
-            </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/best-websites-to-read-movie-scripts" class="hover:underline">5 Best Websites to Read Movie Scripts Online</a>
-            </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Stop studying amateur transcripts. Discover the 5 best repositories to read and download authentic Hollywood production screenplays in free PDF format, complete with formatting breakdowns and study methods.
-            </p>
-          </div>
-          <div class="flex-shrink-0">
-            <a href="/best-websites-to-read-movie-scripts" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Read Guide →
-            </a>
-          </div>
-        </div>
-
-        <!-- Block 6: Free Screenwriting Software Guide (Soft Mint Cream) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #E2F0D9;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 06 // Toolset Guide
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">5 Free Software Tools</span>
-            </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
               <a href="/best-free-screenwriting-software" class="hover:underline">Top 5 Free Screenwriting Software Tools</a>
             </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Format industry-standard screenplays without paying for Final Draft. Compare the top 5 free applications for live collaboration, visual beat boards, and distraction-free drafting.
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Format industry-standard scripts without paying for Final Draft. Compare WriterDuet, Arc Studio, Highland 2, Trelby, and Fade In.
             </p>
           </div>
-          <div class="flex-shrink-0">
-            <a href="/best-free-screenwriting-software" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Explore Tools →
-            </a>
-          </div>
-        </div>
+          <a href="/best-free-screenwriting-software" class="inline-block text-center bg-[#FFE600] text-black brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Compare Software →
+          </a>
+        </article>
 
-        <!-- Block: Script Breakdown Sheet Guide -->
-<div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #E2F0D9;">
-  <div class="max-w-3xl">
-    <div class="flex items-center gap-3 mb-3">
-      <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-        Resource // Pre-Production
-      </span>
-      <span class="text-xs font-bold text-gray-700 font-mono">Template & Walkthrough</span>
-    </div>
-    <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-      <a href="/script-breakdown-sheet" class="hover:underline">Script Breakdown Sheet & Production Guide</a>
-    </h2>
-    <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-      Turn written scenes into an actionable shoot schedule. Learn page eighths, industry color codes, and digital B-roll asset tracking.
-    </p>
-  </div>
-  <div class="flex-shrink-0">
-    <a href="/script-breakdown-sheet" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-      Read Guide →
-    </a>
-  </div>
-</div>
-
-       <!-- Block 7: Screenwriting Books (Soft Butter Gold) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #FFF6CF;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 07 // Core Reading
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">5 Foundational Books</span>
+        <!-- 08: AI Screenwriting Accelerators -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="tech" style="background-color: #FFF6CF;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-[#FFE600] border-2 border-black text-black px-2 py-0.5 text-xs font-black brand-font uppercase">AI Workflow</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">5 Tools Audited</span>
             </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/best-screenwriting-books" class="hover:underline">5 Best Screenwriting Books Every Aspiring Writer Must Read</a>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/ai-tools-for-screenwriters" class="hover:underline">Top 5 AI Tools for Screenwriters</a>
             </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Master three-act mechanics, beat sheets, and character arcs. The definitive reading list covering McKee, Snyder, Syd Field, and Truby without theoretical fluff.
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Use generative models without losing your voice. How writers stress-test premises, brainstorm beat sequences, and polish dialogue.
             </p>
           </div>
-          <div class="flex-shrink-0">
-            <a href="/best-screenwriting-books" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              View Reading List →
-            </a>
-          </div>
-        </div>
+          <a href="/ai-tools-for-screenwriters" class="inline-block text-center bg-black text-white brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Explore AI Tools →
+          </a>
+        </article>
 
-        <!-- Block 8: Cinematography Books (Soft Slate Ice Blue) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #D6E4EE;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 08 // Visual Direction
-              </span>
+        <!-- 09: Video Hook Formulas -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="craft" style="background-color: #DDE8DF;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-black text-white px-2 py-0.5 text-xs font-black brand-font uppercase">Retention</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">First 5 Seconds</span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/video-hook-formulas" class="hover:underline">5 Video Hook Formulas That Double Retention</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Stop scroll drop-off cold. Five psychological hook formulas engineered for vertical shorts, YouTube video essays, and ads.
+            </p>
+          </div>
+          <a href="/video-hook-formulas" class="inline-block text-center bg-[#FFE600] text-black brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Get Hook Formulas →
+          </a>
+        </article>
+
+        <!-- 10: Dialogue Writing Drills -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="craft" style="background-color: #E8E5F2;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-[#FFE600] border-2 border-black text-black px-2 py-0.5 text-xs font-black brand-font uppercase">Dialogue</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">5 Drills</span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/write-realistic-dialogue" class="hover:underline">Exercises to Write Realistic, Non-Cringe Dialogue</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Eliminate stiff on-the-nose exposition. Five practical exercises to inject natural spoken rhythm, subtext, and conflicting agendas.
+            </p>
+          </div>
+          <a href="/write-realistic-dialogue" class="inline-block text-center bg-black text-white brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Practice Drills →
+          </a>
+        </article>
+
+        <!-- 11: Story Structure Models -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="craft" style="background-color: #EFE4D6;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-black text-white px-2 py-0.5 text-xs font-black brand-font uppercase">Narrative Models</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">5 Frameworks</span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/story-structure-frameworks" class="hover:underline">Top 5 Story Structure Frameworks</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Compare Dan Harmon's Story Circle, Blake Snyder's 15-Beat Sheet, the Hero's Journey, and Freytag's Pyramid to eliminate Act 2 drag.
+            </p>
+          </div>
+          <a href="/story-structure-frameworks" class="inline-block text-center bg-[#FFE600] text-black brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Compare Models →
+          </a>
+        </article>
+
+        <!-- 12: Formatting Mistakes Audit -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="production" style="background-color: #FCE8E6;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-[#FB7185] text-white px-2 py-0.5 text-xs font-black brand-font uppercase">Diagnostics</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">5 Red Flags</span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/screenplay-formatting-mistakes" class="hover:underline">5 Formatting Mistakes That Make Producers Pass</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Directing on the page, unfilmable novelistic exposition, and walls of action text. Clean your draft before submitting to coverage readers.
+            </p>
+          </div>
+          <a href="/screenplay-formatting-mistakes" class="inline-block text-center bg-black text-white brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Audit Mistakes →
+          </a>
+        </article>
+
+        <!-- 13: Best Screenwriting Books -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="learning" style="background-color: #FFF6CF;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-[#FFE600] border-2 border-black text-black px-2 py-0.5 text-xs font-black brand-font uppercase">Reading List</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">5 Core Books</span>
+            </div>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/best-screenwriting-books" class="hover:underline">5 Best Screenwriting Books Every Writer Must Read</a>
+            </h2>
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Master three-act mechanics, beat sheets, and character webs. Foundational texts from McKee, Snyder, Syd Field, and John Truby.
+            </p>
+          </div>
+          <a href="/best-screenwriting-books" class="inline-block text-center bg-black text-white brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            View Books →
+          </a>
+        </article>
+
+        <!-- 14: Best Cinematography Books -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="learning" style="background-color: #D6E4EE;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-black text-white px-2 py-0.5 text-xs font-black brand-font uppercase">Visual Directing</span>
               <span class="text-xs font-bold text-gray-700 font-mono">5 Camera Guides</span>
             </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/best-cinematography-books" class="hover:underline">Top 5 Cinematography Books to Master Visual Storytelling</a>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/best-cinematography-books" class="hover:underline">Top 5 Cinematography Books for Visual Storytelling</a>
             </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Write action lines that directors can actually shoot. Learn camera framing, focal length psychology, and lighting setups to upgrade your AV script notes.
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Write action lines that directors can shoot. Master camera framing, focal length psychology, and lighting contrast setups.
             </p>
           </div>
-          <div class="flex-shrink-0">
-            <a href="/best-cinematography-books" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Read Guide →
-            </a>
-          </div>
-        </div>
+          <a href="/best-cinematography-books" class="inline-block text-center bg-[#FFE600] text-black brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            View Guides →
+          </a>
+        </article>
 
-        <!-- Block 9: Story Structure Frameworks (Soft Warm Parchment) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #EFE4D6;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 09 // Narrative Models
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">5 Classic Frameworks</span>
+        <!-- 15: Podcasts Guide -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="learning" style="background-color: #EFE4D6;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-[#FFE600] border-2 border-black text-black px-2 py-0.5 text-xs font-black brand-font uppercase">Audio Craft</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">5 Podcasts</span>
             </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/story-structure-frameworks" class="hover:underline">Top 5 Story Structure Frameworks That Keep Viewers Hooked</a>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/best-filmmaking-and-screenwriting-podcasts" class="hover:underline">Top 5 Screenwriting & Filmmaking Podcasts</a>
             </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Compare Dan Harmon's Story Circle, the 15-Beat Sheet, the Hero's Journey, and classic 3-act pacing to sequence your narrative acts without mid-point drag.
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Learn narrative pacing, room politics, and visual blocking directly from active showrunners and Oscar-winning cinematographers.
             </p>
           </div>
-          <div class="flex-shrink-0">
-            <a href="/story-structure-frameworks" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Compare Models →
-            </a>
-          </div>
-        </div>
+          <a href="/best-filmmaking-and-screenwriting-podcasts" class="inline-block text-center bg-black text-white brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Listen to Podcasts →
+          </a>
+        </article>
 
-        <!-- Block 10: Screenplay Formatting Mistakes (Soft Rose Tint) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #FCE8E6;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 10 // Page Diagnostic
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">5 Critical Errors</span>
+        <!-- 16: Free Script Reading Archives -->
+        <article class="resource-card border-4 border-black p-6 brutal-box flex flex-col justify-between" data-category="learning" style="background-color: #E8E5F2;">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-black text-white px-2 py-0.5 text-xs font-black brand-font uppercase">PDF Archives</span>
+              <span class="text-xs font-bold text-gray-700 font-mono">5 Repositories</span>
             </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/screenplay-formatting-mistakes" class="hover:underline">5 Screenplay Formatting Mistakes That Make Producers Stop Reading</a>
+            <h2 class="text-xl md:text-2xl font-black brand-font mb-2">
+              <a href="/best-websites-to-read-movie-scripts" class="hover:underline">5 Best Websites to Read Movie Scripts Online</a>
             </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Orphaned sluglines, unfilmable thoughts in action paragraphs, and wall-of-text action blocks. How to clean your draft so readers fly through page one.
+            <p class="font-medium text-gray-800 text-sm leading-relaxed mb-6">
+              Stop studying amateur subtitles. Download and read authentic Hollywood shooting scripts and Oscar campaign drafts for free.
             </p>
           </div>
-          <div class="flex-shrink-0">
-            <a href="/screenplay-formatting-mistakes" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Audit Mistakes →
-            </a>
-          </div>
-        </div>
+          <a href="/best-websites-to-read-movie-scripts" class="inline-block text-center bg-[#FFE600] text-black brand-font font-black text-xs px-4 py-2.5 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+            Find Free Scripts →
+          </a>
+        </article>
 
-        <!-- Block 11: Video Hook Formulas (Soft Mint Green) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #DDE8DF;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 11 // Retention Psychology
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">5 Opening Angles</span>
-            </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/video-hook-formulas" class="hover:underline">5 Video Hook Formulas That Double Audience Retention</a>
-            </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Stop scroll drop-off before second 03. Plug-and-play psychological hook architectures tailored for vertical shorts, long-form essays, and commercial ads.
-            </p>
-          </div>
-          <div class="flex-shrink-0">
-            <a href="/video-hook-formulas" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Get Formulas →
-            </a>
-          </div>
-        </div>
-
-        <!-- Block 12: Dialogue Writing Drills (Soft Lavender Slate) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #E8E5F2;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 12 // Dialogue Craft
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">5 Practical Exercises</span>
-            </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/write-realistic-dialogue" class="hover:underline">Top 5 Exercises to Write Realistic, Non-Cringe Dialogue</a>
-            </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Eliminate stiff on-the-nose exposition. Five practical drills to inject natural spoken rhythm, subtext, and conflicting character agendas into character speech.
-            </p>
-          </div>
-          <div class="flex-shrink-0">
-            <a href="/write-realistic-dialogue" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Practice Drills →
-            </a>
-          </div>
-        </div>
-
-        <!-- Block 13: Competitions & Fellowships (Soft Slate Grey) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #DDE1E8;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-[#FFE600] border-2 border-black text-black px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 13 // Industry Access
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">5 Vetted Contests</span>
-            </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/screenwriting-competitions-worth-it" class="hover:underline">5 Screenplay Competitions Actually Worth the Entry Fee</a>
-            </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Don't waste money on vanity festivals. The verified list of fellowships and screenwriting competitions that literary managers and agency assistants actually track.
-            </p>
-          </div>
-          <div class="flex-shrink-0">
-            <a href="/screenwriting-competitions-worth-it" class="inline-block w-full md:w-auto text-center bg-[#FFE600] text-black brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              View Contests →
-            </a>
-          </div>
-        </div>
-
-        <!-- Block 14: AI Screenwriting Accelerators (Soft Butter Gold) -->
-        <div class="border-4 border-black p-6 md:p-8 brutal-box list-card flex flex-col md:flex-row md:items-center justify-between gap-6" style="background-color: #FFF6CF;">
-          <div class="max-w-3xl">
-            <div class="flex items-center gap-3 mb-3">
-              <span class="bg-black text-white px-2.5 py-0.5 text-xs font-bold brand-font uppercase">
-                Resource 14 // Studio Tech
-              </span>
-              <span class="text-xs font-bold text-gray-700 font-mono">5 Workflow Accelerators</span>
-            </div>
-            <h2 class="text-2xl md:text-3xl font-black brand-font mb-2">
-              <a href="/ai-tools-for-screenwriters" class="hover:underline">Top 5 AI Tools for Screenwriters to Beat Writer’s Block</a>
-            </h2>
-            <p class="font-medium text-gray-800 text-sm md:text-base leading-relaxed">
-              Use generative models without losing your voice. How professional writers stress-test premises, brainstorm beat sequences, and polish dialogue with AI assistance.
-            </p>
-          </div>
-          <div class="flex-shrink-0">
-            <a href="/ai-tools-for-screenwriters" class="inline-block w-full md:w-auto text-center bg-black text-white brand-font font-black text-xs md:text-sm px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-              Explore Tools →
-            </a>
-          </div>
-        </div>
-        
       </div>
 
       <!-- Action Banner -->
       <div class="mt-16 bg-[#FFE600] border-4 border-black brutal-box p-8 md:p-12 text-center">
-        <h3 class="text-2xl md:text-4xl font-black brand-font mb-4">Want scripts written specifically for your channel?</h3>
+        <h3 class="text-2xl md:text-4xl font-black brand-font mb-4">Need scripts written specifically for your channel?</h3>
         <p class="font-medium text-gray-800 text-base md:text-lg mb-8 max-w-2xl mx-auto">
           We combine calculated pacing, structured visual cues, and narrative suspense to build high-retention video assets for your team.
         </p>
@@ -513,6 +436,7 @@
     </section>
   </main>
 
+  <!-- Universal Footer -->
   <footer class="border-t-4 border-black bg-[#D6E4EE] py-12 mt-auto">
     <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
       <div class="col-span-1 md:col-span-2">
@@ -532,6 +456,7 @@
           <span class="inline-block bg-[#FFE600] border-2 border-black px-2 py-1 text-xs font-bold brand-font">BUDGET-FRIENDLY & FAST TURNAROUND</span>
         </div>
         
+        <!-- Social Media Icon Tiles -->
         <div class="flex items-center gap-1.5">
           <!-- X -->
           <a href="https://x.com/DraftsRush" target="_blank" rel="noopener noreferrer" aria-label="X" class="inline-flex items-center justify-center w-7 h-7 bg-white border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
@@ -590,6 +515,43 @@
       </div>
     </div>
   </footer>
+
+  <!-- Floating Contact Widget -->
+  <a href="/contact" 
+     aria-label="Contact Desk"
+     class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#FFE600] text-black font-black brand-font text-xs uppercase px-4 py-3 border-2 border-black brutal-box brutal-btn transition-transform select-none">
+    <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+    </svg>
+    <span>Contact Desk</span>
+  </a>
+
+  <!-- Tab Filtering JavaScript -->
+  <script>
+    function filterResources(category) {
+      const cards = document.querySelectorAll('.resource-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      // Update button visual state
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // Filter grid cards
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Dynamic total count
+    document.addEventListener('DOMContentLoaded', () => {
+      const total = document.querySelectorAll('.resource-card').length;
+      document.getElementById('count-all').innerText = total;
+    });
+  </script>
 
 </body>
 </html>
