@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Short Film Strategy - Animated Reel Player</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
     body {
       font-family: 'Inter', sans-serif;
       background-color: #111317;
@@ -33,7 +37,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      padding: 28px;
+      padding: 24px 24px 20px 24px;
       display: none;
       flex-direction: column;
       justify-content: space-between;
@@ -43,17 +47,24 @@
       display: flex;
     }
 
-    .brutal-shadow { box-shadow: 6px 6px 0px #111317; }
-    .brutal-shadow-sm { box-shadow: 4px 4px 0px #111317; }
+    /* Reliable Brutalist Shadows */
+    .brutal-shadow {
+      border: 3px solid #111317;
+      box-shadow: 5px 5px 0px #111317;
+    }
+    .brutal-shadow-sm {
+      border: 2px solid #111317;
+      box-shadow: 3px 3px 0px #111317;
+    }
 
-    /* Keyframe Animations */
+    /* Deliberate, smooth slide-in block animation */
     @keyframes slideFromLeftSlow {
       0% {
-        transform: translateX(-130%);
+        transform: translateX(-125%);
         opacity: 0;
       }
       75% {
-        transform: translateX(4px);
+        transform: translateX(3px);
         opacity: 1;
       }
       100% {
@@ -79,7 +90,7 @@
     .typing-cursor::after {
       content: '▋';
       display: inline-block;
-      margin-left: 3px;
+      margin-left: 2px;
       color: #111317;
       animation: blink 0.7s infinite;
     }
@@ -129,26 +140,26 @@
 
     <!-- SLIDE 01 -->
     <div class="slide is-playing" id="slide-0" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             SCREENPLAY LAB
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             01/12
           </div>
         </div>
-        <div class="box-anim-1 bg-[#FFE600] border-4 border-black p-5 brutal-shadow mb-6">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">The Reality Check</span>
+        <div class="box-anim-1 bg-[#FFE600] p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">The Reality Check</span>
           <h2 class="text-2xl font-black brand-font leading-tight mt-2 text-black">
             Why 90% of short films get rejected.
           </h2>
         </div>
-        <div class="box-anim-2 bg-white border-4 border-black p-5 brutal-shadow space-y-3">
-          <p class="text-sm font-bold text-gray-900 leading-snug type-target" data-copy="Writers treat short films like compressed feature films. Festivals and audiences do not want miniature epics; they want singular, high-stakes friction."></p>
+        <div class="box-anim-2 bg-white p-5 brutal-shadow">
+          <p class="text-[13px] font-bold text-gray-900 leading-relaxed type-target" data-copy="Writers treat short films like compressed feature films. Festivals and audiences do not want miniature epics; they want singular, high-stakes friction."></p>
         </div>
       </div>
-      <div class="box-anim-3">
+      <div class="box-anim-3 pt-2">
         <div class="bg-black text-white p-3 border-2 border-black flex items-center justify-between mb-3">
           <span class="brand-font font-bold text-xs uppercase tracking-wider">The 10 Short Film Rules</span>
           <span class="text-[#FFE600] font-black text-sm">→</span>
@@ -162,22 +173,22 @@
 
     <!-- SLIDE 02 -->
     <div class="slide" id="slide-1" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             RULE 01: SCOPE
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             02/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Core Concept</span>
-          <h3 class="text-2xl font-black brand-font mt-1">Find a Small World</h3>
+        <div class="box-anim-1 bg-white p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Core Concept</span>
+          <h3 class="text-2xl font-black brand-font mt-1.5">Find a Small World</h3>
         </div>
-        <div class="box-anim-2 bg-[#FFF6CF] border-4 border-black p-5 brutal-shadow space-y-2">
-          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">One Arena, Zero Sprawl</div>
-          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-target" data-copy="A short film cannot support five subplots or four locations. Pick one contained arena: a late-night diner or an elevator. Spatial restraint forces pure human tension."></p>
+        <div class="box-anim-2 bg-[#FFF6CF] p-5 brutal-shadow flex flex-col gap-2.5">
+          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">One Arena, Zero Sprawl</div>
+          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="A short film cannot support five subplots or four locations. Pick one contained arena: a late-night diner or an elevator. Spatial restraint forces pure human tension."></p>
         </div>
       </div>
       <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
@@ -188,22 +199,22 @@
 
     <!-- SLIDE 03 -->
     <div class="slide" id="slide-2" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             RULE 02: PACING
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             03/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Scene Timing</span>
-          <h3 class="text-2xl font-black brand-font mt-1">Enter Late, Leave Early</h3>
+        <div class="box-anim-1 bg-white p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Scene Timing</span>
+          <h3 class="text-2xl font-black brand-font mt-1.5">Enter Late, Leave Early</h3>
         </div>
-        <div class="box-anim-2 bg-[#D6E4EE] border-4 border-black p-5 brutal-shadow space-y-2">
-          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Cut The Warm-Up</div>
-          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-target" data-copy="Never show characters waking up, parking cars, or greeting each other. Open at the final second before a decision happens, and cut the instant the consequence lands."></p>
+        <div class="box-anim-2 bg-[#D6E4EE] p-5 brutal-shadow flex flex-col gap-2.5">
+          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Cut The Warm-Up</div>
+          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="Never show characters waking up, parking cars, or greeting each other. Open at the final second before a decision happens, and cut the instant the consequence lands."></p>
         </div>
       </div>
       <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
@@ -214,22 +225,22 @@
 
     <!-- SLIDE 04 -->
     <div class="slide" id="slide-3" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             RULE 03: MOTIVATION
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             04/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Character Goal</span>
-          <h3 class="text-2xl font-black brand-font mt-1">Isolate a Single Want</h3>
+        <div class="box-anim-1 bg-white p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Character Goal</span>
+          <h3 class="text-2xl font-black brand-font mt-1.5">Isolate a Single Want</h3>
         </div>
-        <div class="box-anim-2 bg-[#FFE600] border-4 border-black p-5 brutal-shadow space-y-2">
-          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">One Objective</div>
-          <p class="text-sm font-semibold text-black leading-relaxed type-target" data-copy="Give your protagonist one concrete goal in the first 60 seconds: unlocking a safe, reaching a phone before it dies, or hiding evidence. Make the physical objective clear."></p>
+        <div class="box-anim-2 bg-[#FFE600] p-5 brutal-shadow flex flex-col gap-2.5">
+          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">One Objective</div>
+          <p class="text-[13px] font-semibold text-black leading-relaxed type-target" data-copy="Give your protagonist one concrete goal in the first 60 seconds: unlocking a safe, reaching a phone before it dies, or hiding evidence. Make the physical objective clear."></p>
         </div>
       </div>
       <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
@@ -240,22 +251,22 @@
 
     <!-- SLIDE 05 -->
     <div class="slide" id="slide-4" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             RULE 04: PRACTICALITY
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             05/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Production Reality</span>
-          <h3 class="text-2xl font-black brand-font mt-1">Write for Real Assets</h3>
+        <div class="box-anim-1 bg-white p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Production Reality</span>
+          <h3 class="text-2xl font-black brand-font mt-1.5">Write for Real Assets</h3>
         </div>
-        <div class="box-anim-2 bg-[#EFE4D6] border-4 border-black p-5 brutal-shadow space-y-2">
-          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Audit Before Writing</div>
-          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-target" data-copy="Catalog what you already own: a storage basement, a tool shed, or two strong actors. Avoid writing car chases or CGI sets that derail an indie budget."></p>
+        <div class="box-anim-2 bg-[#EFE4D6] p-5 brutal-shadow flex flex-col gap-2.5">
+          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Audit Before Writing</div>
+          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="Catalog what you already own: a storage basement, a tool shed, or two strong actors. Avoid writing car chases or CGI sets that derail an indie budget."></p>
         </div>
       </div>
       <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
@@ -266,22 +277,22 @@
 
     <!-- SLIDE 06 -->
     <div class="slide" id="slide-5" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             RULE 05: SHOW VS TELL
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             06/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Cinematic Weight</span>
-          <h3 class="text-2xl font-black brand-font mt-1">Cut 50% of Dialogue</h3>
+        <div class="box-anim-1 bg-white p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Cinematic Weight</span>
+          <h3 class="text-2xl font-black brand-font mt-1.5">Cut 50% of Dialogue</h3>
         </div>
-        <div class="box-anim-2 bg-[#DDE8DF] border-4 border-black p-5 brutal-shadow space-y-2">
-          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Actions Over Speeches</div>
-          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-target" data-copy="Cinema communicates through physical behavior: trembling hands, sliding a deadbolt, or refusing eye contact. If an action conveys the truth, delete the line."></p>
+        <div class="box-anim-2 bg-[#DDE8DF] p-5 brutal-shadow flex flex-col gap-2.5">
+          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Actions Over Speeches</div>
+          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="Cinema communicates through physical behavior: trembling hands, sliding a deadbolt, or refusing eye contact. If an action conveys the truth, delete the line."></p>
         </div>
       </div>
       <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
@@ -292,22 +303,22 @@
 
     <!-- SLIDE 07 -->
     <div class="slide" id="slide-6" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             RULE 06: RUNTIME
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             07/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">The Sweet Spot</span>
-          <h3 class="text-2xl font-black brand-font mt-1">Target 8 to 12 Pages</h3>
+        <div class="box-anim-1 bg-white p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">The Sweet Spot</span>
+          <h3 class="text-2xl font-black brand-font mt-1.5">Target 8 to 12 Pages</h3>
         </div>
-        <div class="box-anim-2 bg-[#FFF6CF] border-4 border-black p-5 brutal-shadow space-y-2">
-          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Festival Mathematics</div>
-          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-target" data-copy="A 25-minute short kills festival acceptance because programmers can fit two 10-minute shorts in that block. Keep your screenplay to 8-12 pages maximum."></p>
+        <div class="box-anim-2 bg-[#FFF6CF] p-5 brutal-shadow flex flex-col gap-2.5">
+          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Festival Mathematics</div>
+          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="A 25-minute short kills festival acceptance because programmers can fit two 10-minute shorts in that block. Keep your screenplay to 8-12 pages maximum."></p>
         </div>
       </div>
       <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
@@ -318,22 +329,22 @@
 
     <!-- SLIDE 08 -->
     <div class="slide" id="slide-7" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             RULE 07: RETENTION
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             08/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Tension Shifts</span>
-          <h3 class="text-2xl font-black brand-font mt-1">Escalate Every 90s</h3>
+        <div class="box-anim-1 bg-white p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Tension Shifts</span>
+          <h3 class="text-2xl font-black brand-font mt-1.5">Escalate Every 90s</h3>
         </div>
-        <div class="box-anim-2 bg-[#D6E4EE] border-4 border-black p-5 brutal-shadow space-y-2">
-          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">No Mid-Script Slumps</div>
-          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-target" data-copy="Every 90 seconds, shift the balance of power. Whenever characters make progress, introduce a fresh consequence or reveal counter-evidence to prevent flatlines."></p>
+        <div class="box-anim-2 bg-[#D6E4EE] p-5 brutal-shadow flex flex-col gap-2.5">
+          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">No Mid-Script Slumps</div>
+          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="Every 90 seconds, shift the balance of power. Whenever characters make progress, introduce a fresh consequence or reveal counter-evidence to prevent flatlines."></p>
         </div>
       </div>
       <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
@@ -344,22 +355,22 @@
 
     <!-- SLIDE 09 -->
     <div class="slide" id="slide-8" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             RULE 08: THE CLIMAX
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             09/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">The Final Beat</span>
-          <h3 class="text-2xl font-black brand-font mt-1">Avoid Gimmick Endings</h3>
+        <div class="box-anim-1 bg-white p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">The Final Beat</span>
+          <h3 class="text-2xl font-black brand-font mt-1.5">Avoid Gimmick Endings</h3>
         </div>
-        <div class="box-anim-2 bg-[#FFE600] border-4 border-black p-5 brutal-shadow space-y-2">
-          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Inevitability</div>
-          <p class="text-sm font-semibold text-black leading-relaxed type-target" data-copy="'It was all a dream' or sudden unearned twists cheat your audience. The climax must feel surprising yet inevitable, born entirely from your character's choices."></p>
+        <div class="box-anim-2 bg-[#FFE600] p-5 brutal-shadow flex flex-col gap-2.5">
+          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Inevitability</div>
+          <p class="text-[13px] font-semibold text-black leading-relaxed type-target" data-copy="'It was all a dream' or sudden unearned twists cheat your audience. The climax must feel surprising yet inevitable, born entirely from your character's choices."></p>
         </div>
       </div>
       <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
@@ -370,22 +381,22 @@
 
     <!-- SLIDE 10 -->
     <div class="slide" id="slide-9" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             RULE 09: INDUSTRY STANDARD
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             10/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Presentation</span>
-          <h3 class="text-2xl font-black brand-font mt-1">Use Proper Formatting</h3>
+        <div class="box-anim-1 bg-white p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">Presentation</span>
+          <h3 class="text-2xl font-black brand-font mt-1.5">Use Proper Formatting</h3>
         </div>
-        <div class="box-anim-2 bg-[#EFE4D6] border-4 border-black p-5 brutal-shadow space-y-2">
-          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Courier 12pt Standard</div>
-          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-target" data-copy="Producers judge script discipline within 30 seconds. Keep action lines to two-line clusters and stop directing camera moves on the page. Clean layouts get read first."></p>
+        <div class="box-anim-2 bg-[#EFE4D6] p-5 brutal-shadow flex flex-col gap-2.5">
+          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Courier 12pt Standard</div>
+          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="Producers judge script discipline within 30 seconds. Keep action lines to two-line clusters and stop directing camera moves on the page. Clean layouts get read first."></p>
         </div>
       </div>
       <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
@@ -396,22 +407,22 @@
 
     <!-- SLIDE 11 -->
     <div class="slide" id="slide-10" data-bg="#E2E4E9">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-[#FFE600] px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-[#FFE600] px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             RULE 10: EXECUTION
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             11/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">The Final Step</span>
-          <h3 class="text-2xl font-black brand-font mt-1">Ship the First Draft</h3>
+        <div class="box-anim-1 bg-white p-4 brutal-shadow">
+          <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase leading-tight">The Final Step</span>
+          <h3 class="text-2xl font-black brand-font mt-1.5">Ship the First Draft</h3>
         </div>
-        <div class="box-anim-2 bg-[#DDE8DF] border-4 border-black p-5 brutal-shadow space-y-2">
-          <div class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit">Writing Is Rewriting</div>
-          <p class="text-sm font-semibold text-gray-900 leading-relaxed type-target" data-copy="You cannot fix an empty page. Finish draft one from start to end without editing. Then perform a cold table read, eliminate vocal filler, and lock your draft."></p>
+        <div class="box-anim-2 bg-[#DDE8DF] p-5 brutal-shadow flex flex-col gap-2.5">
+          <div class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase w-fit leading-tight">Writing Is Rewriting</div>
+          <p class="text-[13px] font-semibold text-gray-900 leading-relaxed type-target" data-copy="You cannot fix an empty page. Finish draft one from start to end without editing. Then perform a cold table read, eliminate vocal filler, and lock your draft."></p>
         </div>
       </div>
       <div class="box-anim-3 flex items-center justify-between text-[11px] font-bold tracking-wider pt-2 border-t-2 border-black">
@@ -420,30 +431,36 @@
       </div>
     </div>
 
-    <!-- SLIDE 12: CTA -->
+    <!-- SLIDE 12: CTA (Fixed Alignment & Padding) -->
     <div class="slide" id="slide-11" data-bg="#FFE600">
-      <div>
-        <div class="flex items-center justify-between mb-6">
-          <div class="box-anim-1 bg-black text-white px-3 py-1 text-xs font-black brand-font tracking-wider border-2 border-black">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center justify-between">
+          <div class="box-anim-1 inline-flex items-center bg-black text-white px-3 py-1 text-[11px] font-black brand-font tracking-wider border-2 border-black">
             NEXT ACTION
           </div>
-          <div class="bg-white text-black px-3 py-1 text-xs font-bold font-mono border-2 border-black">
+          <div class="bg-white text-black px-3 py-1 text-[11px] font-bold font-mono border-2 border-black">
             12/12
           </div>
         </div>
-        <div class="box-anim-1 bg-white border-4 border-black p-5 brutal-shadow mb-5 space-y-3">
+
+        <div class="box-anim-1 bg-white p-5 brutal-shadow flex flex-col gap-3">
           <h2 class="text-2xl font-black brand-font text-black leading-tight">
             STOP OUTLINING.<br>START FILMING.
           </h2>
-          <p class="text-xs font-bold text-gray-800 leading-relaxed type-target" data-copy="Need your short film or narrative video essay formatted to industry standards? We write tight, retention-backed screenplays ready for production."></p>
-          <div class="bg-[#D6E4EE] border-2 border-black p-3 brutal-shadow-sm space-y-1">
-            <span class="text-[9px] font-black brand-font uppercase bg-black text-white px-1.5 py-0.5">Free Opening Act Pass</span>
-            <p class="text-xs font-bold text-gray-900 pt-1">
+          <p class="text-[12px] font-bold text-gray-800 leading-snug type-target" data-copy="Need your short film or narrative video essay formatted to industry standards? We write tight, retention-backed screenplays ready for production."></p>
+          
+          <!-- Explicitly Spaced Sub-Box -->
+          <div class="bg-[#D6E4EE] p-3.5 brutal-shadow-sm flex flex-col gap-1.5 mt-1">
+            <span class="inline-block bg-black text-white px-2 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider w-fit leading-tight">
+              FREE OPENING ACT PASS
+            </span>
+            <p class="text-[11px] font-bold text-gray-900 leading-snug pt-0.5">
               DM us your short film logline. We will review your premise and pacing breakdown for free.
             </p>
           </div>
         </div>
-        <div class="box-anim-2 space-y-2">
+
+        <div class="box-anim-2 flex flex-col gap-2">
           <div class="bg-black text-[#2ECC71] text-center font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-shadow-sm">
             DM "FILM" ON INSTAGRAM
           </div>
@@ -452,7 +469,8 @@
           </div>
         </div>
       </div>
-      <div class="box-anim-3 text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-2">
+
+      <div class="box-anim-3 text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-3">
         DRAFTSRUSH STUDIO • 2026
       </div>
     </div>
@@ -461,7 +479,7 @@
 
   <script>
     const totalSlides = 12;
-    const slideDuration = 5200; // 5.2 seconds per slide
+    const slideDuration = 5200;
     let currentSlide = 0;
     let isPlaying = true;
     let timer = null;
@@ -472,31 +490,28 @@
       if (typeInterval) clearInterval(typeInterval);
       if (delayTimeout) clearTimeout(delayTimeout);
 
-      // 1. Force Browser to re-trigger CSS keyframe animations
       const anim1 = slideElement.querySelectorAll('.box-anim-1');
       const anim2 = slideElement.querySelectorAll('.box-anim-2');
       const anim3 = slideElement.querySelectorAll('.box-anim-3');
 
       [...anim1, ...anim2, ...anim3].forEach(el => {
         el.classList.remove('run-anim-1', 'run-anim-2', 'run-anim-3');
-        void el.offsetWidth; // Reflow trigger
+        void el.offsetWidth;
       });
 
       anim1.forEach(el => el.classList.add('run-anim-1'));
       anim2.forEach(el => el.classList.add('run-anim-2'));
       anim3.forEach(el => el.classList.add('run-anim-3'));
 
-      // 2. Typewriter Effect
       const target = slideElement.querySelector('.type-target');
       if (target) {
         const fullText = target.getAttribute('data-copy') || '';
         target.textContent = '';
         target.classList.add('typing-cursor');
 
-        // Wait 1.1s for block cards to slide from left and settle
         delayTimeout = setTimeout(() => {
           let i = 0;
-          const speed = Math.max(22, Math.floor(3200 / fullText.length)); // ~3.2s typing run
+          const speed = Math.max(22, Math.floor(3200 / fullText.length));
 
           typeInterval = setInterval(() => {
             if (i < fullText.length) {
@@ -518,7 +533,6 @@
       currentSlide = (index + totalSlides) % totalSlides;
       const target = document.getElementById(`slide-${currentSlide}`);
       
-      // Update background color of stage based on active slide
       const bg = target.getAttribute('data-bg') || '#E2E4E9';
       document.getElementById('reel-stage').style.backgroundColor = bg;
       
@@ -629,7 +643,7 @@
 
         try {
           const canvas = await html2canvas(document.getElementById('reel-stage'), {
-            scale: 2.6666, // Scales up to exact 1080x1920 Instagram Story / Reel resolution
+            scale: 2.6666, // Exact 1080x1920 Instagram Story / Reel resolution
             useCORS: true,
             backgroundColor: null
           });
