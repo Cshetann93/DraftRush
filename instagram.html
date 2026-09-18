@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DraftsRush - Chat to Horror Scene</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@500;600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #111317;
+      color: #111317;
+      padding: 30px;
+    }
+    .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace, Courier; }
+
+    /* Exact 9:16 display (405x720) -> Renders to 1080x1920 */
+    .reel-frame {
+      width: 405px;
+      height: 720px;
+      position: relative;
+      flex-shrink: 0;
+      border: 4px solid #111317;
+      box-shadow: 10px 10px 0px #000000;
+      background-color: #DDE1E8;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 22px 22px 22px;
+      overflow: hidden;
+    }
+
+    .b-card {
+      border: 3.5px solid #111317;
+      box-shadow: 5px 5px 0px #111317;
+      background-color: #FFFFFF;
+      padding: 16px;
+    }
+    .b-card-sm {
+      border: 2.5px solid #111317;
+      box-shadow: 3.5px 3.5px 0px #111317;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      background-color: #111317;
+      color: #FFFFFF;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 10px;
+      padding: 4px 8px;
+      line-height: 14px;
+      margin-bottom: 8px;
+      border: 1.5px solid #111317;
+    }
+
+    .badge-header {
+      display: inline-block;
+      background-color: #111317;
+      color: #FFE600;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 11px;
+      padding: 6px 12px;
+      line-height: 14px;
+      border: 2px solid #111317;
+    }
+
+    .counter-header {
+      display: inline-block;
+      background-color: #FFFFFF;
+      color: #111317;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 12px;
+      padding: 6px 10px;
+      line-height: 14px;
+      border: 2px solid #111317;
+    }
+
+    .info-item {
+      display: inline-block;
+      padding: 6px 8px;
+      line-height: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 10px;
+      border: 2px solid #111317;
+    }
+
+    .chat-bubble-left {
+      background-color: #FFFFFF;
+      border: 2px solid #111317;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      max-width: 85%;
+      margin-bottom: 6px;
+      box-shadow: 2px 2px 0px #111317;
+    }
+
+    .chat-bubble-right {
+      background-color: #FFE600;
+      border: 2px solid #111317;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      max-width: 85%;
+      margin-left: auto;
+      margin-bottom: 6px;
+      box-shadow: 2px 2px 0px #111317;
+    }
+
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .flex-wrap { flex-wrap: wrap; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .text-center { text-align: center; }
+    .w-full { width: 100%; }
+    .grid { display: grid; }
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gap-2 { gap: 8px; }
+    .p-2 { padding: 8px; }
+    .p-3 { padding: 12px; }
+    .pt-3 { padding-top: 12px; }
+    .border-2 { border-width: 2px; }
+    .border-4 { border-width: 4px; }
+    .border-t-2 { border-top-width: 2px; }
+    .border-black { border-color: #111317; }
+    .text-black { color: #111317; }
+    .text-white { color: #FFFFFF; }
+    .bg-black { background-color: #111317; }
+    .bg-white { background-color: #FFFFFF; }
+    .font-black { font-weight: 900; }
+    .uppercase { text-transform: uppercase; }
+    .leading-tight { line-height: 1.15; }
+    .text-2xl { font-size: 22px; }
+    .text-xs { font-size: 11px; }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center">
+
+  <!-- Download & Action Bar -->
+  <div class="w-full max-w-6xl mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-4 border-black p-5 b-card" style="background-color: #FFE600; margin-bottom: 30px;">
+    <div>
+      <h1 class="brand-font font-black text-2xl uppercase">Turn Chat History into Dread</h1>
+      <p class="text-xs font-bold text-black uppercase" style="margin-top: 4px;">10-Frame Scene Lab (1080x1920 Export Ready)</p>
+    </div>
+    <button id="download-btn" onclick="downloadAllFrames()" class="bg-black text-white font-black brand-font text-xs uppercase border-2 border-black b-card" style="padding: 14px 24px; cursor: pointer;">
+      Download All 10 Frames (PNG)
+    </button>
+  </div>
+
+  <!-- Frames Grid -->
+  <div class="flex flex-wrap gap-8 justify-center items-start" style="max-width: 1400px; margin: 0 auto;">
+
+    <!-- FRAME 01: Hook -->
+    <div id="frame-01" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="badge-header">SCENE LAB</div>
+        <div class="counter-header">01/10</div>
+      </div>
+      <div class="b-card" style="background-color: #FFE600;">
+        <div class="badge-pill">SCREENPLAY EXPERIMENT</div>
+        <h2 class="text-2xl font-black brand-font leading-tight text-black">
+          Turn your late-night chat into pure horror.
+        </h2>
+      </div>
+      <div class="b-card">
+        <p style="font-size: 13px; font-weight: 700; line-height: 1.35; margin-bottom: 8px;">
+          You do not need old mansions, graveyards, or fog machines to write terror.
+        </p>
+        <p style="font-size: 12px; font-weight: 600; color: #4B5563; line-height: 1.45;">
+          True psychological dread begins with a casual text message from a verified contact that suddenly breaks everyday logic.
+        </p>
+      </div>
+      <div class="b-card" style="background-color: #FFF6CF;">
+        <div class="badge-pill">THE SCENARIO</div>
+        <div class="font-mono" style="font-size: 11px; font-weight: 700;">
+          TIME: 01:14 AM • PHONE UNLOCKED • BEDROOM
+        </div>
+      </div>
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 02: Baseline Normal -->
+    <div id="frame-02" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="badge-header">STAGE 1: SETUP</div>
+        <div class="counter-header">02/10</div>
+      </div>
+      <div class="b-card">
+        <div class="badge-pill">RULE OF REALISM</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Start with Casual Rhythm</h3>
+      </div>
+      <div class="b-card" style="background-color: #FFFFFF;">
+        <div class="badge-pill">INCOMING MESSAGES</div>
+        <div class="chat-bubble-left">
+          "Hey, did you leave your balcony window cracked open tonight?"
+        </div>
+        <div class="chat-bubble-right">
+          "Yeah, it was hot inside. Why?"
+        </div>
+        <div class="chat-bubble-left">
+          "Just wondered. Go back to sleep."
+        </div>
+      </div>
+      <div class="b-card" style="background-color: #FFF6CF;">
+        <p style="font-size: 12px; font-weight: 600; color: #4B5563; line-height: 1.4;">
+          The audience feels safe because ordinary banter establishes trust. Never rush the scare.
+        </p>
+      </div>
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 03: The Inciting Glitch -->
+    <div id="frame-03" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="badge-header">STAGE 2: DISRUPTION</div>
+        <div class="counter-header">03/10</div>
+      </div>
+      <div class="b-card">
+        <div class="badge-pill">THE CRACK IN THE LOGIC</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Introduce the Mismatch</h3>
+      </div>
+      <div class="b-card" style="background-color: #FFFFFF;">
+        <div class="badge-pill">THE TEXT ENGINE</div>
+        <div class="chat-bubble-right">
+          "Wait, you moved to Bangalore two months ago. How do you know about my window?"
+        </div>
+        <div class="border-2 border-black p-2 font-mono text-center font-bold mt-2" style="background-color: #F3F4F6; font-size: 11px;">
+          TYPING... [45 SECONDS PASSED]
+        </div>
+      </div>
+      <div class="b-card" style="background-color: #D6E4EE;">
+        <p style="font-size: 12px; font-weight: 600; color: #111317; line-height: 1.4;">
+          Suspense is born when a simple question cannot produce an immediate, rational answer.
+        </p>
+      </div>
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 04: The Delayed Reply -->
+    <div id="frame-04" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="badge-header">STAGE 3: THE DELAY</div>
+        <div class="counter-header">04/10</div>
+      </div>
+      <div class="b-card">
+        <div class="badge-pill">PACING WITH WHITE SPACE</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Silence Amplifies Tension</h3>
+      </div>
+      <div class="b-card" style="background-color: #FFE600;">
+        <div class="badge-pill">WHAT THE AUDIENCE HEARS</div>
+        <p style="font-size: 13px; font-weight: 700; line-height: 1.35; margin-bottom: 6px;">
+          The blue bubbles stop pulsing.
+        </p>
+        <p style="font-size: 12px; font-weight: 600; color: #111317; line-height: 1.45;">
+          In screenwriting, an unreturned text message turns the silence of the room into an active sound. The protagonist strains their ears to hear the apartment hallway.
+        </p>
+      </div>
+      <div class="b-card bg-white font-mono text-xs font-bold flex items-center justify-between">
+        <span>READ RECEIPT: BLUE TICKS</span>
+        <span class="info-item" style="background-color: #FF6B6B; color: #000;">NO INCOMING AUDIO</span>
+      </div>
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 05: The Escalation -->
+    <div id="frame-05" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="badge-header">STAGE 4: ESCALATION</div>
+        <div class="counter-header">05/10</div>
+      </div>
+      <div class="b-card">
+        <div class="badge-pill">EVIDENCE OF PROXIMITY</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Remove the Distance</h3>
+      </div>
+      <div class="b-card" style="background-color: #FFFFFF;">
+        <div class="chat-bubble-left">
+          "Check your photo gallery."
+        </div>
+        <div class="border-2 border-black p-3 font-mono text-center font-bold mt-2" style="background-color: #111317; color: #FFE600; font-size: 10px;">
+          NEW AIRDROP RECEIVED: "IMG_4091.JPG"
+        </div>
+      </div>
+      <div class="b-card" style="background-color: #FFF6CF;">
+        <p style="font-size: 12px; font-weight: 600; color: #4B5563; line-height: 1.4;">
+          The threat is no longer a remote text message. It has moved inside physical wireless range.
+        </p>
+      </div>
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 06: The Visual Punch -->
+    <div id="frame-06" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="badge-header">STAGE 5: THE PROOF</div>
+        <div class="counter-header">06/10</div>
+      </div>
+      <div class="b-card">
+        <div class="badge-pill">POINT OF VIEW ATTACK</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">The Photo Contents</h3>
+      </div>
+      <div class="b-card" style="background-color: #D6E4EE;">
+        <div class="badge-pill">SCENE DIRECTION</div>
+        <p style="font-size: 13px; font-weight: 700; line-height: 1.35; margin-bottom: 6px;">
+          The photograph opens.
+        </p>
+        <p style="font-size: 12px; font-weight: 600; color: #111317; line-height: 1.45;">
+          It is an over-the-shoulder shot taken from inside the darkened hallway closet. In the frame: the protagonist lying in bed, staring down at their glowing smartphone screen.
+        </p>
+      </div>
+      <div class="b-card bg-white font-mono text-center font-bold text-xs">
+        <span style="color: #E11D48;">TIMESTAMP ON PHOTO: "01:15:02 AM" (JUST NOW)</span>
+      </div>
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 07: The Failed Exit -->
+    <div id="frame-07" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="badge-header">STAGE 6: TRAPPED</div>
+        <div class="counter-header">07/10</div>
+      </div>
+      <div class="b-card">
+        <div class="badge-pill">SHRINKING THE CIRCLE</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">Cut Off Communication</h3>
+      </div>
+      <div class="b-card" style="background-color: #FFFFFF;">
+        <p style="font-size: 13px; font-weight: 700; line-height: 1.35; margin-bottom: 8px;">
+          Protagonist hits the Call button immediately.
+        </p>
+        <div class="border-2 border-black p-2 font-mono text-center font-bold" style="background-color: #FCE8E6; color: #991B1B; font-size: 11px;">
+          OUTGOING CALL: MORPHS TO VOICEMAIL
+        </div>
+        <p style="font-size: 12px; font-weight: 600; color: #4B5563; line-height: 1.45; margin-top: 8px;">
+          Behind them, deep inside the hallway closet, a familiar ringtone begins vibrating through the wooden door slats.
+        </p>
+      </div>
+      <div class="b-card" style="background-color: #FFE600;">
+        <p style="font-size: 11px; font-weight: 700; color: #111317; line-height: 1.4;">
+          The digital world has fully collapsed into the physical room.
+        </p>
+      </div>
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 08: The Writing Lesson -->
+    <div id="frame-08" class="reel-frame">
+      <div class="flex items-center justify-between">
+        <div class="badge-header">STAGE 7: CRAFT</div>
+        <div class="counter-header">08/10</div>
+      </div>
+      <div class="b-card">
+        <div class="badge-pill">THE SCREENWRITING FORMULA</div>
+        <h3 class="text-2xl font-black brand-font leading-tight">How to Build Screen Horror</h3>
+      </div>
+      <div class="b-card" style="background-color: #DDE8DF;">
+        <div class="space-y-2 font-mono text-xs font-bold text-gray-900">
+          <div class="border-b border-black pb-1">1. Trustworthy Channel (Friend text)</div>
+          <div class="border-b border-black pb-1">2. Factual Discrepancy (Friend is far away)</div>
+          <div class="border-b border-black pb-1">3. Proof of Proximity (Local file / audio)</div>
+          <div>4. Physical Trap (No clean escape exit)</div>
+        </div>
+      </div>
+      <div class="b-card bg-white">
+        <p style="font-size: 12px; font-weight: 600; color: #4B5563; line-height: 1.45;">
+          When building scenes, horror is not monster design. It is the steady destruction of ordinary safety.
+        </p>
+      </div>
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>draftsrush.com</span>
+      </div>
+    </div>
+
+    <!-- FRAME 09: Community Interactive -->
+    <div id="frame-09" class="reel-frame" style="background-color: #FFE600;">
+      <div class="flex items-center justify-between">
+        <div class="badge-header bg-black text-white">YOUR TURN</div>
+        <div class="counter-header">09/10</div>
+      </div>
+      <div class="b-card bg-white text-center">
+        <div class="badge-pill">WRITE WITH US</div>
+        <h2 class="text-2xl font-black brand-font leading-tight mb-2">
+          What is the next text message they receive?
+        </h2>
+        <p style="font-size: 13px; font-weight: 600; color: #374151; line-height: 1.45; margin-bottom: 12px;">
+          The closet door latch clicks open 1 inch. The phone buzzes one last time.
+        </p>
+        <div class="border-2 border-black p-3 font-mono text-xs font-bold" style="background-color: #F0F2F5;">
+          COMMENT YOUR ENDING LINE BELOW ➔
+        </div>
+      </div>
+      <div class="b-card bg-black text-white text-center">
+        <p style="font-size: 11px; font-mono; font-weight: 700;">
+          WE WILL TURN THE BEST COMMENT INTO A PRODUCED 60-SEC SCREENPLAY.
+        </p>
+      </div>
+      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider text-black">
+        <span>DRAFTSRUSH STUDIO</span>
+        <span>COMMUNITY PROMPT</span>
+      </div>
+    </div>
+
+    <!-- FRAME 10: Master CTA -->
+    <div id="frame-10" class="reel-frame" style="background-color: #FFE600;">
+      <div class="flex items-center justify-between">
+        <div class="badge-header bg-black text-white">NEXT STEP</div>
+        <div class="counter-header">10/10</div>
+      </div>
+      <div class="b-card bg-white">
+        <h2 class="text-2xl font-black brand-font text-black leading-tight mb-2">
+          TURN ORDINARY MOMENTS<br>INTO TIGHT SCRIPTS.
+        </h2>
+        <p style="font-size: 12px; font-weight: 700; color: #374151; line-height: 1.4; margin-bottom: 12px;">
+          Writing a short film, suspense reel, or digital video essay? DraftsRush builds production-ready scripts with calibrated pacing and zero fluff.
+        </p>
+        <div class="border-2 border-black p-3 b-card-sm" style="background-color: #D6E4EE;">
+          <div class="badge-pill mb-1">FREE SCRIPT AUDIT</div>
+          <p style="font-size: 11px; font-weight: 700; color: #111317; line-height: 1.3;">
+            Send us your one-sentence premise. We will dissect your narrative obstacles and escalation path for free.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <div class="bg-black text-center font-black brand-font text-xs uppercase border-2 border-black b-card-sm" style="color: #FFE600; padding: 12px 8px;">
+          DM "SCENE" ON INSTAGRAM
+        </div>
+        <div class="text-black text-center font-black brand-font text-xs uppercase border-2 border-black b-card-sm" style="background-color: #FFFFFF; padding: 10px 8px;">
+          OR VISIT DRAFTSRUSH.COM
+        </div>
+      </div>
+      <div class="text-center font-bold text-xs font-mono text-black border-t-2 border-black pt-3">
+        DRAFTSRUSH STUDIO • 2026
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    async function downloadAllFrames() {
+      const btn = document.getElementById('download-btn');
+      btn.innerText = 'PREPARING FONTS...';
+      btn.disabled = true;
+
+      await document.fonts.ready;
+      const pixelRatio = 1080 / 405; // Exact 2.666667x multiplier for 1080x1920
+
+      for (let i = 1; i <= 10; i++) {
+        const frameNum = i < 10 ? `0${i}` : `${i}`;
+        const frameId = `frame-${frameNum}`;
+        const node = document.getElementById(frameId);
+        btn.innerText = `EXPORTING FRAME ${i} OF 10...`;
+
+        try {
+          const dataUrl = await htmlToImage.toPng(node, {
+            pixelRatio: pixelRatio,
+            quality: 1.0,
+            skipAutoScale: true,
+            cacheBust: true,
+            fontEmbedCSS: true
+          });
+
+          const link = document.createElement('a');
+          link.download = `draftsrush-chat-horror-${frameNum}.png`;
+          link.href = dataUrl;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          await new Promise(r => setTimeout(r, 200));
+        } catch (error) {
+          console.error(`Failed rendering ${frameId}:`, error);
+        }
+      }
+
+      btn.innerText = 'DOWNLOAD ALL 10 FRAMES (PNG)';
+      btn.disabled = false;
+    }
+  </script>
+</body>
+</html>
