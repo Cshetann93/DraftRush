@@ -199,45 +199,85 @@
           </p>
         </section>
 
-        <!-- Visual Structural Blueprint -->
-        <section class="border-4 border-black bg-[#111317] p-8 md:p-10 brutal-box text-white space-y-6">
+        <!-- Visual Structural Blueprint: True Pyramid Diagram -->
+        <section class="border-4 border-black bg-[#111317] p-6 md:p-10 brutal-box text-white space-y-6">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-2 border-gray-700 pb-4">
             <div>
               <span class="text-xs font-bold uppercase tracking-wider bg-[#FFE600] text-black px-2 py-0.5 inline-block mb-1 brand-font">Visual Diagram</span>
-              <h2 class="text-2xl md:text-3xl font-black brand-font text-white">The Narrative Arc of Tension</h2>
+              <h2 class="text-2xl md:text-3xl font-black brand-font text-white">Freytag's Pyramid Annotated</h2>
             </div>
-            <span class="text-xs font-mono font-bold bg-[#FFE600] text-black px-2.5 py-1 w-fit">TENSION OVER RUNTIME</span>
+            <span class="text-xs font-mono font-bold bg-[#FFE600] text-black px-2.5 py-1 w-fit">DRAMATIC TENSION MAP</span>
           </div>
 
           <p class="font-medium text-gray-300 text-sm md:text-base leading-relaxed">
-            The pyramid visualizes the psychological investment of the audience. Tension increases steadily as problems compound, peaks at the climax, and falls into a permanent new baseline.
+            The narrative path rises from left to right, peaks at the dramatic apex, and drops toward the new reality.
           </p>
 
-          <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 pt-4 font-mono text-xs">
-            <div class="border-2 border-gray-600 bg-[#1A1E24] p-3 flex flex-col justify-between">
-              <span class="text-gray-400 font-bold">STAGE 01</span>
-              <span class="text-[#FFE600] font-black text-sm uppercase mt-2">Exposition</span>
-              <span class="text-gray-400 text-[10px] mt-1">Status Quo</span>
-            </div>
-            <div class="border-2 border-gray-600 bg-[#1A1E24] p-3 flex flex-col justify-between">
-              <span class="text-gray-400 font-bold">STAGE 02</span>
-              <span class="text-[#FFE600] font-black text-sm uppercase mt-2">Rising Action</span>
-              <span class="text-gray-400 text-[10px] mt-1">Stakes Escalate</span>
-            </div>
-            <div class="border-2 border-black bg-[#FFE600] text-black p-3 flex flex-col justify-between brutal-box">
-              <span class="font-bold text-gray-800">STAGE 03</span>
-              <span class="font-black text-base uppercase mt-2">The Climax</span>
-              <span class="font-bold text-[10px] mt-1">Irreversible Choice</span>
-            </div>
-            <div class="border-2 border-gray-600 bg-[#1A1E24] p-3 flex flex-col justify-between">
-              <span class="text-gray-400 font-bold">STAGE 04</span>
-              <span class="text-[#FFE600] font-black text-sm uppercase mt-2">Falling Action</span>
-              <span class="text-gray-400 text-[10px] mt-1">Direct Fallout</span>
-            </div>
-            <div class="border-2 border-gray-600 bg-[#1A1E24] p-3 flex flex-col justify-between">
-              <span class="text-gray-400 font-bold">STAGE 05</span>
-              <span class="text-[#FFE600] font-black text-sm uppercase mt-2">Resolution</span>
-              <span class="text-gray-400 text-[10px] mt-1">The New Normal</span>
+          <!-- SVG Visual Pyramid Diagram -->
+          <div class="w-full bg-[#1A1E24] border-2 border-gray-700 p-4 sm:p-6 overflow-x-auto">
+            <div class="min-w-[620px]">
+              <svg viewBox="0 0 760 380" class="w-full h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#FFE600" />
+                  </marker>
+                </defs>
+
+                <!-- Grid Guide Lines -->
+                <line x1="60" y1="310" x2="700" y2="310" stroke="#374151" stroke-width="2" stroke-dasharray="4" />
+                <line x1="380" y1="90" x2="380" y2="310" stroke="#374151" stroke-width="1.5" stroke-dasharray="3" />
+
+                <!-- Left Slope: Rising Action -->
+                <line x1="170" y1="290" x2="365" y2="105" stroke="#FFE600" stroke-width="5" stroke-linecap="round" />
+                <!-- Right Slope: Falling Action -->
+                <line x1="395" y1="105" x2="590" y2="290" stroke="#FFE600" stroke-width="5" stroke-linecap="round" />
+
+                <!-- 1. Exposition Box -->
+                <g transform="translate(20, 270)">
+                  <rect width="130" height="56" fill="#111317" stroke="#9CA3AF" stroke-width="2" />
+                  <text x="65" y="24" fill="#9CA3AF" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">STAGE 01</text>
+                  <text x="65" y="44" fill="#FFFFFF" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">EXPOSITION</text>
+                </g>
+
+                <!-- Inciting Incident Marker -->
+                <g transform="translate(190, 260)">
+                  <circle cx="0" cy="0" r="5" fill="#FFE600" stroke="#111317" stroke-width="2" />
+                  <rect x="-65" y="-42" width="130" height="30" fill="#111317" stroke="#FFE600" stroke-width="1.5" />
+                  <text x="0" y="-22" fill="#FFE600" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="800" text-anchor="middle">INCITING INCIDENT</text>
+                  <line x1="0" y1="-12" x2="0" y2="-5" stroke="#FFE600" stroke-width="1.5" />
+                </g>
+
+                <!-- 2. Rising Action Callout -->
+                <g transform="translate(210, 160)">
+                  <rect width="135" height="52" fill="#111317" stroke="#FFE600" stroke-width="2" />
+                  <text x="67" y="22" fill="#FFE600" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">STAGE 02</text>
+                  <text x="67" y="40" fill="#FFFFFF" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">RISING ACTION</text>
+                </g>
+
+                <!-- 3. Peak: The Climax Box -->
+                <g transform="translate(305, 30)">
+                  <rect width="150" height="64" fill="#FFE600" stroke="#000000" stroke-width="3" filter="drop-shadow(4px 4px 0px #000000)" />
+                  <text x="75" y="26" fill="#111317" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" text-anchor="middle">STAGE 03 • PEAK</text>
+                  <text x="75" y="48" fill="#111317" font-family="'Space Grotesk', sans-serif" font-size="16" font-weight="900" text-anchor="middle">THE CLIMAX</text>
+                </g>
+
+                <!-- 4. Falling Action Callout -->
+                <g transform="translate(425, 160)">
+                  <rect width="135" height="52" fill="#111317" stroke="#FFE600" stroke-width="2" />
+                  <text x="67" y="22" fill="#FFE600" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">STAGE 04</text>
+                  <text x="67" y="40" fill="#FFFFFF" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">FALLING ACTION</text>
+                </g>
+
+                <!-- 5. Resolution Box -->
+                <g transform="translate(605, 270)">
+                  <rect width="130" height="56" fill="#111317" stroke="#9CA3AF" stroke-width="2" />
+                  <text x="65" y="24" fill="#9CA3AF" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">STAGE 05</text>
+                  <text x="65" y="44" fill="#FFFFFF" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">RESOLUTION</text>
+                </g>
+
+                <!-- Baseline Indicator -->
+                <text x="380" y="340" fill="#6B7280" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" text-anchor="middle">RUNTIME PROGRESSION ➔</text>
+              </svg>
             </div>
           </div>
         </section>
