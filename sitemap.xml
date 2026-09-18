@@ -1,239 +1,306 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Core Pages -->
+  <!-- Core Pillars -->
   <url>
     <loc>https://www.draftsrush.com/</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/scripts</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.8</priority>
+    <loc>https://www.draftsrush.com/script-editor</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/writers-room</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/about</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.8</priority>
+    <loc>https://www.draftsrush.com/tools</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/partner</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/contact</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/sitemap</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/privacy</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/terms</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Interactive Studio Tools -->
-  <url>
-    <loc>https://www.draftsrush.com/script-editor</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
+    <loc>https://www.draftsrush.com/scripts</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Writer's Room Directory & Master Hubs -->
-  <url>
-    <loc>https://www.draftsrush.com/templates</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/retention-teardowns</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/visual-comparisons</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/glossary</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/storytelling-blueprints</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Craft Guides & Articles -->
+  <!-- Writer's Room & Craft Guides -->
   <url>
     <loc>https://www.draftsrush.com/screenplay-format-guide</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/script-breakdown-sheet</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/how-to-end-a-story</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/how-to-write-a-villain</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/parts-of-a-story-freytags-pyramid</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/how-many-acts-are-in-a-movie-three-act-structure</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/how-to-write-a-scary-story-with-examples</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/how-to-write-a-podcast-script</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/brainstorming-techniques-for-writers</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/narrative-techniques</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/screenplay-formatting-mistakes</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
+    <loc>https://www.draftsrush.com/storytelling-blueprints</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/story-structure-frameworks</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/video-hook-formulas</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/write-realistic-dialogue</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/screenwriting-competitions-worth-it</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
+    <loc>https://www.draftsrush.com/video-hook-formulas</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.draftsrush.com/best-websites-to-read-movie-scripts</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
+    <loc>https://www.draftsrush.com/screenplay-formatting-mistakes</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/script-breakdown-sheet</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/templates</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/retention-teardowns</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/visual-comparisons</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/best-free-screenwriting-software</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/best-screenwriting-books</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/best-cinematography-books</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/best-filmmaking-and-screenwriting-podcasts</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/ai-tools-for-screenwriters</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.7</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/best-screenwriting-books</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/best-cinematography-books</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/best-filmmaking-and-screenwriting-podcasts</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/best-websites-to-read-movie-scripts</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/screenwriting-competitions-worth-it</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/glossary</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
-  <!-- Production Utilities (/tools/) -->
+  <!-- Interactive Studio Tools -->
   <url>
     <loc>https://www.draftsrush.com/tools/script-timer</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/tools/hook-analyzer</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/retention-simulator</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/hook-generator</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/tools/dialogue-pruner</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.draftsrush.com/tools/cta-checker</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/tools/format-converter</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/tools/broll-generator</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/retention-simulator</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/hook-generator</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/tools/cta-checker</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/tools/shorts-splitter</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/tools/title-checker</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/tools/screenplay-calculator</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/tools/speech-trainer</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.draftsrush.com/tools/timestamp-maker</loc>
-    <lastmod>2026-09-16T09:02:39+00:00</lastmod>
-    <priority>0.6</priority>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Company & Legal -->
+  <url>
+    <loc>https://www.draftsrush.com/about</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/contact</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/partner</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/privacy</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.draftsrush.com/terms</loc>
+    <lastmod>2026-09-18T12:07:17+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
