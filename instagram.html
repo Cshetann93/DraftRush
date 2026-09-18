@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DraftsRush - Chat to Horror Scene (Cover Frame)</title>
+  <title>DraftsRush - Custom Cover Frame</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,7 @@
     .brand-font { font-family: 'Space Grotesk', sans-serif; }
     .font-mono { font-family: 'JetBrains Mono', monospace, Courier; }
 
-    /* Exact 9:16 aspect ratio (405x720) -> Exports to 1080x1920 */
+    /* Exact 9:16 aspect ratio (405x720) -> Renders cleanly to 1080x1920 */
     .reel-frame {
       width: 405px;
       height: 720px;
@@ -48,7 +48,7 @@
       border: 3.5px solid #111317;
       box-shadow: 6px 6px 0px #111317;
       background-color: #111317;
-      padding: 36px 20px;
+      padding: 32px 20px;
       width: 100%;
     }
 
@@ -81,7 +81,7 @@
   <!-- Download & Action Bar -->
   <div class="w-full max-w-md mb-6 flex items-center justify-between gap-4 border-4 border-black p-4" style="background-color: #FFE600; box-shadow: 6px 6px 0px #111317;">
     <div>
-      <h1 class="brand-font" style="font-weight: 900; font-size: 16px; text-transform: uppercase; letter-spacing: -0.02em;">Instagram Cover Frame</h1>
+      <h1 class="brand-font" style="font-weight: 900; font-size: 16px; text-transform: uppercase; letter-spacing: -0.02em;">Custom Instagram Frame</h1>
       <p class="font-mono" style="font-size: 10px; font-weight: 700; color: #111317; margin-top: 2px;">1080x1920 PNG EXPORT</p>
     </div>
     <button id="download-btn" onclick="downloadCoverFrame()" class="brand-font" style="background-color: #111317; color: #FFFFFF; font-weight: 900; font-size: 11px; text-transform: uppercase; border: 2px solid #111317; padding: 10px 16px; cursor: pointer; box-shadow: 3px 3px 0px #000000;">
@@ -92,9 +92,9 @@
   <!-- Single Standalone Frame -->
   <div id="frame-cover" class="reel-frame">
     <div class="b-card-dark text-center">
-      <div class="badge-pill">BEFORE YOU SCROLL</div>
-      <h2 class="brand-font" style="font-weight: 900; font-size: 26px; line-height: 1.25; color: #FFFFFF; text-transform: uppercase; letter-spacing: -0.03em;">
-        Let's turn your smartphone chat into pure horror.
+      <div class="badge-pill">BEFORE SKIPPING THIS</div>
+      <h2 class="brand-font" style="font-weight: 900; font-size: 22px; line-height: 1.25; color: #FFFFFF; text-transform: uppercase; letter-spacing: -0.03em;">
+        Let's turn your smartphone conversation with your friend into a horror scene; try with us.
       </h2>
     </div>
   </div>
@@ -106,7 +106,7 @@
       btn.disabled = true;
 
       await document.fonts.ready;
-      const pixelRatio = 1080 / 405; // 2.666667 multiplier for 1080x1920 export
+      const pixelRatio = 1080 / 405; // Exact 2.666667x multiplier for 1080x1920 export
 
       const node = document.getElementById('frame-cover');
       btn.innerText = 'EXPORTING PNG...';
@@ -121,7 +121,7 @@
         });
 
         const link = document.createElement('a');
-        link.download = 'draftsrush-chat-horror-cover.png';
+        link.download = 'draftsrush-chat-horror-custom.png';
         link.href = dataUrl;
         document.body.appendChild(link);
         link.click();
