@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KFBGQ8WX');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dual-Column AV Script to Teleprompter Runner | DraftsRush</title>
+  <meta name="description" content="Free online teleprompter that parses dual-column AV scripts. Isolate spoken voiceover while keeping visual cues highlighted as stage directions.">
+  <link rel="canonical" href="https://www.draftsrush.com/tools/av-teleprompter">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
+
+    /* Mirror Mode for physical beam splitter glass */
+    .mirror-mode {
+      transform: scaleX(-1);
+    }
+  </style>
+</head>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFBGQ8WX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Universal Header -->
+  <header id="site-header" class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
+      <a href="/" class="inline-flex items-center flex-shrink-0" aria-label="DraftsRush Home">
+        <img src="/drlogo.png" alt="DraftsRush" width="240" height="64" class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" />
+      </a>
+
+      <nav class="hidden md:flex items-center gap-3 font-bold text-xs tracking-wider brand-font">
+        <a href="/script-editor" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-black"></span>
+          <span>SCRIPT EDITOR</span>
+        </a>
+        <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          WRITER'S ROOM
+        </a>
+        <a href="/tools" class="bg-[#FFE600] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          FREE TOOLS
+        </a>
+        <a href="/scripts" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          SERVICES
+        </a>
+        <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          ABOUT
+        </a>
+      </nav>
+
+      <div class="hidden md:flex items-center">
+        <a href="/contact" class="bg-black text-white border-2 border-black px-4 py-1.5 font-bold text-xs tracking-wider brand-font brutal-box brutal-btn uppercase transition-transform whitespace-nowrap">
+          ORDER DRAFT
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-6xl mx-auto px-6 py-10 w-full">
+    
+    <!-- Setup Mode Card -->
+    <div id="setup-panel" class="space-y-6">
+      <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box-lg">
+        <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Recording Studio Utility</span>
+        <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-1">Dual-Column AV Script Teleprompter</h1>
+        <p class="text-sm font-medium text-black max-w-2xl">
+          Paste your standard two-column audio/video script. This tool automatically isolates your spoken voiceover lines while converting your visual directions into distinct yellow stage cues so you never read visual instructions out loud.
+        </p>
+      </div>
+
+      <div class="border-4 border-black bg-white p-6 brutal-box space-y-4">
+        <div class="flex justify-between items-center border-b-2 border-black pb-2">
+          <label class="text-sm font-black brand-font uppercase">Paste Script (Tabs, Tables, or Text Cues)</label>
+          <button onclick="loadSampleScript()" class="text-xs font-mono font-bold underline text-blue-900">Load AV Sample</button>
+        </div>
+        <textarea id="script-input" rows="10" placeholder="Paste your script here... Use [BRACKETS] or (PARENTHESES) for visual cues." class="w-full border-2 border-black p-4 text-sm font-mono focus:outline-none focus:bg-[#FFF6CF] leading-relaxed"></textarea>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pt-2">
+          <div>
+            <label class="block text-xs font-bold uppercase font-mono mb-1">Scroll Speed: <span id="speed-display">2</span></label>
+            <input type="range" id="speed-slider" min="1" max="10" value="2" class="w-full accent-black cursor-pointer" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase font-mono mb-1">Font Size: <span id="font-display">36px</span></label>
+            <input type="range" id="font-slider" min="24" max="64" value="36" class="w-full accent-black cursor-pointer" />
+          </div>
+          <div class="flex items-center gap-2 pt-4">
+            <input type="checkbox" id="mirror-checkbox" class="w-4 h-4 accent-black border-2 border-black" />
+            <label for="mirror-checkbox" class="text-xs font-bold uppercase font-mono cursor-pointer">Mirror (Glass Mode)</label>
+          </div>
+          <div>
+            <button onclick="launchPrompter()" class="w-full bg-black text-[#FFE600] font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-box brutal-btn">
+              Launch Prompter ▶
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Prompter Interface (Hidden by default) -->
+    <div id="prompter-panel" class="hidden fixed inset-0 bg-[#111317] z-[100] flex flex-col">
+      
+      <!-- Top Prompter Navigation / Control Bar -->
+      <div class="bg-[#1C1F26] border-b-2 border-black p-3 px-6 flex items-center justify-between text-white font-mono text-xs select-none">
+        <div class="flex items-center gap-4">
+          <button id="play-btn" onclick="toggleScroll()" class="bg-[#FFE600] text-black font-black px-4 py-1 border border-black font-bold uppercase">PAUSE (SPACE)</button>
+          <span>SPEED: <span id="active-speed" class="font-bold text-[#FFE600]">2</span> (↑/↓)</span>
+          <span>SIZE: <span id="active-size" class="font-bold">36px</span></span>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="rewindPrompter()" class="border border-gray-600 px-2 py-1 hover:bg-gray-800">REWIND</button>
+          <button onclick="togglePrompterMirror()" class="border border-gray-600 px-2 py-1 hover:bg-gray-800">FLIP</button>
+          <button onclick="exitPrompter()" class="bg-red-600 text-white font-bold px-3 py-1 border border-black">EXIT (ESC)</button>
+        </div>
+      </div>
+
+      <!-- Eye-line Reading Marker Bar -->
+      <div class="relative flex-grow overflow-hidden">
+        <div class="absolute top-[28%] left-0 right-0 h-16 border-y-2 border-red-500/40 bg-red-500/5 pointer-events-none z-10">
+          <span class="absolute left-2 top-1 text-[10px] font-mono text-red-400 font-bold uppercase tracking-wider">◄ EYE LINE</span>
+        </div>
+
+        <!-- Scrolling Content Area -->
+        <div id="prompter-scroll-box" class="h-full overflow-y-auto px-8 md:px-24 py-[30vh] text-center">
+          <div id="prompter-content" class="max-w-4xl mx-auto space-y-8 font-bold leading-relaxed transition-all"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    let scrollInterval = null;
+    let isScrolling = false;
+    let scrollSpeed = 2;
+    let fontSize = 36;
+    let isMirrored = false;
+
+    const scriptInput = document.getElementById('script-input');
+    const speedSlider = document.getElementById('speed-slider');
+    const fontSlider = document.getElementById('font-slider');
+    const mirrorCheckbox = document.getElementById('mirror-checkbox');
+
+    speedSlider.addEventListener('input', (e) => {
+      scrollSpeed = parseInt(e.target.value);
+      document.getElementById('speed-display').innerText = scrollSpeed;
+      document.getElementById('active-speed').innerText = scrollSpeed;
+    });
+
+    fontSlider.addEventListener('input', (e) => {
+      fontSize = parseInt(e.target.value);
+      document.getElementById('font-display').innerText = `${fontSize}px`;
+      document.getElementById('active-size').innerText = `${fontSize}px`;
+    });
+
+    mirrorCheckbox.addEventListener('change', (e) => {
+      isMirrored = e.target.checked;
+    });
+
+    function loadSampleScript() {
+      scriptInput.value = `[VISUAL: Fast crash zoom to laptop screen showing red candlestick chart]
+On October 14th, a 24-year-old options trader turned four hundred dollars into eleven million dollars in six hours.
+
+[SFX: Heavy door slam • Police siren sound in distance]
+By midnight, federal marshals were knocking on his front door. But he hadn't broken a single financial law.
+
+[VISUAL: Top down desk shot • Archival 1999 SEC regulatory volume opens]
+To understand how he pulled this off, you have to examine an obscure legal exemption created during the 2008 banking crisis.
+
+[VISUAL: Macro lens on contract line • Red sharpie circle around clause]
+An exemption that every hedge fund on Wall Street forgot about—except for one kid in a New Jersey basement.`;
+    }
+
+    function parseScriptToHtml(raw) {
+      const lines = raw.split('\n');
+      let html = '';
+
+      lines.forEach(line => {
+        const trimmed = line.trim();
+        if (!trimmed) return;
+
+        // Visual / Audio Stage Cue detection [BRACKETS] or (PARENTHESES)
+        if (trimmed.startsWith('[') || trimmed.startsWith('(')) {
+          html += `<div class="bg-[#FFE600] text-black font-mono text-base md:text-lg px-4 py-1.5 border-2 border-black inline-block uppercase tracking-wider my-4">${trimmed}</div>`;
+        } else {
+          html += `<p class="text-white font-medium my-4">${trimmed}</p>`;
+        }
+      });
+
+      return html || '<p class="text-gray-500">No voiceover lines detected.</p>';
+    }
+
+    function launchPrompter() {
+      const rawText = scriptInput.value.trim();
+      if (!rawText) {
+        alert('Please paste or write your script first.');
+        return;
+      }
+
+      const contentBox = document.getElementById('prompter-content');
+      contentBox.innerHTML = parseScriptToHtml(rawText);
+      contentBox.style.fontSize = `${fontSize}px`;
+
+      const prompterBox = document.getElementById('prompter-scroll-box');
+      prompterBox.scrollTop = 0;
+
+      if (isMirrored) {
+        prompterBox.classList.add('mirror-mode');
+      } else {
+        prompterBox.classList.remove('mirror-mode');
+      }
+
+      document.getElementById('prompter-panel').classList.remove('hidden');
+      isScrolling = true;
+      startScroll();
+    }
+
+    function startScroll() {
+      clearInterval(scrollInterval);
+      const box = document.getElementById('prompter-scroll-box');
+      scrollInterval = setInterval(() => {
+        box.scrollTop += scrollSpeed;
+      }, 30);
+      document.getElementById('play-btn').innerText = 'PAUSE (SPACE)';
+      document.getElementById('play-btn').className = 'bg-[#FFE600] text-black font-black px-4 py-1 border border-black font-bold uppercase';
+    }
+
+    function stopScroll() {
+      clearInterval(scrollInterval);
+      document.getElementById('play-btn').innerText = 'RESUME (SPACE)';
+      document.getElementById('play-btn').className = 'bg-white text-black font-black px-4 py-1 border border-black font-bold uppercase';
+    }
+
+    function toggleScroll() {
+      if (isScrolling) {
+        stopScroll();
+        isScrolling = false;
+      } else {
+        startScroll();
+        isScrolling = true;
+      }
+    }
+
+    function rewindPrompter() {
+      const box = document.getElementById('prompter-scroll-box');
+      box.scrollTop = 0;
+    }
+
+    function togglePrompterMirror() {
+      const box = document.getElementById('prompter-scroll-box');
+      box.classList.toggle('mirror-mode');
+    }
+
+    function exitPrompter() {
+      stopScroll();
+      isScrolling = false;
+      document.getElementById('prompter-panel').classList.add('hidden');
+    }
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      const panel = document.getElementById('prompter-panel');
+      if (panel.classList.contains('hidden')) return;
+
+      if (e.code === 'Space') {
+        e.preventDefault();
+        toggleScroll();
+      } else if (e.code === 'Escape') {
+        exitPrompter();
+      } else if (e.code === 'ArrowUp') {
+        e.preventDefault();
+        scrollSpeed = Math.min(scrollSpeed + 1, 10);
+        document.getElementById('active-speed').innerText = scrollSpeed;
+        if (isScrolling) startScroll();
+      } else if (e.code === 'ArrowDown') {
+        e.preventDefault();
+        scrollSpeed = Math.max(scrollSpeed - 1, 1);
+        document.getElementById('active-speed').innerText = scrollSpeed;
+        if (isScrolling) startScroll();
+      }
+    });
+  </script>
+</body>
+</html>
