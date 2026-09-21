@@ -9,848 +9,356 @@
   })(window,document,'script','dataLayer','GTM-KFBGQ8WX');</script>
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
-  <title>DraftsRush - Story Strategy Reel Studio</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Reel Frame Generator: 10 Essential Scriptwriting Scenes | DraftsRush</title>
+  <meta name="description" content="Interactive 9:16 vertical frame preview studio for Instagram Reels. Generate, preview, and cycle through scriptwriting scene breakdown slides.">
+  <link rel="canonical" href="https://www.draftsrush.com/tools/instagram-reel-scenes">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #111317;
-      color: #FFFFFF;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding: 24px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    h1 {
-      color: #FFE600;
-      font-size: 26px;
-      font-weight: 900;
-      margin-bottom: 6px;
-      letter-spacing: -0.5px;
-    }
-    p {
-      color: #D6E4EE;
-      font-size: 13px;
-      margin-bottom: 14px;
-    }
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 14px;
-      max-width: 600px;
-    }
-    button {
-      background: #FFE600;
-      color: #000;
-      font-weight: 900;
-      font-size: 13px;
-      padding: 12px 20px;
-      border: 3px solid #000;
-      box-shadow: 4px 4px 0px #fff;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: transform 0.05s;
-    }
-    button:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 5px 5px 0px #fff;
-    }
-    button:active {
-      transform: translate(2px, 2px);
-      box-shadow: 1px 1px 0px #fff;
-    }
-    button:disabled {
-      background: #444 !important;
-      color: #777 !important;
-      box-shadow: none !important;
-      cursor: not-allowed;
-      transform: none !important;
-    }
-    .btn-green {
-      background: #34D399;
-    }
-    .btn-blue {
-      background: #D6E4EE;
-    }
-    .status-panel {
-      background: #1C1F26;
-      border: 2px solid #333;
-      padding: 10px 18px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
-      font-size: 13px;
-      color: #34D399;
-      margin-bottom: 16px;
-      width: 100%;
-      max-width: 440px;
-      text-align: center;
-    }
-    .preview-container {
-      position: relative;
-      width: 100%;
-      max-width: 360px;
-      border: 3px solid #FFE600;
-      background: #000;
-      box-shadow: 0px 12px 36px rgba(0,0,0,0.8);
-    }
-    canvas {
-      width: 100%;
-      height: auto;
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
+    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
+
+    /* 9:16 Vertical Reel Canvas Spec */
+    .reel-viewport {
       aspect-ratio: 9 / 16;
-      display: block;
+      max-height: 720px;
     }
   </style>
 </head>
-<body>
+<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFBGQ8WX"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <div class="header">
-    <h1>DraftsRush Story Strategy Studio</h1>
-    <p>Guaranteed Video Recorder & Direct 1080x1920 PNG Slide Generator</p>
-  </div>
+  <!-- Universal Header -->
+  <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
+      <a href="/" class="inline-flex items-center flex-shrink-0" aria-label="DraftsRush Home">
+        <img src="/drlogo.png" alt="DraftsRush" width="240" height="64" class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" />
+      </a>
 
-  <div class="controls">
-    <button id="btnPlay" onclick="togglePlay()">▶ Play Preview (55s)</button>
-    <button id="btnRecord" class="btn-green" onclick="recordVideo()">🔴 Download Video (.webm)</button>
-    <button class="btn-blue" onclick="downloadAllSlidesZip()">📦 Download All 10 PNGs (.zip)</button>
-  </div>
+      <nav class="hidden md:flex items-center gap-3 font-bold text-xs tracking-wider brand-font">
+        <a href="/script-editor" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-black"></span>
+          <span>SCRIPT EDITOR</span>
+        </a>
+        <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          WRITER'S ROOM
+        </a>
+        <a href="/tools" class="bg-[#FFE600] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          FREE TOOLS
+        </a>
+        <a href="/scripts" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          SERVICES
+        </a>
+        <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+          ABOUT
+        </a>
+      </nav>
 
-  <div class="status-panel" id="statusText">System ready. Click Play or Record.</div>
+      <div class="hidden md:flex items-center">
+        <a href="/contact" class="bg-black text-white border-2 border-black px-4 py-1.5 font-bold text-xs tracking-wider brand-font brutal-box brutal-btn uppercase transition-transform whitespace-nowrap">
+          ORDER DRAFT
+        </a>
+      </div>
+    </div>
+  </header>
 
-  <div class="preview-container">
-    <canvas id="reelCanvas" width="1080" height="1920"></canvas>
-  </div>
+  <main class="flex-grow max-w-5xl mx-auto px-6 py-10 w-full">
+    
+    <!-- Hero Header -->
+    <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box-lg mb-8">
+      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Social Studio Utility</span>
+      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-1">Instagram Reel Frame Studio</h1>
+      <p class="text-sm font-medium text-black max-w-2xl">
+        Preview 9:16 vertical story slides optimized for maximum creator retention. Cycle through refined scriptwriting masterclass scene cards built with DraftsRush brutalist theme and distinct accent colors.
+      </p>
+    </div>
+
+    <!-- Frame Simulator & Deck Controls Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left: Interactive 9:16 Reel Viewport -->
+      <div class="lg:col-span-6 flex flex-col items-center">
+        <div class="w-full max-w-sm border-4 border-black bg-white brutal-box-lg p-4 flex flex-col justify-between reel-viewport relative overflow-hidden transition-colors duration-300" id="reel-card">
+          
+          <!-- Top Reel Header Status -->
+          <div class="flex justify-between items-center text-[10px] font-mono font-bold border-b-2 border-black pb-2">
+            <span id="slide-counter" class="bg-black text-white px-1.5 py-0.5">SLIDE 01 / 12</span>
+            <span class="tracking-widest uppercase">DRAFTSRUSH REELS</span>
+          </div>
+
+          <!-- Center Slide Body Content -->
+          <div class="my-auto py-6 space-y-4 text-center">
+            <div id="slide-badge-container">
+              <span id="slide-badge" class="bg-black text-white px-3 py-1 text-[11px] font-black brand-font uppercase tracking-wider border border-black inline-block">MASTERCLASS BREAKDOWN</span>
+            </div>
+            
+            <h2 id="slide-title" class="text-2xl sm:text-3xl font-black brand-font leading-tight tracking-tight px-2">
+              10 Masterclass Scenes You Must Study to Master Scriptwriting
+            </h2>
+
+            <div id="slide-body-box" class="border-2 border-black bg-white p-4 brutal-box text-left hidden">
+              <div class="text-[10px] font-mono font-bold uppercase text-gray-500 mb-1">WHY YOU SHOULD WATCH IT:</div>
+              <p id="slide-body" class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed"></p>
+            </div>
+          </div>
+
+          <!-- Bottom Reel Footer Tag -->
+          <div class="border-t-2 border-black pt-2 flex justify-between items-center text-[10px] font-mono font-bold">
+            <span>@DraftsRush</span>
+            <span id="slide-accent-tag" class="bg-[#FFE600] border border-black px-1.5 py-0.5">SWIPE →</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: Deck Nav & Slide Inspector -->
+      <div class="lg:col-span-6 space-y-6">
+        <div class="border-4 border-black bg-white p-6 brutal-box space-y-5">
+          <div class="flex justify-between items-center border-b-2 border-black pb-3">
+            <h3 class="text-xl font-black brand-font uppercase">Slide Deck Navigation</h3>
+            <span id="deck-status" class="text-xs font-mono font-bold bg-[#FFE600] border border-black px-2 py-0.5">1 of 12 Loaded</span>
+          </div>
+
+          <div class="flex gap-3">
+            <button onclick="prevSlide()" class="flex-grow bg-[#F0F2F5] text-black font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-box brutal-btn">
+              ← Prev Slide
+            </button>
+            <button onclick="nextSlide()" class="flex-grow bg-black text-[#FFE600] font-black brand-font text-xs uppercase py-3 border-2 border-black brutal-box brutal-btn">
+              Next Slide →
+            </button>
+          </div>
+
+          <!-- Quick Jumper Grid -->
+          <div>
+            <label class="block text-xs font-bold uppercase mb-2 font-mono">Jump to Specific Frame:</label>
+            <div id="jumper-grid" class="grid grid-cols-6 gap-2">
+              <!-- Dynamically populated via script -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Export / Copy Prompt Box -->
+        <div class="border-4 border-black bg-[#FFE600] p-6 brutal-box space-y-3">
+          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Caption Copy</span>
+          <h4 class="text-base font-black brand-font">Ready-to-Post Reel Caption</h4>
+          <textarea readonly rows="4" class="w-full border-2 border-black p-3 text-xs font-mono bg-white focus:outline-none">Save these 10 scenes if you want to master scriptwriting nuances, subtext, and pacing! 🎬
+
+Want our full vault of 50 scene breakdowns to help you write your next script? Comment or DM "SCENE LIST" below and we'll send you all of them instantly! 📥👇
+
+#Screenwriting #Filmmaking #Scriptwriting #VideoEditing #DraftsRush</textarea>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="border-t-4 border-black py-8 bg-[#D6E4EE] text-center font-bold text-xs mt-12">
+    <p>© 2026 DraftsRush Studio. Instagram Reel Creator Studio.</p>
+  </footer>
 
   <script>
-    const canvas = document.getElementById('reelCanvas');
-    const ctx = canvas.getContext('2d');
-    const statusText = document.getElementById('statusText');
-    const btnPlay = document.getElementById('btnPlay');
-    const btnRecord = document.getElementById('btnRecord');
-
-    const SCENE_DURATION = 5.5; // 5.5s per scene
-    const SCENES = [
+    const slides = [
       {
-        id: 0,
-        type: "intro",
-        badge: "STORY BLUEPRINT",
-        counter: "01 / 10",
-        bg: "#FFE600",
-        title: "Strategy: How to write your next story?",
-        problem1: "Always confused with so many thoughts about a story?",
-        problem2: "Too many ideas ruining the flow and basics of your story?",
-        cta: "Follow this simple strategy for your next story."
+        type: 'intro',
+        badge: 'SCRIPTWRITING MASTERCLASS',
+        title: '10 Scenes You Must Watch & Study to Master Scriptwriting',
+        body: '',
+        bg: '#FFE600',
+        tagBg: '#111317',
+        tagText: '#FFFFFF'
       },
       {
-        id: 1,
-        stepIndex: 1,
-        type: "step",
-        badge: "STEP 01 • THE FOUNDATION",
-        counter: "02 / 10",
-        bg: "#E2E4E9",
-        mainTitle: "Start with the context.",
-        italicNote: "Present the verifiable facts.",
-        desc: "Do not open with ungrounded speculation. Establish the baseline reality, world rules, and core character situation everyone accepts.",
-        wireType: "flat",
-        innerVisual: "factsList"
+        type: 'scene',
+        badge: 'SCENE 01 • THRILLER / DRAMA',
+        movie: 'Zodiac (2007)',
+        sceneName: 'The Basement Encounter',
+        body: 'Teaches spatial isolation, weaponized domestic politeness, and how to build psychological terror without weapons or jump scares.',
+        bg: '#FFF6CF',
+        tagBg: '#FFE600',
+        tagText: '#111317'
       },
       {
-        id: 2,
-        stepIndex: 2,
-        type: "step",
-        badge: "STEP 02 • THE OBSTACLE",
-        counter: "03 / 10",
-        bg: "#D6E4EE",
-        mainTitle: "Frame the challenge.",
-        italicNote: "Answer: 'What is the *real* problem?'",
-        desc: "Surface events are just noise. Pinpoint the root internal or external conflict actively breaking the protagonist's normal world.",
-        wireType: "drop",
-        innerVisual: "tangle"
+        type: 'scene',
+        badge: 'SCENE 02 • NEO-WESTERN',
+        movie: 'No Country for Old Men (2007)',
+        sceneName: 'The Gas Station Coin Toss',
+        body: 'A masterclass in asymmetric stakes, subtextual menace, and how everyday small talk can hide mortal danger.',
+        bg: '#D6E4EE',
+        tagBg: '#FFE600',
+        tagText: '#111317'
       },
       {
-        id: 3,
-        stepIndex: 3,
-        type: "step",
-        badge: "STEP 03 • THE CATALYST",
-        counter: "04 / 10",
-        bg: "#E2E4E9",
-        mainTitle: "Establish urgency.",
-        italicNote: "Why must we act right now?",
-        desc: "Without stakes, narrative flow dies. Define what happens if the protagonist hesitates or fails to make a decision today.",
-        wireType: "flat",
-        innerVisual: "exclamation"
+        type: 'scene',
+        badge: 'SCENE 03 • CRIME / ACTION',
+        movie: 'The Dark Knight (2008)',
+        sceneName: 'The Opening Bank Heist',
+        body: 'The gold standard for antagonist introductions. Teaches the peeling onion plot structure and cascading character eliminations.',
+        bg: '#E2F0D9',
+        tagBg: '#111317',
+        tagText: '#FFFFFF'
       },
       {
-        id: 4,
-        stepIndex: 4,
-        type: "step",
-        badge: "STEP 04 • THE BREAKTHROUGH",
-        counter: "05 / 10",
-        bg: "#FFF6CF",
-        mainTitle: "Reveal your BIG IDEA.",
-        italicNote: "This is your unique core solution.",
-        desc: "Introduce the singular premise, motive, or counter-intuitive mechanism that changes the game and drives the second act.",
-        wireType: "stepUp",
-        innerVisual: "solutionCircle"
+        type: 'scene',
+        badge: 'SCENE 04 • PSYCHOLOGICAL DRAMA',
+        movie: 'Whiplash (2014)',
+        sceneName: 'The Final Drum Solo (Caravan)',
+        body: 'Proves that action writing needs zero dialogue. A brilliant study in kinetic status reversals, rhythmic pacing, and non-verbal combat.',
+        bg: '#FFF6CF',
+        tagBg: '#FFE600',
+        tagText: '#111317'
       },
       {
-        id: 5,
-        stepIndex: 5,
-        type: "step",
-        badge: "STEP 05 • VALUE DEFINITION",
-        counter: "06 / 10",
-        bg: "#D6E4EE",
-        mainTitle: "Describe specific value.",
-        italicNote: "Feature X yields Outcome Y.",
-        desc: "Make emotional and narrative consequences clear. Show how each specific choice triggers an unmistakable dramatic payoff.",
-        wireType: "stepDown",
-        innerVisual: "valueEquation"
+        type: 'scene',
+        badge: 'SCENE 05 • SOCIAL SATIRE',
+        movie: 'Parasite (2019)',
+        sceneName: 'The Peach Allergy Montage',
+        body: 'Deconstructs how to orchestrate complex visual exposition across rapid cross-cutting without grinding narrative momentum to a halt.',
+        bg: '#FCE8E6',
+        tagBg: '#111317',
+        tagText: '#FFFFFF'
       },
       {
-        id: 6,
-        stepIndex: 6,
-        type: "step",
-        badge: "STEP 06 • STRATEGIC BETS",
-        counter: "07 / 10",
-        bg: "#E2E4E9",
-        mainTitle: "Select 3 to 5 choices.",
-        italicNote: "Say 'no' to noise, 'yes' to needle-movers.",
-        desc: "Too many subplots ruin narrative flow. Focus exclusively on 3 critical story turns and discard distracting filler ideas.",
-        wireType: "branchOut",
-        innerVisual: "choicesBranch"
+        type: 'scene',
+        badge: 'SCENE 06 • DARK COMEDY / MOB',
+        movie: 'Goodfellas (1990)',
+        sceneName: '"Funny How?" Interrogation',
+        body: 'Teaches status volatility and literal idiom traps. Shows how absolute social dominance can be established over a dinner table.',
+        bg: '#DDE8DF',
+        tagBg: '#FFE600',
+        tagText: '#111317'
       },
       {
-        id: 7,
-        stepIndex: 7,
-        type: "step",
-        badge: "STEP 07 • PROOF POINTS",
-        counter: "08 / 10",
-        bg: "#CCD0DC",
-        mainTitle: "Double-click each choice.",
-        italicNote: "Concrete initiatives and capabilities.",
-        desc: "Earn every story payoff. Demonstrate character competence and verified cause-and-effect instead of relying on coincidences.",
-        wireType: "branchIn",
-        innerVisual: "proofGrid"
+        type: 'scene',
+        badge: 'SCENE 07 • SUPERNATURAL HORROR',
+        movie: 'The Conjuring (2013)',
+        sceneName: 'The Hide and Clap Sequence',
+        body: 'A masterclass in sensory deprivation. Explains how subverting an innocent children\'s parlor game creates agonizing acoustic dread.',
+        bg: '#F0F2F5',
+        tagBg: '#111317',
+        tagText: '#FFFFFF'
       },
       {
-        id: 8,
-        stepIndex: 8,
-        type: "step",
-        badge: "STEP 08 • ROADMAP",
-        counter: "09 / 10",
-        bg: "#FFF6CF",
-        mainTitle: "Sequence your actions.",
-        italicNote: "Build your execution timeline.",
-        desc: "Turn scenes into an unbroken timeline. Sequence scenes so each beat naturally forces the next without dragging.",
-        wireType: "ganttStep",
-        innerVisual: "ganttBars"
+        type: 'scene',
+        badge: 'SCENE 08 • SCI-FI BODY HORROR',
+        movie: 'Alien (1979)',
+        sceneName: 'The Chestburster Dinner',
+        body: 'Teaches false baseline relief. Demonstrates how establishing complete emotional safety makes sudden biological violation unforgettable.',
+        bg: '#FFF6CF',
+        tagBg: '#FFE600',
+        tagText: '#111317'
       },
       {
-        id: 9,
-        type: "cta",
-        badge: "SCRIPTWRITING BLUEPRINT",
-        counter: "10 / 10",
-        bg: "#FFE600",
-        headline: "CLOSE YOUR STORY WITH NEXT STEPS.",
-        sub: "Stop letting chaotic thoughts derail your story. DraftsRush turns scattered creative concepts into sharp, production-ready video scripts."
+        type: 'scene',
+        badge: 'SCENE 09 • META-SLASHER',
+        movie: 'Scream (1996)',
+        sceneName: 'The Opening Phone Call',
+        body: 'Teaches decrescendo pacing and spatial vulnerability. Shows how landline proximity and film trivia turn glass walls into display cases.',
+        bg: '#FCE8E6',
+        tagBg: '#111317',
+        tagText: '#FFFFFF'
+      },
+      {
+        type: 'scene',
+        badge: 'SCENE 10 • PSYCHOLOGICAL THRILLER',
+        movie: 'The Silence of the Lambs (1991)',
+        sceneName: 'Clarice & Lecter First Meeting',
+        body: 'A masterclass in intellectual interrogation. Teaches corridor priming, eye-line dominance, and targeted class evisceration.',
+        bg: '#D6E4EE',
+        tagBg: '#111317',
+        tagText: '#FFFFFF'
+      },
+      {
+        type: 'outro',
+        badge: 'FREE CREATOR RESOURCE',
+        title: 'Want Our Full Vault of 50 Scene Breakdowns?',
+        body: 'We have a curated list of 50 masterclass scenes that will help you write your next script. Comment or DM "SCENE LIST" below and we will send you all of them instantly!',
+        bg: '#FFE600',
+        tagBg: '#111317',
+        tagText: '#FFFFFF'
       }
     ];
 
-    const TOTAL_DURATION = SCENES.length * SCENE_DURATION; // 55s
-    let animId = null;
-    let playStartTime = null;
-    let isPlaying = false;
-
-    function drawBox(x, y, w, h, fill, border = '#000000', borderWidth = 8, shadow = 16) {
-      if (shadow > 0) {
-        ctx.fillStyle = '#000000';
-        ctx.fillRect(x + shadow, y + shadow, w, h);
-      }
-      ctx.fillStyle = fill;
-      ctx.fillRect(x, y, w, h);
-      ctx.strokeStyle = border;
-      ctx.lineWidth = borderWidth;
-      ctx.strokeRect(x, y, w, h);
-    }
-
-    function wrapText(text, x, y, maxWidth, lineHeight) {
-      const words = String(text).split(' ');
-      let line = '';
-      for (let n = 0; n < words.length; n++) {
-        let testLine = line + words[n] + ' ';
-        let metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && n > 0) {
-          ctx.fillText(line, x, y);
-          line = words[n] + ' ';
-          y += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      ctx.fillText(line, x, y);
-    }
-
-    function easeOutBack(x) {
-      const c1 = 1.70158;
-      const c3 = c1 + 1;
-      return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
-    }
-
-    function drawNode(nx, ny) {
-      ctx.fillStyle = '#000000';
-      ctx.beginPath();
-      ctx.arc(nx + 6, ny + 6, 26, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = '#34D399';
-      ctx.beginPath();
-      ctx.arc(nx, ny, 26, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 6;
-      ctx.stroke();
-    }
-
-    function drawRoadmapLine(x, y, w, h) {
-      drawBox(x, y, w, h, '#FFFFFF', '#000000', 8, 14);
-
-      ctx.save();
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 6;
-
-      const points = [
-        { x: x + 60, y: y + 210 },
-        { x: x + 160, y: y + 210 },
-        { x: x + 210, y: y + 290 },
-        { x: x + 290, y: y + 290 },
-        { x: x + 340, y: y + 210 },
-        { x: x + 430, y: y + 210 },
-        { x: x + 480, y: y + 130 },
-        { x: x + 560, y: y + 130 },
-        { x: x + 610, y: y + 210 },
-        { x: x + 720, y: y + 210 },
-        { x: x + 770, y: y + 290 },
-        { x: x + w - 60, y: y + 290 }
-      ];
-
-      ctx.beginPath();
-      ctx.moveTo(points[0].x, points[0].y);
-      for (let i = 1; i < points.length; i++) {
-        ctx.lineTo(points[i].x, points[i].y);
-      }
-      ctx.stroke();
-
-      const milestones = [
-        { x: x + 110, y: y + 210, label: "01 Context" },
-        { x: x + 250, y: y + 290, label: "02 Challenge" },
-        { x: x + 385, y: y + 210, label: "03 Urgency" },
-        { x: x + 520, y: y + 130, label: "04 Big Idea" },
-        { x: x + 665, y: y + 210, label: "05 Value" },
-        { x: x + 750, y: y + 250, label: "06 Choices" },
-        { x: x + 810, y: y + 290, label: "07 Proof" },
-        { x: x + w - 80, y: y + 290, label: "08 Action" }
-      ];
-
-      milestones.forEach((m, idx) => {
-        ctx.fillStyle = '#000000';
-        ctx.beginPath();
-        ctx.arc(m.x + 4, m.y + 4, 16, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.fillStyle = idx === 3 ? '#FFE600' : '#34D399';
-        ctx.beginPath();
-        ctx.arc(m.x, m.y, 16, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = '#000000';
-        ctx.lineWidth = 4;
-        ctx.stroke();
-
-        ctx.fillStyle = '#111317';
-        ctx.font = '800 15px monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText(m.label, m.x, idx % 2 === 0 ? m.y - 26 : m.y + 36);
-      });
-      ctx.restore();
-    }
-
-    function drawStepTimeline(type, x, y, w, h, visualType, lineProgress) {
-      drawBox(x, y, w, h, '#FFFFFF', '#000000', 8, 14);
-
-      ctx.save();
-      const cy = y + h / 2;
-      const cx = x + w / 2;
-
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 8;
-      ctx.lineCap = 'square';
-
-      if (type === "flat") {
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy);
-        ctx.lineTo(x + 40 + (w - 80) * lineProgress, cy);
-        ctx.stroke();
-        if (lineProgress > 0.5) drawNode(cx, cy);
-
-      } else if (type === "drop") {
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy - 100);
-        ctx.lineTo(cx - 180, cy - 100);
-        ctx.lineTo(cx - 180, cy + 100);
-        ctx.lineTo(cx + 180, cy + 100);
-        ctx.lineTo(cx + 180, cy - 100);
-        ctx.lineTo(x + w - 40, cy - 100);
-        ctx.stroke();
-        if (lineProgress > 0.4) drawNode(cx, cy + 100);
-
-      } else if (type === "stepUp") {
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy + 110);
-        ctx.lineTo(cx - 180, cy + 110);
-        ctx.lineTo(cx - 180, cy - 90);
-        ctx.lineTo(x + w - 40, cy - 90);
-        ctx.stroke();
-        if (lineProgress > 0.4) drawNode(cx, cy - 90);
-
-      } else if (type === "stepDown") {
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy - 90);
-        ctx.lineTo(cx + 180, cy - 90);
-        ctx.lineTo(cx + 180, cy + 110);
-        ctx.lineTo(x + w - 40, cy + 110);
-        ctx.stroke();
-        if (lineProgress > 0.4) drawNode(cx - 40, cy - 90);
-
-      } else if (type === "branchOut") {
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy);
-        ctx.lineTo(cx - 160, cy);
-        ctx.stroke();
-        drawNode(cx - 160, cy);
-
-        [cy - 90, cy, cy + 90].forEach(by => {
-          ctx.beginPath();
-          ctx.moveTo(cx - 80, cy);
-          ctx.lineTo(cx - 20, by);
-          ctx.lineTo(x + w - 40, by);
-          ctx.stroke();
-        });
-
-      } else if (type === "branchIn") {
-        [cy - 90, cy, cy + 90].forEach(by => {
-          ctx.beginPath();
-          ctx.moveTo(x + 40, by);
-          ctx.lineTo(cx + 20, by);
-          ctx.lineTo(cx + 80, cy);
-          ctx.stroke();
-        });
-        ctx.beginPath();
-        ctx.moveTo(cx + 80, cy);
-        ctx.lineTo(x + w - 40, cy);
-        ctx.stroke();
-        drawNode(cx + 180, cy);
-
-      } else if (type === "ganttStep") {
-        ctx.beginPath();
-        ctx.moveTo(x + 40, cy - 110);
-        ctx.lineTo(cx - 180, cy - 110);
-        ctx.lineTo(cx - 180, cy + 100);
-        ctx.lineTo(x + w - 40, cy + 100);
-        ctx.stroke();
-        drawNode(cx, cy + 100);
-      }
-
-      if (visualType === "factsList") {
-        [cy + 45, cy + 85, cy + 125].forEach((ly, i) => {
-          drawBox(cx - 140, ly, 280, 24, i === 0 ? '#FFE600' : '#E2E4E9', '#000', 3, 0);
-        });
-      } else if (visualType === "tangle") {
-        ctx.strokeStyle = '#FB7185';
-        ctx.lineWidth = 4;
-        ctx.beginPath();
-        for (let a = 0; a < Math.PI * 8; a += 0.3) {
-          const r = 40 + Math.sin(a * 4) * 20;
-          ctx.lineTo(cx + Math.cos(a) * r, (cy - 40) + Math.sin(a) * r);
-        }
-        ctx.stroke();
-      } else if (visualType === "exclamation") {
-        drawBox(cx - 140, cy - 130, 45, 90, '#FB7185', '#000', 4, 4);
-        drawBox(cx - 140, cy - 25, 45, 30, '#FB7185', '#000', 4, 4);
-      } else if (visualType === "solutionCircle") {
-        ctx.strokeStyle = '#34D399';
-        ctx.lineWidth = 6;
-        ctx.beginPath();
-        ctx.arc(cx, cy + 30, 65, 0, Math.PI * 2);
-        ctx.stroke();
-      } else if (visualType === "valueEquation") {
-        drawBox(cx - 210, cy + 20, 180, 50, '#FFE600', '#000', 3, 0);
-        ctx.fillStyle = '#000';
-        ctx.font = '900 18px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('{FEATURE X}', cx - 120, cy + 52);
-        ctx.fillText('➔', cx + 10, cy + 54);
-
-        drawBox(cx + 50, cy + 20, 180, 50, '#34D399', '#000', 3, 0);
-        ctx.fillStyle = '#000';
-        ctx.fillText('{OUTCOME Y}', cx + 140, cy + 52);
-      } else if (visualType === "choicesBranch") {
-        ['CHOICE 1', 'CHOICE 2', 'CHOICE 3'].forEach((c, idx) => {
-          const by = (cy - 90) + (idx * 90);
-          drawBox(cx + 20, by - 26, 180, 52, '#FFFFFF', '#000', 4, 4);
-          ctx.fillStyle = '#000';
-          ctx.font = '900 16px sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText(c, cx + 110, by + 6);
-        });
-      } else if (visualType === "proofGrid") {
-        ['PROOF 1', 'PROOF 2', 'PROOF 3'].forEach((p, idx) => {
-          const by = (cy - 90) + (idx * 90);
-          drawBox(cx - 220, by - 26, 180, 52, '#FFFFFF', '#000', 4, 4);
-          ctx.fillStyle = '#000';
-          ctx.font = '900 16px sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText(p, cx - 130, by + 6);
-        });
-      } else if (visualType === "ganttBars") {
-        [
-          { x: cx - 130, y: cy - 70, w: 120 },
-          { x: cx - 60, y: cy - 25, w: 140 },
-          { x: cx + 20, y: cy + 20, w: 150 }
-        ].forEach((bar, idx) => {
-          drawBox(bar.x, bar.y, bar.w, 32, idx === 2 ? '#34D399' : '#FFE600', '#000', 3, 0);
-        });
-      }
-
-      ctx.restore();
-    }
-
-    function render(totalTime) {
-      const sceneIndex = Math.min(SCENES.length - 1, Math.floor(totalTime / SCENE_DURATION));
-      const sceneTime = totalTime - (sceneIndex * SCENE_DURATION);
-      const data = SCENES[sceneIndex];
-
-      ctx.fillStyle = data.bg;
-      ctx.fillRect(0, 0, 1080, 1920);
-
-      ctx.lineWidth = 24;
-      ctx.strokeStyle = '#000000';
-      ctx.strokeRect(0, 0, 1080, 1920);
-
-      drawBox(90, 90, 520, 72, '#000000', '#000000', 0, 0);
-      ctx.fillStyle = '#FFE600';
-      ctx.font = '900 24px sans-serif';
-      ctx.textAlign = 'left';
-      ctx.fillText(data.badge, 120, 136);
-
-      drawBox(840, 90, 150, 72, '#FFFFFF', '#000000', 4, 6);
-      ctx.fillStyle = '#000000';
-      ctx.font = '900 28px monospace';
-      ctx.fillText(data.counter, 860, 136);
-
-      if (data.type === "intro") {
-        drawBox(90, 200, 900, 1420, '#FFFFFF', '#000000', 10, 24);
-
-        const tTitle = Math.min(1, sceneTime / 0.6);
-        const yTitle = 100 + (easeOutBack(tTitle) * 210);
-        ctx.fillStyle = '#000000';
-        ctx.font = '900 68px sans-serif';
-        wrapText(data.headline, 140, yTitle, 800, 76);
-
-        drawRoadmapLine(140, 480, 800, 360);
-
-        if (sceneTime > 1.2) {
-          const tP1 = Math.min(1, (sceneTime - 1.2) / 0.5);
-          const xP1 = -700 + (easeOutBack(tP1) * 840);
-          drawBox(xP1, 880, 800, 180, '#FFF1F2', '#000000', 6, 10);
-          ctx.fillStyle = '#E11D48';
-          ctx.font = '900 24px sans-serif';
-          ctx.fillText('CONFUSION', xP1 + 30, 925);
-
-          const p1Chars = Math.floor((sceneTime - 1.4) * 32);
-          ctx.fillStyle = '#111317';
-          ctx.font = '700 30px sans-serif';
-          wrapText(data.problem1.substring(0, p1Chars), xP1 + 30, 975, 740, 42);
-        }
-
-        if (sceneTime > 2.4) {
-          const tP2 = Math.min(1, (sceneTime - 2.4) / 0.5);
-          const xP2 = 1100 - (easeOutBack(tP2) * 960);
-          drawBox(xP2, 1090, 800, 180, '#D6E4EE', '#000000', 6, 10);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 24px sans-serif';
-          ctx.fillText('RUINED FLOW', xP2 + 30, 1135);
-
-          const p2Chars = Math.floor((sceneTime - 2.6) * 32);
-          ctx.fillStyle = '#111317';
-          ctx.font = '700 30px sans-serif';
-          wrapText(data.problem2.substring(0, p2Chars), xP2 + 30, 1185, 740, 42);
-        }
-
-        if (sceneTime > 3.6) {
-          const tCta = Math.min(1, (sceneTime - 3.6) / 0.5);
-          const yCta = 1500 - (easeOutBack(tCta) * 190);
-          drawBox(140, yCta, 800, 150, '#FFE600', '#000000', 6, 10);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 34px sans-serif';
-          wrapText(data.cta, 170, yCta + 60, 740, 44);
-        }
-
-        drawBox(90, 1680, 900, 110, '#000000', '#000000', 0, 0);
-        ctx.fillStyle = '#FFE600';
-        ctx.font = '900 30px sans-serif';
-        ctx.fillText('SWIPE TO FOLLOW THE LINE', 140, 1748);
-        ctx.fillText('→', 930, 1748);
-
-      } else if (data.type === "step") {
-        const tHead = Math.min(1, sceneTime / 0.5);
-        const xHead = -850 + (easeOutBack(tHead) * 940);
-        drawBox(xHead, 190, 900, 180, '#FFFFFF', '#000000', 8, 14);
-
-        ctx.fillStyle = '#000000';
-        ctx.font = '900 48px sans-serif';
-        ctx.fillText(data.mainTitle, xHead + 40, 270);
-
-        ctx.fillStyle = '#E11D48';
-        ctx.font = '700 32px sans-serif';
-        ctx.fillText(data.italicNote, xHead + 40, 320);
-
-        const tStage = Math.min(1, Math.max(0, (sceneTime - 0.4) / 0.5));
-        const yStage = 600 - (easeOutBack(tStage) * 200);
-        const lineProg = Math.min(1, Math.max(0, (sceneTime - 0.7) / 0.6));
-        drawStepTimeline(data.wireType, 90, yStage, 900, 520, data.innerVisual, lineProg);
-
-        const tCard = Math.min(1, Math.max(0, (sceneTime - 1.4) / 0.5));
-        const yCard = 1180 - (easeOutBack(tCard) * 220);
-        drawBox(90, yCard, 900, 360, '#FFFFFF', '#000000', 8, 14);
-
-        drawBox(130, yCard + 35, 360, 45, '#FFE600', '#000000', 0, 0);
-        ctx.fillStyle = '#000000';
-        ctx.font = '900 22px sans-serif';
-        ctx.fillText('WHY RETENTION DEMANDS THIS', 150, yCard + 66);
-
-        if (sceneTime > 1.8) {
-          const charCount = Math.floor((sceneTime - 1.8) * 30);
-          const currentText = data.desc.substring(0, charCount);
-          ctx.fillStyle = '#111317';
-          ctx.font = '600 34px sans-serif';
-          wrapText(currentText, 130, yCard + 140, 820, 52);
-
-          if (Math.floor(sceneTime * 3) % 2 === 0 && charCount < data.desc.length) {
-            ctx.fillStyle = '#E11D48';
-            ctx.fillRect(130 + ctx.measureText(currentText.split(' ').pop()).width + 8, yCard + 105, 6, 38);
-          }
-        }
-
-        if (sceneTime > 3.0) {
-          const tPill = Math.min(1, (sceneTime - 3.0) / 0.4);
-          const yPill = 1600 - (easeOutBack(tPill) * 220);
-          drawBox(90, yPill, 900, 180, '#D6E4EE', '#000000', 8, 14);
-
-          drawBox(130, yPill + 25, 330, 40, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#34D399';
-          ctx.font = '900 20px sans-serif';
-          ctx.fillText('SCRIPTWRITING BLUEPRINT', 150, yPill + 52);
-
-          ctx.fillStyle = '#000000';
-          ctx.font = '700 28px sans-serif';
-          wrapText(`Lock this premise before second ${data.stepIndex * 8}. Every second of throat clearing decays viewer interest.`, 130, yPill + 105, 820, 38);
-        }
-
-        ctx.fillStyle = '#000000';
-        ctx.font = '800 28px sans-serif';
-        ctx.fillText('DRAFTSRUSH STUDIO', 90, 1830);
-        ctx.font = '700 26px monospace';
-        ctx.fillText('draftsrush.com', 720, 1830);
-
-      } else if (data.type === "cta") {
-        drawBox(90, 200, 900, 1420, '#FFFFFF', '#000000', 10, 24);
-
-        ctx.fillStyle = '#000000';
-        ctx.font = '900 70px sans-serif';
-        wrapText(data.headline, 140, 340, 800, 78);
-
-        const subChars = Math.floor(sceneTime * 32);
-        ctx.fillStyle = '#111317';
-        ctx.font = '600 34px sans-serif';
-        wrapText(data.sub.substring(0, subChars), 140, 540, 800, 50);
-
-        if (sceneTime > 1.2) {
-          const tOffer = Math.min(1, (sceneTime - 1.2) / 0.5);
-          const yOffer = 960 - (easeOutBack(tOffer) * 200);
-          drawBox(140, yOffer, 800, 340, '#D6E4EE', '#000000', 6, 12);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 34px sans-serif';
-          ctx.fillText('TEST OUR PACING FIRST', 180, yOffer + 70);
-
-          ctx.fillStyle = '#222222';
-          ctx.font = '600 28px sans-serif';
-          wrapText("Send us 1 rough topic or notes outline in our DM. We will draft your hook and opening act in dual-column format completely free.", 180, yOffer + 130, 720, 42);
-        }
-
-        if (sceneTime > 2.4) {
-          const tBtn = Math.min(1, (sceneTime - 2.4) / 0.5);
-          const yBtn = 1380 - (easeOutBack(tBtn) * 220);
-
-          drawBox(140, yBtn, 800, 110, '#000000', '#000000', 0, 0);
-          ctx.fillStyle = '#34D399';
-          ctx.font = '900 34px sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText('📩 DM "STORY" ON INSTAGRAM', 140 + 400, yBtn + 70);
-
-          drawBox(140, yBtn + 140, 800, 110, '#FFE600', '#000000', 6, 8);
-          ctx.fillStyle = '#000000';
-          ctx.font = '900 34px sans-serif';
-          ctx.fillText('🌐 VISIT DRAFTSRUSH.COM', 140 + 400, yBtn + 210);
-        }
-
-        ctx.textAlign = 'left';
-        ctx.fillStyle = '#000000';
-        ctx.font = '800 32px sans-serif';
-        ctx.fillText('DRAFTSRUSH STUDIO • 2026', 90, 1780);
-      }
-    }
-
-    // Live Animation Controller
-    function animTick(timestamp) {
-      if (!playStartTime) playStartTime = timestamp;
-      const elapsed = (timestamp - playStartTime) / 1000;
-
-      if (elapsed <= TOTAL_DURATION) {
-        render(elapsed);
-        const curSec = Math.floor(elapsed);
-        const activeScene = Math.min(SCENES.length, Math.floor(elapsed / SCENE_DURATION) + 1);
-        statusText.innerText = `Preview: Scene ${activeScene}/10 • Time: ${curSec}s / 55s`;
-        animId = requestAnimationFrame(animTick);
+    let currentIndex = 0;
+
+    function renderSlide(index) {
+      currentIndex = index;
+      const slide = slides[index];
+      const card = document.getElementById('reel-card');
+      
+      card.style.backgroundColor = slide.bg;
+      document.getElementById('slide-counter').innerText = `SLIDE ${String(index + 1).padStart(2, '0')} / ${slides.length}`;
+      document.getElementById('deck-status').innerText = `${index + 1} of ${slides.length} Loaded`;
+
+      document.getElementById('slide-badge').innerText = slide.badge;
+
+      const titleEl = document.getElementById('slide-title');
+      const bodyBox = document.getElementById('slide-body-box');
+      const bodyEl = document.getElementById('slide-body');
+
+      if (slide.type === 'intro' || slide.type === 'outro') {
+        titleEl.innerText = slide.title;
+        bodyBox.classList.remove('hidden');
+        bodyEl.innerText = slide.body;
       } else {
-        render(TOTAL_DURATION);
-        statusText.innerText = "Status: Preview complete (55s).";
-        isPlaying = false;
-        btnPlay.innerText = "▶ Replay Preview";
-      }
-    }
-
-    function togglePlay() {
-      if (isPlaying) {
-        cancelAnimationFrame(animId);
-        isPlaying = false;
-        btnPlay.innerText = "▶ Resume Preview";
-        statusText.innerText = "Status: Paused.";
-        return;
-      }
-      playStartTime = null;
-      isPlaying = true;
-      btnPlay.innerText = "⏸ Pause Preview";
-      statusText.innerText = "Playing preview...";
-      animId = requestAnimationFrame(animTick);
-    }
-
-    // Guaranteed Recording Engine
-    async function recordVideo() {
-      if (isPlaying) togglePlay();
-
-      btnPlay.disabled = true;
-      btnRecord.disabled = true;
-      statusText.innerText = "Preparing Video Stream...";
-
-      const stream = canvas.captureStream(30); // 30 FPS
-      let mime = 'video/webm;codecs=vp9';
-      if (!MediaRecorder.isTypeSupported(mime)) {
-        mime = 'video/webm;codecs=vp8';
-      }
-      if (!MediaRecorder.isTypeSupported(mime)) {
-        mime = 'video/webm';
+        // Scene slide format
+        titleEl.innerHTML = `<span class="block text-xs font-mono font-bold text-gray-600 mb-1">${slide.movie}</span>${slide.sceneName}`;
+        bodyBox.classList.remove('hidden');
+        bodyEl.innerText = slide.body;
       }
 
-      let recorder;
-      try {
-        recorder = new MediaRecorder(stream, { mimeType: mime });
-      } catch (err) {
-        recorder = new MediaRecorder(stream);
-      }
-
-      const chunks = [];
-      recorder.ondataavailable = (e) => {
-        if (e.data && e.data.size > 0) chunks.push(e.data);
-      };
-
-      recorder.onstop = () => {
-        const blob = new Blob(chunks, { type: 'video/webm' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'story-strategy-reel-55s.webm';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-
-        statusText.innerText = "SUCCESS: Video downloaded!";
-        btnPlay.disabled = false;
-        btnRecord.disabled = false;
-      };
-
-      recorder.start();
-
-      const totalFrames = 30 * TOTAL_DURATION; // 1650 frames
-      let frame = 0;
-
-      function renderFrameBatch() {
-        // Render 5 frames per event-loop tick to keep browser responsive
-        for (let i = 0; i < 5 && frame <= totalFrames; i++) {
-          const t = frame / 30;
-          render(t);
-          frame++;
-        }
-
-        const pct = Math.floor((frame / totalFrames) * 100);
-        statusText.innerText = `Recording: ${pct}% complete... (${Math.floor(frame / 30)}s / 55s)`;
-
-        if (frame <= totalFrames) {
-          requestAnimationFrame(renderFrameBatch);
+      // Highlight active jumper button
+      document.querySelectorAll('.jumper-btn').forEach((btn, idx) => {
+        if (idx === index) {
+          btn.className = 'jumper-btn border-2 border-black bg-black text-[#FFE600] font-mono font-bold text-xs py-1.5 rounded';
         } else {
-          recorder.stop();
+          btn.className = 'jumper-btn border-2 border-black bg-white text-black font-mono font-bold text-xs py-1.5 rounded hover:bg-gray-100';
         }
-      }
-
-      requestAnimationFrame(renderFrameBatch);
+      });
     }
 
-    // Direct Instant ZIP Export for All 10 High-Res PNGs
-    async function downloadAllSlidesZip() {
-      statusText.innerText = "Building 10 High-Res PNG Slides...";
-      const zip = new JSZip();
-
-      for (let i = 0; i < SCENES.length; i++) {
-        render((i * SCENE_DURATION) + 4.5); // Render fully completed frame
-        const dataUrl = canvas.toDataURL('image/png');
-        const base64Data = dataUrl.replace(/^data:image\/png;base64,/, "");
-        const filename = `slide-${i + 1}.png`;
-        zip.file(filename, base64Data, { base64: true });
+    function nextSlide() {
+      if (currentIndex < slides.length - 1) {
+        renderSlide(currentIndex + 1);
+      } else {
+        renderSlide(0); // Loop back
       }
-
-      const content = await zip.generateAsync({ type: "blob" });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(content);
-      link.download = "draftsrush-story-strategy-slides.zip";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      render(0); // Reset to start
-      statusText.innerText = "ZIP file downloaded with all 10 slides!";
     }
 
-    // Initial render on load
-    window.addEventListener('DOMContentLoaded', () => {
-      render(0);
+    function prevSlide() {
+      if (currentIndex > 0) {
+        renderSlide(currentIndex - 1);
+      } else {
+        renderSlide(slides.length - 1);
+      }
+    }
+
+    // Build Quick Jumper Grid
+    const jumperGrid = document.getElementById('jumper-grid');
+    slides.forEach((s, idx) => {
+      const btn = document.createElement('button');
+      btn.innerText = idx + 1;
+      btn.onclick = () => renderSlide(idx);
+      btn.className = 'jumper-btn border-2 border-black bg-white text-black font-mono font-bold text-xs py-1.5 rounded hover:bg-gray-100';
+      jumperGrid.appendChild(btn);
     });
+
+    renderSlide(0);
   </script>
 </body>
 </html>
