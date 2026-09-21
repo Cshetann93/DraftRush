@@ -38,7 +38,7 @@
 
     @media print {
       body { background: white !important; }
-      header, .no-print { display: none !important; }
+      .no-print { display: none !important; }
       .reel-frame { break-inside: avoid; page-break-after: always; margin: 0 auto; box-shadow: none !important; border: 4px solid #000 !important; }
     }
   </style>
@@ -49,32 +49,20 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Top Navigation (Hidden on Print) -->
-  <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50 no-print">
-    <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
-      <a href="/" class="inline-flex items-center flex-shrink-0" aria-label="DraftsRush Home">
-        <img src="/drlogo.png" alt="DraftsRush" width="240" height="64" class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" />
-      </a>
-      <div class="flex items-center gap-3">
-        <button onclick="window.print()" class="bg-black text-[#FFE600] font-black brand-font text-xs uppercase px-4 py-2 border-2 border-black brutal-box brutal-btn">
-          🖨 Print / Save as Images
-        </button>
-        <a href="/tools" class="bg-white text-black font-black brand-font text-xs uppercase px-4 py-2 border-2 border-black brutal-box brutal-btn">
-          ← Back to Tools
-        </a>
-      </div>
-    </div>
-  </header>
-
   <main class="flex-grow max-w-6xl mx-auto px-6 py-12 w-full">
     
-    <!-- Header Notice -->
-    <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box-lg mb-12 text-center no-print">
-      <span class="bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase">Instagram Carousel / Reel Deck</span>
-      <h1 class="text-3xl md:text-5xl font-black brand-font mt-2 mb-2">12 Essential Scriptwriting Frames</h1>
-      <p class="text-sm font-medium text-black max-w-xl mx-auto">
-        All 12 vertical (9:16) frames laid out continuously below. Click <strong class="underline">Print / Save as Images</strong> above to export them directly as high-resolution slides.
-      </p>
+    <!-- Header Notice & Print Button Bar -->
+    <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box-lg mb-12 flex flex-col sm:flex-row justify-between items-center gap-4 no-print">
+      <div>
+        <span class="bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase">Instagram Carousel / Reel Deck</span>
+        <h1 class="text-3xl sm:text-4xl font-black brand-font mt-1 mb-1">12 Essential Scriptwriting Frames</h1>
+        <p class="text-xs font-medium text-black">
+          All 12 vertical (9:16) frames laid out continuously below.
+        </p>
+      </div>
+      <button onclick="window.print()" class="bg-black text-[#FFE600] font-black brand-font text-xs uppercase px-5 py-3 border-2 border-black brutal-box brutal-btn whitespace-nowrap">
+        🖨 Print / Save as Images
+      </button>
     </div>
 
     <!-- Frames Grid: All 12 Frames Displayed Continuously -->
@@ -374,10 +362,6 @@
     </div>
 
   </main>
-
-  <footer class="border-t-4 border-black py-8 bg-[#D6E4EE] text-center font-bold text-xs mt-16 no-print">
-    <p>© 2026 DraftsRush Studio. Instagram Reel Asset Generator.</p>
-  </footer>
 
 </body>
 </html>
