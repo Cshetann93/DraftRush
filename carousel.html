@@ -1,334 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DraftsRush Reels PNG Exporter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #E2E4E9; }
-    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    body { font-family: 'Inter', sans-serif; background: #111317; margin: 0; padding: 24px; }
+    .brand-font { font-family: 'Space Grotesk', sans-serif; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
-    .brutal-box { box-shadow: 4px 4px 0px #111317; }
-    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
-    .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
-
-    /* 9:16 Vertical Reel Frame Spec for Social Export */
+    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; border: 4px solid #111317; }
     .reel-frame {
       aspect-ratio: 9 / 16;
-      width: 100%;
-      max-width: 420px;
-    }
-
-    @media print {
-      body { background: white !important; }
-      .no-print { display: none !important; }
-      .reel-frame { break-inside: avoid; page-break-after: always; margin: 0 auto; box-shadow: none !important; border: 4px solid #000 !important; }
+      width: 1080px;
+      height: 1920px;
+      max-width: 100%;
+      box-sizing: border-box;
+      flex-shrink: 0;
     }
   </style>
 </head>
-<body class="text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFBGQ8WX"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+<body class="flex flex-col items-center justify-center min-h-screen">
 
-  <main class="flex-grow max-w-6xl mx-auto px-6 py-12 w-full">
+  <!-- Floating Action Bar -->
+  <div class="fixed top-4 right-4 z-50 bg-[#FFE600] border-4 border-black p-3 brutal-box-lg flex items-center gap-3">
+    <span class="text-xs font-mono font-black uppercase">Export Studio</span>
+    <button onclick="downloadAllFrames()" class="bg-black text-[#FFE600] text-xs font-black brand-font uppercase px-4 py-2 border-2 border-black hover:bg-gray-800">
+      📥 Download All as PNGs
+    </button>
+  </div>
+
+  <!-- Container holding all 12 isolated frames -->
+  <div id="frames-container" class="flex flex-col items-center gap-16 w-full max-w-[420px]">
     
-    <!-- Frames Grid: All 12 Frames Displayed Continuously -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
-      
-      <!-- FRAME 01: INTRO -->
-      <div class="reel-frame border-4 border-black bg-[#FFE600] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 01 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto text-center space-y-4">
-          <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider border border-black inline-block">MASTERCLASS STUDY</span>
-          <h2 class="text-2xl sm:text-3xl font-black brand-font leading-tight tracking-tight">
-            10 Masterclass Scenes You Must Study to Understand Scriptwriting Nuances
-          </h2>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
+    <!-- FRAME 01 -->
+    <div class="reel-frame bg-[#FFE600] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-01-intro.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 01 / 12</span>
+        <span>DRAFTSRUSH</span>
       </div>
-
-      <!-- FRAME 02: ZODIAC -->
-      <div class="reel-frame border-4 border-black bg-[#FFF6CF] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 02 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto space-y-4">
-          <span class="bg-black text-white px-2.5 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider inline-block">SCENE 01 • THRILLER</span>
-          <div>
-            <h3 class="text-lg font-mono font-bold text-gray-700 uppercase">Zodiac (2007)</h3>
-            <h2 class="text-2xl font-black brand-font tracking-tight">The Basement Encounter</h2>
-          </div>
-          <div class="border-2 border-black bg-white p-4 brutal-box">
-            <span class="text-[10px] font-mono font-bold text-gray-500 uppercase block mb-1">Why You Should Watch It:</span>
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed">
-              Teaches spatial isolation, weaponized domestic politeness, and how to engineer unbearable psychological terror without weapons or jump scares.
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
+      <div class="my-auto text-center space-y-6">
+        <span class="bg-black text-white px-4 py-1.5 text-sm font-black brand-font uppercase tracking-wider border-2 border-black inline-block">MASTERCLASS STUDY</span>
+        <h2 class="text-4xl sm:text-5xl font-black brand-font leading-tight tracking-tight">
+          10 Masterclass Scenes You Must Study to Understand Scriptwriting Nuances
+        </h2>
       </div>
-
-      <!-- FRAME 03: NO COUNTRY -->
-      <div class="reel-frame border-4 border-black bg-[#D6E4EE] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 03 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto space-y-4">
-          <span class="bg-black text-white px-2.5 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider inline-block">SCENE 02 • NEO-WESTERN</span>
-          <div>
-            <h3 class="text-lg font-mono font-bold text-gray-700 uppercase">No Country for Old Men (2007)</h3>
-            <h2 class="text-2xl font-black brand-font tracking-tight">The Gas Station Coin Toss</h2>
-          </div>
-          <div class="border-2 border-black bg-white p-4 brutal-box">
-            <span class="text-[10px] font-mono font-bold text-gray-500 uppercase block mb-1">Why You Should Watch It:</span>
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed">
-              A masterclass in asymmetric stakes, subtextual menace, and how everyday small talk can hide mortal danger.
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
       </div>
-
-      <!-- FRAME 04: THE DARK KNIGHT -->
-      <div class="reel-frame border-4 border-black bg-[#E2F0D9] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 04 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto space-y-4">
-          <span class="bg-black text-white px-2.5 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider inline-block">SCENE 03 • CRIME / ACTION</span>
-          <div>
-            <h3 class="text-lg font-mono font-bold text-gray-700 uppercase">The Dark Knight (2008)</h3>
-            <h2 class="text-2xl font-black brand-font tracking-tight">The Opening Bank Heist</h2>
-          </div>
-          <div class="border-2 border-black bg-white p-4 brutal-box">
-            <span class="text-[10px] font-mono font-bold text-gray-500 uppercase block mb-1">Why You Should Watch It:</span>
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed">
-              The gold standard for villain introductions. Teaches the peeling onion plot structure and cascading character eliminations.
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
-      </div>
-
-      <!-- FRAME 05: WHIPLASH -->
-      <div class="reel-frame border-4 border-black bg-[#FFF6CF] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 05 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto space-y-4">
-          <span class="bg-black text-white px-2.5 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider inline-block">SCENE 04 • DRAMA</span>
-          <div>
-            <h3 class="text-lg font-mono font-bold text-gray-700 uppercase">Whiplash (2014)</h3>
-            <h2 class="text-2xl font-black brand-font tracking-tight">The Final Drum Solo (Caravan)</h2>
-          </div>
-          <div class="border-2 border-black bg-white p-4 brutal-box">
-            <span class="text-[10px] font-mono font-bold text-gray-500 uppercase block mb-1">Why You Should Watch It:</span>
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed">
-              Proves that action writing needs zero dialogue. A brilliant study in kinetic status reversals, rhythmic pacing, and non-verbal combat.
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
-      </div>
-
-      <!-- FRAME 06: PARASITE -->
-      <div class="reel-frame border-4 border-black bg-[#FCE8E6] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 06 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto space-y-4">
-          <span class="bg-black text-white px-2.5 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider inline-block">SCENE 05 • SATIRE</span>
-          <div>
-            <h3 class="text-lg font-mono font-bold text-gray-700 uppercase">Parasite (2019)</h3>
-            <h2 class="text-2xl font-black brand-font tracking-tight">The Peach Allergy Montage</h2>
-          </div>
-          <div class="border-2 border-black bg-white p-4 brutal-box">
-            <span class="text-[10px] font-mono font-bold text-gray-500 uppercase block mb-1">Why You Should Watch It:</span>
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed">
-              Deconstructs how to orchestrate complex visual exposition across rapid cross-cutting without grinding narrative momentum to a halt.
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
-      </div>
-
-      <!-- FRAME 07: GOODFELLAS -->
-      <div class="reel-frame border-4 border-black bg-[#DDE8DF] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 07 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto space-y-4">
-          <span class="bg-black text-white px-2.5 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider inline-block">SCENE 06 • MOB CRIME</span>
-          <div>
-            <h3 class="text-lg font-mono font-bold text-gray-700 uppercase">Goodfellas (1990)</h3>
-            <h2 class="text-2xl font-black brand-font tracking-tight">"Funny How?" Interrogation</h2>
-          </div>
-          <div class="border-2 border-black bg-white p-4 brutal-box">
-            <span class="text-[10px] font-mono font-bold text-gray-500 uppercase block mb-1">Why You Should Watch It:</span>
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed">
-              Teaches status volatility and literal idiom traps. Shows how absolute social dominance can be established over a dinner table.
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
-      </div>
-
-      <!-- FRAME 08: THE CONJURING -->
-      <div class="reel-frame border-4 border-black bg-[#F0F2F5] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 08 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto space-y-4">
-          <span class="bg-black text-white px-2.5 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider inline-block">SCENE 07 • HORROR</span>
-          <div>
-            <h3 class="text-lg font-mono font-bold text-gray-700 uppercase">The Conjuring (2013)</h3>
-            <h2 class="text-2xl font-black brand-font tracking-tight">The Hide and Clap Sequence</h2>
-          </div>
-          <div class="border-2 border-black bg-white p-4 brutal-box">
-            <span class="text-[10px] font-mono font-bold text-gray-500 uppercase block mb-1">Why You Should Watch It:</span>
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed">
-              A masterclass in sensory deprivation. Explains how subverting an innocent children's parlor game creates agonizing acoustic dread.
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
-      </div>
-
-      <!-- FRAME 09: ALIEN -->
-      <div class="reel-frame border-4 border-black bg-[#FFF6CF] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 09 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto space-y-4">
-          <span class="bg-black text-white px-2.5 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider inline-block">SCENE 08 • SCI-FI HORROR</span>
-          <div>
-            <h3 class="text-lg font-mono font-bold text-gray-700 uppercase">Alien (1979)</h3>
-            <h2 class="text-2xl font-black brand-font tracking-tight">The Chestburster Dinner</h2>
-          </div>
-          <div class="border-2 border-black bg-white p-4 brutal-box">
-            <span class="text-[10px] font-mono font-bold text-gray-500 uppercase block mb-1">Why You Should Watch It:</span>
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed">
-              Teaches false baseline relief. Demonstrates how establishing complete emotional safety makes sudden biological violation unforgettable.
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
-      </div>
-
-      <!-- FRAME 10: SCREAM -->
-      <div class="reel-frame border-4 border-black bg-[#FCE8E6] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 10 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto space-y-4">
-          <span class="bg-black text-white px-2.5 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider inline-block">SCENE 09 • SLASHER</span>
-          <div>
-            <h3 class="text-lg font-mono font-bold text-gray-700 uppercase">Scream (1996)</h3>
-            <h2 class="text-2xl font-black brand-font tracking-tight">The Opening Phone Call</h2>
-          </div>
-          <div class="border-2 border-black bg-white p-4 brutal-box">
-            <span class="text-[10px] font-mono font-bold text-gray-500 uppercase block mb-1">Why You Should Watch It:</span>
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed">
-              Teaches decrescendo pacing and spatial vulnerability. Shows how landline proximity and film trivia turn glass walls into display cases.
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
-      </div>
-
-      <!-- FRAME 11: SILENCE OF THE LAMBS -->
-      <div class="reel-frame border-4 border-black bg-[#D6E4EE] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 11 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto space-y-4">
-          <span class="bg-black text-white px-2.5 py-0.5 text-[10px] font-black brand-font uppercase tracking-wider inline-block">SCENE 10 • THRILLER</span>
-          <div>
-            <h3 class="text-lg font-mono font-bold text-gray-700 uppercase">The Silence of the Lambs (1991)</h3>
-            <h2 class="text-2xl font-black brand-font tracking-tight">Clarice & Lecter First Meeting</h2>
-          </div>
-          <div class="border-2 border-black bg-white p-4 brutal-box">
-            <span class="text-[10px] font-mono font-bold text-gray-500 uppercase block mb-1">Why You Should Watch It:</span>
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 leading-relaxed">
-              A masterclass in intellectual interrogation. Teaches corridor priming, eye-line dominance, and targeted class evisceration.
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SWIPE →</span>
-        </div>
-      </div>
-
-      <!-- FRAME 12: OUTRO -->
-      <div class="reel-frame border-4 border-black bg-[#FFE600] p-6 sm:p-8 brutal-box-lg flex flex-col justify-between relative">
-        <div class="flex justify-between items-center text-xs font-mono font-bold border-b-2 border-black pb-3">
-          <span class="bg-black text-white px-2 py-0.5">FRAME 12 / 12</span>
-          <span>DRAFTSRUSH</span>
-        </div>
-        <div class="my-auto text-center space-y-5">
-          <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider border border-black inline-block">FREE SCENE VAULT</span>
-          <h2 class="text-2xl sm:text-3xl font-black brand-font leading-tight tracking-tight">
-            Want Our Full List of 50 Scene Breakdowns?
-          </h2>
-          <div class="border-2 border-black bg-white p-4 brutal-box text-left">
-            <p class="text-xs sm:text-sm font-bold text-black leading-relaxed text-center">
-              Comment or DM <span class="bg-[#FFE600] px-1.5 py-0.5 border border-black font-mono">"SCENE LIST"</span> below and we will send you all 50 breakdown guides instantly to help you write your next script! 📥
-            </p>
-          </div>
-        </div>
-        <div class="border-t-2 border-black pt-3 flex justify-between items-center text-xs font-mono font-bold">
-          <span>@DraftsRush</span>
-          <span>SAVE THIS POST 📌</span>
-        </div>
-      </div>
-
     </div>
 
-  </main>
+    <!-- FRAME 02 -->
+    <div class="reel-frame bg-[#FFF6CF] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-02-zodiac.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 02 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto space-y-6">
+        <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider inline-block">SCENE 01 • THRILLER</span>
+        <div>
+          <h3 class="text-xl font-mono font-bold text-gray-700 uppercase">Zodiac (2007)</h3>
+          <h2 class="text-4xl font-black brand-font tracking-tight">The Basement Encounter</h2>
+        </div>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg">
+          <span class="text-xs font-mono font-bold text-gray-500 uppercase block mb-2">Why You Should Watch It:</span>
+          <p class="text-lg font-semibold text-gray-900 leading-relaxed">
+            Teaches spatial isolation, weaponized domestic politeness, and how to engineer unbearable psychological terror without weapons or jump scares.
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
+      </div>
+    </div>
+
+    <!-- FRAME 03 -->
+    <div class="reel-frame bg-[#D6E4EE] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-03-nocountry.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 03 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto space-y-6">
+        <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider inline-block">SCENE 02 • NEO-WESTERN</span>
+        <div>
+          <h3 class="text-xl font-mono font-bold text-gray-700 uppercase">No Country for Old Men (2007)</h3>
+          <h2 class="text-4xl font-black brand-font tracking-tight">The Gas Station Coin Toss</h2>
+        </div>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg">
+          <span class="text-xs font-mono font-bold text-gray-500 uppercase block mb-2">Why You Should Watch It:</span>
+          <p class="text-lg font-semibold text-gray-900 leading-relaxed">
+            A masterclass in asymmetric stakes, subtextual menace, and how everyday small talk can hide mortal danger.
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
+      </div>
+    </div>
+
+    <!-- FRAME 04 -->
+    <div class="reel-frame bg-[#E2F0D9] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-04-darkknight.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 04 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto space-y-6">
+        <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider inline-block">SCENE 03 • CRIME / ACTION</span>
+        <div>
+          <h3 class="text-xl font-mono font-bold text-gray-700 uppercase">The Dark Knight (2008)</h3>
+          <h2 class="text-4xl font-black brand-font tracking-tight">The Opening Bank Heist</h2>
+        </div>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg">
+          <span class="text-xs font-mono font-bold text-gray-500 uppercase block mb-2">Why You Should Watch It:</span>
+          <p class="text-lg font-semibold text-gray-900 leading-relaxed">
+            The gold standard for villain introductions. Teaches the peeling onion plot structure and cascading character eliminations.
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
+      </div>
+    </div>
+
+    <!-- FRAME 05 -->
+    <div class="reel-frame bg-[#FFF6CF] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-05-whiplash.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 05 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto space-y-6">
+        <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider inline-block">SCENE 04 • DRAMA</span>
+        <div>
+          <h3 class="text-xl font-mono font-bold text-gray-700 uppercase">Whiplash (2014)</h3>
+          <h2 class="text-4xl font-black brand-font tracking-tight">The Final Drum Solo (Caravan)</h2>
+        </div>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg">
+          <span class="text-xs font-mono font-bold text-gray-500 uppercase block mb-2">Why You Should Watch It:</span>
+          <p class="text-lg font-semibold text-gray-900 leading-relaxed">
+            Proves that action writing needs zero dialogue. A brilliant study in kinetic status reversals, rhythmic pacing, and non-verbal combat.
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
+      </div>
+    </div>
+
+    <!-- FRAME 06 -->
+    <div class="reel-frame bg-[#FCE8E6] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-06-parasite.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 06 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto space-y-6">
+        <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider inline-block">SCENE 05 • SATIRE</span>
+        <div>
+          <h3 class="text-xl font-mono font-bold text-gray-700 uppercase">Parasite (2019)</h3>
+          <h2 class="text-4xl font-black brand-font tracking-tight">The Peach Allergy Montage</h2>
+        </div>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg">
+          <span class="text-xs font-mono font-bold text-gray-500 uppercase block mb-2">Why You Should Watch It:</span>
+          <p class="text-lg font-semibold text-gray-900 leading-relaxed">
+            Deconstructs how to orchestrate complex visual exposition across rapid cross-cutting without grinding narrative momentum to a halt.
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
+      </div>
+    </div>
+
+    <!-- FRAME 07 -->
+    <div class="reel-frame bg-[#DDE8DF] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-07-goodfellas.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 07 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto space-y-6">
+        <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider inline-block">SCENE 06 • MOB CRIME</span>
+        <div>
+          <h3 class="text-xl font-mono font-bold text-gray-700 uppercase">Goodfellas (1990)</h3>
+          <h2 class="text-4xl font-black brand-font tracking-tight">"Funny How?" Interrogation</h2>
+        </div>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg">
+          <span class="text-xs font-mono font-bold text-gray-500 uppercase block mb-2">Why You Should Watch It:</span>
+          <p class="text-lg font-semibold text-gray-900 leading-relaxed">
+            Teaches status volatility and literal idiom traps. Shows how absolute social dominance can be established over a dinner table.
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
+      </div>
+    </div>
+
+    <!-- FRAME 08 -->
+    <div class="reel-frame bg-[#F0F2F5] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-08-conjuring.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 08 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto space-y-6">
+        <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider inline-block">SCENE 07 • HORROR</span>
+        <div>
+          <h3 class="text-xl font-mono font-bold text-gray-700 uppercase">The Conjuring (2013)</h3>
+          <h2 class="text-4xl font-black brand-font tracking-tight">The Hide and Clap Sequence</h2>
+        </div>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg">
+          <span class="text-xs font-mono font-bold text-gray-500 uppercase block mb-2">Why You Should Watch It:</span>
+          <p class="text-lg font-semibold text-gray-900 leading-relaxed">
+            A masterclass in sensory deprivation. Explains how subverting an innocent children's parlor game creates agonizing acoustic dread.
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
+      </div>
+    </div>
+
+    <!-- FRAME 09 -->
+    <div class="reel-frame bg-[#FFF6CF] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-09-alien.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 09 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto space-y-6">
+        <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider inline-block">SCENE 08 • SCI-FI HORROR</span>
+        <div>
+          <h3 class="text-xl font-mono font-bold text-gray-700 uppercase">Alien (1979)</h3>
+          <h2 class="text-4xl font-black brand-font tracking-tight">The Chestburster Dinner</h2>
+        </div>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg">
+          <span class="text-xs font-mono font-bold text-gray-500 uppercase block mb-2">Why You Should Watch It:</span>
+          <p class="text-lg font-semibold text-gray-900 leading-relaxed">
+            Teaches false baseline relief. Demonstrates how establishing complete emotional safety makes sudden biological violation unforgettable.
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
+      </div>
+    </div>
+
+    <!-- FRAME 10 -->
+    <div class="reel-frame bg-[#FCE8E6] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-10-scream.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 10 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto space-y-6">
+        <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider inline-block">SCENE 09 • SLASHER</span>
+        <div>
+          <h3 class="text-xl font-mono font-bold text-gray-700 uppercase">Scream (1996)</h3>
+          <h2 class="text-4xl font-black brand-font tracking-tight">The Opening Phone Call</h2>
+        </div>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg">
+          <span class="text-xs font-mono font-bold text-gray-500 uppercase block mb-2">Why You Should Watch It:</span>
+          <p class="text-lg font-semibold text-gray-900 leading-relaxed">
+            Teaches decrescendo pacing and spatial vulnerability. Shows how landline proximity and film trivia turn glass walls into display cases.
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
+      </div>
+    </div>
+
+    <!-- FRAME 11 -->
+    <div class="reel-frame bg-[#D6E4EE] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-11-silenceofthelambs.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 11 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto space-y-6">
+        <span class="bg-black text-white px-3 py-1 text-xs font-black brand-font uppercase tracking-wider inline-block">SCENE 10 • THRILLER</span>
+        <div>
+          <h3 class="text-xl font-mono font-bold text-gray-700 uppercase">The Silence of the Lambs (1991)</h3>
+          <h2 class="text-4xl font-black brand-font tracking-tight">Clarice & Lecter First Meeting</h2>
+        </div>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg">
+          <span class="text-xs font-mono font-bold text-gray-500 uppercase block mb-2">Why You Should Watch It:</span>
+          <p class="text-lg font-semibold text-gray-900 leading-relaxed">
+            A masterclass in intellectual interrogation. Teaches corridor priming, eye-line dominance, and targeted class evisceration.
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SWIPE →</span>
+      </div>
+    </div>
+
+    <!-- FRAME 12 -->
+    <div class="reel-frame bg-[#FFE600] p-12 brutal-box-lg flex flex-col justify-between relative" data-filename="frame-12-outro.png">
+      <div class="flex justify-between items-center text-sm font-mono font-bold border-b-4 border-black pb-4">
+        <span class="bg-black text-white px-3 py-1">FRAME 12 / 12</span>
+        <span>DRAFTSRUSH</span>
+      </div>
+      <div class="my-auto text-center space-y-8">
+        <span class="bg-black text-white px-4 py-1.5 text-sm font-black brand-font uppercase tracking-wider border-2 border-black inline-block">FREE SCENE VAULT</span>
+        <h2 class="text-4xl sm:text-5xl font-black brand-font leading-tight tracking-tight">
+          Want Our Full List of 50 Scene Breakdowns?
+        </h2>
+        <div class="border-4 border-black bg-white p-6 brutal-box-lg text-left">
+          <p class="text-base sm:text-lg font-bold text-black leading-relaxed text-center">
+            Comment or DM <span class="bg-[#FFE600] px-2 py-1 border-2 border-black font-mono">"SCENE LIST"</span> below and we will send you all 50 breakdown guides instantly to help you write your next script! 📥
+          </p>
+        </div>
+      </div>
+      <div class="border-t-4 border-black pt-4 flex justify-between items-center text-sm font-mono font-bold">
+        <span>@DraftsRush</span>
+        <span>SAVE THIS POST 📌</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Auto-Download Script -->
+  <script>
+    async function downloadAllFrames() {
+      const frames = document.querySelectorAll('.reel-frame');
+      for (let i = 0; i < frames.length; i++) {
+        const frame = frames[i];
+        const filename = frame.getAttribute('data-filename') || `frame-${i+1}.png`;
+        
+        const canvas = await html2canvas(frame, {
+          scale: 2, // High resolution export (2160x3840)
+          useCORS: true,
+          backgroundColor: null
+        });
+        
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        // Brief pause between downloads to prevent browser blocking
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+    }
+  </script>
 
 </body>
 </html>
