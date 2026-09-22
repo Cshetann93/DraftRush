@@ -224,9 +224,9 @@
 
               <!-- Push To Open Bar -->
               <div class="mt-4 pt-3 border-t-2 border-black flex items-center justify-between">
-                <span id="door-status-scenes" class="text-[11px] font-mono font-bold text-gray-800 uppercase">Status: Closed</span>
-                <span id="btn-label-scenes" class="bg-black text-white font-black text-xs px-4 py-2 border-2 border-black brutal-btn brand-font uppercase">
-                  Push to Enter →
+                <span id="door-status-scenes" class="text-[11px] font-mono font-bold text-black uppercase">Status: Open</span>
+                <span id="btn-label-scenes" class="bg-black text-[#FFE600] font-black text-xs px-4 py-2 border-2 border-black brand-font uppercase">
+                  DOOR OPENED ✓
                 </span>
               </div>
 
@@ -301,11 +301,11 @@
       </div>
     </section>
 
-    <!-- CONTENT DISPLAY AREA: 100% HIDDEN ON INITIAL LOAD -->
-    <div id="content-container" class="hidden">
+    <!-- CONTENT DISPLAY AREA: FULLY VISIBLE BY DEFAULT FOR SEARCH CRAWLERS -->
+    <div id="content-container">
       
-      <!-- WING 1: CINEMA VAULT (SCENE BREAKDOWNS) -->
-      <section id="wing-scenes" class="hidden max-w-6xl mx-auto px-6 py-8">
+      <!-- WING 1: CINEMA VAULT (SCENE BREAKDOWNS - VISIBLE BY DEFAULT) -->
+      <section id="wing-scenes" class="max-w-6xl mx-auto px-6 py-8">
         <div class="border-4 border-black p-6 mb-8 brutal-box flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4" style="background-color: #D6E4EE;">
           <div>
             <div class="inline-block bg-black text-white px-2 py-0.5 text-xs font-mono font-bold uppercase mb-1">ROOM: CINEMA VAULT</div>
@@ -314,8 +314,8 @@
               Complete second-by-second teardowns featuring authentic script pages, spatial blocking, and screenwriting principles.
             </p>
           </div>
-          <button onclick="closeWings()" class="text-xs font-black brand-font bg-white border-2 border-black px-4 py-2 brutal-box brutal-btn uppercase whitespace-nowrap">
-            ← Close Door
+          <button onclick="openDoor('craft')" class="text-xs font-black brand-font bg-white border-2 border-black px-4 py-2 brutal-box brutal-btn uppercase whitespace-nowrap">
+            Switch to Craft Studio →
           </button>
         </div>
 
@@ -582,8 +582,8 @@
               Production guidelines, video hook databases, retention formulas, and scriptwriting manuals.
             </p>
           </div>
-          <button onclick="closeWings()" class="text-xs font-black brand-font bg-white text-black border-2 border-black px-4 py-2 brutal-box brutal-btn uppercase whitespace-nowrap">
-            ← Close Door
+          <button onclick="openDoor('scenes')" class="text-xs font-black brand-font bg-white text-black border-2 border-black px-4 py-2 brutal-box brutal-btn uppercase whitespace-nowrap">
+            Switch to Cinema Vault →
           </button>
         </div>
 
@@ -1381,19 +1381,15 @@
     <span>Contact Desk</span>
   </a>
 
-  <!-- Script: Door Click Functionality -->
+  <!-- Script: Door Click Tab Functionality -->
   <script>
     function openDoor(doorKey) {
-      const container = document.getElementById('content-container');
       const wingScenes = document.getElementById('wing-scenes');
       const wingCraft = document.getElementById('wing-craft');
       const btnScenes = document.getElementById('btn-label-scenes');
       const btnCraft = document.getElementById('btn-label-craft');
       const statusScenes = document.getElementById('door-status-scenes');
       const statusCraft = document.getElementById('door-status-craft');
-
-      // Unhide content section
-      container.classList.remove('hidden');
 
       if (doorKey === 'scenes') {
         wingScenes.classList.remove('hidden');
@@ -1422,30 +1418,6 @@
 
         wingCraft.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    }
-
-    function closeWings() {
-      const container = document.getElementById('content-container');
-      const wingScenes = document.getElementById('wing-scenes');
-      const wingCraft = document.getElementById('wing-craft');
-      const btnScenes = document.getElementById('btn-label-scenes');
-      const btnCraft = document.getElementById('btn-label-craft');
-      const statusScenes = document.getElementById('door-status-scenes');
-      const statusCraft = document.getElementById('door-status-craft');
-
-      container.classList.add('hidden');
-      wingScenes.classList.add('hidden');
-      wingCraft.classList.add('hidden');
-
-      btnScenes.innerText = 'Push to Enter →';
-      btnScenes.className = 'bg-black text-white font-black text-xs px-4 py-2 border-2 border-black brutal-btn brand-font uppercase';
-      statusScenes.innerText = 'Status: Closed';
-
-      btnCraft.innerText = 'Push to Enter →';
-      btnCraft.className = 'bg-black text-white font-black text-xs px-4 py-2 border-2 border-black brutal-btn brand-font uppercase';
-      statusCraft.innerText = 'Status: Closed';
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 
