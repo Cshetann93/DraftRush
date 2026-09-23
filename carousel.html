@@ -2,28 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Reel Template Canvas Generator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@500;700&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+  <title>Pro Reel Canvas Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@500;700&family=JetBrains+Mono:wght@700;800&family=Archivo+Black&family=Playfair+Display:wght@700;900&family=Bebas+Neue&family=Outfit:wght@700;900&family=Roboto:wght@500;700&family=Open+Sans:wght@500;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 24px;
+      padding: 0;
       background: #111317;
       color: #FFFFFF;
       font-family: 'Inter', sans-serif;
       display: flex;
-      gap: 32px;
-      align-items: flex-start;
-      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
     }
-    .panel {
-      width: 380px;
+    .sidebar {
+      width: 420px;
+      background: #1F232B;
+      padding: 24px;
+      overflow-y: auto;
+      border-right: 4px solid #000;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
+    }
+    .sidebar::-webkit-scrollbar { width: 8px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #FFE600; border-radius: 4px; }
+    .preview-area {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #2A2F3A;
+      overflow-y: auto;
+      padding: 40px;
+    }
+    .group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: #111317;
+      padding: 16px;
+      border: 2px solid #000;
     }
     label {
-      font-size: 12px;
+      font-size: 11px;
       font-family: 'JetBrains Mono', monospace;
       text-transform: uppercase;
       font-weight: 700;
@@ -33,253 +55,163 @@
       width: 100%;
       padding: 10px;
       background: #1F232B;
-      border: 2px solid #000;
+      border: 2px solid #555;
       color: #fff;
       font-family: inherit;
       font-size: 14px;
       box-sizing: border-box;
       outline: none;
+      transition: border-color 0.2s;
     }
-    textarea { height: 110px; resize: vertical; }
-    .btn-group { display: flex; gap: 10px; }
+    input:focus, textarea:focus, select:focus {
+      border-color: #FFE600;
+    }
+    textarea { height: 90px; resize: vertical; }
     button {
-      flex: 1;
-      padding: 12px;
+      padding: 16px;
       background: #FFE600;
       color: #000;
       font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
       font-weight: 900;
       text-transform: uppercase;
       cursor: pointer;
-      border: 2px solid #000;
+      border: 4px solid #000;
       box-shadow: 4px 4px 0 #000;
       transition: transform 0.1s;
+      margin-top: 10px;
     }
     button:active {
       transform: translate(2px, 2px);
       box-shadow: 2px 2px 0 #000;
     }
     .canvas-container {
-      border: 4px solid #000;
-      box-shadow: 8px 8px 0 #FFE600;
+      border: 6px solid #000;
+      box-shadow: 12px 12px 0 #FFE600;
       line-height: 0;
+      background: #000;
     }
     canvas {
-      width: 360px;
-      height: 640px; /* Scaled down 1/3 display size; exports full 1080x1920 */
-      background: #000;
+      width: 405px; /* Scaled down 37.5% for preview */
+      height: 720px; 
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <div class="panel">
-    <h2 style="font-family: 'Space Grotesk'; margin: 0; text-transform: uppercase;">Reel Slide Maker</h2>
+  <div class="sidebar">
+    <h2 style="font-family: 'Space Grotesk'; margin: 0; font-size: 28px; text-transform: uppercase; color: #FFE600;">Reel Generator</h2>
     
-    <div>
-      <label>Template Style</label>
+    <div class="group">
+      <label>1. Template Style</label>
       <select id="tplSelect">
-        <option value="brutalist">Template 1: Brutalist Card</option>
-        <option value="terminal">Template 2: Dark Terminal</option>
+        <option value="brutalist">1. DraftsRush Brutalist (Hard Shadows)</option>
+        <option value="terminal">2. Dark Terminal (Code Window)</option>
+        <option value="popart">3. Pop Art Offset (Vibrant & Bold)</option>
+        <option value="minimal">4. Clean Minimalist (Elegant Centered)</option>
+        <option value="cyberpunk">5. Neon Cyberpunk (Glowing Edges)</option>
       </select>
     </div>
 
-    <div>
-      <label>Step Number / Badge</label>
+    <div class="group">
+      <label>2. Typography</label>
+      <select id="headFont">
+        <option value="'Space Grotesk'">Heading: Space Grotesk</option>
+        <option value="'Archivo Black'">Heading: Archivo Black</option>
+        <option value="'Bebas Neue'">Heading: Bebas Neue</option>
+        <option value="'Playfair Display'">Heading: Playfair Display (Serif)</option>
+        <option value="'Outfit'">Heading: Outfit</option>
+      </select>
+      <select id="bodyFont">
+        <option value="'Inter'">Body: Inter</option>
+        <option value="'JetBrains Mono'">Body: JetBrains Mono</option>
+        <option value="'Roboto'">Body: Roboto</option>
+        <option value="'Open Sans'">Body: Open Sans</option>
+        <option value="'Courier Prime'">Body: Courier Prime</option>
+      </select>
+    </div>
+
+    <div class="group">
+      <label>3. Color Palette</label>
+      <select id="bgColor">
+        <option value="#E2E4E9">Background: Cool Gray</option>
+        <option value="#111317">Background: Pitch Black</option>
+        <option value="#FFFFFF">Background: Pure White</option>
+        <option value="#FFE600">Background: DraftsRush Yellow</option>
+        <option value="#090A0F">Background: Deep Void</option>
+        <option value="#FF2A54">Background: Hot Pink</option>
+      </select>
+      <select id="boxColor">
+        <option value="#FFFFFF">Box/Card: Pure White</option>
+        <option value="#1F232B">Box/Card: Dark Slate</option>
+        <option value="#FFE600">Box/Card: DraftsRush Yellow</option>
+        <option value="#FAFAFA">Box/Card: Off-White</option>
+        <option value="#000000">Box/Card: True Black</option>
+      </select>
+      <select id="textColor">
+        <option value="#111317">Text: True Black</option>
+        <option value="#FFFFFF">Text: Pure White</option>
+        <option value="#FFE600">Text: Yellow</option>
+        <option value="#FF5F56">Text: Crimson Red</option>
+        <option value="#8FA0B5">Text: Muted Slate</option>
+      </select>
+      <select id="accentColor">
+        <option value="#FFE600">Accent: Yellow</option>
+        <option value="#34D399">Accent: Emerald Green</option>
+        <option value="#00E5FF">Accent: Cyber Cyan</option>
+        <option value="#FB7185">Accent: Bright Pink</option>
+        <option value="#111317">Accent: Black</option>
+      </select>
+    </div>
+
+    <div class="group">
+      <label>4. Content</label>
       <input type="text" id="badgeText" value="01 / 07">
-    </div>
-
-    <div>
-      <label>Category / Tagline</label>
       <input type="text" id="catText" value="CREATOR STRATEGY">
-    </div>
-
-    <div>
-      <label>Main Title</label>
       <input type="text" id="titleText" value="Reddit Horror Stories">
-    </div>
-
-    <div>
-      <label>Body Bullets (Enter separated)</label>
       <textarea id="bodyText">Source top text posts from r/nosleep.
 Overlay text onto free royalty-free gameplay.
 Add auto-captions in CapCut.
 Viewers stay to read the ending.</textarea>
-    </div>
-
-    <div>
-      <label>Bottom Tool Highlight</label>
       <input type="text" id="footerText" value="TOOLS: REDDIT + CAPCUT (FREE)">
     </div>
 
-    <div class="btn-group">
-      <button id="downloadBtn">Download PNG</button>
-    </div>
+    <button id="downloadBtn">Download Slide (1080x1920)</button>
   </div>
 
-  <div class="canvas-container">
-    <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+  <div class="preview-area">
+    <div class="canvas-container">
+      <canvas id="reelCanvas" width="1080" height="1920"></canvas>
+    </div>
   </div>
 
   <script>
     const canvas = document.getElementById('reelCanvas');
     const ctx = canvas.getContext('2d');
 
-    const tplSelect = document.getElementById('tplSelect');
-    const badgeText = document.getElementById('badgeText');
-    const catText = document.getElementById('catText');
-    const titleText = document.getElementById('titleText');
-    const bodyText = document.getElementById('bodyText');
-    const footerText = document.getElementById('footerText');
-    const downloadBtn = document.getElementById('downloadBtn');
+    // DOM Elements
+    const elements = [
+      'tplSelect', 'headFont', 'bodyFont', 
+      'bgColor', 'boxColor', 'textColor', 'accentColor',
+      'badgeText', 'catText', 'titleText', 'bodyText', 'footerText'
+    ].reduce((acc, id) => {
+      acc[id] = document.getElementById(id);
+      return acc;
+    }, {});
 
-    function drawHardBox(x, y, w, h, fill, shadowOffset = 14) {
-      ctx.fillStyle = '#111317';
-      ctx.fillRect(x + shadowOffset, y + shadowOffset, w, h);
+    // Utility: Draw Hard Box
+    function drawHardBox(x, y, w, h, fill, strokeColor, shadowColor, offset = 14, lineWidth = 6) {
+      ctx.fillStyle = shadowColor;
+      ctx.fillRect(x + offset, y + offset, w, h);
       ctx.fillStyle = fill;
       ctx.fillRect(x, y, w, h);
-      ctx.lineWidth = 6;
-      ctx.strokeStyle = '#111317';
+      ctx.lineWidth = lineWidth;
+      ctx.strokeStyle = strokeColor;
       ctx.strokeRect(x, y, w, h);
     }
 
-    function renderBrutalist() {
-      // Background
-      ctx.fillStyle = '#E2E4E9';
-      ctx.fillRect(0, 0, 1080, 1920);
-
-      // Outer safety border
-      ctx.lineWidth = 16;
-      ctx.strokeStyle = '#111317';
-      ctx.strokeRect(40, 40, 1000, 1840);
-
-      // Top Header Block
-      drawHardBox(90, 160, 900, 140, '#FFE600', 10);
-      
-      // Category Text
-      ctx.fillStyle = '#111317';
-      ctx.font = '900 36px "Space Grotesk"';
-      ctx.fillText(catText.value.toUpperCase(), 130, 245);
-
-      // Badge in header
-      ctx.fillStyle = '#111317';
-      ctx.fillRect(800, 185, 160, 90);
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '700 32px "JetBrains Mono"';
-      ctx.textAlign = 'center';
-      ctx.fillText(badgeText.value, 880, 242);
-      ctx.textAlign = 'left';
-
-      // Main Card Body
-      drawHardBox(90, 370, 900, 1260, '#FFFFFF', 16);
-
-      // Title
-      ctx.fillStyle = '#111317';
-      ctx.font = '900 58px "Space Grotesk"';
-      wrapText(titleText.value, 150, 490, 780, 72);
-
-      // Divider line
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = '#111317';
-      ctx.beginPath();
-      ctx.moveTo(150, 610);
-      ctx.lineTo(930, 610);
-      ctx.stroke();
-
-      // Bullets
-      ctx.fillStyle = '#22252A';
-      ctx.font = '500 40px "Inter"';
-      const lines = bodyText.value.split('\n');
-      let currentY = 700;
-      lines.forEach(line => {
-        if (!line.trim()) return;
-        ctx.fillStyle = '#FFE600';
-        ctx.fillRect(150, currentY - 26, 12, 32);
-        ctx.fillStyle = '#22252A';
-        wrapText(line, 180, currentY, 740, 56);
-        currentY += 120;
-      });
-
-      // Bottom Highlight Box
-      drawHardBox(150, 1420, 780, 120, '#FFF6CF', 8);
-      ctx.fillStyle = '#111317';
-      ctx.font = '700 28px "JetBrains Mono"';
-      ctx.fillText(footerText.value.toUpperCase(), 180, 1492);
-    }
-
-    function renderTerminal() {
-      // Dark Base
-      ctx.fillStyle = '#111317';
-      ctx.fillRect(0, 0, 1080, 1920);
-
-      // Outer window box
-      drawHardBox(80, 180, 920, 1560, '#1E232B', 14);
-
-      // Window Header Bar
-      ctx.fillStyle = '#D6E4EE';
-      ctx.fillRect(80, 180, 920, 90);
-      ctx.lineWidth = 6;
-      ctx.strokeStyle = '#111317';
-      ctx.strokeRect(80, 180, 920, 90);
-
-      // Window control dots
-      const dots = ['#FF5F56', '#FFBD2E', '#27C93F'];
-      dots.forEach((color, i) => {
-        ctx.beginPath();
-        ctx.arc(130 + (i * 35), 225, 12, 0, Math.PI * 2);
-        ctx.fillStyle = color;
-        ctx.fill();
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = '#000';
-        ctx.stroke();
-      });
-
-      // Header text
-      ctx.fillStyle = '#111317';
-      ctx.font = '700 28px "JetBrains Mono"';
-      ctx.textAlign = 'right';
-      ctx.fillText(badgeText.value, 950, 235);
-      ctx.textAlign = 'left';
-
-      // Title
-      ctx.fillStyle = '#FFE600';
-      ctx.font = '900 64px "Space Grotesk"';
-      wrapText(titleText.value, 140, 390, 800, 78);
-
-      // Subheading / Tagline
-      ctx.fillStyle = '#8FA0B5';
-      ctx.font = '700 28px "JetBrains Mono"';
-      ctx.fillText(`// ${catText.value.toUpperCase()}`, 140, 480);
-
-      // Code / Bullet points
-      ctx.fillStyle = '#FFFFFF';
-      ctx.font = '500 38px "Inter"';
-      const lines = bodyText.value.split('\n');
-      let currentY = 600;
-      lines.forEach((line, idx) => {
-        if (!line.trim()) return;
-        ctx.fillStyle = '#34D399';
-        ctx.font = '700 34px "JetBrains Mono"';
-        ctx.fillText(`0${idx + 1} >`, 140, currentY);
-
-        ctx.fillStyle = '#F0F2F5';
-        ctx.font = '500 38px "Inter"';
-        wrapText(line, 240, currentY, 700, 54);
-        currentY += 130;
-      });
-
-      // Bottom footer bar
-      ctx.fillStyle = '#111317';
-      ctx.fillRect(140, 1540, 800, 90);
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = '#FFE600';
-      ctx.strokeRect(140, 1540, 800, 90);
-
-      ctx.fillStyle = '#FFE600';
-      ctx.font = '700 26px "JetBrains Mono"';
-      ctx.fillText(footerText.value, 180, 1595);
-    }
-
+    // Utility: Text Wrapping
     function wrapText(text, x, y, maxWidth, lineHeight) {
       const words = text.split(' ');
       let line = '';
@@ -297,27 +229,273 @@ Viewers stay to read the ending.</textarea>
       ctx.fillText(line, x, y);
     }
 
-    function render() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (tplSelect.value === 'brutalist') {
-        renderBrutalist();
-      } else {
-        renderTerminal();
-      }
+    // --- TEMPLATE 1: BRUTALIST ---
+    function renderBrutalist(colors, fonts, data) {
+      ctx.fillStyle = colors.bg; ctx.fillRect(0, 0, 1080, 1920);
+      ctx.lineWidth = 16; ctx.strokeStyle = colors.text; ctx.strokeRect(40, 40, 1000, 1840);
+
+      drawHardBox(90, 160, 900, 140, colors.accent, colors.text, colors.text, 10, 6);
+      
+      ctx.fillStyle = colors.text === '#111317' ? '#111317' : '#000000';
+      ctx.font = `900 36px ${fonts.head}`;
+      ctx.fillText(data.cat.toUpperCase(), 130, 245);
+
+      ctx.fillStyle = colors.text;
+      ctx.fillRect(800, 185, 160, 90);
+      ctx.fillStyle = colors.bg;
+      ctx.font = `700 32px "JetBrains Mono"`;
+      ctx.textAlign = 'center';
+      ctx.fillText(data.badge, 880, 242);
+      ctx.textAlign = 'left';
+
+      drawHardBox(90, 370, 900, 1260, colors.box, colors.text, colors.text, 16, 6);
+
+      ctx.fillStyle = colors.text;
+      ctx.font = `900 64px ${fonts.head}`;
+      wrapText(data.title, 150, 490, 780, 72);
+
+      ctx.lineWidth = 4; ctx.strokeStyle = colors.text;
+      ctx.beginPath(); ctx.moveTo(150, 610); ctx.lineTo(930, 610); ctx.stroke();
+
+      ctx.font = `500 40px ${fonts.body}`;
+      let currentY = 700;
+      data.body.split('\n').forEach(line => {
+        if (!line.trim()) return;
+        ctx.fillStyle = colors.accent;
+        ctx.fillRect(150, currentY - 26, 12, 32);
+        ctx.fillStyle = colors.text;
+        wrapText(line, 180, currentY, 740, 56);
+        currentY += 120;
+      });
+
+      drawHardBox(150, 1420, 780, 120, colors.accent, colors.text, colors.text, 8, 4);
+      ctx.fillStyle = colors.text === '#111317' ? '#111317' : '#000000';
+      ctx.font = `700 28px "JetBrains Mono"`;
+      ctx.fillText(data.footer.toUpperCase(), 180, 1492);
     }
 
-    [tplSelect, badgeText, catText, titleText, bodyText, footerText].forEach(el => {
-      el.addEventListener('input', render);
-    });
+    // --- TEMPLATE 2: TERMINAL ---
+    function renderTerminal(colors, fonts, data) {
+      ctx.fillStyle = colors.bg; ctx.fillRect(0, 0, 1080, 1920);
+      
+      drawHardBox(80, 180, 920, 1560, colors.box, colors.text, colors.accent, 14, 6);
 
-    downloadBtn.addEventListener('click', () => {
+      ctx.fillStyle = colors.text === '#111317' ? '#E2E4E9' : '#111317';
+      ctx.fillRect(80, 180, 920, 90);
+      ctx.lineWidth = 6; ctx.strokeStyle = colors.text; ctx.strokeRect(80, 180, 920, 90);
+
+      const dots = ['#FF5F56', '#FFBD2E', '#27C93F'];
+      dots.forEach((c, i) => {
+        ctx.beginPath(); ctx.arc(130 + (i * 35), 225, 12, 0, Math.PI * 2);
+        ctx.fillStyle = c; ctx.fill(); ctx.stroke();
+      });
+
+      ctx.fillStyle = colors.text === '#111317' ? '#FFFFFF' : '#FFFFFF';
+      ctx.font = `700 28px "JetBrains Mono"`;
+      ctx.textAlign = 'right'; ctx.fillText(data.badge, 950, 235); ctx.textAlign = 'left';
+
+      ctx.fillStyle = colors.text;
+      ctx.font = `900 64px ${fonts.head}`;
+      wrapText(data.title, 140, 390, 800, 78);
+
+      ctx.fillStyle = colors.accent;
+      ctx.font = `700 28px "JetBrains Mono"`;
+      ctx.fillText(`// ${data.cat.toUpperCase()}`, 140, 480);
+
+      ctx.font = `500 38px ${fonts.body}`;
+      let currentY = 600;
+      data.body.split('\n').forEach((line, idx) => {
+        if (!line.trim()) return;
+        ctx.fillStyle = colors.accent;
+        ctx.font = `700 34px "JetBrains Mono"`;
+        ctx.fillText(`0${idx + 1} >`, 140, currentY);
+        ctx.fillStyle = colors.text;
+        ctx.font = `500 38px ${fonts.body}`;
+        wrapText(line, 240, currentY, 700, 54);
+        currentY += 130;
+      });
+
+      ctx.fillStyle = colors.text === '#111317' ? '#E2E4E9' : '#111317';
+      ctx.fillRect(140, 1540, 800, 90);
+      ctx.lineWidth = 4; ctx.strokeStyle = colors.accent; ctx.strokeRect(140, 1540, 800, 90);
+      ctx.fillStyle = colors.accent;
+      ctx.font = `700 26px "JetBrains Mono"`;
+      ctx.fillText(data.footer, 180, 1595);
+    }
+
+    // --- TEMPLATE 3: POP ART ---
+    function renderPopArt(colors, fonts, data) {
+      ctx.fillStyle = colors.bg; ctx.fillRect(0, 0, 1080, 1920);
+      
+      // Giant background accent shape
+      ctx.fillStyle = colors.accent;
+      ctx.beginPath(); ctx.arc(900, 200, 400, 0, Math.PI * 2); ctx.fill();
+
+      // Dual shifted boxes
+      drawHardBox(70, 400, 940, 1100, colors.text, colors.text, 'transparent', 0, 0); // Shadow box
+      drawHardBox(100, 370, 940, 1100, colors.box, colors.text, 'transparent', 0, 8); // Main box
+
+      ctx.fillStyle = colors.text;
+      ctx.font = `900 72px ${fonts.head}`;
+      wrapText(data.title.toUpperCase(), 160, 490, 820, 80);
+
+      ctx.fillStyle = colors.accent;
+      ctx.fillRect(160, 610, 200, 10);
+
+      ctx.fillStyle = colors.text;
+      ctx.font = `700 42px ${fonts.body}`;
+      let currentY = 720;
+      data.body.split('\n').forEach(line => {
+        if (!line.trim()) return;
+        ctx.fillText("★", 160, currentY);
+        wrapText(line, 220, currentY, 760, 60);
+        currentY += 140;
+      });
+
+      // Top Tag
+      drawHardBox(100, 120, 400, 100, colors.text, colors.text, 'transparent', 0, 0);
+      ctx.fillStyle = colors.bg;
+      ctx.font = `900 32px ${fonts.head}`;
+      ctx.fillText(`${data.badge} - ${data.cat}`, 130, 185);
+
+      // Bottom Tag
+      drawHardBox(100, 1530, 940, 100, colors.accent, colors.text, 'transparent', 0, 8);
+      ctx.fillStyle = colors.text === '#111317' ? '#111317' : '#000000';
+      ctx.font = `900 32px "JetBrains Mono"`;
+      ctx.fillText(data.footer, 140, 1595);
+    }
+
+    // --- TEMPLATE 4: MINIMALIST ---
+    function renderMinimal(colors, fonts, data) {
+      ctx.fillStyle = colors.bg; ctx.fillRect(0, 0, 1080, 1920);
+
+      ctx.shadowColor = 'rgba(0,0,0,0.1)';
+      ctx.shadowBlur = 40; ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 20;
+      ctx.fillStyle = colors.box;
+      ctx.fillRect(80, 250, 920, 1420);
+      ctx.shadowBlur = 0; ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
+
+      ctx.lineWidth = 2; ctx.strokeStyle = colors.accent;
+      ctx.strokeRect(120, 290, 840, 1340);
+
+      ctx.fillStyle = colors.accent;
+      ctx.font = `700 24px "JetBrains Mono"`;
+      ctx.textAlign = 'center';
+      ctx.fillText(`${data.badge} • ${data.cat}`, 540, 360);
+
+      ctx.fillStyle = colors.text;
+      ctx.font = `700 64px ${fonts.head}`;
+      wrapText(data.title, 180, 460, 720, 80);
+      ctx.textAlign = 'left';
+
+      ctx.font = `400 38px ${fonts.body}`;
+      let currentY = 700;
+      data.body.split('\n').forEach(line => {
+        if (!line.trim()) return;
+        ctx.fillStyle = colors.accent;
+        ctx.fillText("—", 180, currentY - 4);
+        ctx.fillStyle = colors.text;
+        wrapText(line, 240, currentY, 660, 64);
+        currentY += 150;
+      });
+
+      ctx.fillStyle = colors.accent;
+      ctx.fillRect(180, 1480, 720, 2);
+      ctx.fillStyle = colors.text;
+      ctx.font = `400 24px "JetBrains Mono"`;
+      ctx.textAlign = 'center';
+      ctx.fillText(data.footer, 540, 1550);
+      ctx.textAlign = 'left';
+    }
+
+    // --- TEMPLATE 5: CYBERPUNK ---
+    function renderCyberpunk(colors, fonts, data) {
+      ctx.fillStyle = '#090A0F'; ctx.fillRect(0, 0, 1080, 1920); // Force dark bg
+
+      // Grid background effect
+      ctx.strokeStyle = '#1F232B'; ctx.lineWidth = 2;
+      for(let i=0; i<1080; i+=80) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,1920); ctx.stroke(); }
+      for(let i=0; i<1920; i+=80) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(1080,i); ctx.stroke(); }
+
+      ctx.shadowColor = colors.accent; ctx.shadowBlur = 20;
+      ctx.lineWidth = 6; ctx.strokeStyle = colors.accent;
+      ctx.strokeRect(60, 60, 960, 1800);
+      ctx.shadowBlur = 0;
+
+      ctx.fillStyle = colors.box; ctx.fillRect(100, 240, 880, 1440);
+
+      ctx.fillStyle = colors.accent;
+      ctx.font = `700 32px "JetBrains Mono"`;
+      ctx.fillText(`SYSTEM_LOG: [${data.badge}] // ${data.cat}`, 100, 180);
+
+      ctx.shadowColor = colors.accent; ctx.shadowBlur = 10;
+      ctx.fillStyle = colors.text;
+      ctx.font = `900 68px ${fonts.head}`;
+      wrapText(data.title.toUpperCase(), 160, 360, 760, 74);
+      ctx.shadowBlur = 0;
+
+      ctx.fillStyle = colors.text;
+      ctx.font = `500 40px ${fonts.body}`;
+      let currentY = 620;
+      data.body.split('\n').forEach(line => {
+        if (!line.trim()) return;
+        ctx.fillStyle = colors.accent;
+        ctx.fillRect(160, currentY - 26, 12, 12);
+        ctx.fillStyle = colors.text;
+        wrapText(line, 200, currentY, 720, 60);
+        currentY += 130;
+      });
+
+      ctx.strokeStyle = colors.accent; ctx.lineWidth = 4;
+      ctx.strokeRect(160, 1500, 760, 100);
+      ctx.fillStyle = colors.accent;
+      ctx.font = `700 28px "JetBrains Mono"`;
+      ctx.fillText(data.footer, 190, 1560);
+    }
+
+    // Main Router
+    function render() {
+      const colors = {
+        bg: elements.bgColor.value,
+        box: elements.boxColor.value,
+        text: elements.textColor.value,
+        accent: elements.accentColor.value
+      };
+      const fonts = {
+        head: elements.headFont.value,
+        body: elements.bodyFont.value
+      };
+      const data = {
+        badge: elements.badgeText.value,
+        cat: elements.catText.value,
+        title: elements.titleText.value,
+        body: elements.bodyText.value,
+        footer: elements.footerText.value
+      };
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const style = elements.tplSelect.value;
+
+      if (style === 'brutalist') renderBrutalist(colors, fonts, data);
+      else if (style === 'terminal') renderTerminal(colors, fonts, data);
+      else if (style === 'popart') renderPopArt(colors, fonts, data);
+      else if (style === 'minimal') renderMinimal(colors, fonts, data);
+      else if (style === 'cyberpunk') renderCyberpunk(colors, fonts, data);
+    }
+
+    // Attach Listeners
+    Object.values(elements).forEach(el => el.addEventListener('input', render));
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
       const link = document.createElement('a');
-      link.download = `${titleText.value.toLowerCase().replace(/[^a-z0-9]/g, '-')}.png`;
+      link.download = `reel-${elements.titleText.value.toLowerCase().replace(/[^a-z0-9]/g, '-')}.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
     });
 
+    // Wait for fonts to load before first render
     document.fonts.ready.then(render);
+    setTimeout(render, 500); // Fallback render
   </script>
 </body>
 </html>
