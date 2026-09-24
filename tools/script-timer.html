@@ -136,9 +136,19 @@
         </div>
       </div>
 
-      <!-- Text Input -->
+    <!-- Text Input -->
       <div class="mb-6">
-        <label class="block font-black text-xs uppercase tracking-wider mb-2">Paste Voiceover / Dialogue Only</label>
+        <div class="flex items-center justify-between mb-2">
+          <label class="block font-black text-xs uppercase tracking-wider">Paste Voiceover / Dialogue Only</label>
+          <div class="flex items-center gap-3">
+            <button id="sample-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+              ⚡ Try an Example
+            </button>
+            <button id="copy-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+              📋 Copy Script
+            </button>
+          </div>
+        </div>
         <textarea id="script-input" rows="8" placeholder="Paste your script text here. Do not include visual directions (e.g. [B-Roll cut])..." class="w-full border-2 border-black p-4 font-medium text-sm bg-white focus:outline-none focus:bg-[#FFFDE6]"></textarea>
       </div>
 
@@ -328,10 +338,37 @@
   </footer>
 
   <script>
-    const scriptInput = document.getElementById('script-input');
+   const scriptInput = document.getElementById('script-input');
     const paceSelect = document.getElementById('pace-select');
     const platformSelect = document.getElementById('platform-select');
+    const sampleBtn = document.getElementById('sample-btn');
+    const copyBtn = document.getElementById('copy-btn');
 
+    // Populate a realistic 60-second video script sample
+    if (sampleBtn) {
+      sampleBtn.addEventListener('click', () => {
+        scriptInput.value = "Why do 99% of movies use this exact color trick? Look closely at any Hollywood blockbuster from the last twenty years. The shadows are pushed into cold teals, while the actors' skin tones are pushed into warm amber oranges. This is complementary color contrast. Orange and blue sit directly opposite each other on the color wheel, creating immediate depth without the eye working hard. But modern streaming algorithms are forcing editors to exaggerate it even further to keep viewers from scrolling past previews.";
+        calculate();
+      });
+    }
+
+    // One-click copy with feedback state
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        const text = scriptInput.value.trim();
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          const original = copyBtn.innerText;
+          copyBtn.innerText = "✓ Copied!";
+          setTimeout(() => {
+            copyBtn.innerText = original;
+          }, 1500);
+        } catch (err) {
+          console.error("Clipboard copy failed", err);
+        }
+      });
+    }
     const metricWords = document.getElementById('metric-words');
     const metricSeconds = document.getElementById('metric-seconds');
     const metricHookWords = document.getElementById('metric-hook-words');
