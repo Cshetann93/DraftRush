@@ -307,8 +307,13 @@
       <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">YouTube Title Truncation Preview</h1>
       <p class="text-sm font-medium text-gray-700 mb-6">Test if your title cuts off on mobile screens. Mobile feeds cut titles at roughly 50 characters.</p>
 
-      <label class="block font-black text-xs uppercase mb-2">Your Video Title</label>
-      <input id="title-input" type="text" placeholder="Type your title here..." class="w-full border-2 border-black p-3 font-medium bg-white focus:bg-[#FFFDE6] mb-6 outline-none transition-colors">
+   <div class="flex items-center justify-between mb-2">
+        <label class="block font-black text-xs uppercase">Your Video Title</label>
+        <button id="sample-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+          ⚡ Try an Example
+        </button>
+      </div>
+      <input id="title-input" type="text" placeholder="Type your title here..." class="w-full border-2 border-black p-3 font-medium bg-white focus:bg-[#FFFDE6] mb-6">
 
       <div class="grid grid-cols-2 gap-4 text-center mb-6">
         <div class="border-2 border-black bg-white p-3 brutal-box">
@@ -477,6 +482,15 @@
     const charCount = document.getElementById('char-count');
     const mobileStatus = document.getElementById('mobile-status');
     const previewBox = document.getElementById('preview-box');
+
+  const sampleBtn = document.getElementById('sample-btn');
+
+    if (sampleBtn) {
+      sampleBtn.addEventListener('click', () => {
+        input.value = "Why 99% of YouTube Creators Fail Their First 30 Seconds (Retention Case Study)";
+        input.dispatchEvent(new Event('input'));
+      });
+    }
 
     input.addEventListener('input', () => {
       const val = input.value;
