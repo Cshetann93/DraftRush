@@ -117,7 +117,17 @@
       </p>
 
       <div class="mb-4">
-        <label class="block font-black text-xs uppercase tracking-wider mb-2">Opening Sentence (Hook)</label>
+        <div class="flex items-center justify-between mb-2">
+          <label class="block font-black text-xs uppercase tracking-wider">Opening Sentence (Hook)</label>
+          <div class="flex items-center gap-3">
+            <button id="sample-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+              ⚡ Try an Example
+            </button>
+            <button id="copy-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+              📋 Copy Hook
+            </button>
+          </div>
+        </div>
         <input id="hook-input" type="text" placeholder='e.g. "Most people throw away the healthiest part of an egg without knowing it."' class="w-full border-2 border-black p-4 font-medium text-base bg-white focus:outline-none focus:bg-[#FFFDE6]">
       </div>
 
@@ -298,6 +308,33 @@
     const scoreDisplay = document.getElementById('score-display');
     const gradeBadge = document.getElementById('grade-badge');
     const feedbackList = document.getElementById('feedback-list');
+    const sampleBtn = document.getElementById('sample-btn');
+    const copyBtn = document.getElementById('copy-btn');
+
+    // Populate high-retention sample hook
+    if (sampleBtn) {
+      sampleBtn.addEventListener('click', () => {
+        input.value = "Why nobody warns you about the biggest mistake in your 20s.";
+        input.dispatchEvent(new Event('input'));
+      });
+    }
+
+    // One-click copy with feedback state
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        if (!input.value.trim()) return;
+        try {
+          await navigator.clipboard.writeText(input.value.trim());
+          const originalText = copyBtn.innerText;
+          copyBtn.innerText = "✓ Copied!";
+          setTimeout(() => {
+            copyBtn.innerText = originalText;
+          }, 1500);
+        } catch (err) {
+          console.error("Clipboard copy failed", err);
+        }
+      });
+    }
 
     const badGreetings = ['hey guys', 'hello everyone', 'welcome back', 'in this video', "today i'm going to", 'so basically'];
     const powerWords = ['secret', 'never', 'stop', 'mistake', 'nobody', 'warning', 'why', 'how', 'lost', 'waste', 'banned', 'truth', 'exposed'];
