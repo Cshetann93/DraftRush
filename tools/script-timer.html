@@ -10,24 +10,248 @@
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Short-Form Video Script Timer | DraftsRush</title>
+  <title>Free Online Screenplay Editor & Story Converter | DraftsRush</title>
+  <meta name="description" content="Write and format industry-standard screenplays directly in your browser. Switch elements with a simple dropdown or convert plain text stories into formatted scripts instantly.">
+  <meta name="keywords" content="online script editor, free screenplay writer, story to script converter, format screenplay online, courier 12pt editor, browser screenplay tool">
+  <link rel="canonical" href="https://www.draftsrush.com/script-editor">
 
-  <!-- Favicon References -->
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Free Online Screenplay Editor & Story Converter | DraftsRush">
+  <meta property="og:description" content="A client-side screenplay editor. Select elements via dropdown or paste your story to convert it into formatted script lines.">
+  <meta property="og:url" content="https://www.draftsrush.com/script-editor">
+  <meta property="og:type" content="website">
+
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
-  <meta name="description" content="Calculate the exact speaking duration of your YouTube Shorts, Reels, or TikTok script. Analyzes pacing and warns if your opening hook exceeds 3 seconds.">
+
+  <!-- Instant Dark Mode Initializer (Zero White Flash) -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      document.addEventListener('DOMContentLoaded', () => {
+        if (document.body) document.body.classList.add('dark');
+      });
+    }
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700;800&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { font-family: 'Inter', sans-serif; background-color: #E2E4E9; }
     h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .script-font { font-family: 'Courier Prime', Courier, monospace; }
     .brutal-box { box-shadow: 4px 4px 0px #111317; }
     .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
     .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
+
+    /* Script Page Styling */
+    .screenplay-paper {
+      background-color: #FAF9F5;
+      min-height: 850px;
+      line-height: 1.25;
+      font-size: 13.5px;
+      tab-size: 4;
+      white-space: pre-wrap;
+      word-break: break-word;
+      outline: none;
+      color: #111317;
+    }
+    .screenplay-paper:focus {
+      outline: none;
+    }
+
+    /* Pill Toggle Switch Design */
+    .theme-toggle {
+      position: relative;
+      width: 62px;
+      height: 32px;
+      border-radius: 9999px;
+      background-color: #FF5A1F;
+      border: 2px solid #111317;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7px;
+      box-shadow: 2px 2px 0px #111317;
+      transition: background-color 0.2s ease;
+      flex-shrink: 0;
+    }
+    .dark .theme-toggle {
+      background-color: #1F232B;
+      border-color: #FFFFFF;
+      box-shadow: 2px 2px 0px #000000;
+    }
+    .theme-toggle-icon {
+      width: 14px;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .theme-toggle-thumb {
+      position: absolute;
+      top: 2px;
+      left: 32px;
+      width: 24px;
+      height: 24px;
+      border-radius: 9999px;
+      background-color: #FFFFFF;
+      border: 2px solid #111317;
+      transition: left 0.2s ease;
+    }
+    .dark .theme-toggle-thumb {
+      left: 2px;
+      border-color: #000000;
+    }
+
+    /* Dark Mode Core Theme Overrides */
+    body.dark {
+      background-color: #0E1015 !important;
+      color: #FFFFFF !important;
+    }
+    body.dark header {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark header a, 
+    body.dark header nav a {
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+      background-color: #1F232B !important;
+    }
+    body.dark header nav a[href="/script-editor"] {
+      background-color: #FFE600 !important;
+      color: #111317 !important;
+      border-color: #111317 !important;
+    }
+    body.dark #mobile-nav {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark #mobile-nav a {
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark section.bg-\[\#F0F2F5\],
+    body.dark .bg-white {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+      box-shadow: 4px 4px 0px #000000 !important;
+    }
+    body.dark .screenplay-paper {
+      background-color: #111317 !important;
+      color: #E2E4E9 !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark #story-input {
+      background-color: #1F232B !important;
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark #element-select {
+      background-color: #1F232B !important;
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark #export-menu {
+      background-color: #1F232B !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+    body.dark #export-menu button {
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+    body.dark #export-menu button:hover {
+      background-color: #FFE600 !important;
+      color: #111317 !important;
+    }
+    body.dark .text-gray-700, 
+    body.dark .text-gray-600,
+    body.dark .text-gray-500 {
+      color: #9CA3AF !important;
+    }
+    body.dark strong.text-black {
+      color: #FFFFFF !important;
+    }
+    body.dark .bg-\[\#FFF6CF\] {
+      background-color: #1B1E26 !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+    body.dark .bg-\[\#FFF6CF\] a {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+    body.dark .bg-\[\#D6E4EE\] {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+    body.dark .bg-\[\#D6E4EE\] p {
+      color: #9CA3AF !important;
+    }
+
+    /* Dark Mode Footer */
+    body.dark footer {
+      background-color: #111317 !important;
+      border-color: #2A2F3A !important;
+      color: #E2E4E9 !important;
+    }
+    body.dark footer p,
+    body.dark footer a,
+    body.dark footer h4 {
+      color: #E2E4E9 !important;
+    }
+    body.dark footer span.bg-\[\#FFE600\] {
+      color: #111317 !important;
+    }
+    body.dark footer .text-gray-800,
+    body.dark footer .text-gray-700 {
+      color: #9CA3AF !important;
+    }
+    body.dark footer .border-black,
+    body.dark footer .border-t-2,
+    body.dark footer .border-b-2 {
+      border-color: #2A2F3A !important;
+    }
+    body.dark footer a[style*="#F0F2F5"] {
+      background-color: #1F232B !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+    body.dark footer svg.fill-black {
+      fill: #FFFFFF !important;
+    }
+
+    /* Print / PDF generation rules */
+    @media print {
+      body * { visibility: hidden; }
+      #script-workspace, #script-workspace * { visibility: visible; }
+      #script-workspace {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: none !important;
+        box-shadow: none !important;
+        color: #000000 !important;
+        background-color: #FFFFFF !important;
+      }
+    }
   </style>
 </head>
-<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+<body class="text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFBGQ8WX"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -50,14 +274,14 @@
 
       <!-- Desktop Primary Navigation -->
       <nav class="hidden md:flex items-center gap-3 font-bold text-xs tracking-wider brand-font">
-        <a href="/script-editor" style="background-color: #F0F2F5;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform flex items-center gap-1.5">
+        <a href="/script-editor" style="background-color: #FFE600;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-black"></span>
           <span>SCRIPT EDITOR</span>
         </a>
         <a href="/writers-room" style="background-color: #F0F2F5;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
           WRITER'S ROOM
         </a>
-        <a href="/tools" style="background-color: #FFE600;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+        <a href="/tools" style="background-color: #F0F2F5;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
           FREE TOOLS
         </a>
         <a href="/scripts" style="background-color: #F0F2F5;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
@@ -68,22 +292,68 @@
         </a>
       </nav>
 
-      <!-- Desktop CTA Action -->
-      <div class="hidden md:flex items-center">
+      <!-- Desktop CTA Action & Theme Toggle -->
+      <div class="hidden md:flex items-center gap-3">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" type="button">
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <line x1="12" y1="2" x2="12" y2="5"></line>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line>
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
+              <line x1="2" y1="12" x2="5" y2="12"></line>
+              <line x1="19" y1="12" x2="22" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line>
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-thumb"></span>
+        </button>
+
         <a href="/contact" class="bg-black text-white border-2 border-black px-4 py-1.5 font-bold text-xs tracking-wider brand-font brutal-box brutal-btn uppercase transition-transform whitespace-nowrap">
           ORDER DRAFT
         </a>
       </div>
 
-      <!-- Mobile Hamburger Toggle -->
-      <button 
-        aria-label="Toggle Navigation Menu" 
-        onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" 
-        class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box brutal-btn">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path>
-        </svg>
-      </button>
+      <!-- Mobile Controls: Toggle + Hamburger -->
+      <div class="flex items-center gap-2 md:hidden">
+        <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle Dark Mode" type="button">
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <line x1="12" y1="2" x2="12" y2="5"></line>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line>
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
+              <line x1="2" y1="12" x2="5" y2="12"></line>
+              <line x1="19" y1="12" x2="22" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line>
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-thumb"></span>
+        </button>
+
+        <button 
+          aria-label="Toggle Navigation Menu" 
+          onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" 
+          class="border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box brutal-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
 
     </div>
 
@@ -104,106 +374,227 @@
     </div>
   </header>
 
-  <main class="flex-grow max-w-4xl mx-auto px-6 py-12 w-full">
-    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-10 brutal-box-lg mb-8">
-      <div class="inline-flex items-center gap-2 bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase mb-3">
-        Utility: Script Calculator
-      </div>
-      <h1 class="text-3xl md:text-5xl font-black brand-font tracking-tight mb-3">
-        Short-Form Script Duration Calculator
-      </h1>
-      <p class="text-sm md:text-base font-medium text-gray-700 leading-relaxed mb-6">
-        Paste your script voiceover below. The tool calculates words, characters, estimated video seconds, and checks if your opening hook exceeds the 3-second attention threshold.
-      </p>
+  <main class="flex-grow">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 pb-20">
 
-      <!-- Settings Bar -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div>
-          <label class="block font-black text-xs uppercase tracking-wider mb-2">Speaking Pace</label>
-          <select id="pace-select" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFE600] transition-colors">
-            <option value="130">Documentary / Measured (130 WPM)</option>
-            <option value="150" selected>Standard Shorts / Explainers (150 WPM)</option>
-            <option value="175">Fast-Paced TikTok / Dynamic (175 WPM)</option>
-          </select>
-        </div>
-        <div>
-          <label class="block font-black text-xs uppercase tracking-wider mb-2">Target Platform Constraint</label>
-          <select id="platform-select" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFE600] transition-colors">
-            <option value="30">30-Second Micro Reel</option>
-            <option value="60" selected>60-Second Short (Optimal Retention)</option>
-            <option value="90">90-Second Extended Video</option>
-          </select>
-        </div>
-      </div>
-
-    <!-- Text Input -->
-      <div class="mb-6">
-        <div class="flex items-center justify-between mb-2">
-          <label class="block font-black text-xs uppercase tracking-wider">Paste Voiceover / Dialogue Only</label>
-          <div class="flex items-center gap-3">
-            <button id="sample-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
-              ⚡ Try an Example
-            </button>
-            <button id="copy-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
-              📋 Copy Script
-            </button>
-          </div>
-        </div>
-        <textarea id="script-input" rows="8" placeholder="Paste your script text here. Do not include visual directions (e.g. [B-Roll cut])..." class="w-full border-2 border-black p-4 font-medium text-sm bg-white focus:outline-none focus:bg-[#FFFDE6]"></textarea>
-      </div>
-
-      <!-- Metrics Display -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-center">
-        <div class="border-2 border-black bg-white p-3 brutal-box">
-          <div id="metric-words" class="text-3xl font-black brand-font">0</div>
-          <p class="text-xs font-bold text-gray-600 uppercase">Words</p>
-        </div>
-        <div class="border-2 border-black bg-white p-3 brutal-box">
-          <div id="metric-seconds" class="text-3xl font-black brand-font text-blue-700">0.0s</div>
-          <p class="text-xs font-bold text-gray-600 uppercase">Est. Duration</p>
-        </div>
-        <div class="border-2 border-black bg-white p-3 brutal-box">
-          <div id="metric-hook-words" class="text-3xl font-black brand-font">0</div>
-          <p class="text-xs font-bold text-gray-600 uppercase">Hook Words</p>
-        </div>
-        <div class="border-2 border-black bg-[#FFE600] p-3 brutal-box">
-          <div id="metric-fit" class="text-lg font-black brand-font mt-1">Ready</div>
-          <p class="text-xs font-bold text-black uppercase">Fit Status</p>
-        </div>
-      </div>
-
-      <!-- Live Hook Feedback Box -->
-      <div id="hook-alert" class="border-2 border-black p-4 bg-white brutal-box">
-        <div class="font-black text-xs brand-font uppercase mb-1">Hook Speed Audit</div>
-        <p id="hook-alert-text" class="text-sm font-medium text-gray-700">
-          Paste your script above to audit whether your opening sentence hooks the viewer before second 00:03.
-        </p>
-      </div>
-    </div>
-
-    <!-- Commercial CTA Strip -->
-    <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box flex flex-col md:flex-row items-center justify-between gap-6">
-      <div>
-        <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Need It Written For You?</span>
-        <h2 class="text-2xl font-black brand-font mt-2 mb-1">Get Retention-Optimized Scripts</h2>
-        <p class="text-sm font-medium text-black max-w-xl">
-          We write scripts engineered to retain viewers past second 30, complete with visual cues for your video editor. Flexible budgets welcomed.
-        </p>
-      </div>
-      <a href="../scripts" class="bg-black text-white font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn whitespace-nowrap text-sm uppercase">
-        Explore Script Packs →
-      </a>
-    </div>
-  <!-- Bottom Return Button -->
-      <div class="mt-12">
-        <a href="/tools" class="inline-block bg-[#FFE600] text-black font-black brand-font text-xs md:text-sm px-4 py-2 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-          ← Back to Free Tools
+      <!-- Top Back Link -->
+      <div class="mb-8">
+        <a href="/writers-room" class="inline-block bg-[#FFE600] text-black font-black brand-font text-xs md:text-sm px-4 py-2 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+          ← Return to the Writer's Room
         </a>
       </div>
+
+      <!-- Hero Header -->
+      <section class="border-4 border-black bg-[#F0F2F5] p-6 sm:p-10 brutal-box-lg mb-10">
+        <div class="inline-block bg-black text-white px-3 py-1 text-xs font-bold brand-font uppercase tracking-wider mb-4">
+          Online Studio Editor
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black brand-font leading-tight mb-3 tracking-tight">
+          Browser Screenplay Writer & Story Converter
+        </h1>
+        <p class="font-medium text-gray-700 text-sm sm:text-base leading-relaxed max-w-3xl">
+          Draft scripts formatted to standard industry specs without installing software. Use the element dropdown to build lines, or paste your raw story into the auto-converter to generate scene headings, action lines, and dialogue blocks automatically.
+        </p>
+      </section>
+
+      <!-- Main Layout: Editor on Left, Utilities/Converter on Right -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left Column: The Editor (8 Cols) -->
+        <div class="lg:col-span-8 space-y-6">
+
+          <!-- Editor Control Toolbar -->
+          <div class="border-4 border-black bg-[#FFE600] p-4 brutal-box flex flex-wrap items-center justify-between gap-3">
+            
+            <!-- Element Selector Dropdown -->
+            <div class="flex items-center gap-2">
+              <label for="element-select" class="font-mono text-xs font-black uppercase tracking-wider text-black">Format Line:</label>
+              <select id="element-select" class="bg-white border-2 border-black font-mono text-xs font-bold py-1.5 px-3 brutal-box focus:outline-none cursor-pointer">
+                <option value="scene-heading">Scene Heading (INT./EXT.)</option>
+                <option value="action" selected>Action Block</option>
+                <option value="character">Character Name</option>
+                <option value="parenthetical">Parenthetical (wryly)</option>
+                <option value="dialogue">Dialogue</option>
+                <option value="transition">Transition (CUT TO:)</option>
+              </select>
+              <button onclick="applySelectedFormat()" class="bg-black text-white font-mono text-xs font-bold px-3 py-1.5 border-2 border-black brutal-box brutal-btn uppercase">
+                Apply
+              </button>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-2">
+              <button id="copy-script-btn" onclick="copyScreenplayText()" class="bg-white text-black font-mono text-xs font-bold px-3 py-1.5 border-2 border-black brutal-box brutal-btn uppercase">
+                📋 Copy
+              </button>
+              <button onclick="loadDemo()" class="bg-white text-black font-mono text-xs font-bold px-3 py-1.5 border-2 border-black brutal-box brutal-btn uppercase">
+                Demo
+              </button>
+              <button onclick="clearEditor()" class="bg-white text-black font-mono text-xs font-bold px-3 py-1.5 border-2 border-black brutal-box brutal-btn uppercase">
+                Clear
+              </button>
+              <div class="relative inline-block text-left">
+                <button onclick="document.getElementById('export-menu').classList.toggle('hidden')" class="bg-black text-white font-mono text-xs font-bold px-3 py-1.5 border-2 border-black brutal-box brutal-btn uppercase flex items-center gap-1">
+                  Export ▾
+                </button>
+                <div id="export-menu" class="hidden absolute right-0 mt-2 w-36 bg-white border-2 border-black brutal-box z-20 font-mono text-xs">
+                  <button onclick="exportTxt()" class="w-full text-left px-3 py-2 hover:bg-[#FFE600] border-b border-black font-bold">Text (.TXT)</button>
+                  <button onclick="exportFountain()" class="w-full text-left px-3 py-2 hover:bg-[#FFE600] border-b border-black font-bold">Fountain (.FOUNTAIN)</button>
+                  <button onclick="window.print()" class="w-full text-left px-3 py-2 hover:bg-[#FFE600] font-bold">Print / PDF</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- The Script Page Container -->
+          <div class="border-4 border-black brutal-box-lg bg-white p-4 sm:p-8 relative">
+            
+            <!-- Page Stats Bar -->
+            <div class="flex items-center justify-between border-b-2 border-black pb-3 mb-4 text-xs font-mono font-bold text-gray-600">
+              <div class="flex gap-4">
+                <span>EST. PAGES: <strong id="stat-pages" class="text-black">1.0</strong></span>
+                <span>WORDS: <strong id="stat-words" class="text-black">0</strong></span>
+                <span>LINES: <strong id="stat-lines" class="text-black">0</strong></span>
+              </div>
+              <span class="bg-black text-white px-2 py-0.5 text-[10px] uppercase">Courier 12pt Standard</span>
+            </div>
+
+            <!-- Contenteditable Screenplay Canvas -->
+            <div 
+              id="script-workspace" 
+              class="screenplay-paper script-font p-6 sm:p-10 border-2 border-dashed border-gray-300" 
+              contenteditable="true" 
+              spellcheck="false"
+              oninput="handleEditorInput()"
+              onkeydown="handleEditorKeyDown(event)">
+            </div>
+
+            <!-- Editor Keyboard Helper Bar -->
+            <div class="mt-4 pt-3 border-t-2 border-gray-200 flex flex-wrap items-center justify-between text-[11px] font-mono text-gray-600">
+              <span><strong>Tab:</strong> Character → Parenthetical → Dialogue</span>
+              <span><strong>Enter:</strong> Auto-cycles to next logical element</span>
+              <span><strong>Shift+Tab:</strong> Action line</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Story-to-Script Converter & Quick Tools (4 Cols) -->
+        <div class="lg:col-span-4 space-y-8">
+
+          <!-- Converter Tool Box -->
+          <div class="border-4 border-black bg-white p-6 brutal-box">
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="bg-[#FFE600] text-black border border-black px-2 py-0.5 text-xs font-black brand-font uppercase">Auto Parser</span>
+                <span class="font-mono text-xs font-bold text-gray-500">Story → Script</span>
+              </div>
+              <button id="sample-story-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+                ⚡ Sample Story
+              </button>
+            </div>
+            <h2 class="text-xl font-black brand-font mb-2">Don't know how to format?</h2>
+            <p class="text-xs font-medium text-gray-700 leading-relaxed mb-4">
+              Type or paste your narrative story below. Our engine parses scene transitions, identifies character dialogue with quotes, and builds formatted screenplay lines.
+            </p>
+
+            <div class="space-y-3">
+              <textarea 
+                id="story-input" 
+                rows="8" 
+                class="w-full border-2 border-black p-3 font-mono text-xs bg-[#FAF9F5] focus:outline-none brutal-box" 
+                placeholder="Example:
+Elena walked into the dark warehouse. Rain pounded the tin roof. 
+
+She opened the locker and whispered, 'The backup drive is missing.'
+
+Marcus pointed his flashlight at her and shouted, 'Put your hands up!'"></textarea>
+
+              <button 
+                onclick="convertStoryToScript()" 
+                class="w-full bg-[#FFE600] text-black font-black brand-font text-xs uppercase px-4 py-3 border-2 border-black brutal-box brutal-btn tracking-wider">
+                Convert Story to Script →
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Access Production Tools -->
+          <div class="border-4 border-black bg-[#FFF6CF] p-6 brutal-box space-y-4">
+            <div class="flex items-center justify-between border-b-2 border-black pb-2">
+              <h3 class="font-black brand-font text-sm uppercase tracking-wider text-black">Production Tool Desk</h3>
+              <span class="font-mono text-xs font-bold bg-black text-white px-2 py-0.5">READY</span>
+            </div>
+            <p class="text-xs font-medium text-gray-700 leading-relaxed">
+              Test your newly drafted scenes with our suite of free browser utilities:
+            </p>
+
+            <ul class="space-y-2 font-mono text-xs">
+              <li>
+                <a href="/tools/script-timer" class="flex items-center justify-between p-2.5 bg-white text-black border-2 border-black hover:bg-[#FFE600] transition-colors font-bold">
+                  <span>⏱ Script Pacing Timer</span>
+                  <span>→</span>
+                </a>
+              </li>
+              <li>
+                <a href="/tools/hook-analyzer" class="flex items-center justify-between p-2.5 bg-white text-black border-2 border-black hover:bg-[#FFE600] transition-colors font-bold">
+                  <span>🎯 5-Second Hook Analyzer</span>
+                  <span>→</span>
+                </a>
+              </li>
+              <li>
+                <a href="/tools/dialogue-pruner" class="flex items-center justify-between p-2.5 bg-white text-black border-2 border-black hover:bg-[#FFE600] transition-colors font-bold">
+                  <span>✂ Dialogue Word Pruner</span>
+                  <span>→</span>
+                </a>
+              </li>
+              <li>
+                <a href="/tools/broll-generator" class="flex items-center justify-between p-2.5 bg-white text-black border-2 border-black hover:bg-[#FFE600] transition-colors font-bold">
+                  <span>🎬 B-Roll Cutaway Generator</span>
+                  <span>→</span>
+                </a>
+              </li>
+              <li>
+                <a href="/tools/format-converter" class="flex items-center justify-between p-2.5 bg-white text-black border-2 border-black hover:bg-[#FFE600] transition-colors font-bold">
+                  <span>📄 Dual-Column AV Converter</span>
+                  <span>→</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Reference Guide Callout -->
+          <div class="border-4 border-black bg-[#D6E4EE] p-6 brutal-box space-y-3">
+            <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Learning Reference</span>
+            <h4 class="text-lg font-black brand-font text-black">Need formatting guidelines?</h4>
+            <p class="text-xs font-medium text-gray-800 leading-relaxed">
+              Review our definitive element encyclopedia covering all 16 technical screenplay specs, tab stops, and Courier margin rules.
+            </p>
+            <a href="/screenplay-format-guide" class="inline-block bg-white text-black font-black brand-font text-xs uppercase px-4 py-2 border-2 border-black brutal-box brutal-btn tracking-wider">
+              Read Formatting Manual →
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Action Banner -->
+      <div class="mt-16 bg-[#FFE600] border-4 border-black brutal-box p-8 md:p-12 text-center">
+        <h3 class="text-2xl md:text-4xl font-black brand-font mb-4 text-black">Want scripts written specifically for your project?</h3>
+        <p class="font-medium text-gray-800 text-base md:text-lg mb-8 max-w-2xl mx-auto">
+          We combine calculated pacing, structured visual cues, and narrative suspense to build high-retention video screenplays for creators and teams.
+        </p>
+        <a href="/contact" class="inline-block bg-black text-white brand-font font-black text-sm md:text-base px-8 py-3.5 border-2 border-black brutal-box hover:bg-gray-800 uppercase tracking-wider">
+          Order A Custom Draft
+        </a>
+      </div>
+
+    </div>
   </main>
 
   <!-- Universal Footer -->
-  <footer class="border-t-4 border-black py-14 mt-auto" style="background-color: #D6E4EE !important;">
+  <footer class="border-t-4 border-black py-14 mt-auto bg-[#D6E4EE]">
     <div class="max-w-6xl mx-auto px-6">
       
       <!-- Top Branding & Value Bar -->
@@ -224,7 +615,7 @@
         </div>
 
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <span class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase">
+          <span class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase text-black">
             ⚡ 100% Free Client-Side Tools
           </span>
           <div class="flex items-center gap-1.5">
@@ -260,7 +651,7 @@
             <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Studio Tools</h4>
           </div>
           <ul class="space-y-2 text-xs font-semibold text-gray-800">
-            <li><a href="/script-editor" class="hover:underline font-bold text-black flex items-center gap-1">Online Script Editor <span class="bg-[#FFE600] border border-black text-[9px] px-1 font-mono">NEW</span></a></li>
+            <li><a href="/script-editor" class="hover:underline font-bold text-black flex items-center gap-1">Online Script Editor <span class="bg-[#FFE600] border border-black text-[9px] px-1 font-mono text-black">NEW</span></a></li>
             <li><a href="/tools/script-timer" class="hover:underline">Script Pacing Timer</a></li>
             <li><a href="/tools/hook-analyzer" class="hover:underline">5-Sec Hook Analyzer</a></li>
             <li><a href="/tools/format-converter" class="hover:underline">Dual-Column AV Converter</a></li>
@@ -308,7 +699,7 @@
             <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Studio Desk</h4>
           </div>
           <div class="space-y-3">
-            <a href="mailto:care@draftsrush.com" style="background-color: #F0F2F5;" class="inline-block font-mono text-xs font-bold border-2 border-black px-2.5 py-1.5 brutal-box hover:bg-[#FFE600] transition-colors">
+            <a href="mailto:care@draftsrush.com" style="background-color: #F0F2F5;" class="inline-block font-mono text-xs font-bold border-2 border-black px-2.5 py-1.5 brutal-box hover:bg-[#FFE600] transition-colors text-black">
               ✉ care@draftsrush.com
             </a>
             <p class="text-[11px] font-medium text-gray-700 leading-tight">
@@ -337,99 +728,252 @@
     </div>
   </footer>
 
+  <!-- Floating Contact Widget -->
+  <a href="/contact" 
+     aria-label="Contact Desk"
+     class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#FFE600] text-black font-black brand-font text-xs uppercase px-4 py-3 border-2 border-black brutal-box brutal-btn transition-transform select-none">
+    <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+    </svg>
+    <span>Contact Desk</span>
+  </a>
+
+  <!-- Script Editor & Story-to-Script Engine Logic -->
   <script>
-   const scriptInput = document.getElementById('script-input');
-    const paceSelect = document.getElementById('pace-select');
-    const platformSelect = document.getElementById('platform-select');
-    const sampleBtn = document.getElementById('sample-btn');
-    const copyBtn = document.getElementById('copy-btn');
+    const workspace = document.getElementById('script-workspace');
 
-    // Populate a realistic 60-second video script sample
-    if (sampleBtn) {
-      sampleBtn.addEventListener('click', () => {
-        scriptInput.value = "Why do 99% of movies use this exact color trick? Look closely at any Hollywood blockbuster from the last twenty years. The shadows are pushed into cold teals, while the actors' skin tones are pushed into warm amber oranges. This is complementary color contrast. Orange and blue sit directly opposite each other on the color wheel, creating immediate depth without the eye working hard. But modern streaming algorithms are forcing editors to exaggerate it even further to keep viewers from scrolling past previews.";
-        calculate();
-      });
-    }
+    // Indent / Formatting Definitions
+    const FORMATS = {
+      'scene-heading': { prefix: '', uppercase: true, align: 'left', style: 'margin-left: 0; text-transform: uppercase; font-weight: bold; margin-top: 1.5em; margin-bottom: 0.5em;' },
+      'action': { prefix: '', uppercase: false, align: 'left', style: 'margin-left: 0; margin-bottom: 0.8em;' },
+      'character': { prefix: '', uppercase: true, align: 'left', style: 'margin-left: 36%; text-transform: uppercase; font-weight: bold; margin-top: 1em; margin-bottom: 0;' },
+      'parenthetical': { prefix: '(', suffix: ')', uppercase: false, align: 'left', style: 'margin-left: 28%; font-style: italic; margin-bottom: 0;' },
+      'dialogue': { prefix: '', uppercase: false, align: 'left', style: 'margin-left: 20%; max-width: 58%; margin-bottom: 0.8em;' },
+      'transition': { prefix: '', uppercase: true, align: 'right', style: 'text-align: right; text-transform: uppercase; font-weight: bold; margin-top: 1em; margin-bottom: 1em;' }
+    };
 
-    // One-click copy with feedback state
-    if (copyBtn) {
-      copyBtn.addEventListener('click', async () => {
-        const text = scriptInput.value.trim();
-        if (!text) return;
-        try {
-          await navigator.clipboard.writeText(text);
-          const original = copyBtn.innerText;
-          copyBtn.innerText = "✓ Copied!";
-          setTimeout(() => {
-            copyBtn.innerText = original;
-          }, 1500);
-        } catch (err) {
-          console.error("Clipboard copy failed", err);
+    // Initial load
+    document.addEventListener('DOMContentLoaded', () => {
+      workspace.innerHTML = '<div style="margin-left: 0; text-transform: uppercase; font-weight: bold;" data-type="scene-heading"></div>';
+      handleEditorInput();
+    });
+
+    // Dark Mode Toggle Logic
+    const toggleBtns = [
+      document.getElementById('theme-toggle'),
+      document.getElementById('theme-toggle-mobile')
+    ].filter(Boolean);
+
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark');
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
         }
       });
-    }
-    const metricWords = document.getElementById('metric-words');
-    const metricSeconds = document.getElementById('metric-seconds');
-    const metricHookWords = document.getElementById('metric-hook-words');
-    const metricFit = document.getElementById('metric-fit');
-    const hookAlert = document.getElementById('hook-alert');
-    const hookAlertText = document.getElementById('hook-alert-text');
+    });
 
-    function calculate() {
-      const text = scriptInput.value.trim();
-      if (!text) {
-        metricWords.innerText = '0';
-        metricSeconds.innerText = '0.0s';
-        metricHookWords.innerText = '0';
-        metricFit.innerText = 'Ready';
-        metricFit.className = 'text-lg font-black brand-font mt-1';
-        hookAlert.className = 'border-2 border-black p-4 bg-white brutal-box';
-        hookAlertText.innerText = 'Paste your script above to audit whether your opening sentence hooks the viewer before second 00:03.';
+    // Try Sample Story
+    const sampleStoryBtn = document.getElementById('sample-story-btn');
+    if (sampleStoryBtn) {
+      sampleStoryBtn.addEventListener('click', () => {
+        document.getElementById('story-input').value = `Elena kicked open the heavy iron door and scanned the flooded server basement.
+
+She pulled out her radio and whispered, "The mainframe is still running on auxiliary batteries."
+
+Marcus picked up his crowbar and replied, "Grab the solid state drives before the cooling loops burst."`;
+      });
+    }
+
+    // Copy Screenplay Text
+    async function copyScreenplayText() {
+      const text = workspace.innerText;
+      if (!text.trim()) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        const btn = document.getElementById('copy-script-btn');
+        const original = btn.innerText;
+        btn.innerText = "✓ Copied!";
+        setTimeout(() => { btn.innerText = original; }, 1500);
+      } catch (err) {
+        console.error('Failed to copy', err);
+      }
+    }
+
+    function loadDemo() {
+      workspace.innerHTML = `
+<div style="margin-left: 0; text-transform: uppercase; font-weight: bold; margin-bottom: 0.5em;" data-type="scene-heading">EXT. HIGHWAY ROADSIDE - DUSK</div>
+<div style="margin-left: 0; margin-bottom: 0.8em;" data-type="action">Heat ripples rise from cracked asphalt. A 1978 pickup sits idling on the shoulder with hazard lights clicking.</div>
+<div style="margin-left: 36%; text-transform: uppercase; font-weight: bold; margin-top: 1em;" data-type="character">MARCUS</div>
+<div style="margin-left: 28%; font-style: italic;" data-type="parenthetical">(tapping the fuel gauge)</div>
+<div style="margin-left: 20%; max-width: 58%; margin-bottom: 0.8em;" data-type="dialogue">We have five miles of fumes before the manifold locks up.</div>
+<div style="margin-left: 36%; text-transform: uppercase; font-weight: bold; margin-top: 1em;" data-type="character">ELENA</div>
+<div style="margin-left: 20%; max-width: 58%; margin-bottom: 0.8em;" data-type="dialogue">Then don't turn the engine off.</div>
+<div style="text-align: right; text-transform: uppercase; font-weight: bold; margin-top: 1em;" data-type="transition">CUT TO:</div>
+`;
+      handleEditorInput();
+    }
+
+    function clearEditor() {
+      if (confirm('Clear the current script canvas?')) {
+        workspace.innerHTML = '<div style="margin-left: 0; text-transform: uppercase; font-weight: bold;" data-type="scene-heading">INT. NEW LOCATION - DAY</div>';
+        handleEditorInput();
+      }
+    }
+
+    // Apply format via dropdown button
+    function applySelectedFormat() {
+      const type = document.getElementById('element-select').value;
+      const selection = window.getSelection();
+      if (!selection.rangeCount) return;
+
+      let node = selection.anchorNode;
+      while (node && node !== workspace && node.parentElement !== workspace) {
+        node = node.parentElement;
+      }
+
+      if (node && node.parentElement === workspace) {
+        const text = node.innerText || node.textContent;
+        const config = FORMATS[type];
+        node.setAttribute('style', config.style);
+        node.setAttribute('data-type', type);
+        if (config.uppercase) {
+          node.innerText = text.toUpperCase();
+        }
+      }
+      workspace.focus();
+      handleEditorInput();
+    }
+
+    // Tab and Enter Shortcut Interceptions
+    function handleEditorKeyDown(e) {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const selection = window.getSelection();
+        if (!selection.rangeCount) return;
+
+        let node = selection.anchorNode;
+        while (node && node !== workspace && node.parentElement !== workspace) {
+          node = node.parentElement;
+        }
+
+        if (node && node.parentElement === workspace) {
+          const currentType = node.getAttribute('data-type') || 'action';
+          let nextType = 'character';
+
+          if (!e.shiftKey) {
+            if (currentType === 'action' || currentType === 'scene-heading') nextType = 'character';
+            else if (currentType === 'character') nextType = 'parenthetical';
+            else if (currentType === 'parenthetical') nextType = 'dialogue';
+            else if (currentType === 'dialogue') nextType = 'transition';
+          } else {
+            nextType = 'action';
+          }
+
+          const config = FORMATS[nextType];
+          node.setAttribute('style', config.style);
+          node.setAttribute('data-type', nextType);
+          document.getElementById('element-select').value = nextType;
+        }
+      }
+    }
+
+    // Metric Calculations
+    function handleEditorInput() {
+      const text = workspace.innerText || '';
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      const lines = text.split('\n').length;
+      
+      const estPages = Math.max(1, (lines / 52)).toFixed(1);
+
+      document.getElementById('stat-words').innerText = words;
+      document.getElementById('stat-lines').innerText = lines;
+      document.getElementById('stat-pages').innerText = estPages;
+    }
+
+    // Plain Text Story to Script Converter Engine
+    function convertStoryToScript() {
+      const rawStory = document.getElementById('story-input').value.trim();
+      if (!rawStory) {
+        alert('Please paste a story into the text area first.');
         return;
       }
 
-      // Word count
-      const words = text.match(/\b\S+\b/g) || [];
-      const wordCount = words.length;
-      metricWords.innerText = wordCount;
+      const paragraphs = rawStory.split(/\n\s*\n/);
+      let scriptHtml = '';
 
-      // Seconds calculation
-      const wpm = parseFloat(paceSelect.value);
-      const totalSeconds = (wordCount / wpm) * 60;
-      metricSeconds.innerText = totalSeconds.toFixed(1) + 's';
+      paragraphs.forEach((p, idx) => {
+        const text = p.trim();
+        if (!text) return;
 
-      // First sentence (hook)
-      const firstSentenceMatch = text.match(/[^.!?]+[.!?]*/);
-      const firstSentence = firstSentenceMatch ? firstSentenceMatch[0].trim() : '';
-      const hookWords = (firstSentence.match(/\b\S+\b/g) || []).length;
-      metricHookWords.innerText = hookWords;
+        const quoteMatch = text.match(/^([A-Za-z0-9\s]+?)\s+(?:said|whispered|screamed|yelled|muttered|asked|replied|shouted)[,:]?\s*["“]([^"”]+)["”]/i);
 
-      const hookSeconds = (hookWords / wpm) * 60;
+        if (quoteMatch) {
+          const rawSpeaker = quoteMatch[1].trim().toUpperCase();
+          const spokenLine = quoteMatch[2].trim();
+          const speaker = rawSpeaker.split(' ').slice(-1)[0] || 'CHARACTER';
 
-      // Audit Hook
-      if (hookSeconds > 3.5) {
-        hookAlert.className = 'border-2 border-black p-4 bg-[#FFB4B4] brutal-box';
-        hookAlertText.innerHTML = `<strong>⚠️ Hook Too Long (${hookSeconds.toFixed(1)}s):</strong> Your first sentence has ${hookWords} words. At ${wpm} WPM, viewers will reach second 00:03 before you deliver your payoff. Cut filler words to bring this under 8 words.`;
-      } else {
-        hookAlert.className = 'border-2 border-black p-4 bg-[#C2F0C2] brutal-box';
-        hookAlertText.innerHTML = `<strong>✓ Hook Pacing Good (${hookSeconds.toFixed(1)}s):</strong> Delivers the opening premise in under 3.5 seconds before mobile users swipe away.`;
-      }
+          scriptHtml += `
+<div style="${FORMATS['character'].style}" data-type="character">${speaker}</div>
+<div style="${FORMATS['dialogue'].style}" data-type="dialogue">${spokenLine}</div>`;
+        } else {
+          if (idx === 0 && !text.toUpperCase().startsWith('INT.') && !text.toUpperCase().startsWith('EXT.')) {
+            scriptHtml += `
+<div style="${FORMATS['scene-heading'].style}" data-type="scene-heading">EXT. SCENE START - DAY</div>`;
+          }
 
-      // Target fit check
-      const targetMax = parseFloat(platformSelect.value);
-      if (totalSeconds > targetMax) {
-        metricFit.innerText = `+${(totalSeconds - targetMax).toFixed(0)}s Over`;
-        metricFit.className = 'text-lg font-black brand-font mt-1 text-red-700';
-      } else {
-        metricFit.innerText = `${(targetMax - totalSeconds).toFixed(0)}s Left`;
-        metricFit.className = 'text-lg font-black brand-font mt-1 text-emerald-800';
-      }
+          if (text.toUpperCase().startsWith('INT.') || text.toUpperCase().startsWith('EXT.')) {
+            scriptHtml += `
+<div style="${FORMATS['scene-heading'].style}" data-type="scene-heading">${text.toUpperCase()}</div>`;
+          } else {
+            scriptHtml += `
+<div style="${FORMATS['action'].style}" data-type="action">${text}</div>`;
+          }
+        }
+      });
+
+      workspace.innerHTML = scriptHtml;
+      handleEditorInput();
+      window.scrollTo({ top: workspace.offsetTop - 100, behavior: 'smooth' });
     }
 
-    scriptInput.addEventListener('input', calculate);
-    paceSelect.addEventListener('change', calculate);
-    platformSelect.addEventListener('change', calculate);
+    // Export Handlers
+    function exportTxt() {
+      const text = workspace.innerText;
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'DraftsRush_Script.txt';
+      a.click();
+    }
+
+    function exportFountain() {
+      const nodes = workspace.querySelectorAll('div');
+      let fountainText = '';
+
+      nodes.forEach(node => {
+        const type = node.getAttribute('data-type');
+        const content = node.innerText.trim();
+        if (!content) return;
+
+        if (type === 'scene-heading') fountainText += `\n${content.toUpperCase()}\n\n`;
+        else if (type === 'character') fountainText += `\n${content.toUpperCase()}\n`;
+        else if (type === 'parenthetical') fountainText += `(${content.replace(/[()]/g, '')})\n`;
+        else if (type === 'dialogue') fountainText += `${content}\n\n`;
+        else if (type === 'transition') fountainText += `\n> ${content.toUpperCase()}\n\n`;
+        else fountainText += `${content}\n\n`;
+      });
+
+      const blob = new Blob([fountainText], { type: 'text/plain;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'DraftsRush_Script.fountain';
+      a.click();
+    }
   </script>
 </body>
 </html>
