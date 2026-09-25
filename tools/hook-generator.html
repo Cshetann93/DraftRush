@@ -11,8 +11,8 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>YouTube Title Checker & Truncation Preview | DraftsRush</title>
-  <meta name="description" content="Free YouTube title checker. Test character length, check mobile truncation cut-offs (~50 chars), and audit video titles before uploading.">
+  <title>YouTube Title Checker & Truncation Tester | DraftsRush</title>
+  <meta name="description" content="Free YouTube title checker. Test character length, check mobile feed truncation cut-offs (~50 chars), and audit video titles before publishing.">
 
   <!-- Favicon References -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -304,11 +304,11 @@
 
   <main class="flex-grow max-w-3xl mx-auto px-6 py-12 w-full">
     <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-8 brutal-box mb-8">
-      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">SEO & CTR Utility</span>
-      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">YouTube Title Truncation Preview</h1>
-      <p class="text-sm font-medium text-gray-700 mb-6">Test if your title cuts off on mobile screens. Mobile feeds cut titles at roughly 50 characters.</p>
+      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">YouTube SEO & CTR</span>
+      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">YouTube Title Checker & Truncation Tester</h1>
+      <p class="text-sm font-medium text-gray-700 mb-6">Test if your title cuts off on mobile screens. Mobile app feeds truncate titles after roughly 50 characters.</p>
 
-   <div class="flex items-center justify-between mb-2">
+      <div class="flex items-center justify-between mb-2">
         <label class="block font-black text-xs uppercase">Your Video Title</label>
         <button id="sample-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
           ⚡ Try an Example
@@ -333,8 +333,32 @@
       </div>
     </div>
 
+    <!-- Search Intent & Benchmarks Block (Targets "title checker" query) -->
+    <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box mb-8 space-y-6">
+      <div class="border-b-2 border-black pb-3">
+        <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">CTR Guidelines</span>
+        <h2 class="text-2xl font-black brand-font mt-2">YouTube Title Checker Benchmarks</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+        <div>
+          <h3 class="font-black brand-font text-base mb-1">What is the character limit for YouTube titles on mobile?</h3>
+          <p class="font-medium text-gray-700 leading-relaxed">
+            While YouTube allows up to 100 characters, mobile app feeds cut off titles after <strong>50 to 55 characters</strong> (or roughly 3 lines on small displays). Keep key phrases and core curiosity gaps in the first 45 characters.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-black brand-font text-base mb-1">What is the ideal title length for maximum CTR?</h3>
+          <p class="font-medium text-gray-700 leading-relaxed">
+            Across top-performing channels, optimal click-through rates occur between <strong>40 and 60 characters</strong>. Titles under 50 characters show completely on desktop, mobile feeds, suggested sidebars, and TV screens without cut-off dots (...).
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- Bottom Return Button -->
-    <div class="mt-12">
+    <div class="mt-8">
       <a href="/tools" class="inline-block bg-[#FFE600] text-black font-black brand-font text-xs md:text-sm px-4 py-2 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
         ← Back to Free Tools
       </a>
@@ -363,9 +387,9 @@
         </div>
 
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-         <span style="color: #111317 !important;" class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase">
-  ⚡ 100% Free Client-Side Tools
-</span>
+          <span style="color: #111317 !important;" class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase">
+            ⚡ 100% Free Client-Side Tools
+          </span>
           <div class="flex items-center gap-1.5">
             <!-- X -->
             <a href="https://x.com/DraftsRush" target="_blank" rel="noopener noreferrer" aria-label="X" style="background-color: #F0F2F5;" class="inline-flex items-center justify-center w-8 h-8 border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
@@ -483,8 +507,7 @@
     const charCount = document.getElementById('char-count');
     const mobileStatus = document.getElementById('mobile-status');
     const previewBox = document.getElementById('preview-box');
-
-  const sampleBtn = document.getElementById('sample-btn');
+    const sampleBtn = document.getElementById('sample-btn');
 
     if (sampleBtn) {
       sampleBtn.addEventListener('click', () => {
