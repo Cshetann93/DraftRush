@@ -8,26 +8,175 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-KFBGQ8WX');</script>
   <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Hook Retention Grader | DraftsRush</title>
+  <title>5-Second Video Hook Analyzer & Retention Grader | DraftsRush</title>
+  <meta name="description" content="Audit your video's opening hook before uploading. Scores curiosity gaps, urgency, word economy, and predicts mobile swipe-away drop-off risks.">
+  <link rel="canonical" href="https://www.draftsrush.com/tools/hook-analyzer">
 
   <!-- Favicon References -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
-  <meta name="description" content="Audit your video hook sentence for retention, curiosity gaps, and filler words. Free browser tool by DraftsRush.">
+
+  <!-- Instant Dark Mode Initializer (Zero Flash) -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      document.addEventListener('DOMContentLoaded', () => {
+        if (document.body) document.body.classList.add('dark');
+      });
+    }
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { font-family: 'Inter', sans-serif; background-color: #E2E4E9; }
     h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
     .brutal-box { box-shadow: 4px 4px 0px #111317; }
     .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
     .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+
+    /* Pill Toggle Switch */
+    .theme-toggle {
+      position: relative;
+      width: 62px;
+      height: 32px;
+      border-radius: 9999px;
+      background-color: #FF5A1F;
+      border: 2px solid #111317;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7px;
+      box-shadow: 2px 2px 0px #111317;
+      transition: background-color 0.2s ease;
+      flex-shrink: 0;
+    }
+    .dark .theme-toggle {
+      background-color: #1F232B;
+      border-color: #FFFFFF;
+      box-shadow: 2px 2px 0px #000000;
+    }
+    .theme-toggle-icon {
+      width: 14px;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .theme-toggle-thumb {
+      position: absolute;
+      top: 2px;
+      left: 32px;
+      width: 24px;
+      height: 24px;
+      border-radius: 9999px;
+      background-color: #FFFFFF;
+      border: 2px solid #111317;
+      transition: left 0.2s ease;
+    }
+    .dark .theme-toggle-thumb {
+      left: 2px;
+      border-color: #000000;
+    }
+
+    /* Dark Mode Core Theme Overrides */
+    body.dark {
+      background-color: #0E1015 !important;
+      color: #FFFFFF !important;
+    }
+    body.dark header {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark header a, 
+    body.dark header nav a {
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+      background-color: #1F232B !important;
+    }
+    body.dark header nav a[href="/tools"] {
+      background-color: #FFE600 !important;
+      color: #111317 !important;
+      border-color: #111317 !important;
+    }
+    body.dark #mobile-nav {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark #mobile-nav a {
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark main .bg-\[\#F0F2F5\],
+    body.dark .bg-white {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+      box-shadow: 4px 4px 0px #000000 !important;
+    }
+    body.dark textarea#hook-input {
+      background-color: #1F232B !important;
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark .text-gray-700, 
+    body.dark .text-gray-600,
+    body.dark .text-gray-500 {
+      color: #9CA3AF !important;
+    }
+    body.dark #metric-words,
+    body.dark #metric-time {
+      color: #FFFFFF !important;
+    }
+    body.dark .bg-\[\#FFF6CF\] {
+      background-color: #1B1E26 !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+
+    /* Footer Dark Mode */
+    body.dark footer {
+      background-color: #111317 !important;
+      border-color: #2A2F3A !important;
+      color: #E2E4E9 !important;
+    }
+    body.dark footer p, 
+    body.dark footer a, 
+    body.dark footer h4 {
+      color: #E2E4E9 !important;
+    }
+    body.dark footer span.bg-\[\#FFE600\] {
+      color: #111317 !important;
+    }
+    body.dark footer .text-gray-800,
+    body.dark footer .text-gray-700 {
+      color: #9CA3AF !important;
+    }
+    body.dark footer .border-black,
+    body.dark footer .border-t-2,
+    body.dark footer .border-b-2 {
+      border-color: #2A2F3A !important;
+    }
+    body.dark footer a[style*="#F0F2F5"] {
+      background-color: #1F232B !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+    body.dark footer svg.fill-black {
+      fill: #FFFFFF !important;
+    }
   </style>
 </head>
-<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+<body class="text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFBGQ8WX"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -68,22 +217,68 @@
         </a>
       </nav>
 
-      <!-- Desktop CTA Action -->
-      <div class="hidden md:flex items-center">
+      <!-- Desktop CTA Action & Theme Toggle -->
+      <div class="hidden md:flex items-center gap-3">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" type="button">
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <line x1="12" y1="2" x2="12" y2="5"></line>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line>
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
+              <line x1="2" y1="12" x2="5" y2="12"></line>
+              <line x1="19" y1="12" x2="22" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line>
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-thumb"></span>
+        </button>
+
         <a href="/contact" class="bg-black text-white border-2 border-black px-4 py-1.5 font-bold text-xs tracking-wider brand-font brutal-box brutal-btn uppercase transition-transform whitespace-nowrap">
           ORDER DRAFT
         </a>
       </div>
 
-      <!-- Mobile Hamburger Toggle -->
-      <button 
-        aria-label="Toggle Navigation Menu" 
-        onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" 
-        class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box brutal-btn">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path>
-        </svg>
-      </button>
+      <!-- Mobile Controls: Toggle + Hamburger -->
+      <div class="flex items-center gap-2 md:hidden">
+        <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle Dark Mode" type="button">
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <line x1="12" y1="2" x2="12" y2="5"></line>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line>
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
+              <line x1="2" y1="12" x2="5" y2="12"></line>
+              <line x1="19" y1="12" x2="22" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line>
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-thumb"></span>
+        </button>
+
+        <button 
+          aria-label="Toggle Navigation Menu" 
+          onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" 
+          class="border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box brutal-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
 
     </div>
 
@@ -107,18 +302,19 @@
   <main class="flex-grow max-w-4xl mx-auto px-6 py-12 w-full">
     <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-10 brutal-box-lg mb-8">
       <div class="inline-flex items-center gap-2 bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase mb-3">
-        Utility: Script Retention
+        Utility: Retention Diagnostics
       </div>
       <h1 class="text-3xl md:text-5xl font-black brand-font tracking-tight mb-3">
-        Video Hook Retention Grader
+        5-Second Video Hook Analyzer
       </h1>
       <p class="text-sm md:text-base font-medium text-gray-700 leading-relaxed mb-6">
-        Paste the single opening line or sentence of your video. The analyzer flags weak greetings, counts filler words, and estimates your retention score out of 100.
+        Paste the opening line or first two sentences of your video. The tool analyzes pacing speed, identifies curiosity triggers, flags filler phrases, and grades your opening against short-form drop-off patterns.
       </p>
 
-      <div class="mb-4">
+      <!-- Text Input with Action Buttons -->
+      <div class="mb-6">
         <div class="flex items-center justify-between mb-2">
-          <label class="block font-black text-xs uppercase tracking-wider">Opening Sentence (Hook)</label>
+          <label class="block font-black text-xs uppercase tracking-wider">Paste Opening Script Line</label>
           <div class="flex items-center gap-3">
             <button id="sample-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
               ⚡ Try an Example
@@ -128,48 +324,116 @@
             </button>
           </div>
         </div>
-        <input id="hook-input" type="text" placeholder='e.g. "Most people throw away the healthiest part of an egg without knowing it."' class="w-full border-2 border-black p-4 font-medium text-base bg-white focus:outline-none focus:bg-[#FFFDE6]">
+        <textarea id="hook-input" rows="4" placeholder="Example: This single camera trick was banned in Hollywood for twelve years, but Christopher Nolan just brought it back..." class="w-full border-2 border-black p-4 font-medium text-sm bg-white focus:outline-none focus:bg-[#FFFDE6]"></textarea>
       </div>
 
-      <!-- Score Card -->
-      <div class="border-2 border-black bg-white p-6 brutal-box mb-6">
-        <div class="flex items-center justify-between border-b-2 border-black pb-4 mb-4">
-          <div>
-            <span class="text-xs font-bold text-gray-500 uppercase">Estimated Retention Power</span>
-            <div id="score-display" class="text-5xl font-black brand-font text-gray-400">--/100</div>
-          </div>
-          <div id="grade-badge" class="border-2 border-black px-4 py-1 font-black brand-font text-lg bg-gray-200">
-            Awaiting Hook
-          </div>
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-center">
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-words" class="text-3xl font-black brand-font">0</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Words</p>
         </div>
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-time" class="text-3xl font-black brand-font text-blue-700">0.0s</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Spoken Read Time</p>
+        </div>
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-score" class="text-3xl font-black brand-font text-emerald-700">--</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Hook Strength</p>
+        </div>
+        <div class="border-2 border-black bg-[#FFE600] p-3 brutal-box">
+          <div id="metric-curiosity" class="text-lg font-black brand-font mt-1 text-black">Awaiting Input</div>
+          <p class="text-xs font-bold text-black uppercase">Curiosity Trigger</p>
+        </div>
+      </div>
 
-        <h4 class="font-black text-xs uppercase tracking-wider mb-2">Diagnostic Feedback:</h4>
-        <ul id="feedback-list" class="space-y-2 text-sm font-medium text-gray-700">
-          <li>• Enter your hook above to view suggestions.</li>
-        </ul>
+      <!-- Live Diagnosis Box -->
+      <div id="diagnostic-card" class="border-2 border-black p-5 bg-white brutal-box space-y-2">
+        <div class="font-black text-xs brand-font uppercase">Audit Feedback</div>
+        <p id="diagnostic-text" class="text-sm font-medium text-gray-700">
+          Type or paste your hook above. We evaluate length (under 16 words is ideal), presence of high-stakes contrast, and absence of rhetorical greetings.
+        </p>
       </div>
     </div>
 
-    <!-- Promo CTA -->
-    <div class="border-4 border-black bg-[#FFE600] p-6 brutal-box flex flex-col md:flex-row items-center justify-between gap-6">
-      <div>
-        <h2 class="text-xl font-black brand-font mb-1">Want 3 tested hook angles per script?</h2>
-        <p class="text-xs font-medium text-black">Every DraftsRush script package includes multiple opening options so you can A/B test your titles and thumbnails.</p>
+    <!-- Search Intent & Benchmarks: What Makes a 5-Second Hook Work? -->
+    <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box mb-8 space-y-6">
+      <div class="border-b-2 border-black pb-3">
+        <span class="bg-[#FFE600] text-black border border-black px-2 py-0.5 text-xs font-bold brand-font uppercase">Retention Principles</span>
+        <h2 class="text-2xl md:text-3xl font-black brand-font mt-2">The Anatomy of a 5-Second Video Hook</h2>
       </div>
-      <a href="../scripts" class="bg-black text-white font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn text-xs uppercase whitespace-nowrap">
-        View Script Packages
-      </a>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-medium">
+        <div class="border-2 border-black p-4 bg-[#F0F2F5]">
+          <strong class="text-sm font-black brand-font block mb-1">1. The Curiosity Gap</strong>
+          <p class="text-gray-700 leading-relaxed">
+            Create an open mental loop. Tell the viewer <em>what</em> happened or <em>why</em> it matters, but withhold the specific mechanism until they invest watch time.
+          </p>
+        </div>
+        <div class="border-2 border-black p-4 bg-[#F0F2F5]">
+          <strong class="text-sm font-black brand-font block mb-1">2. Zero Introduction Filler</strong>
+          <p class="text-gray-700 leading-relaxed">
+            Phrases like <em>"Hey guys, welcome back"</em> or <em>"In this video today"</em> waste 2.5 seconds of critical attention. Start right inside the conflict.
+          </p>
+        </div>
+        <div class="border-2 border-black p-4 bg-[#F0F2F5]">
+          <strong class="text-sm font-black brand-font block mb-1">3. The 14-Word Threshold</strong>
+          <p class="text-gray-700 leading-relaxed">
+            At 150 WPM, a viewer hears 2.5 words per second. To deliver your opening proposition before second 00:05, your hook must stay under 14 words.
+          </p>
+        </div>
+      </div>
     </div>
-  <!-- Bottom Return Button -->
-      <div class="mt-12">
-        <a href="/tools" class="inline-block bg-[#FFE600] text-black font-black brand-font text-xs md:text-sm px-4 py-2 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-          ← Back to Free Tools
+
+    <!-- Related Production Tools Strip (Executing Interlink Strategy) -->
+    <div class="border-4 border-black bg-[#FFF6CF] p-6 brutal-box mb-8 space-y-4">
+      <div class="flex items-center justify-between border-b-2 border-black pb-2">
+        <h3 class="font-black brand-font text-sm uppercase tracking-wider text-black">Related Creator Tools</h3>
+        <span class="font-mono text-xs font-bold bg-black text-white px-2 py-0.5">STUDIO DESK</span>
+      </div>
+      <p class="text-xs font-medium text-gray-800 leading-relaxed">
+        Verify your full production workflow across our client-side toolkit:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+        <a href="/tools/title-checker" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>🔍 YouTube Title Checker</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Check title character lengths & mobile cut-offs →</span>
+        </a>
+        <a href="/tools/script-timer" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>⏱ Script Pacing Timer</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Calculate total spoken duration & WPM rhythm →</span>
+        </a>
+        <a href="/script-editor" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>📝 Online Script Editor</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Draft screenplays & convert plain text stories →</span>
         </a>
       </div>
+    </div>
+
+    <!-- Commercial CTA Strip -->
+    <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Production Scriptwriting</span>
+        <h2 class="text-2xl font-black brand-font mt-2 mb-1 text-black">Need High-Retention Script Packs?</h2>
+        <p class="text-sm font-medium text-black max-w-xl">
+          We write research-backed video screenplays with 3-second hook variations, text overlay cues, and rapid retention pacing.
+        </p>
+      </div>
+      <a href="/scripts" class="bg-black text-white font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn whitespace-nowrap text-sm uppercase">
+        Explore Script Packs →
+      </a>
+    </div>
+
+    <!-- Bottom Return Button -->
+    <div class="mt-12">
+      <a href="/tools" class="inline-block bg-[#FFE600] text-black font-black brand-font text-xs md:text-sm px-4 py-2 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+        ← Back to Free Tools
+      </a>
+    </div>
   </main>
 
   <!-- Universal Footer -->
-  <footer class="border-t-4 border-black py-14 mt-auto" style="background-color: #D6E4EE !important;">
+  <footer class="border-t-4 border-black py-14 mt-auto bg-[#D6E4EE]">
     <div class="max-w-6xl mx-auto px-6">
       
       <!-- Top Branding & Value Bar -->
@@ -190,7 +454,7 @@
         </div>
 
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <span class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase">
+          <span style="color: #111317 !important;" class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase">
             ⚡ 100% Free Client-Side Tools
           </span>
           <div class="flex items-center gap-1.5">
@@ -226,11 +490,11 @@
             <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Studio Tools</h4>
           </div>
           <ul class="space-y-2 text-xs font-semibold text-gray-800">
-            <li><a href="/script-editor" class="hover:underline font-bold text-black flex items-center gap-1">Online Script Editor <span class="bg-[#FFE600] border border-black text-[9px] px-1 font-mono">NEW</span></a></li>
+            <li><a href="/script-editor" class="hover:underline font-bold text-black flex items-center gap-1">Online Script Editor <span class="bg-[#FFE600] border border-black text-[9px] px-1 font-mono text-black">NEW</span></a></li>
+            <li><a href="/tools/title-checker" class="hover:underline font-bold text-black">YouTube Title Checker</a></li>
             <li><a href="/tools/script-timer" class="hover:underline">Script Pacing Timer</a></li>
             <li><a href="/tools/hook-analyzer" class="hover:underline">5-Sec Hook Analyzer</a></li>
             <li><a href="/tools/format-converter" class="hover:underline">Dual-Column AV Converter</a></li>
-            <li><a href="/tools/dialogue-pruner" class="hover:underline">Dialogue Word Pruner</a></li>
             <li><a href="/tools" class="hover:underline font-mono text-[11px] text-gray-600">All 12 Free Tools →</a></li>
           </ul>
         </div>
@@ -274,7 +538,7 @@
             <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Studio Desk</h4>
           </div>
           <div class="space-y-3">
-            <a href="mailto:care@draftsrush.com" style="background-color: #F0F2F5;" class="inline-block font-mono text-xs font-bold border-2 border-black px-2.5 py-1.5 brutal-box hover:bg-[#FFE600] transition-colors">
+            <a href="mailto:care@draftsrush.com" style="background-color: #F0F2F5;" class="inline-block font-mono text-xs font-bold border-2 border-black px-2.5 py-1.5 brutal-box hover:bg-[#FFE600] transition-colors text-black">
               ✉ care@draftsrush.com
             </a>
             <p class="text-[11px] font-medium text-gray-700 leading-tight">
@@ -304,112 +568,129 @@
   </footer>
 
   <script>
-    const input = document.getElementById('hook-input');
-    const scoreDisplay = document.getElementById('score-display');
-    const gradeBadge = document.getElementById('grade-badge');
-    const feedbackList = document.getElementById('feedback-list');
+    const hookInput = document.getElementById('hook-input');
+    const metricWords = document.getElementById('metric-words');
+    const metricTime = document.getElementById('metric-time');
+    const metricScore = document.getElementById('metric-score');
+    const metricCuriosity = document.getElementById('metric-curiosity');
+    const diagnosticCard = document.getElementById('diagnostic-card');
+    const diagnosticText = document.getElementById('diagnostic-text');
+
     const sampleBtn = document.getElementById('sample-btn');
     const copyBtn = document.getElementById('copy-btn');
 
-    // Populate high-retention sample hook
+    // Populate Sample Hook
     if (sampleBtn) {
       sampleBtn.addEventListener('click', () => {
-        input.value = "Why nobody warns you about the biggest mistake in your 20s.";
-        input.dispatchEvent(new Event('input'));
+        hookInput.value = "Why do 99% of movies use this exact color trick? Look closely at the shadows...";
+        auditHook();
       });
     }
 
-    // One-click copy with feedback state
+    // One-Click Copy
     if (copyBtn) {
       copyBtn.addEventListener('click', async () => {
-        if (!input.value.trim()) return;
+        const text = hookInput.value.trim();
+        if (!text) return;
         try {
-          await navigator.clipboard.writeText(input.value.trim());
-          const originalText = copyBtn.innerText;
+          await navigator.clipboard.writeText(text);
+          const orig = copyBtn.innerText;
           copyBtn.innerText = "✓ Copied!";
-          setTimeout(() => {
-            copyBtn.innerText = originalText;
-          }, 1500);
+          setTimeout(() => { copyBtn.innerText = orig; }, 1500);
         } catch (err) {
           console.error("Clipboard copy failed", err);
         }
       });
     }
 
-    const badGreetings = ['hey guys', 'hello everyone', 'welcome back', 'in this video', "today i'm going to", 'so basically'];
-    const powerWords = ['secret', 'never', 'stop', 'mistake', 'nobody', 'warning', 'why', 'how', 'lost', 'waste', 'banned', 'truth', 'exposed'];
+    // Dark Mode Toggle Logic
+    const toggleBtns = [
+      document.getElementById('theme-toggle'),
+      document.getElementById('theme-toggle-mobile')
+    ].filter(Boolean);
 
-    input.addEventListener('input', function() {
-      const val = input.value.trim().toLowerCase();
-      if (!val) {
-        scoreDisplay.innerText = '--/100';
-        scoreDisplay.className = 'text-5xl font-black brand-font text-gray-400';
-        gradeBadge.innerText = 'Awaiting Hook';
-        gradeBadge.className = 'border-2 border-black px-4 py-1 font-black brand-font text-lg bg-gray-200';
-        feedbackList.innerHTML = '<li>• Enter your hook above to view suggestions.</li>';
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark');
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+    });
+
+    // Heuristic Hook Auditor
+    function auditHook() {
+      const text = hookInput.value.trim();
+      if (!text) {
+        metricWords.innerText = '0';
+        metricTime.innerText = '0.0s';
+        metricScore.innerText = '--';
+        metricScore.className = 'text-3xl font-black brand-font text-emerald-700';
+        metricCuriosity.innerText = 'Awaiting Input';
+        diagnosticCard.className = 'border-2 border-black p-5 bg-white brutal-box space-y-2';
+        diagnosticText.innerText = 'Type or paste your hook above. We evaluate length (under 16 words is ideal), presence of high-stakes contrast, and absence of rhetorical greetings.';
         return;
       }
 
-      let score = 75;
-      const feedback = [];
-      const words = val.match(/\b\S+\b/g) || [];
+      const words = text.match(/\b\S+\b/g) || [];
+      const wordCount = words.length;
+      metricWords.innerText = wordCount;
 
-      // Penalty: Weak YouTube Greetings
-      let hasBadGreeting = false;
-      for (const phrase of badGreetings) {
-        if (val.startsWith(phrase)) {
-          hasBadGreeting = true;
-          score -= 35;
-          feedback.push(`❌ <strong>Fatal Retention Drop:</strong> Starts with "${phrase}". Mobile viewers swipe away from formal greetings. Cut immediately.`);
-          break;
-        }
+      // Standard short-form pace: ~150 WPM
+      const seconds = (wordCount / 150) * 60;
+      metricTime.innerText = seconds.toFixed(1) + 's';
+
+      // Check filler phrases
+      const lower = text.toLowerCase();
+      const hasGreeting = /^(hey|hello|hi|what's up|welcome back)/i.test(lower);
+      const hasSelfIntro = /(in this video|today i'm going to show you|i wanted to share)/i.test(lower);
+      const hasCuriosity = /(why|how|this single|secret|trick|nobody talks about|banned|mistake|reason)/i.test(lower);
+
+      let score = 90;
+      let feedback = [];
+
+      if (hasGreeting || hasSelfIntro) {
+        score -= 30;
+        feedback.push("⚠️ Remove introductory greeting. Cut directly into the core subject.");
       }
 
-      // Check Word Count
-      if (words.length > 14) {
-        score -= 15;
-        feedback.push(`⚠️ <strong>Too Long (${words.length} words):</strong> Hooks should ideally deliver the premise in under 10 words.`);
-      } else if (words.length >= 5 && words.length <= 11) {
-        score += 10;
-        feedback.push(`✓ <strong>Punchy Word Length:</strong> ${words.length} words is fast enough to hook before second 00:03.`);
-      }
-
-      // Check for curiosity/power words
-      let foundPowerWord = false;
-      for (const pw of powerWords) {
-        if (words.includes(pw)) {
-          foundPowerWord = true;
-          break;
-        }
-      }
-
-      if (foundPowerWord) {
-        score += 15;
-        feedback.push(`✓ <strong>Strong Curiosity / Tension Trigger:</strong> Contains active trigger verbs that force an open question.`);
+      if (wordCount > 16) {
+        score -= 20;
+        feedback.push(`⚠️ Hook is ${wordCount} words (${seconds.toFixed(1)}s). Mobile viewers swipe away before second 00:04. Cut it down to under 14 words.`);
       } else {
-        feedback.push(`ℹ <strong>Neutral Tone:</strong> Consider adding a higher stakes word (e.g. "mistake", "never", "why", "stop").`);
+        feedback.push("✓ Word economy is tight and delivers within the critical mobile window.");
       }
 
-      score = Math.max(10, Math.min(100, score));
+      if (hasCuriosity) {
+        metricCuriosity.innerText = 'High (Open Loop)';
+        feedback.push("✓ Strong psychological curiosity hook detected.");
+      } else {
+        score -= 15;
+        metricCuriosity.innerText = 'Moderate / Low';
+        feedback.push("⚠️ Lacks an explicit curiosity trigger (e.g. 'why', 'the reason', 'this secret').");
+      }
 
-      scoreDisplay.innerText = `${score}/100`;
+      metricScore.innerText = Math.max(20, score) + '/100';
 
       if (score >= 80) {
-        scoreDisplay.className = 'text-5xl font-black brand-font text-emerald-700';
-        gradeBadge.innerText = 'HIGH RETENTION';
-        gradeBadge.className = 'border-2 border-black px-4 py-1 font-black brand-font text-lg bg-[#C2F0C2]';
-      } else if (score >= 50) {
-        scoreDisplay.className = 'text-5xl font-black brand-font text-yellow-700';
-        gradeBadge.innerText = 'MODERATE';
-        gradeBadge.className = 'border-2 border-black px-4 py-1 font-black brand-font text-lg bg-[#FFF080]';
+        metricScore.className = 'text-3xl font-black brand-font text-emerald-700';
+        diagnosticCard.className = 'border-2 border-black p-5 bg-[#C2F0C2] text-black brutal-box space-y-2';
+      } else if (score >= 60) {
+        metricScore.className = 'text-3xl font-black brand-font text-amber-700';
+        diagnosticCard.className = 'border-2 border-black p-5 bg-[#FFF6CF] text-black brutal-box space-y-2';
       } else {
-        scoreDisplay.className = 'text-5xl font-black brand-font text-red-700';
-        gradeBadge.innerText = 'HIGH DROP-OFF RISK';
-        gradeBadge.className = 'border-2 border-black px-4 py-1 font-black brand-font text-lg bg-[#FFB4B4]';
+        metricScore.className = 'text-3xl font-black brand-font text-red-700';
+        diagnosticCard.className = 'border-2 border-black p-5 bg-[#FFB4B4] text-black brutal-box space-y-2';
       }
 
-      feedbackList.innerHTML = feedback.map(item => `<li>${item}</li>`).join('');
-    });
+      diagnosticText.innerHTML = feedback.join('<br>');
+    }
+
+    hookInput.addEventListener('input', auditHook);
   </script>
 </body>
 </html>
