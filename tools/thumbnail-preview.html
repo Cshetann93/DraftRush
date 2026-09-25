@@ -8,35 +8,172 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-KFBGQ8WX');</script>
   <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Title & Thumbnail Preview Studio | DraftsRush</title>
+  <title>YouTube Thumbnail Preview Studio & Feed Tester | DraftsRush</title>
+  <meta name="description" content="Test your YouTube thumbnail against competitor videos before publishing. Preview mobile home feed, desktop search, and suggested sidebar viewports.">
+  <link rel="canonical" href="https://www.draftsrush.com/tools/thumbnail-preview">
 
   <!-- Favicon References -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
-  <meta name="description" content="Free browser tool to test YouTube thumbnails and titles across mobile feed, desktop feed, and sidebar previews before uploading.">
-  <link rel="canonical" href="https://www.draftsrush.com/tools/thumbnail-preview">
 
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
+  <!-- Instant Dark Mode Initializer -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      document.addEventListener('DOMContentLoaded', () => {
+        if (document.body) document.body.classList.add('dark');
+      });
+    }
+  </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { font-family: 'Inter', sans-serif; background-color: #E2E4E9; }
     h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
     .brutal-box { box-shadow: 4px 4px 0px #111317; }
     .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
     .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
-    .brutal-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111317; }
+
+    /* Pill Toggle Switch Design */
+    .theme-toggle {
+      position: relative;
+      width: 62px;
+      height: 32px;
+      border-radius: 9999px;
+      background-color: #FF5A1F;
+      border: 2px solid #111317;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7px;
+      box-shadow: 2px 2px 0px #111317;
+      transition: background-color 0.2s ease;
+      flex-shrink: 0;
+    }
+    .dark .theme-toggle {
+      background-color: #1F232B;
+      border-color: #FFFFFF;
+      box-shadow: 2px 2px 0px #000000;
+    }
+    .theme-toggle-icon {
+      width: 14px;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .theme-toggle-thumb {
+      position: absolute;
+      top: 2px;
+      left: 32px;
+      width: 24px;
+      height: 24px;
+      border-radius: 9999px;
+      background-color: #FFFFFF;
+      border: 2px solid #111317;
+      transition: left 0.2s ease;
+    }
+    .dark .theme-toggle-thumb {
+      left: 2px;
+      border-color: #000000;
+    }
+
+    /* Dark Mode Core Theme Overrides */
+    body.dark {
+      background-color: #0E1015 !important;
+      color: #FFFFFF !important;
+    }
+    body.dark header {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark header a, 
+    body.dark header nav a {
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+      background-color: #1F232B !important;
+    }
+    body.dark header nav a[href="/tools"] {
+      background-color: #FFE600 !important;
+      color: #111317 !important;
+      border-color: #111317 !important;
+    }
+    body.dark #mobile-nav {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark #mobile-nav a {
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark main .bg-\[\#F0F2F5\],
+    body.dark .bg-white {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+      box-shadow: 4px 4px 0px #000000 !important;
+    }
+    body.dark input {
+      background-color: #1F232B !important;
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark .text-gray-700, 
+    body.dark .text-gray-600,
+    body.dark .text-gray-500 {
+      color: #9CA3AF !important;
+    }
+    body.dark .bg-\[\#FFF6CF\] {
+      background-color: #1B1E26 !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+
+    /* Footer Dark Mode */
+    body.dark footer {
+      background-color: #111317 !important;
+      border-color: #2A2F3A !important;
+      color: #E2E4E9 !important;
+    }
+    body.dark footer p, 
+    body.dark footer a, 
+    body.dark footer h4 {
+      color: #E2E4E9 !important;
+    }
+    body.dark footer span.bg-\[\#FFE600\] {
+      color: #111317 !important;
+    }
+    body.dark footer .text-gray-800,
+    body.dark footer .text-gray-700 {
+      color: #9CA3AF !important;
+    }
+    body.dark footer .border-black,
+    body.dark footer .border-t-2,
+    body.dark footer .border-b-2 {
+      border-color: #2A2F3A !important;
+    }
+    body.dark footer a[style*="#F0F2F5"] {
+      background-color: #1F232B !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+    body.dark footer svg.fill-black {
+      fill: #FFFFFF !important;
+    }
   </style>
 </head>
-<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+<body class="text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFBGQ8WX"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -46,39 +183,100 @@
   <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
       <a href="/" class="inline-flex items-center flex-shrink-0" aria-label="DraftsRush Home">
-        <img src="/drlogo.png" alt="DraftsRush" width="240" height="64" class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" />
+        <img 
+          src="/drlogo.png" 
+          alt="DraftsRush" 
+          width="240" 
+          height="64" 
+          class="h-12 sm:h-14 md:h-16 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
+        />
       </a>
 
+      <!-- Desktop Primary Navigation -->
       <nav class="hidden md:flex items-center gap-3 font-bold text-xs tracking-wider brand-font">
-        <a href="/script-editor" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform flex items-center gap-1.5">
+        <a href="/script-editor" style="background-color: #F0F2F5;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-black"></span>
           <span>SCRIPT EDITOR</span>
         </a>
-        <a href="/writers-room" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+        <a href="/writers-room" style="background-color: #F0F2F5;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
           WRITER'S ROOM
         </a>
-        <a href="/tools" class="bg-[#FFE600] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+        <a href="/tools" style="background-color: #FFE600;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
           FREE TOOLS
         </a>
-        <a href="/scripts" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+        <a href="/scripts" style="background-color: #F0F2F5;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
           SERVICES
         </a>
-        <a href="/about" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
+        <a href="/about" style="background-color: #F0F2F5;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform">
           ABOUT
         </a>
       </nav>
 
-      <div class="hidden md:flex items-center">
+      <!-- Desktop CTA Action & Theme Toggle -->
+      <div class="hidden md:flex items-center gap-3">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" type="button">
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <line x1="12" y1="2" x2="12" y2="5"></line>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line>
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
+              <line x1="2" y1="12" x2="5" y2="12"></line>
+              <line x1="19" y1="12" x2="22" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line>
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-thumb"></span>
+        </button>
+
         <a href="/contact" class="bg-black text-white border-2 border-black px-4 py-1.5 font-bold text-xs tracking-wider brand-font brutal-box brutal-btn uppercase transition-transform whitespace-nowrap">
           ORDER DRAFT
         </a>
       </div>
 
-      <button aria-label="Toggle Navigation Menu" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box brutal-btn">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-      </button>
+      <!-- Mobile Controls -->
+      <div class="flex items-center gap-2 md:hidden">
+        <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle Dark Mode" type="button">
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <line x1="12" y1="2" x2="12" y2="5"></line>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line>
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
+              <line x1="2" y1="12" x2="5" y2="12"></line>
+              <line x1="19" y1="12" x2="22" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line>
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-thumb"></span>
+        </button>
+
+        <button 
+          aria-label="Toggle Navigation Menu" 
+          onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" 
+          class="border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box brutal-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
     </div>
 
+    <!-- Mobile Drawer -->
     <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-[#F0F2F5] p-6 space-y-4 font-bold brand-font text-sm">
       <a href="/script-editor" class="flex items-center justify-between border-b border-gray-300 pb-2 text-black">
         <span>SCRIPT EDITOR</span>
@@ -87,6 +285,7 @@
       <a href="/writers-room" class="block border-b border-gray-300 pb-2">WRITER'S ROOM</a>
       <a href="/tools" class="block border-b border-gray-300 pb-2">FREE TOOLS</a>
       <a href="/scripts" class="block border-b border-gray-300 pb-2">SERVICES</a>
+      <a href="/partner" class="block border-b border-gray-300 pb-2">PARTNER WITH US</a>
       <a href="/about" class="block border-b border-gray-300 pb-2">ABOUT</a>
       <a href="/contact" class="block text-center bg-black text-white py-2.5 border-2 border-black brutal-box uppercase tracking-wider text-xs">
         ORDER DRAFT
@@ -94,183 +293,187 @@
     </div>
   </header>
 
-  <main class="flex-grow max-w-6xl mx-auto px-6 py-10 w-full">
-    <!-- Header Hero -->
-    <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box-lg mb-8">
-      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">CTR Optimizer</span>
-      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-1">YouTube Title & Thumbnail Preview Studio</h1>
-      <p class="text-sm font-medium text-black max-w-2xl">
-        Preview your cover design and title on simulated YouTube Mobile, Desktop, and Sidebar feeds. Check character cutoffs and ensure the duration badge does not hide your focal point.
+  <main class="flex-grow max-w-5xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-10 brutal-box-lg mb-8">
+      <div class="inline-flex items-center gap-2 bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase mb-3">
+        Utility: Packaging & CTR
+      </div>
+      <h1 class="text-3xl md:text-5xl font-black brand-font tracking-tight mb-3">
+        YouTube Thumbnail Preview Studio
+      </h1>
+      <p class="text-sm md:text-base font-medium text-gray-700 leading-relaxed mb-6">
+        Preview how your thumbnail renders across YouTube mobile feeds, desktop search results, and suggested sidebar viewports before publishing.
       </p>
-    </div>
 
-    <!-- Tool Controls & Previews Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      
-      <!-- Left Panel: Controls Form -->
-      <div class="lg:col-span-5 space-y-6">
-        <div class="border-4 border-black bg-white p-6 brutal-box space-y-5">
-          <h2 class="text-xl font-black brand-font border-b-2 border-black pb-2">Video Inputs</h2>
-          
-          <div>
-            <label class="block text-xs font-bold uppercase mb-1 font-mono">Thumbnail File (16:9)</label>
-            <input type="file" id="thumb-input" accept="image/*" class="w-full text-xs font-mono file:mr-3 file:py-2 file:px-3 file:border-2 file:border-black file:text-xs file:font-bold file:bg-[#FFE600] file:text-black hover:file:cursor-pointer border-2 border-black p-1.5 bg-[#F0F2F5]" />
-          </div>
-
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <label class="text-xs font-bold uppercase font-mono">Working Title</label>
-              <span id="char-counter" class="text-xs font-mono font-bold text-gray-600">0 / 100</span>
-            </div>
-            <textarea id="title-input" rows="3" placeholder="Paste your title here..." class="w-full border-2 border-black p-3 text-sm font-semibold focus:outline-none focus:bg-[#FFF6CF]">How to Write a Script with 50%+ Retention (Step by Step)</textarea>
-            <p id="cutoff-warning" class="text-[11px] font-bold text-red-600 mt-1 hidden">⚠️ Warning: Title exceeds 50 characters and will truncate on mobile feed cards.</p>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-bold uppercase mb-1 font-mono">Channel Name</label>
-              <input type="text" id="channel-input" value="DraftsRush Studio" class="w-full border-2 border-black p-2 text-xs font-semibold focus:outline-none" />
-            </div>
-            <div>
-              <label class="block text-xs font-bold uppercase mb-1 font-mono">Runtime Badge</label>
-              <input type="text" id="duration-input" value="12:44" class="w-full border-2 border-black p-2 text-xs font-semibold font-mono focus:outline-none" />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-bold uppercase mb-1 font-mono">View Count</label>
-              <input type="text" id="views-input" value="142K views" class="w-full border-2 border-black p-2 text-xs font-semibold focus:outline-none" />
-            </div>
-            <div>
-              <label class="block text-xs font-bold uppercase mb-1 font-mono">Upload Age</label>
-              <input type="text" id="age-input" value="3 days ago" class="w-full border-2 border-black p-2 text-xs font-semibold focus:outline-none" />
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold uppercase mb-1 font-mono">Preset Test Image</label>
-            <div class="flex gap-2">
-              <button onclick="setSampleImage(1)" class="border-2 border-black px-2.5 py-1 text-xs font-mono font-bold bg-[#F0F2F5] hover:bg-[#FFE600]">Sample Dark</button>
-              <button onclick="setSampleImage(2)" class="border-2 border-black px-2.5 py-1 text-xs font-mono font-bold bg-[#F0F2F5] hover:bg-[#FFE600]">Sample Bright</button>
-              <button onclick="resetImage()" class="border-2 border-black px-2.5 py-1 text-xs font-mono font-bold bg-[#FCE8E6] hover:bg-red-200">Clear</button>
-            </div>
-          </div>
+      <!-- Input Settings Bar -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label class="block font-black text-xs uppercase tracking-wider mb-2">Upload Thumbnail Image (16:9)</label>
+          <input id="image-upload" type="file" accept="image/*" class="w-full border-2 border-black p-2.5 bg-white text-xs font-mono font-bold file:mr-4 file:py-1 file:px-2 file:border-2 file:border-black file:bg-[#FFE600] file:font-black file:text-xs file:uppercase">
         </div>
-
-        <!-- Inline Commercial Banner -->
-        <div class="border-4 border-black bg-[#FFE600] p-6 brutal-box">
-          <span class="bg-black text-white px-2 py-0.5 text-[10px] font-bold brand-font uppercase">Done-For-You</span>
-          <h3 class="text-lg font-black brand-font mt-2 mb-1">Need The Script Behind This Concept?</h3>
-          <p class="text-xs font-medium text-black mb-3">We draft retention-tested video scripts complete with B-roll search terms, pattern interrupts, and three opening hook options.</p>
-          <a href="/scripts" class="inline-block bg-black text-white font-black brand-font text-xs uppercase px-4 py-2 border-2 border-black brutal-box brutal-btn">Order Custom Draft →</a>
+        <div>
+          <label class="block font-black text-xs uppercase tracking-wider mb-2">Video Title Preview</label>
+          <input id="title-input" type="text" placeholder="Type your video title here..." class="w-full border-2 border-black p-2.5 bg-white text-sm font-medium focus:bg-[#FFFDE6]" value="Why 99% of YouTube Creators Fail Their First 30 Seconds">
         </div>
       </div>
 
-      <!-- Right Panel: Mockup Previews -->
-      <div class="lg:col-span-7 space-y-8">
-        
-        <!-- Viewport Selector Tabs -->
-        <div class="flex gap-2 border-b-4 border-black pb-2">
-          <button onclick="showTab('mobile')" id="tab-btn-mobile" class="border-2 border-black px-4 py-1.5 font-black brand-font text-xs uppercase bg-[#FFE600]">📱 Mobile Feed</button>
-          <button onclick="showTab('desktop')" id="tab-btn-desktop" class="border-2 border-black px-4 py-1.5 font-black brand-font text-xs uppercase bg-white">💻 Desktop Feed</button>
-          <button onclick="showTab('sidebar')" id="tab-btn-sidebar" class="border-2 border-black px-4 py-1.5 font-black brand-font text-xs uppercase bg-white">📑 Up Next Sidebar</button>
+      <!-- Action Toolbar -->
+      <div class="flex items-center justify-between mb-4 border-t-2 border-black pt-4">
+        <span class="font-black text-xs uppercase tracking-wider text-black">Live Feed Simulation</span>
+        <button id="sample-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+          ⚡ Try Sample Image
+        </button>
+      </div>
+
+      <!-- Simulated YouTube Feed Viewports -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Desktop Home Card -->
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <span class="font-mono text-[10px] font-bold uppercase bg-black text-white px-2 py-0.5 inline-block mb-2">Desktop Home Feed</span>
+          <div class="aspect-video bg-gray-200 border border-black mb-2 overflow-hidden flex items-center justify-center relative">
+            <img id="preview-desktop" src="" alt="Thumbnail preview" class="w-full h-full object-cover hidden">
+            <span id="placeholder-desktop" class="font-mono text-xs text-gray-500">1280 × 720</span>
+            <span class="absolute bottom-1 right-1 bg-black text-white font-mono text-[10px] px-1 py-0.5">12:44</span>
+          </div>
+          <h4 id="display-title-desktop" class="font-bold text-xs leading-snug line-clamp-2 text-black mb-1">
+            Why 99% of YouTube Creators Fail Their First 30 Seconds
+          </h4>
+          <p class="text-[10px] text-gray-500 font-medium">Channel Name • 240K views • 2 days ago</p>
         </div>
 
-        <!-- Preview 1: Mobile Feed Mockup -->
-        <div id="preview-mobile" class="border-4 border-black bg-[#0F0F0F] text-white p-4 max-w-sm mx-auto brutal-box-lg rounded-xl">
-          <div class="flex justify-between items-center text-[10px] font-mono text-gray-400 mb-2 px-1">
-            <span>YOUTUBE MOBILE FEED</span>
-            <span>LTE 100%</span>
+        <!-- Mobile App Feed Card -->
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <span class="font-mono text-[10px] font-bold uppercase bg-[#FFE600] text-black px-2 py-0.5 inline-block mb-2">Mobile App Viewport</span>
+          <div class="aspect-video bg-gray-200 border border-black mb-2 overflow-hidden flex items-center justify-center relative">
+            <img id="preview-mobile" src="" alt="Thumbnail preview" class="w-full h-full object-cover hidden">
+            <span id="placeholder-mobile" class="font-mono text-xs text-gray-500">Small Display</span>
+            <span class="absolute bottom-1 right-1 bg-black text-white font-mono text-[10px] px-1 py-0.5">12:44</span>
           </div>
-          <!-- Thumbnail Card -->
-          <div class="relative w-full aspect-video bg-[#272727] rounded-lg overflow-hidden border border-gray-800">
-            <img id="mobile-thumb-img" src="" alt="Preview" class="w-full h-full object-cover hidden" />
-            <div id="mobile-thumb-placeholder" class="w-full h-full flex flex-col items-center justify-center text-gray-500 text-xs font-mono font-bold">
-              <span>16:9 THUMBNAIL</span>
-              <span class="text-[10px] text-gray-600">1280 x 720</span>
-            </div>
-            <span id="mobile-badge" class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-[11px] font-bold px-1.5 py-0.5 rounded">12:44</span>
-          </div>
-          <!-- Meta Row -->
-          <div class="flex gap-3 mt-3 px-1">
-            <div class="w-9 h-9 rounded-full bg-[#FFE600] text-black font-black flex-shrink-0 flex items-center justify-center font-mono text-xs border border-black">
-              DR
-            </div>
-            <div class="flex-grow">
-              <h3 id="mobile-title" class="text-sm font-semibold text-white leading-tight line-clamp-2">How to Write a Script with 50%+ Retention (Step by Step)</h3>
-              <p class="text-xs text-gray-400 mt-1 flex items-center gap-1">
-                <span id="mobile-channel">DraftsRush Studio</span> • <span id="mobile-views">142K views</span> • <span id="mobile-age">3 days ago</span>
-              </p>
-            </div>
-          </div>
+          <h4 id="display-title-mobile" class="font-bold text-xs leading-snug line-clamp-2 text-black mb-1">
+            Why 99% of YouTube Creators Fail Their First 30 Seconds
+          </h4>
+          <p class="text-[10px] text-gray-500 font-medium">Channel Name • 240K views • 2 days ago</p>
         </div>
 
-        <!-- Preview 2: Desktop Feed Mockup -->
-        <div id="preview-desktop" class="hidden border-4 border-black bg-[#0F0F0F] text-white p-6 brutal-box-lg rounded-xl">
-          <div class="text-[10px] font-mono text-gray-400 mb-3">DESKTOP HOME FEED CARD</div>
-          <div class="max-w-md">
-            <div class="relative w-full aspect-video bg-[#272727] rounded-xl overflow-hidden border border-gray-800">
-              <img id="desktop-thumb-img" src="" alt="Preview" class="w-full h-full object-cover hidden" />
-              <div id="desktop-thumb-placeholder" class="w-full h-full flex flex-col items-center justify-center text-gray-500 text-xs font-mono font-bold">
-                <span>16:9 THUMBNAIL AREA</span>
-              </div>
-              <span id="desktop-badge" class="absolute bottom-2 right-2 bg-black/80 text-white font-mono text-xs font-bold px-2 py-0.5 rounded">12:44</span>
+        <!-- Suggested Sidebar View -->
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <span class="font-mono text-[10px] font-bold uppercase bg-black text-white px-2 py-0.5 inline-block mb-2">Suggested Sidebar (Mini)</span>
+          <div class="flex gap-2">
+            <div class="w-28 aspect-video bg-gray-200 border border-black flex-shrink-0 overflow-hidden flex items-center justify-center relative">
+              <img id="preview-sidebar" src="" alt="Thumbnail preview" class="w-full h-full object-cover hidden">
+              <span id="placeholder-sidebar" class="font-mono text-[9px] text-gray-500">168 × 94</span>
+              <span class="absolute bottom-0.5 right-0.5 bg-black text-white font-mono text-[8px] px-0.5">12:44</span>
             </div>
-            <div class="flex gap-3 mt-3">
-              <div class="w-10 h-10 rounded-full bg-[#FFE600] text-black font-black flex-shrink-0 flex items-center justify-center font-mono text-xs border border-black">DR</div>
-              <div>
-                <h3 id="desktop-title" class="text-base font-bold text-white leading-snug line-clamp-2">How to Write a Script with 50%+ Retention (Step by Step)</h3>
-                <p id="desktop-channel" class="text-xs text-gray-400 mt-1">DraftsRush Studio</p>
-                <p class="text-xs text-gray-400"><span id="desktop-views">142K views</span> • <span id="desktop-age">3 days ago</span></p>
-              </div>
+            <div class="min-w-0">
+              <h4 id="display-title-sidebar" class="font-bold text-[11px] leading-tight line-clamp-2 text-black mb-1">
+                Why 99% of YouTube Creators Fail Their First 30 Seconds
+              </h4>
+              <p class="text-[9px] text-gray-500">Channel Name</p>
+              <p class="text-[9px] text-gray-500">240K views</p>
             </div>
           </div>
         </div>
-
-        <!-- Preview 3: Sidebar Up Next Mockup -->
-        <div id="preview-sidebar" class="hidden border-4 border-black bg-[#0F0F0F] text-white p-6 brutal-box-lg rounded-xl">
-          <div class="text-[10px] font-mono text-gray-400 mb-3">SIDEBAR WATCH NEXT SUGGESTIONS</div>
-          <div class="flex gap-3 max-w-lg items-start">
-            <div class="relative w-40 aspect-video bg-[#272727] rounded-lg overflow-hidden flex-shrink-0 border border-gray-800">
-              <img id="sidebar-thumb-img" src="" alt="Preview" class="w-full h-full object-cover hidden" />
-              <div id="sidebar-thumb-placeholder" class="w-full h-full flex items-center justify-center text-gray-500 text-[10px] font-mono">16:9</div>
-              <span id="sidebar-badge" class="absolute bottom-1 right-1 bg-black/80 text-white font-mono text-[10px] font-bold px-1 py-0.2 rounded">12:44</span>
-            </div>
-            <div>
-              <h3 id="sidebar-title" class="text-xs font-bold text-white leading-tight line-clamp-2">How to Write a Script with 50%+ Retention (Step by Step)</h3>
-              <p id="sidebar-channel" class="text-[11px] text-gray-400 mt-1">DraftsRush Studio</p>
-              <p class="text-[11px] text-gray-400"><span id="sidebar-views">142K views</span> • <span id="sidebar-age">3 days ago</span></p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Live Retention / Diagnostics Box -->
-        <div class="border-4 border-black bg-white p-6 brutal-box space-y-3 font-mono text-xs">
-          <div class="flex justify-between items-center border-b-2 border-black pb-2">
-            <span class="font-bold uppercase brand-font text-sm">Pre-Publish Diagnostic</span>
-            <span id="score-badge" class="bg-emerald-400 border border-black px-2 py-0.5 font-bold">OPTIMAL</span>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px]">
-            <div>• Title Character Count: <span id="diag-chars" class="font-bold">59</span></div>
-            <div>• Mobile Truncation Risk: <span id="diag-trunc" class="font-bold text-emerald-600">Low</span></div>
-            <div>• Lower-Right Obstruction: <span class="font-bold text-amber-600">Check Duration Badge</span></div>
-            <div>• All Caps Warning: <span id="diag-caps" class="font-bold text-emerald-600">Passed</span></div>
-          </div>
-        </div>
-
       </div>
     </div>
-  <!-- Bottom Return Button -->
-      <div class="mt-12">
-        <a href="/tools" class="inline-block bg-[#FFE600] text-black font-black brand-font text-xs md:text-sm px-4 py-2 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
-          ← Back to Free Tools
+
+    <!-- Editorial Guide: The Science of High-CTR Packaging -->
+    <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box mb-8 space-y-6">
+      <div class="border-b-2 border-black pb-3">
+        <span class="bg-[#FFE600] text-black border border-black px-2 py-0.5 text-xs font-bold brand-font uppercase">Visual Psychology</span>
+        <h2 class="text-2xl md:text-3xl font-black brand-font mt-2">How Thumbnails and Titles Collaborate to Drive CTR</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700 leading-relaxed font-medium">
+        <div class="space-y-3">
+          <h3 class="font-black brand-font text-base text-black">The Rule of Complementary Assets</h3>
+          <p>
+            The most common packaging error creators commit is repeating thumbnail text verbatim in the video title. When your thumbnail text says <em>"Stop Doing This"</em> and your title reads <em>"Why You Should Stop Doing This,"</em> you waste half your available real estate.
+          </p>
+          <p>
+            Instead, treat your thumbnail and title as twin puzzle pieces. The thumbnail provides the immediate emotional shock or visual contrast, while the title delivers the intellectual context or stakes. When the two elements create tension without repetition, click-through rates climb consistently.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="font-black brand-font text-base text-black">The Mobile Scaling Test</h3>
+          <p>
+            Over 70% of YouTube views originate on mobile devices. A thumbnail that looks immaculate on a 27-inch studio monitor often dissolves into an unreadable smudge when rendered at 168 pixels wide on a smartphone feed.
+          </p>
+          <p>
+            Use this preview studio to verify that your focal point is immediately identifiable at small scale. Restrict on-screen text to <strong>three words or fewer</strong>, maximize subject-to-background contrast, and ensure critical faces or objects never sit in the bottom-right corner where YouTube's duration badge will obscure them.
+          </p>
+        </div>
+      </div>
+
+      <!-- Packaging Checklist Grid -->
+      <div class="border-2 border-black bg-[#F0F2F5] p-5 space-y-3">
+        <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">The 3-Point Thumbnail Quality Audit</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs">
+          <div>
+            <strong class="text-black block mb-1">1. Squint Test Passed</strong>
+            <p class="text-gray-600">Squint your eyes at the screen. If the primary emotional subject isn't instantly clear, simplify the background.</p>
+          </div>
+          <div>
+            <strong class="text-black block mb-1">2. Under 4 Text Words</strong>
+            <p class="text-gray-600">Never write paragraphs on a thumbnail. Bold, high-contrast 2-to-3 word cues win every time.</p>
+          </div>
+          <div>
+            <strong class="text-black block mb-1">3. Clear Bottom-Right Corner</strong>
+            <p class="text-gray-600">The video runtime timestamp covers the bottom right. Keep essential faces and logos away from that area.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Packaging & Creator Tools (Contextual Interlinking) -->
+    <div class="border-4 border-black bg-[#FFF6CF] p-6 brutal-box mb-8 space-y-4">
+      <div class="flex items-center justify-between border-b-2 border-black pb-2">
+        <h3 class="font-black brand-font text-sm uppercase tracking-wider text-black">Related Video Packaging Tools</h3>
+        <span class="font-mono text-xs font-bold bg-black text-white px-2 py-0.5">STUDIO DESK</span>
+      </div>
+      <p class="text-xs font-medium text-gray-800 leading-relaxed">
+        Verify your full packaging and retention funnel across our client-side utilities:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+        <a href="/tools/title-checker" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>🔍 YouTube Title Checker</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Check title character lengths & mobile cut-offs (~50 chars) →</span>
+        </a>
+        <a href="/tools/hook-analyzer" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>🎯 5-Sec Hook Analyzer</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Ensure your opening script line delivers on your thumbnail promise →</span>
+        </a>
+        <a href="/tools/timestamp-maker" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>⏱ YouTube Timestamps Maker</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Format description chapters to qualify for Google Key Moments →</span>
         </a>
       </div>
+    </div>
+
+    <!-- Commercial CTA Strip -->
+    <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+      <div>
+        <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Production Scriptwriting</span>
+        <h2 class="text-2xl font-black brand-font mt-2 mb-1 text-black">Need High-Retention Script Packs?</h2>
+        <p class="text-sm font-medium text-black max-w-xl">
+          We write research-backed video essays and short-form scripts with calculated pacing, exact camera cutaways, and B-roll notes.
+        </p>
+      </div>
+      <a href="/scripts" class="bg-black text-white font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn whitespace-nowrap text-sm uppercase">
+        Explore Script Packs →
+      </a>
+    </div>
+
+    <!-- Bottom Return Button -->
+    <div class="mt-8">
+      <a href="/tools" class="inline-block bg-[#FFE600] text-black font-black brand-font text-xs md:text-sm px-4 py-2 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
+        ← Back to Free Tools
+      </a>
+    </div>
   </main>
 
   <!-- Universal Footer -->
-  <footer class="border-t-4 border-black py-14 mt-auto" style="background-color: #D6E4EE !important;">
+  <footer class="border-t-4 border-black py-14 mt-auto bg-[#D6E4EE]">
     <div class="max-w-6xl mx-auto px-6">
       
       <!-- Top Branding & Value Bar -->
@@ -291,7 +494,7 @@
         </div>
 
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <span class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase">
+          <span style="color: #111317 !important;" class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase">
             ⚡ 100% Free Client-Side Tools
           </span>
           <div class="flex items-center gap-1.5">
@@ -319,24 +522,21 @@
 
       <!-- 4-Column Structured Link Directory -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-10">
-        
-        <!-- Col 1: Interactive Tools & Apps -->
         <div>
           <div class="flex items-center gap-1.5 mb-3">
             <span class="w-2 h-2 bg-black"></span>
             <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Studio Tools</h4>
           </div>
           <ul class="space-y-2 text-xs font-semibold text-gray-800">
-            <li><a href="/script-editor" class="hover:underline font-bold text-black flex items-center gap-1">Online Script Editor <span class="bg-[#FFE600] border border-black text-[9px] px-1 font-mono">NEW</span></a></li>
+            <li><a href="/script-editor" class="hover:underline font-bold text-black flex items-center gap-1">Online Script Editor <span class="bg-[#FFE600] border border-black text-[9px] px-1 font-mono text-black">NEW</span></a></li>
+            <li><a href="/tools/title-checker" class="hover:underline font-bold text-black">YouTube Title Checker</a></li>
             <li><a href="/tools/script-timer" class="hover:underline">Script Pacing Timer</a></li>
             <li><a href="/tools/hook-analyzer" class="hover:underline">5-Sec Hook Analyzer</a></li>
             <li><a href="/tools/format-converter" class="hover:underline">Dual-Column AV Converter</a></li>
-            <li><a href="/tools/dialogue-pruner" class="hover:underline">Dialogue Word Pruner</a></li>
             <li><a href="/tools" class="hover:underline font-mono text-[11px] text-gray-600">All 12 Free Tools →</a></li>
           </ul>
         </div>
 
-        <!-- Col 2: Writer's Room & Craft Guides -->
         <div>
           <div class="flex items-center gap-1.5 mb-3">
             <span class="w-2 h-2 bg-black"></span>
@@ -352,7 +552,6 @@
           </ul>
         </div>
 
-        <!-- Col 3: Commission Services & Templates -->
         <div>
           <div class="flex items-center gap-1.5 mb-3">
             <span class="w-2 h-2 bg-black"></span>
@@ -368,14 +567,13 @@
           </ul>
         </div>
 
-        <!-- Col 4: Studio Desk & Direct Contact -->
         <div>
           <div class="flex items-center gap-1.5 mb-3">
             <span class="w-2 h-2 bg-black"></span>
             <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Studio Desk</h4>
           </div>
           <div class="space-y-3">
-            <a href="mailto:care@draftsrush.com" style="background-color: #F0F2F5;" class="inline-block font-mono text-xs font-bold border-2 border-black px-2.5 py-1.5 brutal-box hover:bg-[#FFE600] transition-colors">
+            <a href="mailto:care@draftsrush.com" style="background-color: #F0F2F5;" class="inline-block font-mono text-xs font-bold border-2 border-black px-2.5 py-1.5 brutal-box hover:bg-[#FFE600] transition-colors text-black">
               ✉ care@draftsrush.com
             </a>
             <p class="text-[11px] font-medium text-gray-700 leading-tight">
@@ -387,10 +585,9 @@
             </ul>
           </div>
         </div>
-
       </div>
 
-      <!-- Bottom Legal & Copyright Bar -->
+      <!-- Bottom Legal Bar -->
       <div class="border-t-2 border-black pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-gray-700">
         <p>© 2026 DraftsRush. All rights reserved.</p>
         <div class="flex flex-wrap gap-6">
@@ -400,300 +597,82 @@
           <a href="/contact" class="hover:underline">Support Desk</a>
         </div>
       </div>
-
     </div>
   </footer>
 
+  <!-- Script Logic -->
   <script>
-    const thumbInput = document.getElementById('thumb-input');
+    const imageUpload = document.getElementById('image-upload');
     const titleInput = document.getElementById('title-input');
-    const channelInput = document.getElementById('channel-input');
-    const durationInput = document.getElementById('duration-input');
-    const viewsInput = document.getElementById('views-input');
-    const ageInput = document.getElementById('age-input');
+    const sampleBtn = document.getElementById('sample-btn');
 
-    let currentImageDataUrl = '';
+    const previewDesktop = document.getElementById('preview-desktop');
+    const previewMobile = document.getElementById('preview-mobile');
+    const previewSidebar = document.getElementById('preview-sidebar');
 
-    function updateFields() {
-      const title = titleInput.value.trim() || 'Untitled Video';
-      const channel = channelInput.value.trim() || 'Channel Name';
-      const duration = durationInput.value.trim() || '00:00';
-      const views = viewsInput.value.trim() || '0 views';
-      const age = ageInput.value.trim() || 'just now';
+    const placeholderDesktop = document.getElementById('placeholder-desktop');
+    const placeholderMobile = document.getElementById('placeholder-mobile');
+    const placeholderSidebar = document.getElementById('placeholder-sidebar');
 
-      // Titles
-      document.getElementById('mobile-title').innerText = title;
-      document.getElementById('desktop-title').innerText = title;
-      document.getElementById('sidebar-title').innerText = title;
+    const displayTitleDesktop = document.getElementById('display-title-desktop');
+    const displayTitleMobile = document.getElementById('display-title-mobile');
+    const displayTitleSidebar = document.getElementById('display-title-sidebar');
 
-      // Channels
-      document.getElementById('mobile-channel').innerText = channel;
-      document.getElementById('desktop-channel').innerText = channel;
-      document.getElementById('sidebar-channel').innerText = channel;
-
-      // Durations
-      document.getElementById('mobile-badge').innerText = duration;
-      document.getElementById('desktop-badge').innerText = duration;
-      document.getElementById('sidebar-badge').innerText = duration;
-
-      // Views & Age
-      document.getElementById('mobile-views').innerText = views;
-      document.getElementById('desktop-views').innerText = views;
-      document.getElementById('sidebar-views').innerText = views;
-      document.getElementById('mobile-age').innerText = age;
-      document.getElementById('desktop-age').innerText = age;
-      document.getElementById('sidebar-age').innerText = age;
-
-      // Character Counter & Warnings
-      const count = title.length;
-      document.getElementById('char-counter').innerText = `${count} / 100`;
-      document.getElementById('diag-chars').innerText = count;
-
-      const warningEl = document.getElementById('cutoff-warning');
-      const truncEl = document.getElementById('diag-trunc');
-      if (count > 50) {
-        warningEl.classList.remove('hidden');
-        truncEl.innerText = 'High (Will cut on phone)';
-        truncEl.className = 'font-bold text-red-600';
-      } else {
-        warningEl.classList.add('hidden');
-        truncEl.innerText = 'Low (Safe for mobile)';
-        truncEl.className = 'font-bold text-emerald-600';
-      }
-
-      // Check all caps
-      const capsEl = document.getElementById('diag-caps');
-      if (title.length > 10 && title === title.toUpperCase()) {
-        capsEl.innerText = 'High (Avoid 100% Caps)';
-        capsEl.className = 'font-bold text-red-600';
-      } else {
-        capsEl.innerText = 'Passed';
-        capsEl.className = 'font-bold text-emerald-600';
-      }
-    }
-
-    thumbInput.addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        setImage(evt.target.result);
-      };
-      reader.readAsDataURL(file);
+    // Title synchronizer
+    titleInput.addEventListener('input', () => {
+      const val = titleInput.value || 'Video Title Goes Here...';
+      displayTitleDesktop.innerText = val;
+      displayTitleMobile.innerText = val;
+      displayTitleSidebar.innerText = val;
     });
 
-    function setImage(src) {
-      currentImageDataUrl = src;
-      ['mobile', 'desktop', 'sidebar'].forEach(id => {
-        const img = document.getElementById(`${id}-thumb-img`);
-        const placeholder = document.getElementById(`${id}-thumb-placeholder`);
+    // File Upload Handler
+    imageUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          updateImages(event.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Sample Image Injector
+    sampleBtn.addEventListener('click', () => {
+      updateImages('https://images.unsplash.com/photo-1536240478700-b869070f9279?w=1280&auto=format&fit=crop&q=80');
+      titleInput.value = "Why 99% of YouTube Creators Fail Their First 30 Seconds";
+      titleInput.dispatchEvent(new Event('input'));
+    });
+
+    function updateImages(src) {
+      [previewDesktop, previewMobile, previewSidebar].forEach(img => {
         img.src = src;
         img.classList.remove('hidden');
-        placeholder.classList.add('hidden');
+      });
+      [placeholderDesktop, placeholderMobile, placeholderSidebar].forEach(span => {
+        span.classList.add('hidden');
       });
     }
 
-    function resetImage() {
-      currentImageDataUrl = '';
-      thumbInput.value = '';
-      ['mobile', 'desktop', 'sidebar'].forEach(id => {
-        const img = document.getElementById(`${id}-thumb-img`);
-        const placeholder = document.getElementById(`${id}-thumb-placeholder`);
-        img.src = '';
-        img.classList.add('hidden');
-        placeholder.classList.remove('hidden');
+    // Theme Toggle Logic
+    const toggleBtns = [
+      document.getElementById('theme-toggle'),
+      document.getElementById('theme-toggle-mobile')
+    ].filter(Boolean);
+
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark');
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
       });
-    }
-
-    function setSampleImage(type) {
-      const canvas = document.createElement('canvas');
-      canvas.width = 1280;
-      canvas.height = 720;
-      const ctx = canvas.getContext('2d');
-
-      if (type === 1) {
-        // Dark contrast sample
-        ctx.fillStyle = '#111317';
-        ctx.fillRect(0, 0, 1280, 720);
-        ctx.fillStyle = '#FFE600';
-        ctx.font = 'bold 72px sans-serif';
-        ctx.fillText('THE FATAL ERROR', 120, 360);
-      } else {
-        // Bright contrast sample
-        ctx.fillStyle = '#FFE600';
-        ctx.fillRect(0, 0, 1280, 720);
-        ctx.fillStyle = '#111317';
-        ctx.font = 'bold 72px sans-serif';
-        ctx.fillText('3 SECONDS LEFT', 120, 360);
-      }
-      setImage(canvas.toDataURL());
-    }
-
-    function showTab(tab) {
-      ['mobile', 'desktop', 'sidebar'].forEach(t => {
-        document.getElementById(`preview-${t}`).classList.add('hidden');
-        const btn = document.getElementById(`tab-btn-${t}`);
-        btn.classList.remove('bg-[#FFE600]');
-        btn.classList.add('bg-white');
-      });
-
-      document.getElementById(`preview-${tab}`).classList.remove('hidden');
-      const activeBtn = document.getElementById(`tab-btn-${tab}`);
-      activeBtn.classList.remove('bg-white');
-      activeBtn.classList.add('bg-[#FFE600]');
-    }
-
-    [titleInput, channelInput, durationInput, viewsInput, ageInput].forEach(inp => {
-      inp.addEventListener('input', updateFields);
     });
-
-    updateFields();
   </script>
 </body>
 </html>
-
-<!-- Universal Footer -->
-  <footer class="border-t-4 border-black py-14 mt-auto" style="background-color: #D6E4EE !important;">
-    <div class="max-w-6xl mx-auto px-6">
-      
-      <!-- Top Branding & Value Bar -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between pb-10 border-b-2 border-black gap-6">
-        <div>
-          <a href="/" class="inline-block mb-3" aria-label="DraftsRush Home">
-            <img 
-              src="/drlogo.png" 
-              alt="DraftsRush" 
-              width="190" 
-              height="50" 
-              class="h-11 w-auto object-contain brutal-box hover:rotate-[-1deg] transition-transform" 
-            />
-          </a>
-          <p class="font-medium text-sm text-gray-800 max-w-md leading-relaxed">
-            The dual-engine screenplay studio and creator laboratory. Commission retention-tested video scripts or draft your own using our free browser tools.
-          </p>
-        </div>
-
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <span class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase">
-            ⚡ 100% Free Client-Side Tools
-          </span>
-          <div class="flex items-center gap-1.5">
-            <!-- X -->
-            <a href="https://x.com/DraftsRush" target="_blank" rel="noopener noreferrer" aria-label="X" style="background-color: #F0F2F5;" class="inline-flex items-center justify-center w-8 h-8 border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
-              <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/draftsrush" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="background-color: #F0F2F5;" class="inline-flex items-center justify-center w-8 h-8 border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
-              <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-            </a>
-            <!-- YouTube -->
-            <a href="https://www.youtube.com/channel/UCEQ4hAWrJyFXdDgesf2U03Q" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="background-color: #F0F2F5;" class="inline-flex items-center justify-center w-8 h-8 border-2 border-black brutal-box hover:bg-[#FFE600] transition-colors">
-              <svg class="w-3.5 h-3.5 fill-black" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4-Column Structured Link Directory -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-10">
-        
-        <!-- Col 1: Interactive Tools & Apps -->
-        <div>
-          <div class="flex items-center gap-1.5 mb-3">
-            <span class="w-2 h-2 bg-black"></span>
-            <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Studio Tools</h4>
-          </div>
-          <ul class="space-y-2 text-xs font-semibold text-gray-800">
-            <li><a href="/script-editor" class="hover:underline font-bold text-black flex items-center gap-1">Online Script Editor <span class="bg-[#FFE600] border border-black text-[9px] px-1 font-mono">NEW</span></a></li>
-            <li><a href="/tools/thumbnail-preview" class="hover:underline font-bold text-black">Thumbnail Preview Studio</a></li>
-            <li><a href="/tools/av-teleprompter" class="hover:underline font-bold text-black">AV Teleprompter Runner</a></li>
-            <li><a href="/tools/script-timer" class="hover:underline">Script Pacing Timer</a></li>
-            <li><a href="/tools/hook-analyzer" class="hover:underline">5-Sec Hook Analyzer</a></li>
-            <li><a href="/tools/format-converter" class="hover:underline">Dual-Column AV Converter</a></li>
-            <li><a href="/tools" class="hover:underline font-mono text-[11px] text-gray-600">All Tools Directory →</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 2: Writer's Room & Craft Guides -->
-        <div>
-          <div class="flex items-center gap-1.5 mb-3">
-            <span class="w-2 h-2 bg-black"></span>
-            <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Writer's Room</h4>
-          </div>
-          <ul class="space-y-2 text-xs font-semibold text-gray-800">
-            <li><a href="/screenplay-format-guide" class="hover:underline">Screenplay Format Spec</a></li>
-            <li><a href="/50-video-hook-formulas-cheatsheet" class="hover:underline">50 Hook Formulas</a></li>
-            <li><a href="/30-visual-pattern-interrupts-for-video-editors" class="hover:underline">Pattern Interrupts Guide</a></li>
-            <li><a href="/40-script-open-loops-and-curiosity-gap-formulas" class="hover:underline">40 Script Open Loops</a></li>
-            <li><a href="/how-to-write-a-faceless-youtube-channel-script" class="hover:underline">Faceless YouTube Scripting</a></li>
-            <li><a href="/writers-room" class="hover:underline font-mono text-[11px] text-gray-600">Full Knowledge Base →</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Commission Services & Templates -->
-        <div>
-          <div class="flex items-center gap-1.5 mb-3">
-            <span class="w-2 h-2 bg-black"></span>
-            <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Script Services</h4>
-          </div>
-          <ul class="space-y-2 text-xs font-semibold text-gray-800">
-            <li><a href="/scripts" class="hover:underline">Short-Form Script Packs</a></li>
-            <li><a href="/scripts" class="hover:underline">Video Essay Screenplays</a></li>
-            <li><a href="/templates" class="hover:underline">Production Script Templates</a></li>
-            <li><a href="/partner" class="hover:underline">Agency Overflow & NDAs</a></li>
-            <li><a href="/retention-teardowns" class="hover:underline">Retention Teardowns</a></li>
-            <li><a href="/contact" class="hover:underline font-bold text-black">Order A Custom Draft →</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Studio Desk & Direct Contact -->
-        <div>
-          <div class="flex items-center gap-1.5 mb-3">
-            <span class="w-2 h-2 bg-black"></span>
-            <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Studio Desk</h4>
-          </div>
-          <div class="space-y-3">
-            <a href="mailto:care@draftsrush.com" style="background-color: #F0F2F5;" class="inline-block font-mono text-xs font-bold border-2 border-black px-2.5 py-1.5 brutal-box hover:bg-[#FFE600] transition-colors">
-              ✉ care@draftsrush.com
-            </a>
-            <p class="text-[11px] font-medium text-gray-700 leading-tight">
-              Direct response desk for creator briefs, custom quotes, and agency inquiries.
-            </p>
-            <ul class="space-y-1.5 text-xs font-semibold text-gray-800 pt-1">
-              <li><a href="/about" class="hover:underline">About & Methodology</a></li>
-              <li><a href="/contact" class="hover:underline">Intake Desk / Custom Scope</a></li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Bottom Legal & Copyright Bar -->
-      <div class="border-t-2 border-black pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-gray-700">
-        <p>© 2026 DraftsRush. All rights reserved.</p>
-        <div class="flex flex-wrap gap-6">
-          <a href="/sitemap" class="hover:underline">Sitemap</a>
-          <a href="/privacy" class="hover:underline">Privacy Policy</a>
-          <a href="/terms" class="hover:underline">Terms of Service</a>
-          <a href="/contact" class="hover:underline">Support Desk</a>
-        </div>
-      </div>
-
-    </div>
-  </footer>
-
-  <!-- Floating Contact Widget -->
-  <a href="/contact" 
-     aria-label="Contact Desk"
-     class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#FFE600] text-black font-black brand-font text-xs uppercase px-4 py-3 border-2 border-black brutal-box brutal-btn transition-transform select-none">
-    <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-    </svg>
-    <span>Contact Desk</span>
-  </a>
