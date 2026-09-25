@@ -11,9 +11,9 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Hook Generator & Open Loop Builder | DraftsRush</title>
-  <meta name="description" content="Generate high-retention video hooks for YouTube Shorts, Reels, and video essays. Tested curiosity gap formulas, contrarian angles, and open loop frameworks.">
-  <link rel="canonical" href="https://www.draftsrush.com/tools/hook-generator">
+  <title>YouTube Audience Retention Simulator & Drop-Off Predictor | DraftsRush</title>
+  <meta name="description" content="Simulate audience retention curves for YouTube videos. Predict drop-off cliffs from hook speed, B-roll frequency, and outro execution to optimize average percentage viewed.">
+  <link rel="canonical" href="https://www.draftsrush.com/tools/retention-simulator">
 
   <!-- Favicon References -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -193,7 +193,7 @@
         />
       </a>
 
-      <!-- Desktop Navigation -->
+      <!-- Desktop Primary Navigation -->
       <nav class="hidden md:flex items-center gap-3 font-bold text-xs tracking-wider brand-font">
         <a href="/script-editor" style="background-color: #F0F2F5;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-black"></span>
@@ -277,7 +277,7 @@
       </div>
     </div>
 
-    <!-- Mobile Drawer -->
+    <!-- Mobile Navigation Drawer -->
     <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-[#F0F2F5] p-6 space-y-4 font-bold brand-font text-sm">
       <a href="/script-editor" class="flex items-center justify-between border-b border-gray-300 pb-2 text-black">
         <span>SCRIPT EDITOR</span>
@@ -297,89 +297,153 @@
   <main class="flex-grow max-w-4xl mx-auto px-6 py-12 w-full">
     <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-10 brutal-box-lg mb-8">
       <div class="inline-flex items-center gap-2 bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase mb-3">
-        Utility: Hook Frameworks & Curiosities
+        Utility: Algorithmic Retention Diagnostics
       </div>
       <h1 class="text-3xl md:text-5xl font-black brand-font tracking-tight mb-3">
-        Video Hook Generator
+        Audience Retention Curve Simulator
       </h1>
       <p class="text-sm md:text-base font-medium text-gray-700 leading-relaxed mb-6">
-        Generate proven high-retention video opening lines. Enter your core topic to generate curiosity loops, contrarian challenges, and high-stakes opening hooks for YouTube Shorts, Reels, and essays.
+        Simulate how your structural script decisions impact your YouTube audience retention curve. Adjust hook pace, pattern interrupts, and outro framing to model your predicted Average Percentage Viewed (APV).
       </p>
 
-      <!-- Input & Style Grid -->
+      <!-- Simulation Parameter Controls -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div class="md:col-span-2">
-          <label class="block font-black text-xs uppercase tracking-wider mb-2">Video Topic or Core Subject</label>
-          <input id="topic-input" type="text" placeholder="e.g. Color grading, Screenwriting, Film budgeting..." value="Color grading" class="w-full border-2 border-black p-3 font-medium bg-white text-base focus:bg-[#FFFDE6]">
-        </div>
         <div>
-          <label class="block font-black text-xs uppercase tracking-wider mb-2">Hook Archetype</label>
-          <select id="angle-select" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFE600] transition-colors">
-            <option value="all" selected>All Frameworks (Mixed)</option>
-            <option value="curiosity">Pure Curiosity Loop</option>
-            <option value="contrarian">Contrarian / Mythbuster</option>
-            <option value="warning">Negative / Critical Warning</option>
+          <label class="block font-black text-xs uppercase tracking-wider mb-2">1. Cold Open / Hook Pacing</label>
+          <select id="param-hook" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFE600] transition-colors text-xs">
+            <option value="strong" selected>High Pacing (Curiosity loop in 3s)</option>
+            <option value="moderate">Average (Voiceover thesis in 12s)</option>
+            <option value="weak">Slow (Greetings/logo intro > 15s)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-black text-xs uppercase tracking-wider mb-2">2. Visual Interrupt Frequency</label>
+          <select id="param-interrupt" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFE600] transition-colors text-xs">
+            <option value="frequent" selected>High (B-Roll cut every 3-4s)</option>
+            <option value="medium">Standard (Graphic shift every 7-10s)</option>
+            <option value="sparse">Low (Static talking-head > 12s)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-black text-xs uppercase tracking-wider mb-2">3. Outro & CTA Execution</label>
+          <select id="param-outro" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFE600] transition-colors text-xs">
+            <option value="bridge" selected>Video-to-Video Handoff (&lt;8s)</option>
+            <option value="standard">Standard Pitch (Subscribe + Like)</option>
+            <option value="announcement">Premature Announcement ("In conclusion")</option>
           </select>
         </div>
       </div>
 
-      <!-- Action Button -->
-      <div class="mb-8">
-        <button id="generate-btn" class="w-full bg-[#FFE600] text-black font-black brand-font text-sm uppercase px-6 py-3.5 border-2 border-black brutal-box brutal-btn tracking-wider">
-          Generate Retention Hooks →
-        </button>
+      <!-- Quick Action Presets -->
+      <div class="flex items-center justify-between mb-6 border-t-2 border-black pt-4">
+        <span class="font-black text-xs uppercase tracking-wider text-black">Preset Scenarios:</span>
+        <div class="flex gap-3">
+          <button id="preset-viral-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+            ⚡ Viral Production
+          </button>
+          <span class="text-gray-400">•</span>
+          <button id="preset-churn-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+            ⚠️ Churn Trap
+          </button>
+        </div>
       </div>
 
-      <!-- Generated Hook Cards Output -->
-      <div id="output-container" class="space-y-4">
-        <!-- Rendered dynamically -->
+      <!-- Live Simulated Retention Curve Stage (SVG) -->
+      <div class="border-4 border-black bg-white p-5 brutal-box mb-6 space-y-3">
+        <div class="flex items-center justify-between border-b-2 border-black pb-2">
+          <span class="font-mono text-xs font-bold uppercase">Simulated Audience Retention Graph (0:00 to 100% Video Length)</span>
+          <span id="curve-status" class="font-mono text-xs font-bold bg-[#FFE600] text-black px-2 py-0.5 border border-black">OPTIMIZED</span>
+        </div>
+        <div class="relative w-full h-44 bg-gray-50 border border-black flex items-end">
+          <!-- Background Gridlines -->
+          <div class="absolute inset-0 flex flex-col justify-between p-2 pointer-events-none opacity-20">
+            <div class="border-b border-black text-[9px] font-mono">100%</div>
+            <div class="border-b border-black text-[9px] font-mono">75%</div>
+            <div class="border-b border-black text-[9px] font-mono">50%</div>
+            <div class="border-b border-black text-[9px] font-mono">25%</div>
+          </div>
+          <!-- SVG Curve Line -->
+          <svg class="w-full h-full relative z-10 overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+            <polyline id="retention-path" fill="rgba(255, 230, 0, 0.25)" stroke="#111317" stroke-width="3" stroke-linecap="round" points="0,0 15,28 50,42 85,50 100,56" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Simulation Summary Metrics Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-center">
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-30s" class="text-3xl font-black brand-font text-emerald-700">76%</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">30-Sec Retention</p>
+        </div>
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-apv" class="text-3xl font-black brand-font text-blue-700">58%</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Predicted APV</p>
+        </div>
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-churn" class="text-3xl font-black brand-font text-gray-900">Low</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Mid-Video Churn</p>
+        </div>
+        <div class="border-2 border-black bg-[#FFE600] p-3 brutal-box">
+          <div id="metric-recommend" class="text-lg font-black brand-font mt-1 text-black">High Reach</div>
+          <p class="text-xs font-bold text-black uppercase">Algorithmic Tier</p>
+        </div>
+      </div>
+
+      <!-- Live Diagnosis Feedback Card -->
+      <div id="diagnostic-card" class="border-2 border-black p-5 bg-[#C2F0C2] text-black brutal-box space-y-2">
+        <div class="font-black text-xs brand-font uppercase">Simulation Diagnostic Audit</div>
+        <p id="diagnostic-text" class="text-sm font-medium">
+          Strong configuration. Hook drops less than 25% of viewers at second 00:30, high pattern interrupts maintain a flat mid-video slope, and the video-to-video handoff prevents an outro cliff.
+        </p>
       </div>
     </div>
 
-    <!-- Psychology of the 3-Second Hook (350+ Words SEO Card) -->
+    <!-- Retention Decay Theory & Algorithm Mechanics (350+ Words SEO Card) -->
     <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box mb-8 space-y-6">
       <div class="border-b-2 border-black pb-3">
-        <span class="bg-[#FFE600] text-black border border-black px-2 py-0.5 text-xs font-bold brand-font uppercase">Retention Science</span>
-        <h2 class="text-2xl md:text-3xl font-black brand-font mt-2">The Psychological Anatomy of an Unskippable Hook</h2>
+        <span class="bg-[#FFE600] text-black border border-black px-2 py-0.5 text-xs font-bold brand-font uppercase">Retention Mechanics</span>
+        <h2 class="text-2xl md:text-3xl font-black brand-font mt-2">The Anatomy of a YouTube Retention Curve</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700 leading-relaxed font-medium">
         <div class="space-y-3">
-          <h3 class="font-black brand-font text-base text-black">Opening an Irresistible Mental Loop</h3>
+          <h3 class="font-black brand-font text-base text-black">The Critical 30-Second Cliff</h3>
           <p>
-            When a user scrolls past a video on a mobile feed, you have approximately <strong>0.3 seconds to catch their visual attention</strong> and less than three seconds of spoken audio to secure their commitment. If your opening sentence is a polite welcome, an introductory logo animation, or a generic summary, the viewer instinctively swipes away.
+            The fate of any YouTube upload is largely determined within its first thirty seconds. Across millions of channels, typical videos lose between <strong>30% and 50% of their audience</strong> before reaching the half-minute mark. This is not because the video lacks quality—it is because mobile viewers browse with an impatient "swipe-away" default.
           </p>
           <p>
-            An unskippable hook relies on a <strong>cognitive open loop</strong>. It presents an anomaly, a high-stakes failure, or an unexpected contradiction that the human brain feels compelled to resolve. When you say <em>"This single camera trick was banned in Hollywood,"</em> the brain demands to know which trick, why it was banned, and who broke the rule.
+            To push your 30-second retention above 70%, eliminate channel greetings, self-introductions, and title splash cards. Deliver on the premise of your thumbnail within the first sentence, and introduce an active visual pattern interrupt before second 00:05.
           </p>
         </div>
 
         <div class="space-y-3">
-          <h3 class="font-black brand-font text-base text-black">Contrarian Framing Beats Generic Praise</h3>
+          <h3 class="font-black brand-font text-base text-black">Mid-Video Churn vs. Outro Collapses</h3>
           <p>
-            Positive titles and hooks (<em>"5 great ways to improve your scripts"</em>) generate notoriously low click-through and hold rates. Human psychology is hardwired with <strong>loss aversion</strong>: audiences are far more motivated to avoid making a critical mistake than they are to gain a minor advantage.
+            Once you clear the 30-second hurdle, your retention curve enters the <strong>mid-roll plateau</strong>. Here, audience loss should flatten into a gentle slope. When sharp dips occur in the middle of a video, they almost always point to a pacing dead spot: an over-extended talking head, an unresolved technical tangent, or an unearned commercial sponsor integration.
           </p>
           <p>
-            Reframing your topic through negative or contrarian lenses (<em>"Why 99% of screenwriters fail Act Two"</em>) instantly spikes curiosity. It implies that everyone else is wrong, the viewer might be making the same error, and your video possesses the exclusive counter-solution.
+            Finally, beware of the premature outro announcement. Words like <em>"In conclusion"</em> or <em>"That's all for today"</em> cause immediate retention plunges of 20% or more, artificially pulling down your overall APV right before YouTube would otherwise route the viewer to your next upload.
           </p>
         </div>
       </div>
 
-      <!-- Hook Anatomy Matrix -->
+      <!-- Retention Threshold Matrix -->
       <div class="border-2 border-black bg-[#F0F2F5] p-5 space-y-3">
-        <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">The 3 Structural Pillars of Video Openings</h4>
+        <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Algorithm Performance Benchmarks (Long-Form Videos)</h4>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs">
           <div>
-            <strong class="text-black block mb-1">1. The Immediate Anomaly</strong>
-            <p class="text-gray-600">Point out an unexpected contradiction right in sentence one. Contrast generates curiosity faster than explanation.</p>
+            <strong class="text-black block mb-1">&gt; 70% at 00:30</strong>
+            <p class="text-gray-600">Clearing 70% viewer hold at second 30 triggers YouTube's browse feature push.</p>
           </div>
           <div>
-            <strong class="text-black block mb-1">2. Zero Introduction Filler</strong>
-            <p class="text-gray-600">Never say "Hey guys" or "Today we're talking about." Jump straight into the middle of the conflict.</p>
+            <strong class="text-black block mb-1">&gt; 50% Total APV</strong>
+            <p class="text-gray-600">Holding 50%+ Average Percentage Viewed on a 10-minute video qualifies for wide recommended feed distribution.</p>
           </div>
           <div>
-            <strong class="text-black block mb-1">3. The 14-Word Window</strong>
-            <p class="text-gray-600">Deliver your entire premise before word 14 so mobile viewers register the stake before swipe second 00:03.</p>
+            <strong class="text-black block mb-1">&lt; 10% Outro Drop</strong>
+            <p class="text-gray-600">Seamless video-to-video handoffs keep end-screen drops under 10%, maximizing multi-video viewing sessions.</p>
           </div>
         </div>
       </div>
@@ -388,24 +452,24 @@
     <!-- Related Production Tools (Workflow-Specific Interlinking) -->
     <div class="border-4 border-black bg-[#FFF6CF] p-6 brutal-box mb-8 space-y-4">
       <div class="flex items-center justify-between border-b-2 border-black pb-2">
-        <h3 class="font-black brand-font text-sm uppercase tracking-wider text-black">Related Packaging & Retention Tools</h3>
+        <h3 class="font-black brand-font text-sm uppercase tracking-wider text-black">Related Retention Optimization Tools</h3>
         <span class="font-mono text-xs font-bold bg-black text-white px-2 py-0.5">STUDIO DESK</span>
       </div>
       <p class="text-xs font-medium text-gray-800 leading-relaxed">
-        Test and polish your generated hooks across our creator suite:
+        Eliminate retention drop-offs across every stage of your screenplay:
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
         <a href="/tools/hook-analyzer" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
           <span>🎯 5-Sec Hook Analyzer</span>
-          <span class="text-[10px] text-gray-600 mt-1 font-sans">Audit word economy, spoken time, and drop-off risks for your hook →</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Audit and tighten your opening lines to clear the 30-second mobile cliff →</span>
         </a>
-        <a href="/tools/title-checker" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
-          <span>🔍 YouTube Title Checker</span>
-          <span class="text-[10px] text-gray-600 mt-1 font-sans">Pair your video opening with a title tested for mobile truncation (~50 chars) →</span>
+        <a href="/tools/cta-checker" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>🔔 Call-to-Action Auditor</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Eliminate trigger words that announce the end and destroy outro hold →</span>
         </a>
-        <a href="/tools/script-timer" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
-          <span>⏱ Script Pacing Timer</span>
-          <span class="text-[10px] text-gray-600 mt-1 font-sans">Calculate total spoken duration and speech cadence for your full draft →</span>
+        <a href="/tools/broll-generator" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>🎬 B-Roll Shotlist Generator</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Plan visual pattern interrupts every 3.5 seconds to smooth out mid-video churn →</span>
         </a>
       </div>
     </div>
@@ -414,9 +478,9 @@
     <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
       <div>
         <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Production Scriptwriting</span>
-        <h2 class="text-2xl font-black brand-font mt-2 mb-1 text-black">Need High-Retention Script Packs?</h2>
+        <h2 class="text-2xl font-black brand-font mt-2 mb-1 text-black">Need Retention-Engineered Screenplays?</h2>
         <p class="text-sm font-medium text-black max-w-xl">
-          We write research-backed video screenplays with 3-second hook variations, text overlay cues, and rapid retention pacing.
+          We research, structure, and write video essays and documentary screenplays with calculated 90-second mini-arc resets and high-converting handoffs.
         </p>
       </div>
       <a href="/scripts" class="bg-black text-white font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn whitespace-nowrap text-sm uppercase">
@@ -560,76 +624,119 @@
     </div>
   </footer>
 
-  <!-- Generator Logic -->
+  <!-- Retention Simulator Engine -->
   <script>
-    const topicInput = document.getElementById('topic-input');
-    const angleSelect = document.getElementById('angle-select');
-    const generateBtn = document.getElementById('generate-btn');
-    const outputContainer = document.getElementById('output-container');
+    const paramHook = document.getElementById('param-hook');
+    const paramInterrupt = document.getElementById('param-interrupt');
+    const paramOutro = document.getElementById('param-outro');
 
-    const formulas = [
-      {
-        category: 'curiosity',
-        badge: 'Curiosity Loop',
-        template: (t) => `Why do 99% of creators fail at ${t}? Look closely at this single hidden detail...`
-      },
-      {
-        category: 'contrarian',
-        badge: 'Contrarian Challenge',
-        template: (t) => `Everything you were taught about ${t} is completely backwards, and this data proves it.`
-      },
-      {
-        category: 'warning',
-        badge: 'Critical Warning',
-        template: (t) => `If you're still relying on traditional ${t}, stop immediately before you ruin your retention.`
-      },
-      {
-        category: 'curiosity',
-        badge: 'Secret Mechanism',
-        template: (t) => `This exact ${t} formula was quietly banned by studio executives for twelve years.`
-      },
-      {
-        category: 'contrarian',
-        badge: 'The Mythbuster',
-        template: (t) => `The biggest lie in modern video production is that ${t} actually requires an expensive budget.`
+    const path = document.getElementById('retention-path');
+    const curveStatus = document.getElementById('curve-status');
+
+    const metric30s = document.getElementById('metric-30s');
+    const metricApv = document.getElementById('metric-apv');
+    const metricChurn = document.getElementById('metric-churn');
+    const metricRecommend = document.getElementById('metric-recommend');
+
+    const card = document.getElementById('diagnostic-card');
+    const feedback = document.getElementById('diagnostic-text');
+
+    const presetViral = document.getElementById('preset-viral-btn');
+    const presetChurn = document.getElementById('preset-churn-btn');
+
+    function simulate() {
+      const hook = paramHook.value;
+      const interrupt = paramInterrupt.value;
+      const outro = paramOutro.value;
+
+      // Point 0 is 100% (SVG y=0)
+      // Point 1 (second 30 cliff)
+      let p1 = 25; // 75%
+      let hold30 = 75;
+      if (hook === 'moderate') { p1 = 38; hold30 = 62; }
+      else if (hook === 'weak') { p1 = 55; hold30 = 45; }
+
+      // Point 2 & 3 (mid-roll slope)
+      let p2 = p1 + 14;
+      let p3 = p2 + 10;
+      let churnRating = 'Low';
+
+      if (interrupt === 'medium') {
+        p2 += 8;
+        p3 += 8;
+        churnRating = 'Moderate';
+      } else if (interrupt === 'sparse') {
+        p2 += 18;
+        p3 += 18;
+        churnRating = 'High';
       }
-    ];
 
-    function renderHooks() {
-      const topic = topicInput.value.trim() || 'your video topic';
-      const angle = angleSelect.value;
-      const filtered = formulas.filter(f => angle === 'all' || f.category === angle);
+      // Point 4 (outro drop-off)
+      let p4 = p3 + 6;
+      if (outro === 'standard') { p4 += 14; }
+      else if (outro === 'announcement') { p4 += 28; }
 
-      let html = '';
-      filtered.forEach((item, idx) => {
-        const text = item.template(topic);
-        const wordCount = text.split(/\s+/).length;
-        const estSec = ((wordCount / 150) * 60).toFixed(1);
+      // Clamp max decay
+      p4 = Math.min(94, p4);
 
-        html += `
-          <div class="border-4 border-black bg-white p-5 brutal-box space-y-2">
-            <div class="flex items-center justify-between border-b border-gray-200 pb-2">
-              <div class="flex items-center gap-2">
-                <span class="bg-[#FFE600] text-black font-black font-mono text-[10px] px-2 py-0.5 border border-black uppercase">${item.badge}</span>
-                <span class="font-mono text-xs text-gray-500 font-bold">${wordCount} words (~${estSec}s)</span>
-              </div>
-              <button onclick="navigator.clipboard.writeText(this.getAttribute('data-text')); this.innerText = '✓ Copied';" data-text="${text.replace(/"/g, '&quot;')}" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F]">
-                Copy Hook
-              </button>
-            </div>
-            <p class="font-bold text-sm text-gray-900 leading-snug">"${text}"</p>
-          </div>
-        `;
-      });
+      // Render SVG points (X from 0 to 100, Y inverted where 0 is 100% and 100 is 0%)
+      const points = `0,0 15,${p1} 50,${p2} 85,${p3} 100,${p4} 100,100 0,100`;
+      path.setAttribute('points', points);
 
-      outputContainer.innerHTML = html;
+      // Calculate approximate APV
+      const avgY = (0 + p1 + p2 + p3 + p4) / 5;
+      const apv = Math.round(100 - avgY);
+
+      metric30s.innerText = `${hold30}%`;
+      metricApv.innerText = `${apv}%`;
+      metricChurn.innerText = churnRating;
+
+      if (apv >= 52) {
+        curveStatus.innerText = 'OPTIMIZED';
+        curveStatus.className = 'font-mono text-xs font-bold bg-[#FFE600] text-black px-2 py-0.5 border border-black';
+        metricRecommend.innerText = 'High Reach';
+        metric30s.className = 'text-3xl font-black brand-font text-emerald-700';
+        metricApv.className = 'text-3xl font-black brand-font text-emerald-700';
+        card.className = 'border-2 border-black p-5 bg-[#C2F0C2] text-black brutal-box space-y-2';
+        feedback.innerHTML = `<strong>✓ High-Performing Retention Curve (${apv}% APV):</strong> Strong initial hook hold (&gt;${hold30}%), constant visual pattern interrupts, and a seamless outro handoff give this configuration priority browse and recommended feed distribution.`;
+      } else if (apv >= 40) {
+        curveStatus.innerText = 'AVERAGE';
+        curveStatus.className = 'font-mono text-xs font-bold bg-white text-black px-2 py-0.5 border border-black';
+        metricRecommend.innerText = 'Search / Niche';
+        metric30s.className = 'text-3xl font-black brand-font text-amber-700';
+        metricApv.className = 'text-3xl font-black brand-font text-amber-700';
+        card.className = 'border-2 border-black p-5 bg-[#FFF6CF] text-black brutal-box space-y-2';
+        feedback.innerHTML = `<strong>⚠️ Moderate Retention Curve (${apv}% APV):</strong> Your mid-video or outro parameters are losing viewers. Tighten the middle section with frequent B-roll and replace conventional closing remarks with a direct video handoff.`;
+      } else {
+        curveStatus.innerText = 'CHURN RISK';
+        curveStatus.className = 'font-mono text-xs font-bold bg-red-500 text-white px-2 py-0.5 border border-black';
+        metricRecommend.innerText = 'Suppressed';
+        metric30s.className = 'text-3xl font-black brand-font text-red-700';
+        metricApv.className = 'text-3xl font-black brand-font text-red-700';
+        card.className = 'border-2 border-black p-5 bg-[#FFB4B4] text-black brutal-box space-y-2';
+        feedback.innerHTML = `<strong>⚠️ Critical Retention Drop-Off (${apv}% APV):</strong> Over half your audience leaves before second 00:30, and the outro triggers a severe cliff. Cut the introductory greeting and avoid saying 'in conclusion' at the end.`;
+      }
     }
 
-    generateBtn.addEventListener('click', renderHooks);
-    angleSelect.addEventListener('change', renderHooks);
+    paramHook.addEventListener('change', simulate);
+    paramInterrupt.addEventListener('change', simulate);
+    paramOutro.addEventListener('change', simulate);
 
-    // Initial render
-    renderHooks();
+    presetViral.addEventListener('click', () => {
+      paramHook.value = 'strong';
+      paramInterrupt.value = 'frequent';
+      paramOutro.value = 'bridge';
+      simulate();
+    });
+
+    presetChurn.addEventListener('click', () => {
+      paramHook.value = 'weak';
+      paramInterrupt.value = 'sparse';
+      paramOutro.value = 'announcement';
+      simulate();
+    });
+
+    simulate();
 
     // Theme Toggle Logic
     const toggleBtns = [
