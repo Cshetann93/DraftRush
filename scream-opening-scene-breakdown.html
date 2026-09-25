@@ -69,6 +69,7 @@
   <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
       
+      <!-- Brand Logo -->
       <a href="/" class="inline-flex items-center flex-shrink-0" aria-label="DraftsRush Home">
         <img 
           src="/drlogo.png" 
@@ -79,6 +80,7 @@
         />
       </a>
 
+      <!-- Desktop Primary Navigation -->
       <nav class="hidden md:flex items-center gap-3 font-bold text-xs tracking-wider brand-font">
         <a href="/script-editor" class="bg-[#F0F2F5] text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-black"></span>
@@ -98,21 +100,26 @@
         </a>
       </nav>
 
+      <!-- Desktop CTA Action -->
       <div class="hidden md:flex items-center">
         <a href="/contact" class="bg-black text-white border-2 border-black px-4 py-1.5 font-bold text-xs tracking-wider brand-font brutal-box brutal-btn uppercase transition-transform whitespace-nowrap">
           ORDER DRAFT
         </a>
       </div>
 
+      <!-- Mobile Hamburger Toggle -->
       <button 
         aria-label="Toggle Navigation Menu" 
         onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" 
         class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box brutal-btn">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
       </button>
 
     </div>
 
+    <!-- Mobile Navigation Drawer -->
     <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-[#F0F2F5] p-6 space-y-4 font-bold brand-font text-sm">
       <a href="/script-editor" class="flex items-center justify-between border-b border-gray-300 pb-2 text-black">
         <span>SCRIPT EDITOR</span>
@@ -121,6 +128,7 @@
       <a href="/writers-room" class="block border-b border-gray-300 pb-2">WRITER'S ROOM</a>
       <a href="/tools" class="block border-b border-gray-300 pb-2">FREE TOOLS</a>
       <a href="/scripts" class="block border-b border-gray-300 pb-2">SERVICES</a>
+      <a href="/partner" class="block border-b border-gray-300 pb-2">PARTNER WITH US</a>
       <a href="/about" class="block border-b border-gray-300 pb-2">ABOUT</a>
       <a href="/contact" class="block text-center bg-black text-white py-2.5 border-2 border-black brutal-box uppercase tracking-wider text-xs">
         ORDER DRAFT
@@ -128,7 +136,7 @@
     </div>
   </header>
 
-  <!-- Main Content -->
+  <!-- Main Content Area -->
   <main class="flex-grow">
     <div class="max-w-4xl mx-auto px-6 pt-10 pb-20">
       
@@ -163,6 +171,23 @@
           </div>
         </header>
 
+        <!-- Position 0 Snippet Target Box -->
+        <section class="border-4 border-black bg-[#FFF6CF] p-6 md:p-8 brutal-box">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">TL;DR // The Cold Open Mechanics</span>
+            <h2 class="text-xl font-black brand-font">Why the Scream Opening Works</h2>
+          </div>
+          <p class="text-sm font-bold text-gray-900 leading-relaxed mb-4">
+            The opening scene of <em>Scream</em> revitalized the slasher genre by slaughtering the film's marquee star (Drew Barrymore) in minute twelve, using an acoustic telephone caller whose tone escalates one degree at a time from flirty wrong-number banter into lethal movie trivia with direct mortal stakes.
+          </p>
+          <ul class="space-y-2 text-xs md:text-sm font-medium text-gray-800 list-disc list-inside">
+            <li><strong>The Marketing Inversion:</strong> Plastering Drew Barrymore on every poster only to execute her in the cold open proved that no character had narrative plot armor.</li>
+            <li><strong>The Acoustic Telephone Trap:</strong> A telephone call creates artificial intimacy; the killer speaks directly into Casey's ear before establishing visual surveillance.</li>
+            <li><strong>The Domestic Pacing Clock:</strong> A swelling pan of Jiffy Pop on the stove serves as an acoustic and visual timer that mirrors Casey's rising panic.</li>
+            <li><strong>Architectural Vulnerability:</strong> Modern glass sliding doors and expansive picture windows turn a comfortable suburban home into an illuminated display case for an unseen outside predator.</li>
+          </ul>
+        </section>
+
         <!-- Context & The Subversion of Star Power -->
         <section class="border-4 border-black bg-white p-8 md:p-10 brutal-box space-y-6 text-gray-800 text-base leading-relaxed font-medium">
           <div class="border-b-2 border-black pb-4">
@@ -177,7 +202,7 @@
             By slaughtering the film's most famous movie star before the main title card appears, Williamson and Craven established immediate narrative lawlessness. If the biggest star on the poster can be gutted and hung from a tree in minute twelve, no one in the cast is protected by plot armor.
           </p>
           <p>
-            The scene’s mechanical genius lies in its gradual constriction. Casey Becker is alone in a modern, isolated suburban house surrounded by large glass sliding doors. What begins as harmless phone flirting about horror movies turns into a spatial trap where every uncurtained window represents an unseen predator watching her every move.
+            The scene's mechanical genius lies in its gradual constriction. Casey Becker is alone in a modern, isolated suburban house surrounded by large glass sliding doors. What begins as harmless phone flirting about horror movies turns into a spatial trap where every uncurtained window represents an unseen predator watching her every move.
           </p>
         </section>
 
@@ -286,8 +311,22 @@
             <li><strong>The Shared Interest:</strong> The conversation bonds over favorite scary movies (<em>Halloween</em>, <em>A Nightmare on Elm Street</em>), establishing mutual pop-culture vocabulary.</li>
             <li><strong>The Boundary Breach:</strong> The caller drops the slip: <em>"I want to know who I'm looking at."</em> Distance evaporates; the caller is not on a highway miles away, but watching her through glass.</li>
             <li><strong>The Hostage Stake:</strong> Steve Orth is revealed tied to a chair on the back patio. The intellectual trivia contest now carries direct mortal consequences.</li>
-            <li><strong>The Unforgiving Trivia Trap:</strong> Casey answers the <em>Friday the 13th</em> question confidently (Jason Voorhees), only to have Ghostface exploit horror movie trivia to execute Steve (Pamela Voorhees was the killer in original film).</li>
+            <li><strong>The Unforgiving Trivia Trap:</strong> Casey answers the <em>Friday the 13th</em> question confidently (Jason Voorhees), only to have Ghostface exploit horror movie trivia to execute Steve (Pamela Voorhees was the killer in the original film).</li>
           </ul>
+        </section>
+
+        <!-- Tool Bridge 01 -->
+        <section class="border-4 border-black bg-[#D6E4EE] p-6 brutal-box flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <span class="bg-black text-white px-2 py-0.5 text-xs font-black brand-font uppercase">Dialogue Diagnostic</span>
+            <h3 class="text-lg font-black brand-font mt-1">Audit Conversational Rhythm in Phone Scenes</h3>
+            <p class="text-xs font-medium text-gray-800">
+              Suspense dialogue requires sharp, reactive back-and-forth lines under 12 words. Test your script drafts in our free dialogue pruner.
+            </p>
+          </div>
+          <a href="/tools/dialogue-pruner" class="bg-[#FFE600] text-black font-black brand-font px-4 py-2 border-2 border-black brutal-box brutal-btn uppercase text-xs whitespace-nowrap">
+            Launch Dialogue Pruner →
+          </a>
         </section>
 
         <!-- Visual Escalation Diagram -->
@@ -374,7 +413,7 @@
           </div>
 
           <p class="font-medium text-gray-800 text-base leading-relaxed">
-            Apply Kevin Williamson and Wes Craven’s rules when writing high-tension remote stalker sequences:
+            Apply Kevin Williamson and Wes Craven's rules when writing high-tension remote stalker sequences:
           </p>
 
           <div class="space-y-4">
@@ -402,9 +441,43 @@
             <div class="border-2 border-black bg-[#F0F2F5] p-5">
               <strong class="text-base font-black brand-font block mb-1">4. Kill Hope Inches from Rescue</strong>
               <p class="text-sm font-medium text-gray-700 leading-relaxed">
-                Casey does not die hidden in a cellar. She dies within sight of her parents’ headlights turning into the driveway. She can see her mother stepping out of the car; her mother cannot hear her dying whispers through a severed voice box. Proximity to salvation magnifies tragedy tenfold.
+                Casey does not die hidden in a cellar. She dies within sight of her parents' headlights turning into the driveway. She can see her mother stepping out of the car; her mother cannot hear her dying whispers through a severed voice box. Proximity to salvation magnifies tragedy tenfold.
               </p>
             </div>
+          </div>
+        </section>
+
+        <!-- Tool Bridge 02 -->
+        <section class="border-4 border-black bg-[#FFF6CF] p-6 brutal-box flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <span class="bg-black text-white px-2 py-0.5 text-xs font-black brand-font uppercase">Pacing Stopwatch</span>
+            <h3 class="text-lg font-black brand-font mt-1">Calibrating Domestic Timer Sequences</h3>
+            <p class="text-xs font-medium text-gray-800">
+              Escalating phone calls require measured speech cadence. Audit your scene word counts against calibrated speaking times before production.
+            </p>
+          </div>
+          <a href="/tools/script-timer" class="bg-black text-white font-black brand-font px-4 py-2 border-2 border-black brutal-box brutal-btn uppercase text-xs whitespace-nowrap">
+            Launch Script Timer →
+          </a>
+        </section>
+
+        <!-- Sibling Studies Cluster -->
+        <section class="border-4 border-black bg-white p-6 md:p-8 brutal-box">
+          <div class="flex items-center gap-2 mb-4 border-b-2 border-black pb-2">
+            <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Sibling Studies</span>
+            <h3 class="text-xl font-black brand-font">Related Masterclass Horror Breakdowns</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+            <a href="/the-conjuring-hide-and-clap-scene-breakdown" class="border-2 border-black bg-[#F0F2F5] p-4 brutal-box hover:bg-[#FFE600] transition-colors block">
+              <span class="text-[10px] font-bold text-gray-600 block uppercase">James Wan • The Conjuring</span>
+              <strong class="text-sm font-black brand-font text-black block mt-0.5">Hide and Clap: Sensory Deprivation</strong>
+              <p class="font-sans text-xs text-gray-700 mt-1">Subverting innocent childhood rituals, match flares, and auditory dread.</p>
+            </a>
+            <a href="/alien-chestburster-scene-breakdown" class="border-2 border-black bg-[#F0F2F5] p-4 brutal-box hover:bg-[#FFE600] transition-colors block">
+              <span class="text-[10px] font-bold text-gray-600 block uppercase">Ridley Scott • Alien</span>
+              <strong class="text-sm font-black brand-font text-black block mt-0.5">The Chestburster: Disrupting the Baseline</strong>
+              <p class="font-sans text-xs text-gray-700 mt-1">How Dan O'Bannon shatters false domestic camaraderie with sudden body horror.</p>
+            </a>
           </div>
         </section>
 
@@ -422,37 +495,42 @@
           </a>
         </div>
 
-        <!-- The Checklist for Writers -->
-        <section class="border-4 border-black bg-white p-8 md:p-10 brutal-box space-y-6">
+        <!-- Section: Point Audit Checklist -->
+        <section class="border-4 border-black bg-[#F0F2F5] p-8 md:p-10 brutal-box space-y-6">
           <div class="border-b-2 border-black pb-4">
             <span class="text-xs font-bold uppercase tracking-wider bg-[#FFE600] border border-black px-2 py-0.5 inline-block mb-1 brand-font">Execution Checklist</span>
             <h2 class="text-3xl font-black brand-font">The Telephone Suspense Checklist</h2>
           </div>
 
           <div class="space-y-3 font-mono text-xs text-gray-900">
-            <div class="bg-[#F0F2F5] border-2 border-black p-4 flex items-start gap-3">
+            <div class="bg-white border-2 border-black p-4 flex items-start gap-3">
               <span class="bg-[#FFE600] border border-black px-2 py-0.5 font-bold text-black uppercase">POINT 01</span>
               <div><strong>Does the phone call begin with a completely benign pretext?</strong> Start with a wrong number, survey, or innocent flirtation before dropping any hint of menace.</div>
             </div>
 
-            <div class="bg-[#F0F2F5] border-2 border-black p-4 flex items-start gap-3">
+            <div class="bg-white border-2 border-black p-4 flex items-start gap-3">
               <span class="bg-[#FFE600] border border-black px-2 py-0.5 font-bold text-black uppercase">POINT 02</span>
               <div><strong>Is there a physical domestic clock ticking in the background?</strong> Use cooking food, filling bathtubs, or washing machines to provide auditory and visual pacing markers.</div>
             </div>
 
-            <div class="bg-[#F0F2F5] border-2 border-black p-4 flex items-start gap-3">
+            <div class="bg-white border-2 border-black p-4 flex items-start gap-3">
               <span class="bg-[#FFE600] border border-black px-2 py-0.5 font-bold text-black uppercase">POINT 03</span>
               <div><strong>Does the caller prove visual surveillance through specific details?</strong> The caller must comment on clothing, hair color, or physical movements to destroy the protagonist's perceived security.</div>
             </div>
 
-            <div class="bg-[#F0F2F5] border-2 border-black p-4 flex items-start gap-3">
+            <div class="bg-white border-2 border-black p-4 flex items-start gap-3">
               <span class="bg-[#FFE600] border border-black px-2 py-0.5 font-bold text-black uppercase">POINT 04</span>
               <div><strong>Are all outside doors and windows locked early?</strong> Having the protagonist actively secure the perimeter heightens terror when the intruder bypasses the locks anyway.</div>
             </div>
 
-            <div class="bg-[#F0F2F5] border-2 border-black p-4 flex items-start gap-3">
+            <div class="bg-white border-2 border-black p-4 flex items-start gap-3">
               <span class="bg-[#FFE600] border border-black px-2 py-0.5 font-bold text-black uppercase">POINT 05</span>
               <div><strong>Does the sequence destroy audience expectations of plot armor?</strong> Establishing that major characters can die in act one sets real survival stakes for the remainder of the story.</div>
+            </div>
+
+            <div class="bg-white border-2 border-black p-4 flex items-start gap-3">
+              <span class="bg-[#FFE600] border border-black px-2 py-0.5 font-bold text-black uppercase">ACTION</span>
+              <div><strong>Formatting Your Horror Script:</strong> Ready to format action lines with Courier 12pt tabs? Draft your scene inside our <a href="/script-editor" class="bg-[#FFE600] px-1 py-0.5 border border-black font-bold hover:underline text-black">free online screenplay editor</a>.</div>
             </div>
           </div>
         </section>
@@ -582,8 +660,8 @@
           <ul class="space-y-2 text-xs font-semibold text-gray-800">
             <li><a href="/screenplay-format-guide" class="hover:underline">Screenplay Format Spec</a></li>
             <li><a href="/scream-opening-scene-breakdown" class="hover:underline font-bold text-black">Scream Opening Scene</a></li>
-            <li><a href="/alien-chestburster-scene-breakdown" class="hover:underline">Alien Chestburster Breakdown</a></li>
             <li><a href="/the-conjuring-hide-and-clap-scene-breakdown" class="hover:underline">Conjuring Hide and Clap</a></li>
+            <li><a href="/alien-chestburster-scene-breakdown" class="hover:underline">Alien Chestburster</a></li>
             <li><a href="/writers-room" class="hover:underline font-mono text-[11px] text-gray-600">Full Knowledge Base →</a></li>
           </ul>
         </div>
@@ -639,7 +717,7 @@
 
   <!-- Floating Contact Widget -->
   <a href="/contact" 
-     aria-label="Contact Desk"
+     aria-label="Contact Desk" 
      class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#FFE600] text-black font-black brand-font text-xs uppercase px-4 py-3 border-2 border-black brutal-box brutal-btn transition-transform select-none">
     <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
