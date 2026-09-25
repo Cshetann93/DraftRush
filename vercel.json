@@ -2,15 +2,23 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    {
-      "source": "/index",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/index.html",
-      "destination": "/",
-      "permanent": true
-    }
+    { "source": "/index", "destination": "/", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/writersroom", "destination": "/writers-room", "permanent": true },
+    { "source": "/script-timer", "destination": "/tools/script-timer", "permanent": true },
+    { "source": "/hook-analyzer", "destination": "/tools/hook-analyzer", "permanent": true },
+    { "source": "/dialogue-pruner", "destination": "/tools/dialogue-pruner", "permanent": true },
+    { "source": "/format-converter", "destination": "/tools/format-converter", "permanent": true },
+    { "source": "/broll-generator", "destination": "/tools/broll-generator", "permanent": true },
+    { "source": "/thumbnail-preview", "destination": "/tools/thumbnail-preview", "permanent": true },
+    { "source": "/av-teleprompter", "destination": "/tools/av-teleprompter", "permanent": true },
+    { "source": "/retention-simulator", "destination": "/tools/retention-simulator", "permanent": true },
+    { "source": "/hook-generator", "destination": "/tools/hook-generator", "permanent": true },
+    { "source": "/cta-checker", "destination": "/tools/cta-checker", "permanent": true },
+    { "source": "/shorts-splitter", "destination": "/tools/shorts-splitter", "permanent": true },
+    { "source": "/title-checker", "destination": "/tools/title-checker", "permanent": true },
+    { "source": "/screenplay-calculator", "destination": "/tools/screenplay-calculator", "permanent": true },
+    { "source": "/speech-trainer", "destination": "/tools/speech-trainer", "permanent": true },
+    { "source": "/timestamp-maker", "destination": "/tools/timestamp-maker", "permanent": true }
   ]
 }
