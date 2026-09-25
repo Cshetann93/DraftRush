@@ -11,16 +11,16 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Title Checker & Truncation Tester | DraftsRush</title>
-  <meta name="description" content="Free YouTube title checker. Test character length, check mobile feed truncation cut-offs (~50 chars), and audit video titles before publishing.">
+  <title>Video Hook Generator & Open Loop Builder | DraftsRush</title>
+  <meta name="description" content="Generate high-retention video hooks for YouTube Shorts, Reels, and video essays. Tested curiosity gap formulas, contrarian angles, and open loop frameworks.">
+  <link rel="canonical" href="https://www.draftsrush.com/tools/hook-generator">
 
   <!-- Favicon References -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
-  <link rel="canonical" href="https://www.draftsrush.com/tools/hook-generator">
 
-  <!-- Instant Dark Mode Initializer (Prevents White Flash) -->
+  <!-- Instant Dark Mode Initializer -->
   <script>
     if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
@@ -31,12 +31,14 @@
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    body { font-family: 'Inter', sans-serif; background-color: #E2E4E9; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
     .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
     .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
 
     /* Pill Toggle Switch Design */
@@ -45,7 +47,7 @@
       width: 62px;
       height: 32px;
       border-radius: 9999px;
-      background-color: #FF5A1F; /* Vivid light mode orange */
+      background-color: #FF5A1F;
       border: 2px solid #111317;
       cursor: pointer;
       display: flex;
@@ -57,7 +59,7 @@
       flex-shrink: 0;
     }
     .dark .theme-toggle {
-      background-color: #1F232B; /* Dark slate */
+      background-color: #1F232B;
       border-color: #FFFFFF;
       box-shadow: 2px 2px 0px #000000;
     }
@@ -74,7 +76,7 @@
     .theme-toggle-thumb {
       position: absolute;
       top: 2px;
-      left: 32px; /* Right position in light mode */
+      left: 32px;
       width: 24px;
       height: 24px;
       border-radius: 9999px;
@@ -83,11 +85,11 @@
       transition: left 0.2s ease;
     }
     .dark .theme-toggle-thumb {
-      left: 2px; /* Left position in dark mode */
+      left: 2px;
       border-color: #000000;
     }
 
-    /* Dark Mode Theme Overrides */
+    /* Dark Mode Core Theme Overrides */
     body.dark {
       background-color: #0E1015 !important;
       color: #FFFFFF !important;
@@ -115,50 +117,46 @@
       color: #FFFFFF !important;
       border-color: #2A2F3A !important;
     }
-    body.dark main .bg-\[\#F0F2F5\] {
+    body.dark main .bg-\[\#F0F2F5\],
+    body.dark .bg-white {
       background-color: #16181E !important;
       border-color: #2A2F3A !important;
       color: #FFFFFF !important;
       box-shadow: 4px 4px 0px #000000 !important;
     }
-    body.dark input#title-input {
+    body.dark select,
+    body.dark input {
       background-color: #1F232B !important;
       color: #FFFFFF !important;
       border-color: #2A2F3A !important;
-    }
-    body.dark .bg-white {
-      background-color: #1F232B !important;
-      border-color: #2A2F3A !important;
-      color: #FFFFFF !important;
-      box-shadow: 4px 4px 0px #000000 !important;
-    }
-    body.dark #char-count {
-      color: #FFE600 !important;
-    }
-    body.dark #preview-box {
-      color: #E2E4E9 !important;
     }
     body.dark .text-gray-700, 
     body.dark .text-gray-600,
     body.dark .text-gray-500 {
       color: #9CA3AF !important;
     }
+    body.dark .bg-\[\#FFF6CF\] {
+      background-color: #1B1E26 !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
 
-    /* Clean Dark Mode Footer Rules */
+    /* Footer Dark Mode */
     body.dark footer {
       background-color: #111317 !important;
       border-color: #2A2F3A !important;
       color: #E2E4E9 !important;
     }
-    body.dark footer p,
-    body.dark footer span,
-    body.dark footer a,
+    body.dark footer p, 
+    body.dark footer a, 
     body.dark footer h4 {
       color: #E2E4E9 !important;
     }
+    body.dark footer span.bg-\[\#FFE600\] {
+      color: #111317 !important;
+    }
     body.dark footer .text-gray-800,
-    body.dark footer .text-gray-700,
-    body.dark footer .text-gray-600 {
+    body.dark footer .text-gray-700 {
       color: #9CA3AF !important;
     }
     body.dark footer .border-black,
@@ -176,7 +174,7 @@
     }
   </style>
 </head>
-<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+<body class="text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFBGQ8WX"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -185,8 +183,6 @@
   <!-- Universal Header -->
   <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
-      
-      <!-- Brand Logo -->
       <a href="/" class="inline-flex items-center flex-shrink-0" aria-label="DraftsRush Home">
         <img 
           src="/drlogo.png" 
@@ -197,7 +193,7 @@
         />
       </a>
 
-      <!-- Desktop Primary Navigation -->
+      <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-3 font-bold text-xs tracking-wider brand-font">
         <a href="/script-editor" style="background-color: #F0F2F5;" class="text-[#111317] border-2 border-black px-3 py-1.5 brutal-box brutal-btn uppercase transition-transform flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-black"></span>
@@ -219,10 +215,8 @@
 
       <!-- Desktop CTA Action & Theme Toggle -->
       <div class="hidden md:flex items-center gap-3">
-        <!-- Toggle Button -->
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" type="button">
           <span class="theme-toggle-icon">
-            <!-- Sun SVG -->
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="4"></circle>
               <line x1="12" y1="2" x2="12" y2="5"></line>
@@ -236,7 +230,6 @@
             </svg>
           </span>
           <span class="theme-toggle-icon">
-            <!-- Moon SVG -->
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
@@ -249,7 +242,7 @@
         </a>
       </div>
 
-      <!-- Mobile Controls: Toggle + Hamburger -->
+      <!-- Mobile Controls -->
       <div class="flex items-center gap-2 md:hidden">
         <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle Dark Mode" type="button">
           <span class="theme-toggle-icon">
@@ -282,10 +275,9 @@
           </svg>
         </button>
       </div>
-
     </div>
 
-    <!-- Mobile Navigation Drawer -->
+    <!-- Mobile Drawer -->
     <div id="mobile-nav" class="hidden md:hidden border-t-2 border-black bg-[#F0F2F5] p-6 space-y-4 font-bold brand-font text-sm">
       <a href="/script-editor" class="flex items-center justify-between border-b border-gray-300 pb-2 text-black">
         <span>SCRIPT EDITOR</span>
@@ -302,59 +294,134 @@
     </div>
   </header>
 
-  <main class="flex-grow max-w-3xl mx-auto px-6 py-12 w-full">
-    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-8 brutal-box mb-8">
-      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">YouTube SEO & CTR</span>
-      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">YouTube Title Checker & Truncation Tester</h1>
-      <p class="text-sm font-medium text-gray-700 mb-6">Test if your title cuts off on mobile screens. Mobile app feeds truncate titles after roughly 50 characters.</p>
+  <main class="flex-grow max-w-4xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-10 brutal-box-lg mb-8">
+      <div class="inline-flex items-center gap-2 bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase mb-3">
+        Utility: Hook Frameworks & Curiosities
+      </div>
+      <h1 class="text-3xl md:text-5xl font-black brand-font tracking-tight mb-3">
+        Video Hook Generator
+      </h1>
+      <p class="text-sm md:text-base font-medium text-gray-700 leading-relaxed mb-6">
+        Generate proven high-retention video opening lines. Enter your core topic to generate curiosity loops, contrarian challenges, and high-stakes opening hooks for YouTube Shorts, Reels, and essays.
+      </p>
 
-      <div class="flex items-center justify-between mb-2">
-        <label class="block font-black text-xs uppercase">Your Video Title</label>
-        <button id="sample-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
-          ⚡ Try an Example
+      <!-- Input & Style Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="md:col-span-2">
+          <label class="block font-black text-xs uppercase tracking-wider mb-2">Video Topic or Core Subject</label>
+          <input id="topic-input" type="text" placeholder="e.g. Color grading, Screenwriting, Film budgeting..." value="Color grading" class="w-full border-2 border-black p-3 font-medium bg-white text-base focus:bg-[#FFFDE6]">
+        </div>
+        <div>
+          <label class="block font-black text-xs uppercase tracking-wider mb-2">Hook Archetype</label>
+          <select id="angle-select" class="w-full border-2 border-black p-3 font-bold bg-white focus:bg-[#FFE600] transition-colors">
+            <option value="all" selected>All Frameworks (Mixed)</option>
+            <option value="curiosity">Pure Curiosity Loop</option>
+            <option value="contrarian">Contrarian / Mythbuster</option>
+            <option value="warning">Negative / Critical Warning</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="mb-8">
+        <button id="generate-btn" class="w-full bg-[#FFE600] text-black font-black brand-font text-sm uppercase px-6 py-3.5 border-2 border-black brutal-box brutal-btn tracking-wider">
+          Generate Retention Hooks →
         </button>
       </div>
-      <input id="title-input" type="text" placeholder="Type your title here..." class="w-full border-2 border-black p-3 font-medium bg-white focus:bg-[#FFFDE6] mb-6">
 
-      <div class="grid grid-cols-2 gap-4 text-center mb-6">
-        <div class="border-2 border-black bg-white p-3 brutal-box">
-          <div id="char-count" class="text-3xl font-black brand-font">0</div>
-          <p class="text-xs font-bold text-gray-600 uppercase">Characters (Max 100)</p>
-        </div>
-        <div class="border-2 border-black bg-white p-3 brutal-box">
-          <div id="mobile-status" class="text-lg font-black brand-font mt-1 text-emerald-700">Safe on Mobile</div>
-          <p class="text-xs font-bold text-gray-600 uppercase">Mobile Cut-Off</p>
-        </div>
-      </div>
-
-      <div class="border-2 border-black bg-white p-4 brutal-box">
-        <div class="text-xs font-bold text-gray-500 uppercase mb-2">Mobile Feed Preview (~50 chars):</div>
-        <div id="preview-box" class="font-bold text-base text-gray-900 border-l-4 border-[#FFE600] pl-3 py-1">Start typing above...</div>
+      <!-- Generated Hook Cards Output -->
+      <div id="output-container" class="space-y-4">
+        <!-- Rendered dynamically -->
       </div>
     </div>
 
-    <!-- Search Intent & Benchmarks Block (Targets "title checker" query) -->
+    <!-- Psychology of the 3-Second Hook (350+ Words SEO Card) -->
     <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box mb-8 space-y-6">
       <div class="border-b-2 border-black pb-3">
-        <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">CTR Guidelines</span>
-        <h2 class="text-2xl font-black brand-font mt-2">YouTube Title Checker Benchmarks</h2>
+        <span class="bg-[#FFE600] text-black border border-black px-2 py-0.5 text-xs font-bold brand-font uppercase">Retention Science</span>
+        <h2 class="text-2xl md:text-3xl font-black brand-font mt-2">The Psychological Anatomy of an Unskippable Hook</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-        <div>
-          <h3 class="font-black brand-font text-base mb-1">What is the character limit for YouTube titles on mobile?</h3>
-          <p class="font-medium text-gray-700 leading-relaxed">
-            While YouTube allows up to 100 characters, mobile app feeds cut off titles after <strong>50 to 55 characters</strong> (or roughly 3 lines on small displays). Keep key phrases and core curiosity gaps in the first 45 characters.
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700 leading-relaxed font-medium">
+        <div class="space-y-3">
+          <h3 class="font-black brand-font text-base text-black">Opening an Irresistible Mental Loop</h3>
+          <p>
+            When a user scrolls past a video on a mobile feed, you have approximately <strong>0.3 seconds to catch their visual attention</strong> and less than three seconds of spoken audio to secure their commitment. If your opening sentence is a polite welcome, an introductory logo animation, or a generic summary, the viewer instinctively swipes away.
+          </p>
+          <p>
+            An unskippable hook relies on a <strong>cognitive open loop</strong>. It presents an anomaly, a high-stakes failure, or an unexpected contradiction that the human brain feels compelled to resolve. When you say <em>"This single camera trick was banned in Hollywood,"</em> the brain demands to know which trick, why it was banned, and who broke the rule.
           </p>
         </div>
 
-        <div>
-          <h3 class="font-black brand-font text-base mb-1">What is the ideal title length for maximum CTR?</h3>
-          <p class="font-medium text-gray-700 leading-relaxed">
-            Across top-performing channels, optimal click-through rates occur between <strong>40 and 60 characters</strong>. Titles under 50 characters show completely on desktop, mobile feeds, suggested sidebars, and TV screens without cut-off dots (...).
+        <div class="space-y-3">
+          <h3 class="font-black brand-font text-base text-black">Contrarian Framing Beats Generic Praise</h3>
+          <p>
+            Positive titles and hooks (<em>"5 great ways to improve your scripts"</em>) generate notoriously low click-through and hold rates. Human psychology is hardwired with <strong>loss aversion</strong>: audiences are far more motivated to avoid making a critical mistake than they are to gain a minor advantage.
+          </p>
+          <p>
+            Reframing your topic through negative or contrarian lenses (<em>"Why 99% of screenwriters fail Act Two"</em>) instantly spikes curiosity. It implies that everyone else is wrong, the viewer might be making the same error, and your video possesses the exclusive counter-solution.
           </p>
         </div>
       </div>
+
+      <!-- Hook Anatomy Matrix -->
+      <div class="border-2 border-black bg-[#F0F2F5] p-5 space-y-3">
+        <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">The 3 Structural Pillars of Video Openings</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs">
+          <div>
+            <strong class="text-black block mb-1">1. The Immediate Anomaly</strong>
+            <p class="text-gray-600">Point out an unexpected contradiction right in sentence one. Contrast generates curiosity faster than explanation.</p>
+          </div>
+          <div>
+            <strong class="text-black block mb-1">2. Zero Introduction Filler</strong>
+            <p class="text-gray-600">Never say "Hey guys" or "Today we're talking about." Jump straight into the middle of the conflict.</p>
+          </div>
+          <div>
+            <strong class="text-black block mb-1">3. The 14-Word Window</strong>
+            <p class="text-gray-600">Deliver your entire premise before word 14 so mobile viewers register the stake before swipe second 00:03.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Production Tools (Workflow-Specific Interlinking) -->
+    <div class="border-4 border-black bg-[#FFF6CF] p-6 brutal-box mb-8 space-y-4">
+      <div class="flex items-center justify-between border-b-2 border-black pb-2">
+        <h3 class="font-black brand-font text-sm uppercase tracking-wider text-black">Related Packaging & Retention Tools</h3>
+        <span class="font-mono text-xs font-bold bg-black text-white px-2 py-0.5">STUDIO DESK</span>
+      </div>
+      <p class="text-xs font-medium text-gray-800 leading-relaxed">
+        Test and polish your generated hooks across our creator suite:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+        <a href="/tools/hook-analyzer" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>🎯 5-Sec Hook Analyzer</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Audit word economy, spoken time, and drop-off risks for your hook →</span>
+        </a>
+        <a href="/tools/title-checker" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>🔍 YouTube Title Checker</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Pair your video opening with a title tested for mobile truncation (~50 chars) →</span>
+        </a>
+        <a href="/tools/script-timer" class="p-3 bg-white border-2 border-black hover:bg-[#FFE600] transition-colors font-bold text-black flex flex-col justify-between">
+          <span>⏱ Script Pacing Timer</span>
+          <span class="text-[10px] text-gray-600 mt-1 font-sans">Calculate total spoken duration and speech cadence for your full draft →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Commercial CTA Strip -->
+    <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+      <div>
+        <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Production Scriptwriting</span>
+        <h2 class="text-2xl font-black brand-font mt-2 mb-1 text-black">Need High-Retention Script Packs?</h2>
+        <p class="text-sm font-medium text-black max-w-xl">
+          We write research-backed video screenplays with 3-second hook variations, text overlay cues, and rapid retention pacing.
+        </p>
+      </div>
+      <a href="/scripts" class="bg-black text-white font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn whitespace-nowrap text-sm uppercase">
+        Explore Script Packs →
+      </a>
     </div>
 
     <!-- Bottom Return Button -->
@@ -415,8 +482,6 @@
 
       <!-- 4-Column Structured Link Directory -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-10">
-        
-        <!-- Col 1: Interactive Tools & Apps -->
         <div>
           <div class="flex items-center gap-1.5 mb-3">
             <span class="w-2 h-2 bg-black"></span>
@@ -424,15 +489,14 @@
           </div>
           <ul class="space-y-2 text-xs font-semibold text-gray-800">
             <li><a href="/script-editor" class="hover:underline font-bold text-black flex items-center gap-1">Online Script Editor <span class="bg-[#FFE600] border border-black text-[9px] px-1 font-mono text-black">NEW</span></a></li>
+            <li><a href="/tools/title-checker" class="hover:underline font-bold text-black">YouTube Title Checker</a></li>
             <li><a href="/tools/script-timer" class="hover:underline">Script Pacing Timer</a></li>
             <li><a href="/tools/hook-analyzer" class="hover:underline">5-Sec Hook Analyzer</a></li>
             <li><a href="/tools/format-converter" class="hover:underline">Dual-Column AV Converter</a></li>
-            <li><a href="/tools/dialogue-pruner" class="hover:underline">Dialogue Word Pruner</a></li>
             <li><a href="/tools" class="hover:underline font-mono text-[11px] text-gray-600">All 12 Free Tools →</a></li>
           </ul>
         </div>
 
-        <!-- Col 2: Writer's Room & Craft Guides -->
         <div>
           <div class="flex items-center gap-1.5 mb-3">
             <span class="w-2 h-2 bg-black"></span>
@@ -448,7 +512,6 @@
           </ul>
         </div>
 
-        <!-- Col 3: Commission Services & Templates -->
         <div>
           <div class="flex items-center gap-1.5 mb-3">
             <span class="w-2 h-2 bg-black"></span>
@@ -464,7 +527,6 @@
           </ul>
         </div>
 
-        <!-- Col 4: Studio Desk & Direct Contact -->
         <div>
           <div class="flex items-center gap-1.5 mb-3">
             <span class="w-2 h-2 bg-black"></span>
@@ -483,10 +545,9 @@
             </ul>
           </div>
         </div>
-
       </div>
 
-      <!-- Bottom Legal & Copyright Bar -->
+      <!-- Bottom Legal Bar -->
       <div class="border-t-2 border-black pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-gray-700">
         <p>© 2026 DraftsRush. All rights reserved.</p>
         <div class="flex flex-wrap gap-6">
@@ -496,43 +557,81 @@
           <a href="/contact" class="hover:underline">Support Desk</a>
         </div>
       </div>
-
     </div>
   </footer>
 
-  <!-- Script Logic -->
+  <!-- Generator Logic -->
   <script>
-    // Title Character Counter & Truncation
-    const input = document.getElementById('title-input');
-    const charCount = document.getElementById('char-count');
-    const mobileStatus = document.getElementById('mobile-status');
-    const previewBox = document.getElementById('preview-box');
-    const sampleBtn = document.getElementById('sample-btn');
+    const topicInput = document.getElementById('topic-input');
+    const angleSelect = document.getElementById('angle-select');
+    const generateBtn = document.getElementById('generate-btn');
+    const outputContainer = document.getElementById('output-container');
 
-    if (sampleBtn) {
-      sampleBtn.addEventListener('click', () => {
-        input.value = "Why 99% of YouTube Creators Fail Their First 30 Seconds (Retention Case Study)";
-        input.dispatchEvent(new Event('input'));
+    const formulas = [
+      {
+        category: 'curiosity',
+        badge: 'Curiosity Loop',
+        template: (t) => `Why do 99% of creators fail at ${t}? Look closely at this single hidden detail...`
+      },
+      {
+        category: 'contrarian',
+        badge: 'Contrarian Challenge',
+        template: (t) => `Everything you were taught about ${t} is completely backwards, and this data proves it.`
+      },
+      {
+        category: 'warning',
+        badge: 'Critical Warning',
+        template: (t) => `If you're still relying on traditional ${t}, stop immediately before you ruin your retention.`
+      },
+      {
+        category: 'curiosity',
+        badge: 'Secret Mechanism',
+        template: (t) => `This exact ${t} formula was quietly banned by studio executives for twelve years.`
+      },
+      {
+        category: 'contrarian',
+        badge: 'The Mythbuster',
+        template: (t) => `The biggest lie in modern video production is that ${t} actually requires an expensive budget.`
+      }
+    ];
+
+    function renderHooks() {
+      const topic = topicInput.value.trim() || 'your video topic';
+      const angle = angleSelect.value;
+      const filtered = formulas.filter(f => angle === 'all' || f.category === angle);
+
+      let html = '';
+      filtered.forEach((item, idx) => {
+        const text = item.template(topic);
+        const wordCount = text.split(/\s+/).length;
+        const estSec = ((wordCount / 150) * 60).toFixed(1);
+
+        html += `
+          <div class="border-4 border-black bg-white p-5 brutal-box space-y-2">
+            <div class="flex items-center justify-between border-b border-gray-200 pb-2">
+              <div class="flex items-center gap-2">
+                <span class="bg-[#FFE600] text-black font-black font-mono text-[10px] px-2 py-0.5 border border-black uppercase">${item.badge}</span>
+                <span class="font-mono text-xs text-gray-500 font-bold">${wordCount} words (~${estSec}s)</span>
+              </div>
+              <button onclick="navigator.clipboard.writeText(this.getAttribute('data-text')); this.innerText = '✓ Copied';" data-text="${text.replace(/"/g, '&quot;')}" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F]">
+                Copy Hook
+              </button>
+            </div>
+            <p class="font-bold text-sm text-gray-900 leading-snug">"${text}"</p>
+          </div>
+        `;
       });
+
+      outputContainer.innerHTML = html;
     }
 
-    input.addEventListener('input', () => {
-      const val = input.value;
-      const count = val.length;
-      charCount.innerText = count;
+    generateBtn.addEventListener('click', renderHooks);
+    angleSelect.addEventListener('change', renderHooks);
 
-      if (count > 50) {
-        mobileStatus.innerText = 'Cuts Off on Mobile';
-        mobileStatus.className = 'text-lg font-black brand-font mt-1 text-red-600';
-        previewBox.innerText = val.slice(0, 48) + '...';
-      } else {
-        mobileStatus.innerText = 'Safe on Mobile';
-        mobileStatus.className = 'text-lg font-black brand-font mt-1 text-emerald-700';
-        previewBox.innerText = val || 'Start typing above...';
-      }
-    });
+    // Initial render
+    renderHooks();
 
-    // Dark Mode Toggle Logic (Desktop & Mobile buttons synced)
+    // Theme Toggle Logic
     const toggleBtns = [
       document.getElementById('theme-toggle'),
       document.getElementById('theme-toggle-mobile')
