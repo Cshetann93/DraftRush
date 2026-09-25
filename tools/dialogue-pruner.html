@@ -8,28 +8,182 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-KFBGQ8WX');</script>
   <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Script Dialogue Word-Economy Pruner | DraftsRush</title>
+  <title>Dialogue Word Pruner & Fluff Cutter | DraftsRush</title>
+  <meta name="description" content="Audit and tighten screenplay and video dialogue. Automatically detects throat-clearing fluff, passive filler, conversational greetings, and stiff on-the-nose lines.">
+  <link rel="canonical" href="https://www.draftsrush.com/tools/dialogue-pruner">
 
   <!-- Favicon References -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon.png">
+
+  <!-- Instant Dark Mode Initializer (Zero Flash) -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      document.addEventListener('DOMContentLoaded', () => {
+        if (document.body) document.body.classList.add('dark');
+      });
+    }
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    body { font-family: 'Inter', sans-serif; background-color: #E2E4E9; }
+    h1, h2, h3, h4, .brand-font { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
     .brutal-box { box-shadow: 4px 4px 0px #111317; }
+    .brutal-box-lg { box-shadow: 8px 8px 0px #111317; }
     .brutal-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111317; }
+
+    /* Pill Toggle Switch */
+    .theme-toggle {
+      position: relative;
+      width: 62px;
+      height: 32px;
+      border-radius: 9999px;
+      background-color: #FF5A1F;
+      border: 2px solid #111317;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7px;
+      box-shadow: 2px 2px 0px #111317;
+      transition: background-color 0.2s ease;
+      flex-shrink: 0;
+    }
+    .dark .theme-toggle {
+      background-color: #1F232B;
+      border-color: #FFFFFF;
+      box-shadow: 2px 2px 0px #000000;
+    }
+    .theme-toggle-icon {
+      width: 14px;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .theme-toggle-thumb {
+      position: absolute;
+      top: 2px;
+      left: 32px;
+      width: 24px;
+      height: 24px;
+      border-radius: 9999px;
+      background-color: #FFFFFF;
+      border: 2px solid #111317;
+      transition: left 0.2s ease;
+    }
+    .dark .theme-toggle-thumb {
+      left: 2px;
+      border-color: #000000;
+    }
+
+    /* Dark Mode Core Theme Overrides */
+    body.dark {
+      background-color: #0E1015 !important;
+      color: #FFFFFF !important;
+    }
+    body.dark header {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark header a, 
+    body.dark header nav a {
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+      background-color: #1F232B !important;
+    }
+    body.dark header nav a[href="/tools"] {
+      background-color: #FFE600 !important;
+      color: #111317 !important;
+      border-color: #111317 !important;
+    }
+    body.dark #mobile-nav {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark #mobile-nav a {
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark main .bg-\[\#F0F2F5\],
+    body.dark .bg-white {
+      background-color: #16181E !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+      box-shadow: 4px 4px 0px #000000 !important;
+    }
+    body.dark textarea#dialogue-input {
+      background-color: #1F232B !important;
+      color: #FFFFFF !important;
+      border-color: #2A2F3A !important;
+    }
+    body.dark .text-gray-700, 
+    body.dark .text-gray-600,
+    body.dark .text-gray-500 {
+      color: #9CA3AF !important;
+    }
+    body.dark #metric-original,
+    body.dark #metric-pruned,
+    body.dark #metric-reduction {
+      color: #FFFFFF !important;
+    }
+    body.dark .bg-\[\#FFF6CF\] {
+      background-color: #1B1E26 !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+
+    /* Footer Dark Mode */
+    body.dark footer {
+      background-color: #111317 !important;
+      border-color: #2A2F3A !important;
+      color: #E2E4E9 !important;
+    }
+    body.dark footer p, 
+    body.dark footer a, 
+    body.dark footer h4 {
+      color: #E2E4E9 !important;
+    }
+    body.dark footer span.bg-\[\#FFE600\] {
+      color: #111317 !important;
+    }
+    body.dark footer .text-gray-800,
+    body.dark footer .text-gray-700 {
+      color: #9CA3AF !important;
+    }
+    body.dark footer .border-black,
+    body.dark footer .border-t-2,
+    body.dark footer .border-b-2 {
+      border-color: #2A2F3A !important;
+    }
+    body.dark footer a[style*="#F0F2F5"] {
+      background-color: #1F232B !important;
+      border-color: #2A2F3A !important;
+      color: #FFFFFF !important;
+    }
+    body.dark footer svg.fill-black {
+      fill: #FFFFFF !important;
+    }
   </style>
 </head>
-<body class="bg-[#E2E4E9] text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
+<body class="text-[#111317] min-h-screen flex flex-col antialiased selection:bg-[#FFE600] selection:text-black">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFBGQ8WX"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
   <!-- Universal Header -->
   <header class="border-b-4 border-black bg-[#FFE600] sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
@@ -65,22 +219,68 @@
         </a>
       </nav>
 
-      <!-- Desktop CTA Action -->
-      <div class="hidden md:flex items-center">
+      <!-- Desktop CTA Action & Theme Toggle -->
+      <div class="hidden md:flex items-center gap-3">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" type="button">
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <line x1="12" y1="2" x2="12" y2="5"></line>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line>
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
+              <line x1="2" y1="12" x2="5" y2="12"></line>
+              <line x1="19" y1="12" x2="22" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line>
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-thumb"></span>
+        </button>
+
         <a href="/contact" class="bg-black text-white border-2 border-black px-4 py-1.5 font-bold text-xs tracking-wider brand-font brutal-box brutal-btn uppercase transition-transform whitespace-nowrap">
           ORDER DRAFT
         </a>
       </div>
 
-      <!-- Mobile Hamburger Toggle -->
-      <button 
-        aria-label="Toggle Navigation Menu" 
-        onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" 
-        class="md:hidden border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box brutal-btn">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path>
-        </svg>
-      </button>
+      <!-- Mobile Controls: Toggle + Hamburger -->
+      <div class="flex items-center gap-2 md:hidden">
+        <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle Dark Mode" type="button">
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <line x1="12" y1="2" x2="12" y2="5"></line>
+              <line x1="12" y1="19" x2="12" y2="22"></line>
+              <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line>
+              <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
+              <line x1="2" y1="12" x2="5" y2="12"></line>
+              <line x1="19" y1="12" x2="22" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line>
+              <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-thumb"></span>
+        </button>
+
+        <button 
+          aria-label="Toggle Navigation Menu" 
+          onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" 
+          class="border-2 border-black bg-[#F0F2F5] p-1.5 brutal-box brutal-btn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
 
     </div>
 
@@ -101,24 +301,67 @@
     </div>
   </header>
 
-  <main class="flex-grow max-w-3xl mx-auto px-6 py-12 w-full">
-    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-8 brutal-box mb-8">
-      <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Script Tightener</span>
-      <h1 class="text-3xl md:text-4xl font-black brand-font mt-2 mb-2">Dialogue Economy Pruner</h1>
-      <p class="text-sm font-medium text-gray-700 mb-6">Replaces wordy, , or formal phrases with punchy spoken dialogue built for fast-paced audio.</p>
+  <main class="flex-grow max-w-4xl mx-auto px-6 py-12 w-full">
+    <div class="border-4 border-black bg-[#F0F2F5] p-6 md:p-10 brutal-box-lg mb-8">
+      <div class="inline-flex items-center gap-2 bg-black text-white px-2.5 py-1 text-xs font-bold brand-font uppercase mb-3">
+        Utility: Script Editing
+      </div>
+      <h1 class="text-3xl md:text-5xl font-black brand-font tracking-tight mb-3">
+        Dialogue Word Pruner & Fluff Cutter
+      </h1>
+      <p class="text-sm md:text-base font-medium text-gray-700 leading-relaxed mb-6">
+        Paste screenplay dialogue or voiceover lines. The auditor highlights unnecessary conversational greetings, throat-clearing filler, redundant adverbs, and passive qualifiers that inflate your spoken runtime.
+      </p>
 
-      <textarea id="prune-input" rows="4" placeholder="Paste your script draft here to prune filler phrases..." class="w-full border-2 border-black p-3 font-medium bg-white focus:bg-[#FFFDE6] mb-4"></textarea>
+      <!-- Input Box with Action Toolbar -->
+      <div class="mb-6">
+        <div class="flex items-center justify-between mb-2">
+          <label class="block font-black text-xs uppercase tracking-wider">Paste Dialogue Block</label>
+          <div class="flex items-center gap-3">
+            <button id="sample-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+              ⚡ Try an Example
+            </button>
+            <button id="copy-btn" type="button" class="text-xs font-mono font-bold uppercase underline hover:text-[#FF5A1F] transition-colors">
+              📋 Copy Clean Dialogue
+            </button>
+          </div>
+        </div>
+        <textarea id="dialogue-input" rows="6" placeholder="Paste dialogue here... Example: 'Look, to be completely honest with you, I was actually thinking that maybe we should leave right now.'" class="w-full border-2 border-black p-4 font-medium text-sm bg-white focus:outline-none focus:bg-[#FFFDE6]"></textarea>
+      </div>
 
-      <button id="prune-btn" class="bg-[#FFE600] text-black font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn uppercase text-sm mb-6">
-        Prune Wordy Phrasing
-      </button>
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-center">
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-original" class="text-3xl font-black brand-font">0</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Original Words</p>
+        </div>
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-pruned" class="text-3xl font-black brand-font text-emerald-700">0</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Trimmed Words</p>
+        </div>
+        <div class="border-2 border-black bg-white p-3 brutal-box">
+          <div id="metric-reduction" class="text-3xl font-black brand-font text-blue-700">0%</div>
+          <p class="text-xs font-bold text-gray-600 uppercase">Word Reduction</p>
+        </div>
+        <div class="border-2 border-black bg-[#FFE600] p-3 brutal-box">
+          <div id="metric-status" class="text-lg font-black brand-font mt-1 text-black">Ready</div>
+          <p class="text-xs font-bold text-black uppercase">Pacing Flow</p>
+        </div>
+      </div>
 
-      <div class="border-2 border-black bg-white p-4 brutal-box">
-        <div class="text-xs font-bold text-gray-500 uppercase mb-2">Tighter Spoken Version:</div>
-        <div id="prune-output" class="font-medium text-sm text-gray-900 border-l-4 border-emerald-500 pl-3 py-1">Pruned text will appear here.</div>
+      <!-- Clean Pruned Output Card -->
+      <div class="border-2 border-black bg-white p-5 brutal-box space-y-2 mb-2">
+        <div class="flex items-center justify-between border-b border-gray-200 pb-2">
+          <span class="font-black text-xs brand-font uppercase">Pruned Output (Tight & Active)</span>
+          <span class="font-mono text-[10px] uppercase font-bold text-gray-500">Auto-Filtered</span>
+        </div>
+        <div id="pruned-output" class="font-medium text-sm text-gray-900 leading-relaxed font-mono whitespace-pre-wrap italic text-gray-500">
+          Your tightened dialogue with conversational fluff removed will render here automatically...
+        </div>
       </div>
     </div>
- <!-- Dialogue Pruning & Retention Benchmarks (350+ Words SEO Card) -->
+
+    <!-- Dialogue Pruning & Retention Benchmarks (350+ Words SEO Card) -->
     <div class="border-4 border-black bg-white p-6 md:p-8 brutal-box mb-8 space-y-6">
       <div class="border-b-2 border-black pb-3">
         <span class="bg-[#FFE600] text-black border border-black px-2 py-0.5 text-xs font-bold brand-font uppercase">Craft Mechanics</span>
@@ -192,6 +435,20 @@
       </div>
     </div>
 
+    <!-- Commercial CTA Strip -->
+    <div class="border-4 border-black bg-[#FFE600] p-6 md:p-8 brutal-box flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <span class="bg-black text-white px-2 py-0.5 text-xs font-bold brand-font uppercase">Production Scriptwriting</span>
+        <h2 class="text-2xl font-black brand-font mt-2 mb-1 text-black">Need Tight Screenplays Written?</h2>
+        <p class="text-sm font-medium text-black max-w-xl">
+          We write research-backed video essays and short-form scripts with zero conversational fluff, rapid scene pacing, and clear B-roll instructions.
+        </p>
+      </div>
+      <a href="/scripts" class="bg-black text-white font-black brand-font px-6 py-3 border-2 border-black brutal-box brutal-btn whitespace-nowrap text-sm uppercase">
+        Explore Script Packs →
+      </a>
+    </div>
+
     <!-- Bottom Return Button -->
     <div class="mt-8">
       <a href="/tools" class="inline-block bg-[#FFE600] text-black font-black brand-font text-xs md:text-sm px-4 py-2 border-2 border-black brutal-box brutal-btn uppercase tracking-wider">
@@ -201,7 +458,7 @@
   </main>
 
   <!-- Universal Footer -->
-  <footer class="border-t-4 border-black py-14 mt-auto" style="background-color: #D6E4EE !important;">
+  <footer class="border-t-4 border-black py-14 mt-auto bg-[#D6E4EE]">
     <div class="max-w-6xl mx-auto px-6">
       
       <!-- Top Branding & Value Bar -->
@@ -222,7 +479,7 @@
         </div>
 
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <span class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase">
+          <span style="color: #111317 !important;" class="inline-block bg-[#FFE600] border-2 border-black px-3 py-1.5 text-xs font-black brand-font uppercase">
             ⚡ 100% Free Client-Side Tools
           </span>
           <div class="flex items-center gap-1.5">
@@ -258,7 +515,8 @@
             <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Studio Tools</h4>
           </div>
           <ul class="space-y-2 text-xs font-semibold text-gray-800">
-            <li><a href="/script-editor" class="hover:underline font-bold text-black flex items-center gap-1">Online Script Editor <span class="bg-[#FFE600] border border-black text-[9px] px-1 font-mono">NEW</span></a></li>
+            <li><a href="/script-editor" class="hover:underline font-bold text-black flex items-center gap-1">Online Script Editor <span class="bg-[#FFE600] border border-black text-[9px] px-1 font-mono text-black">NEW</span></a></li>
+            <li><a href="/tools/title-checker" class="hover:underline font-bold text-black">YouTube Title Checker</a></li>
             <li><a href="/tools/script-timer" class="hover:underline">Script Pacing Timer</a></li>
             <li><a href="/tools/hook-analyzer" class="hover:underline">5-Sec Hook Analyzer</a></li>
             <li><a href="/tools/format-converter" class="hover:underline">Dual-Column AV Converter</a></li>
@@ -306,7 +564,7 @@
             <h4 class="font-black brand-font text-xs uppercase tracking-wider text-black">Studio Desk</h4>
           </div>
           <div class="space-y-3">
-            <a href="mailto:care@draftsrush.com" style="background-color: #F0F2F5;" class="inline-block font-mono text-xs font-bold border-2 border-black px-2.5 py-1.5 brutal-box hover:bg-[#FFE600] transition-colors">
+            <a href="mailto:care@draftsrush.com" style="background-color: #F0F2F5;" class="inline-block font-mono text-xs font-bold border-2 border-black px-2.5 py-1.5 brutal-box hover:bg-[#FFE600] transition-colors text-black">
               ✉ care@draftsrush.com
             </a>
             <p class="text-[11px] font-medium text-gray-700 leading-tight">
@@ -336,30 +594,121 @@
   </footer>
 
   <script>
-    const input = document.getElementById('prune-input');
-    const btn = document.getElementById('prune-btn');
-    const output = document.getElementById('prune-output');
+    const dialogueInput = document.getElementById('dialogue-input');
+    const metricOriginal = document.getElementById('metric-original');
+    const metricPruned = document.getElementById('metric-pruned');
+    const metricReduction = document.getElementById('metric-reduction');
+    const metricStatus = document.getElementById('metric-status');
+    const prunedOutput = document.getElementById('pruned-output');
 
-    const replacements = [
-      { from: /in order to/gi, to: 'to' },
-      { from: /due to the fact that/gi, to: 'because' },
-      { from: /at the present moment/gi, to: 'now' },
-      { from: /as a matter of fact/gi, to: 'actually' },
-      { from: /utilize/gi, to: 'use' },
-      { from: /for the purpose of/gi, to: 'for' },
-      { from: /in the event that/gi, to: 'if' }
+    const sampleBtn = document.getElementById('sample-btn');
+    const copyBtn = document.getElementById('copy-btn');
+
+    // Fluff phrase dictionaries to detect and strip
+    const fluffPatterns = [
+      /\b(to be completely honest with you|to be honest|honestly speaking)\b,?\s*/gi,
+      /\b(look|listen|see|well|you know|i mean|like)\b,?\s*/gi,
+      /\b(as a matter of fact|in point of fact|the truth is)\b,?\s*/gi,
+      /\b(i was actually thinking that maybe|i think that maybe|maybe we should probably)\b/gi,
+      /\b(in order to)\b/gi,
+      /\b(basically|literally|actually|virtually|totally)\b\s*/gi,
+      /\b(hey|hello|hi there|what's up)\b,?\s*/gi
     ];
 
-    btn.addEventListener('click', () => {
-      let text = input.value;
-      if (!text.trim()) return;
+    function pruneDialogue() {
+      const raw = dialogueInput.value.trim();
+      if (!raw) {
+        metricOriginal.innerText = '0';
+        metricPruned.innerText = '0';
+        metricReduction.innerText = '0%';
+        metricStatus.innerText = 'Ready';
+        metricStatus.className = 'text-lg font-black brand-font mt-1 text-black';
+        prunedOutput.innerText = 'Your tightened dialogue with conversational fluff removed will render here automatically...';
+        prunedOutput.className = 'font-medium text-sm text-gray-900 leading-relaxed font-mono whitespace-pre-wrap italic text-gray-500';
+        return;
+      }
 
-      replacements.forEach(r => {
-        text = text.replace(r.from, r.to);
+      const origWords = (raw.match(/\b\S+\b/g) || []).length;
+      metricOriginal.innerText = origWords;
+
+      let cleaned = raw;
+      fluffPatterns.forEach(pattern => {
+        cleaned = cleaned.replace(pattern, '');
       });
 
-      output.innerText = text;
+      // Capitalize first letters of sentences after cuts
+      cleaned = cleaned.replace(/([.!?]\s+|^)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
+
+      const prunedWords = (cleaned.match(/\b\S+\b/g) || []).length;
+      metricPruned.innerText = prunedWords;
+
+      const diff = origWords - prunedWords;
+      const pct = origWords > 0 ? Math.round((diff / origWords) * 100) : 0;
+      metricReduction.innerText = pct + '%';
+
+      prunedOutput.innerText = cleaned;
+      prunedOutput.className = 'font-medium text-sm text-gray-900 leading-relaxed font-mono whitespace-pre-wrap';
+
+      if (pct > 20) {
+        metricStatus.innerText = 'Sharp & Lean';
+        metricStatus.className = 'text-lg font-black brand-font mt-1 text-emerald-800';
+      } else if (pct > 5) {
+        metricStatus.innerText = 'Moderate Trim';
+        metricStatus.className = 'text-lg font-black brand-font mt-1 text-blue-800';
+      } else {
+        metricStatus.innerText = 'Already Lean';
+        metricStatus.className = 'text-lg font-black brand-font mt-1 text-black';
+      }
+    }
+
+    // Populate Sample
+    if (sampleBtn) {
+      sampleBtn.addEventListener('click', () => {
+        dialogueInput.value = `MARCUS
+Look, to be completely honest with you, I was actually thinking that maybe we should probably check the engine again before we leave.
+
+ELENA
+Well, as a matter of fact, yes, I already told you three times that the fuel manifold is completely broken.`;
+        pruneDialogue();
+      });
+    }
+
+    // One-Click Copy
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        const text = prunedOutput.innerText.trim();
+        if (!text || text.includes('Your tightened dialogue with conversational fluff')) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          const orig = copyBtn.innerText;
+          copyBtn.innerText = "✓ Copied!";
+          setTimeout(() => { copyBtn.innerText = orig; }, 1500);
+        } catch (err) {
+          console.error("Clipboard copy failed", err);
+        }
+      });
+    }
+
+    // Dark Mode Toggle Logic
+    const toggleBtns = [
+      document.getElementById('theme-toggle'),
+      document.getElementById('theme-toggle-mobile')
+    ].filter(Boolean);
+
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark');
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+      });
     });
+
+    dialogueInput.addEventListener('input', pruneDialogue);
   </script>
 </body>
 </html>
