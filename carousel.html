@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DraftsRush - 3 Scenes That Rewrote Suspense (Instagram Reel Deck)</title>
+  <title>DraftsRush - 3 Scenes That Rewrote Suspense (Pattern-Interrupt Deck)</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@500;600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&family=Inter:wght@500;600;700;800&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
 
@@ -20,21 +20,19 @@
     }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #111317;
-      color: #111317;
+      background-color: #0B0D10;
+      color: #FFFFFF;
       padding: 30px;
     }
     .brand-font { font-family: 'Space Grotesk', sans-serif; }
-    .font-mono { font-family: 'JetBrains Mono', monospace, Courier; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-    /* Exact 9:16 display ratio (405x720) -> Exports at 1080x1920 */
+    /* Exact 9:16 aspect ratio (405x720 display -> 1080x1920 export) */
     .reel-frame {
       width: 405px;
       height: 720px;
       position: relative;
       flex-shrink: 0;
-      border: 4.5px solid #111317;
-      box-shadow: 10px 10px 0px #000000;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -42,22 +40,38 @@
       overflow: hidden;
     }
 
-    .b-card {
-      border: 3.5px solid #111317;
-      box-shadow: 5px 5px 0px #111317;
-      background-color: #FFFFFF;
-      padding: 16px;
-    }
-
+    /* Brutalist Shadow Cards */
     .b-card-dark {
       border: 3.5px solid #FFFFFF;
-      box-shadow: 5px 5px 0px #FFE600;
-      background-color: #16181E;
+      box-shadow: 6px 6px 0px #000000;
+      background-color: #12151B;
       color: #FFFFFF;
       padding: 16px;
     }
 
-    .badge-pill {
+    .b-card-light {
+      border: 3.5px solid #111317;
+      box-shadow: 6px 6px 0px #111317;
+      background-color: #FFFFFF;
+      color: #111317;
+      padding: 16px;
+    }
+
+    .badge-pill-crimson {
+      display: inline-block;
+      background-color: #FF2A54;
+      color: #FFFFFF;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 10px;
+      padding: 4px 8px;
+      line-height: 14px;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .badge-pill-dark {
       display: inline-block;
       background-color: #111317;
       color: #FFFFFF;
@@ -67,33 +81,7 @@
       font-size: 10px;
       padding: 4px 8px;
       line-height: 14px;
-      margin-bottom: 8px;
-      border: 1.5px solid #111317;
-    }
-
-    .badge-header {
-      display: inline-block;
-      background-color: #111317;
-      color: #FFE600;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 900;
-      text-transform: uppercase;
-      font-size: 11px;
-      padding: 6px 12px;
-      line-height: 14px;
-      border: 2px solid #111317;
-    }
-
-    .counter-header {
-      display: inline-block;
-      background-color: #FFFFFF;
-      color: #111317;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 800;
-      font-size: 12px;
-      padding: 6px 10px;
-      line-height: 14px;
-      border: 2px solid #111317;
+      margin-bottom: 6px;
     }
 
     .flex { display: flex; }
@@ -102,250 +90,310 @@
     .items-center { align-items: center; }
     .justify-between { justify-content: space-between; }
     .w-full { width: 100%; }
-    .gap-2 { gap: 8px; }
-    .pt-3 { padding-top: 12px; }
-    .border-2 { border-width: 2px; }
-    .border-t-2 { border-top-width: 2px; }
-    .border-black { border-color: #111317; }
-    .text-black { color: #111317; }
-    .text-white { color: #FFFFFF; }
-    .font-black { font-weight: 900; }
-    .uppercase { text-transform: uppercase; }
-    .leading-tight { line-height: 1.15; }
-    .text-2xl { font-size: 22px; }
-    .text-xs { font-size: 11px; }
+    .gap-8 { gap: 32px; }
   </style>
 </head>
 <body class="flex flex-col items-center justify-center">
 
-  <!-- Download & Action Bar -->
-  <div class="w-full max-w-6xl mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-4 border-black p-5 b-card" style="background-color: #FFE600; margin-bottom: 30px;">
+  <!-- Download Bar -->
+  <div style="width: 100%; max-width: 1200px; margin-bottom: 30px; background-color: #161922; border: 4px solid #FFFFFF; box-shadow: 6px 6px 0px #FF2A54; padding: 20px; display: flex; align-items: center; justify-content: space-between;" class="flex-col sm:flex-row gap-4">
     <div>
-      <h1 class="brand-font font-black text-2xl uppercase">3 Scenes That Rewrote Suspense</h1>
-      <p class="text-xs font-bold text-black uppercase" style="margin-top: 4px;">7-Frame High-Conversion Instagram Deck (1080x1920 Export Ready)</p>
+      <h1 class="brand-font" style="font-size: 22px; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; color: #FFFFFF;">
+        Grid Disruption Deck: "3 Rules of Suspense"
+      </h1>
+      <p style="font-size: 12px; font-weight: 600; color: #8FA0B5; margin-top: 4px;" class="font-mono">
+        HIGH CONTRAST • NO YELLOW COVERS • 1080x1920 EXPORT READY
+      </p>
     </div>
-    <button id="download-btn" onclick="downloadAllFrames()" class="bg-black text-white font-black brand-font text-xs uppercase border-2 border-black b-card" style="padding: 14px 24px; cursor: pointer;">
-      📥 Download All 7 Frames (PNG)
+    <button id="download-btn" onclick="downloadAllFrames()" style="background-color: #FF2A54; color: #FFFFFF; font-family: 'Space Grotesk', sans-serif; font-weight: 900; font-size: 12px; text-transform: uppercase; border: 3px solid #FFFFFF; box-shadow: 4px 4px 0px #000000; padding: 14px 24px; cursor: pointer;">
+      📥 Export All 7 Frames (PNG)
     </button>
   </div>
 
-  <!-- Frames Grid -->
+  <!-- Frames Showcase -->
   <div class="flex flex-wrap gap-8 justify-center items-start" style="max-width: 1400px; margin: 0 auto;">
 
-    <!-- FRAME 01: THE HOOK (PATTERN INTERRUPT COVER) -->
-    <div id="frame-01" class="reel-frame" style="background-color: #FFE600;">
+    <!-- FRAME 01: THE PATTERN INTERRUPT COVER (DEEP NOIR / CRIMSON) -->
+    <div id="frame-01" class="reel-frame" style="background-color: #0E1015; border: 4px solid #FFFFFF; box-shadow: 10px 10px 0px #FF2A54;">
       <div class="flex items-center justify-between">
-        <div class="badge-header bg-black text-white">CINEMA DECODE</div>
-        <div class="counter-header">01/07</div>
+        <div style="background-color: #FF2A54; color: #FFFFFF; font-family: 'Space Grotesk'; font-weight: 900; font-size: 11px; padding: 6px 12px; border: 2px solid #FFFFFF; text-transform: uppercase;">
+          CINEMA AUTOPSY
+        </div>
+        <div class="font-mono" style="background-color: #1A1E26; color: #FFFFFF; font-weight: 800; font-size: 12px; padding: 6px 10px; border: 2px solid #FFFFFF;">
+          01/07
+        </div>
       </div>
-      
-      <div class="b-card bg-black text-white" style="box-shadow: 6px 6px 0px #FFFFFF;">
-        <span class="font-mono text-xs font-bold tracking-wider" style="color: #FFE600;">SCRIPTWRITING RULE #01</span>
-        <h2 class="text-2xl font-black brand-font leading-tight text-white" style="margin-top: 6px; font-size: 26px;">
+
+      <div class="b-card-dark" style="border-color: #FF2A54;">
+        <span class="font-mono" style="font-size: 11px; font-weight: 800; color: #FF2A54; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px;">
+          SCRIPTWRITING WARNING
+        </span>
+        <h2 class="brand-font" style="font-size: 30px; font-weight: 900; line-height: 1.1; color: #FFFFFF; text-transform: uppercase;">
           STOP WRITING DIALOGUE LIKE THIS.
         </h2>
       </div>
 
-      <div class="b-card bg-white">
-        <p style="font-size: 12px; font-weight: 700; color: #111317; line-height: 1.45;">
-          The hidden subtext mechanic Nolan, Fincher, and the Coen Brothers use to engineer unbearable audience dread without showing a single weapon.
+      <div style="background-color: #1A1E26; border: 3px solid #FFFFFF; padding: 16px; box-shadow: 5px 5px 0px #000000;">
+        <p style="font-size: 13px; font-weight: 600; color: #DDE1E8; line-height: 1.45;">
+          The psychological subtext weapon Fincher, Nolan, and the Coen Brothers use to engineer unbearable dread without showing a single knife or gun.
         </p>
       </div>
 
-      <div class="b-card" style="background-color: #D6E4EE; text-align: center;">
-        <p class="font-mono text-xs font-bold text-black">SWIPE TO DECODE 3 SCENES →</p>
+      <div style="background-color: #FF2A54; border: 3px solid #FFFFFF; padding: 10px; text-align: center;">
+        <p class="font-mono" style="font-size: 12px; font-weight: 900; color: #FFFFFF; letter-spacing: 0.5px;">
+          SWIPE TO DECODE 3 SCENES ➔
+        </p>
       </div>
 
-      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider text-black">
+      <div class="flex items-center justify-between font-mono" style="padding-top: 10px; border-top: 2px solid #2A2F3A; font-size: 11px; font-weight: 700; color: #8FA0B5;">
         <span>@draftsrush</span>
         <span>draftsrush.com</span>
       </div>
     </div>
 
-    <!-- FRAME 02: SCENE 1 (ZODIAC) -->
-    <div id="frame-02" class="reel-frame" style="background-color: #D6E4EE;">
+    <!-- FRAME 02: SCENE 1 (PALE SLATE / INDUSTRIAL BLUE) -->
+    <div id="frame-02" class="reel-frame" style="background-color: #D6E0EA; border: 4px solid #111317; box-shadow: 10px 10px 0px #111317;">
       <div class="flex items-center justify-between">
-        <div class="badge-header">SCENE 01</div>
-        <div class="counter-header">02/07</div>
-      </div>
-
-      <div class="b-card">
-        <div class="badge-pill">DAVID FINCHER</div>
-        <h3 class="text-2xl font-black brand-font leading-tight">Zodiac (2007)</h3>
-        <p class="font-mono text-xs font-bold text-gray-700 mt-1">The Basement Encounter</p>
-      </div>
-
-      <div class="b-card bg-white">
-        <div class="badge-pill">WEAPONIZED POLITENESS</div>
-        <p style="font-size: 12px; font-weight: 600; color: #111317; line-height: 1.45;">
-          Bob Vaughn never threatens Graysmith. He offers hot coffee. The terror comes purely from acoustic isolation: Fincher cuts out the storm sound entirely when Graysmith hears footsteps on the floorboards above.
-        </p>
-      </div>
-
-      <div class="b-card" style="background-color: #FFF6CF;">
-        <div class="font-mono text-xs font-bold text-center">CRAFT: Acoustic Isolation</div>
-      </div>
-
-      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider text-black">
-        <span>@draftsrush</span>
-        <span>SWIPE →</span>
-      </div>
-    </div>
-
-    <!-- FRAME 03: SCENE 2 (NO COUNTRY FOR OLD MEN) -->
-    <div id="frame-03" class="reel-frame" style="background-color: #FFF6CF;">
-      <div class="flex items-center justify-between">
-        <div class="badge-header">SCENE 02</div>
-        <div class="counter-header">03/07</div>
-      </div>
-
-      <div class="b-card">
-        <div class="badge-pill">COEN BROTHERS</div>
-        <h3 class="text-2xl font-black brand-font leading-tight">No Country for Old Men</h3>
-        <p class="font-mono text-xs font-bold text-gray-700 mt-1">The Gas Station Coin Toss</p>
-      </div>
-
-      <div class="b-card bg-white">
-        <div class="badge-pill">ASYMMETRIC STAKES</div>
-        <p style="font-size: 12px; font-weight: 600; color: #111317; line-height: 1.45;">
-          The clerk thinks he is making awkward weather small talk. Anton Chigurh is deciding whether to execute him. Suspense explodes when only one person in the room knows life and death is on the table.
-        </p>
-      </div>
-
-      <div class="b-card" style="background-color: #DDE8DF;">
-        <div class="font-mono text-xs font-bold text-center">CRAFT: Asymmetric Stakes</div>
-      </div>
-
-      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider text-black">
-        <span>@draftsrush</span>
-        <span>SWIPE →</span>
-      </div>
-    </div>
-
-    <!-- FRAME 04: SCENE 3 (THE DARK KNIGHT) -->
-    <div id="frame-04" class="reel-frame" style="background-color: #E2F0D9;">
-      <div class="flex items-center justify-between">
-        <div class="badge-header">SCENE 03</div>
-        <div class="counter-header">04/07</div>
-      </div>
-
-      <div class="b-card">
-        <div class="badge-pill">CHRISTOPHER NOLAN</div>
-        <h3 class="text-2xl font-black brand-font leading-tight">The Dark Knight (2008)</h3>
-        <p class="font-mono text-xs font-bold text-gray-700 mt-1">The Opening Bank Heist</p>
-      </div>
-
-      <div class="b-card bg-white">
-        <div class="badge-pill">THE PEELING ONION</div>
-        <p style="font-size: 12px; font-weight: 600; color: #111317; line-height: 1.45;">
-          Each robber eliminates the accomplice before him under prior orders. Before the Joker even pulls off his mask, Nolan communicates his entire world philosophy through physical action: chaos consumes itself.
-        </p>
-      </div>
-
-      <div class="b-card" style="background-color: #FFF6CF;">
-        <div class="font-mono text-xs font-bold text-center">CRAFT: Cascading Elimination</div>
-      </div>
-
-      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider text-black">
-        <span>@draftsrush</span>
-        <span>SWIPE →</span>
-      </div>
-    </div>
-
-    <!-- FRAME 05: THE CONTRAST (DARK PATTERN INTERRUPT) -->
-    <div id="frame-05" class="reel-frame" style="background-color: #111317; border-color: #FFFFFF;">
-      <div class="flex items-center justify-between">
-        <div class="badge-header bg-white text-black" style="border-color: #FFFFFF;">THE AMATEUR TRAP</div>
-        <div class="counter-header" style="background-color: #FFE600; border-color: #FFFFFF;">05/07</div>
-      </div>
-
-      <div class="b-card-dark">
-        <span class="font-mono text-[10px] font-bold text-[#FFE600] uppercase block mb-1">THE FATAL SCRIPT FLAW:</span>
-        <h2 class="text-xl font-black brand-font text-white leading-tight">
-          Amateurs write dialogue to explain plot points.
-        </h2>
-      </div>
-
-      <div class="b-card bg-white">
-        <span class="font-mono text-[10px] font-bold text-red-600 uppercase block mb-1">THE MASTER'S RULE:</span>
-        <p style="font-size: 12px; font-weight: 700; color: #111317; line-height: 1.45;">
-          Master screenwriters use dialogue as a smoke screen. The characters talk about trivial garbage while their physical geography and eye lines tell the real story.
-        </p>
-      </div>
-
-      <div class="b-card bg-[#FFE600] text-center">
-        <p class="font-mono text-xs font-black text-black">LESS TALKING. MORE SUBTEXT.</p>
-      </div>
-
-      <div class="pt-3 border-t-2 border-white flex items-center justify-between text-xs font-bold tracking-wider text-white">
-        <span>@draftsrush</span>
-        <span>SWIPE →</span>
-      </div>
-    </div>
-
-    <!-- FRAME 06: CINEMA VAULT PREVIEW -->
-    <div id="frame-06" class="reel-frame" style="background-color: #FCE8E6;">
-      <div class="flex items-center justify-between">
-        <div class="badge-header">DECODE VAULT</div>
-        <div class="counter-header">06/07</div>
-      </div>
-
-      <div class="b-card">
-        <div class="badge-pill">MORE FORENSIC STUDIES</div>
-        <h3 class="text-2xl font-black brand-font leading-tight">Inside The Cinema Vault</h3>
-        <p class="font-mono text-xs font-bold text-gray-700 mt-1">draftsrush.com/writers-room</p>
-      </div>
-
-      <div class="b-card bg-white space-y-2">
-        <div class="border-b-2 border-black pb-1">
-          <p class="font-mono text-[11px] font-black text-black">🎬 INCEPTION</p>
-          <p class="text-[11px] font-medium text-gray-700">Why the spinning top was a complete red herring.</p>
+        <div style="background-color: #111317; color: #FFFFFF; font-family: 'Space Grotesk'; font-weight: 900; font-size: 11px; padding: 6px 12px; text-transform: uppercase;">
+          SCENE 01
         </div>
-        <div class="border-b-2 border-black pb-1">
-          <p class="font-mono text-[11px] font-black text-black">🎬 SHUTTER ISLAND</p>
-          <p class="text-[11px] font-medium text-gray-700">Why Teddy's final sentence proved his sanity.</p>
+        <div class="font-mono" style="background-color: #FFFFFF; color: #111317; font-weight: 800; font-size: 12px; padding: 6px 10px; border: 2px solid #111317;">
+          02/07
+        </div>
+      </div>
+
+      <div class="b-card-light">
+        <div class="badge-pill-dark">DAVID FINCHER</div>
+        <h3 class="brand-font" style="font-size: 24px; font-weight: 900; line-height: 1.15; color: #111317;">
+          Zodiac (2007)
+        </h3>
+        <p class="font-mono" style="font-size: 11px; font-weight: 700; color: #4B5563; margin-top: 4px;">
+          The Basement Encounter
+        </p>
+      </div>
+
+      <div class="b-card-light">
+        <span class="font-mono" style="font-size: 10px; font-weight: 800; color: #DC2626; text-transform: uppercase; display: block; margin-bottom: 4px;">
+          THE CRAFT MECHANIC
+        </span>
+        <strong style="font-size: 14px; font-weight: 900; color: #111317; display: block; margin-bottom: 6px;" class="brand-font">
+          Weaponized Politeness
+        </strong>
+        <p style="font-size: 12px; font-weight: 600; color: #1F2937; line-height: 1.45;">
+          Bob Vaughn never threatens Graysmith. He offers hot coffee. The terror comes purely from acoustic isolation: Fincher cuts out the rain and storm audio completely when Graysmith hears footsteps upstairs.
+        </p>
+      </div>
+
+      <div style="background-color: #111317; border: 2px solid #111317; padding: 10px; text-align: center;">
+        <span class="font-mono" style="font-size: 11px; font-weight: 800; color: #FFFFFF;">RULE: Acoustic Isolation</span>
+      </div>
+
+      <div class="flex items-center justify-between font-mono" style="padding-top: 10px; border-top: 2px solid #111317; font-size: 11px; font-weight: 700; color: #111317;">
+        <span>@draftsrush</span>
+        <span>SWIPE ➔</span>
+      </div>
+    </div>
+
+    <!-- FRAME 03: SCENE 2 (WARM BONE / OCHRE) -->
+    <div id="frame-03" class="reel-frame" style="background-color: #EFE9DB; border: 4px solid #111317; box-shadow: 10px 10px 0px #111317;">
+      <div class="flex items-center justify-between">
+        <div style="background-color: #111317; color: #FFFFFF; font-family: 'Space Grotesk'; font-weight: 900; font-size: 11px; padding: 6px 12px; text-transform: uppercase;">
+          SCENE 02
+        </div>
+        <div class="font-mono" style="background-color: #FFFFFF; color: #111317; font-weight: 800; font-size: 12px; padding: 6px 10px; border: 2px solid #111317;">
+          03/07
+        </div>
+      </div>
+
+      <div class="b-card-light">
+        <div class="badge-pill-dark">COEN BROTHERS</div>
+        <h3 class="brand-font" style="font-size: 24px; font-weight: 900; line-height: 1.15; color: #111317;">
+          No Country for Old Men
+        </h3>
+        <p class="font-mono" style="font-size: 11px; font-weight: 700; color: #4B5563; margin-top: 4px;">
+          The Gas Station Coin Toss
+        </p>
+      </div>
+
+      <div class="b-card-light">
+        <span class="font-mono" style="font-size: 10px; font-weight: 800; color: #DC2626; text-transform: uppercase; display: block; margin-bottom: 4px;">
+          THE CRAFT MECHANIC
+        </span>
+        <strong style="font-size: 14px; font-weight: 900; color: #111317; display: block; margin-bottom: 6px;" class="brand-font">
+          Asymmetric Stakes
+        </strong>
+        <p style="font-size: 12px; font-weight: 600; color: #1F2937; line-height: 1.45;">
+          The clerk thinks he is making awkward weather small talk. Anton Chigurh is deciding whether to execute him. Maximum tension occurs when only ONE character realizes life and death is on the table.
+        </p>
+      </div>
+
+      <div style="background-color: #111317; border: 2px solid #111317; padding: 10px; text-align: center;">
+        <span class="font-mono" style="font-size: 11px; font-weight: 800; color: #FFFFFF;">RULE: Asymmetric Knowledge</span>
+      </div>
+
+      <div class="flex items-center justify-between font-mono" style="padding-top: 10px; border-top: 2px solid #111317; font-size: 11px; font-weight: 700; color: #111317;">
+        <span>@draftsrush</span>
+        <span>SWIPE ➔</span>
+      </div>
+    </div>
+
+    <!-- FRAME 04: SCENE 3 (MUTED SAGE / COLD GREEN) -->
+    <div id="frame-04" class="reel-frame" style="background-color: #DDE5DB; border: 4px solid #111317; box-shadow: 10px 10px 0px #111317;">
+      <div class="flex items-center justify-between">
+        <div style="background-color: #111317; color: #FFFFFF; font-family: 'Space Grotesk'; font-weight: 900; font-size: 11px; padding: 6px 12px; text-transform: uppercase;">
+          SCENE 03
+        </div>
+        <div class="font-mono" style="background-color: #FFFFFF; color: #111317; font-weight: 800; font-size: 12px; padding: 6px 10px; border: 2px solid #111317;">
+          04/07
+        </div>
+      </div>
+
+      <div class="b-card-light">
+        <div class="badge-pill-dark">CHRISTOPHER NOLAN</div>
+        <h3 class="brand-font" style="font-size: 24px; font-weight: 900; line-height: 1.15; color: #111317;">
+          The Dark Knight (2008)
+        </h3>
+        <p class="font-mono" style="font-size: 11px; font-weight: 700; color: #4B5563; margin-top: 4px;">
+          The Opening Bank Heist
+        </p>
+      </div>
+
+      <div class="b-card-light">
+        <span class="font-mono" style="font-size: 10px; font-weight: 800; color: #DC2626; text-transform: uppercase; display: block; margin-bottom: 4px;">
+          THE CRAFT MECHANIC
+        </span>
+        <strong style="font-size: 14px; font-weight: 900; color: #111317; display: block; margin-bottom: 6px;" class="brand-font">
+          The Peeling Onion
+        </strong>
+        <p style="font-size: 12px; font-weight: 600; color: #1F2937; line-height: 1.45;">
+          Each henchman eliminates the criminal before him under prior orders. Before the Joker even removes his mask, Nolan proves his entire worldview through kinetic action: evil consumes itself.
+        </p>
+      </div>
+
+      <div style="background-color: #111317; border: 2px solid #111317; padding: 10px; text-align: center;">
+        <span class="font-mono" style="font-size: 11px; font-weight: 800; color: #FFFFFF;">RULE: Action Over Dialogue</span>
+      </div>
+
+      <div class="flex items-center justify-between font-mono" style="padding-top: 10px; border-top: 2px solid #111317; font-size: 11px; font-weight: 700; color: #111317;">
+        <span>@draftsrush</span>
+        <span>SWIPE ➔</span>
+      </div>
+    </div>
+
+    <!-- FRAME 05: THE SHOCK CONTRAST (PITCH BLACK / CRIMSON ALERT) -->
+    <div id="frame-05" class="reel-frame" style="background-color: #0B0D10; border: 4px solid #FF2A54; box-shadow: 10px 10px 0px #000000;">
+      <div class="flex items-center justify-between">
+        <div style="background-color: #FF2A54; color: #FFFFFF; font-family: 'Space Grotesk'; font-weight: 900; font-size: 11px; padding: 6px 12px; text-transform: uppercase;">
+          FATAL ERROR
+        </div>
+        <div class="font-mono" style="background-color: #16181F; color: #FFFFFF; font-weight: 800; font-size: 12px; padding: 6px 10px; border: 2px solid #FF2A54;">
+          05/07
+        </div>
+      </div>
+
+      <div style="background-color: #16181F; border: 3px solid #FF2A54; padding: 16px; box-shadow: 5px 5px 0px #000000;">
+        <span class="font-mono" style="font-size: 11px; font-weight: 800; color: #FF2A54; text-transform: uppercase; display: block; margin-bottom: 4px;">
+          THE AMATEUR MISTAKE:
+        </span>
+        <h3 class="brand-font" style="font-size: 20px; font-weight: 900; line-height: 1.2; color: #FFFFFF;">
+          Writers use dialogue to explain plot and exposition.
+        </h3>
+      </div>
+
+      <div style="background-color: #FFFFFF; border: 3px solid #111317; padding: 16px; box-shadow: 5px 5px 0px #000000;">
+        <span class="font-mono" style="font-size: 10px; font-weight: 800; color: #047857; text-transform: uppercase; display: block; margin-bottom: 4px;">
+          THE MASTERCLASS FIX:
+        </span>
+        <p style="font-size: 12px; font-weight: 700; color: #111317; line-height: 1.45;">
+          Masters use dialogue as a smokescreen. Characters talk about mundane weather and coffee while their staging, props, and silences communicate the real threat.
+        </p>
+      </div>
+
+      <div style="background-color: #16181F; border: 2px solid #FFFFFF; padding: 10px; text-align: center;">
+        <span class="font-mono" style="font-size: 11px; font-weight: 800; color: #FF2A54;">NEVER LET THEM SAY WHAT THEY FEEL</span>
+      </div>
+
+      <div class="flex items-center justify-between font-mono" style="padding-top: 10px; border-top: 2px solid #2A2F3A; font-size: 11px; font-weight: 700; color: #8FA0B5;">
+        <span>@draftsrush</span>
+        <span>SWIPE ➔</span>
+      </div>
+    </div>
+
+    <!-- FRAME 06: VAULT ARCHIVE (MUTED CRIMSON TINT) -->
+    <div id="frame-06" class="reel-frame" style="background-color: #F8EDE9; border: 4px solid #111317; box-shadow: 10px 10px 0px #111317;">
+      <div class="flex items-center justify-between">
+        <div style="background-color: #111317; color: #FFFFFF; font-family: 'Space Grotesk'; font-weight: 900; font-size: 11px; padding: 6px 12px; text-transform: uppercase;">
+          STUDY VAULT
+        </div>
+        <div class="font-mono" style="background-color: #FFFFFF; color: #111317; font-weight: 800; font-size: 12px; padding: 6px 10px; border: 2px solid #111317;">
+          06/07
+        </div>
+      </div>
+
+      <div class="b-card-light">
+        <div class="badge-pill-dark">ARCHIVE PREVIEW</div>
+        <h3 class="brand-font" style="font-size: 22px; font-weight: 900; line-height: 1.15; color: #111317;">
+          More Forensic Studies
+        </h3>
+        <p class="font-mono" style="font-size: 11px; font-weight: 700; color: #4B5563; margin-top: 4px;">
+          Available in the Writer's Room
+        </p>
+      </div>
+
+      <div class="b-card-light" style="padding: 12px;">
+        <div style="border-bottom: 2px solid #E5E7EB; padding-bottom: 6px; margin-bottom: 6px;">
+          <p class="font-mono" style="font-size: 11px; font-weight: 800; color: #111317;">🎬 INCEPTION (2010)</p>
+          <p style="font-size: 11px; font-weight: 600; color: #4B5563;">The spinning top was Cobb's red herring.</p>
+        </div>
+        <div style="border-bottom: 2px solid #E5E7EB; padding-bottom: 6px; margin-bottom: 6px;">
+          <p class="font-mono" style="font-size: 11px; font-weight: 800; color: #111317;">🎬 SHUTTER ISLAND (2010)</p>
+          <p style="font-size: 11px; font-weight: 600; color: #4B5563;">Teddy's final line was deliberate agency.</p>
         </div>
         <div>
-          <p class="font-mono text-[11px] font-black text-black">🎬 WHIPLASH</p>
-          <p class="text-[11px] font-medium text-gray-700">Caravan: status reversals with zero dialogue.</p>
+          <p class="font-mono" style="font-size: 11px; font-weight: 800; color: #111317;">🎬 WHIPLASH (2014)</p>
+          <p style="font-size: 11px; font-weight: 600; color: #4B5563;">Status reversal achieved with zero dialogue.</p>
         </div>
       </div>
 
-      <div class="b-card" style="background-color: #FFE600; text-align: center;">
-        <p class="font-mono text-xs font-bold text-black">SWIPE FOR ACCESS GUIDE →</p>
+      <div style="background-color: #111317; border: 2px solid #111317; padding: 10px; text-align: center;">
+        <span class="font-mono" style="font-size: 11px; font-weight: 800; color: #FFFFFF;">SEE HOW TO ACCESS ➔</span>
       </div>
 
-      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider text-black">
+      <div class="flex items-center justify-between font-mono" style="padding-top: 10px; border-top: 2px solid #111317; font-size: 11px; font-weight: 700; color: #111317;">
         <span>@draftsrush</span>
-        <span>SWIPE →</span>
+        <span>SWIPE ➔</span>
       </div>
     </div>
 
-    <!-- FRAME 07: OUTRO / CONVERSION CALL TO ACTION -->
-    <div id="frame-07" class="reel-frame" style="background-color: #FFE600;">
+    <!-- FRAME 07: THE CONVERSION OUTRO (DEEP SLATE / CRIMSON CTA) -->
+    <div id="frame-07" class="reel-frame" style="background-color: #12151C; border: 4px solid #FFFFFF; box-shadow: 10px 10px 0px #FF2A54;">
       <div class="flex items-center justify-between">
-        <div class="badge-header bg-black text-white">GET THE VAULT</div>
-        <div class="counter-header">07/07</div>
-      </div>
-
-      <div class="b-card bg-white">
-        <div class="badge-pill">FREE SCREENPLAY ACCESS</div>
-        <h2 class="text-2xl font-black brand-font leading-tight mb-2">
-          Want the Full 50 Scene Breakdown Guides?
-        </h2>
-        <p style="font-size: 12px; font-weight: 600; color: #374151; line-height: 1.45; margin-bottom: 12px;">
-          We deconstructed the pacing beat sheets, script pages, and tension arcs of 50 masterclass scenes.
-        </p>
-        <div class="border-2 border-black p-3 font-mono text-xs font-bold text-center" style="background-color: #FFE600;">
-          Comment "SCENE LIST" below and we’ll DM you the complete vault link! 📥
+        <div style="background-color: #FF2A54; color: #FFFFFF; font-family: 'Space Grotesk'; font-weight: 900; font-size: 11px; padding: 6px 12px; text-transform: uppercase;">
+          DOWNLOAD DECK
+        </div>
+        <div class="font-mono" style="background-color: #1E232F; color: #FFFFFF; font-weight: 800; font-size: 12px; padding: 6px 10px; border: 2px solid #FFFFFF;">
+          07/07
         </div>
       </div>
 
-      <div class="b-card bg-black text-white text-center">
-        <p class="font-mono text-xs font-bold" style="color: #FFE600;">SAVE THIS POST FOR YOUR SCRIPT 📌</p>
+      <div style="background-color: #FFFFFF; border: 3px solid #FFFFFF; padding: 16px; box-shadow: 5px 5px 0px #000000; color: #111317;">
+        <span class="badge-pill-crimson">FREE SCREENPLAY ARCHIVE</span>
+        <h2 class="brand-font" style="font-size: 22px; font-weight: 900; line-height: 1.15; margin-bottom: 8px;">
+          Want the 50 Masterclass Scene Breakdown Guides?
+        </h2>
+        <p style="font-size: 12px; font-weight: 600; color: #374151; line-height: 1.45; margin-bottom: 12px;">
+          We deconstructed the pacing beat sheets, script drafts, and tension arcs of 50 iconic scenes.
+        </p>
+        <div style="background-color: #FF2A54; color: #FFFFFF; border: 2px solid #111317; padding: 10px; text-align: center; font-weight: 800; font-size: 11px;" class="font-mono">
+          Comment "SCENE LIST" below & we’ll DM you the vault link! 📥
+        </div>
       </div>
 
-      <div class="pt-3 border-t-2 border-black flex items-center justify-between text-xs font-bold tracking-wider text-black">
+      <div style="background-color: #1E232F; border: 2px solid #FFFFFF; padding: 10px; text-align: center;">
+        <span class="font-mono" style="font-size: 11px; font-weight: 800; color: #FF2A54;">📌 SAVE THIS POST FOR YOUR SCRIPT</span>
+      </div>
+
+      <div class="flex items-center justify-between font-mono" style="padding-top: 10px; border-top: 2px solid #2A2F3A; font-size: 11px; font-weight: 700; color: #8FA0B5;">
         <span>@draftsrush</span>
         <span>draftsrush.com</span>
       </div>
@@ -353,7 +401,7 @@
 
   </div>
 
-  <!-- High-Res Export Engine -->
+  <!-- Export Engine -->
   <script>
     async function downloadAllFrames() {
       const btn = document.getElementById('download-btn');
@@ -361,8 +409,7 @@
       btn.disabled = true;
 
       await document.fonts.ready;
-      // 1080px width / 405px CSS preview = 2.666667x exact pixel multiplier
-      const pixelRatio = 1080 / 405;
+      const pixelRatio = 1080 / 405; // 2.666667x multiplier for exact 1080x1920
 
       for (let i = 1; i <= 7; i++) {
         const frameNum = `0${i}`;
@@ -380,20 +427,19 @@
           });
 
           const link = document.createElement('a');
-          link.download = `draftsrush-suspense-frame-${frameNum}.png`;
+          link.download = `draftsrush-noir-frame-${frameNum}.png`;
           link.href = dataUrl;
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
 
-          // Delay to prevent browser throttling downloads
-          await new Promise(r => setTimeout(r, 250));
+          await new Promise(r => setTimeout(r, 200));
         } catch (error) {
           console.error(`Failed exporting ${frameId}:`, error);
         }
       }
 
-      btn.innerText = 'DOWNLOAD ALL 7 FRAMES (PNG)';
+      btn.innerText = 'EXPORT ALL 7 FRAMES (PNG)';
       btn.disabled = false;
     }
   </script>
