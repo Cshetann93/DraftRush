@@ -1,404 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<xsl:stylesheet version="2.0" 
+                xmlns:html="http://www.w3.org/TR/REC-html40"
+                xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
+  <xsl:template match="/">
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+      <head>
+        <title>XML Sitemap | DraftsRush</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            background-color: #E2E4E9;
+            color: #111317;
+            margin: 0;
+            padding: 24px;
+          }
+          .container {
+            max-width: 1024px;
+            margin: 0 auto;
+          }
+          .header-box {
+            background-color: #FFE600;
+            border: 4px solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            padding: 24px;
+            margin-bottom: 24px;
+          }
+          .badge {
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+          }
+          h1 {
+            font-size: 28px;
+            font-weight: 900;
+            margin: 12px 0 6px 0;
+          }
+          p {
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0;
+            color: #222222;
+          }
+          .table-box {
+            background-color: #FFFFFF;
+            border: 4px solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            overflow-x: auto;
+          }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+          }
+          th {
+            background-color: #000000;
+            color: #FFFFFF;
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          tr {
+            border-bottom: 1px solid #E2E4E9;
+          }
+          tr:hover {
+            background-color: #FFF6CF;
+          }
+          td {
+            padding: 12px 16px;
+          }
+          a {
+            color: #0F172A;
+            text-decoration: none;
+            font-weight: 600;
+          }
+          a:hover {
+            text-decoration: underline;
+            color: #000000;
+          }
+          .priority-pill {
+            background-color: #E2E4E9;
+            border: 1px solid #000000;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: 700;
+            font-family: monospace;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header-box">
+            <span class="badge">Machine Search Index</span>
+            <h1>DraftsRush XML Sitemap</h1>
+            <p>
+              This is a stylized XML index readable by both search engines and humans. 
+              Total indexed URLs in this feed: <strong><xsl:value-of select="count(sitemap:urlset/sitemap:url)"/></strong>
+            </p>
+          </div>
 
-  <!-- Core Hubs & Commercial Landing Pages -->
-  <url>
-       <loc>https://www.draftsrush.com/</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>1.0000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/script-editor</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.9000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/writers-room</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.9000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.9000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/scripts</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.9000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/templates</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.9000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/about</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/contact</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/partner</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/retention-teardowns</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-
-  <!-- Interactive Creator Tools Suite -->
-  <url>
-       <loc>https://www.draftsrush.com/tools/title-checker</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/script-timer</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/hook-analyzer</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/format-converter</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/dialogue-pruner</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/broll-generator</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/thumbnail-preview</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/av-teleprompter</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/retention-simulator</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/hook-generator</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/cta-checker</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/shorts-splitter</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/speech-trainer</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/timestamp-maker</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/tools/screenplay-calculator</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-
-  <!-- New High-Traffic Scene Breakdowns & Ending Explanations -->
-  <url>
-       <loc>https://www.draftsrush.com/inception-ending-spinning-top-breakdown</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/shutter-island-ending-explained</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/no-country-for-old-men-ending-explained</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/american-psycho-ending-explained</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/interstellar-ending-tesseract-breakdown</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-
-  <!-- High-Priority Masterclasses & GSC Winners -->
-  <url>
-       <loc>https://www.draftsrush.com/zodiac-basement-scene-breakdown</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.8500</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/the-conjuring-hide-and-clap-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:15:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/parts-of-a-story-freytags-pyramid</loc>
-       <lastmod>2026-09-25T11:15:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/how-to-write-a-faceless-youtube-channel-script</loc>
-       <lastmod>2026-09-25T11:15:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/screenplay-format-guide</loc>
-       <lastmod>2026-09-25T11:15:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/how-to-end-a-story</loc>
-       <lastmod>2026-09-25T11:15:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/how-to-write-a-villain</loc>
-       <lastmod>2026-09-25T11:15:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/narrative-techniques</loc>
-       <lastmod>2026-09-25T11:15:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/storytelling-blueprints</loc>
-       <lastmod>2026-09-25T11:15:00+00:00</lastmod>
-       <priority>0.8000</priority>
-  </url>
-
-  <!-- Cinema Vault Scene Breakdowns -->
-  <url>
-       <loc>https://www.draftsrush.com/no-country-for-old-men-coin-toss-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/the-dark-knight-bank-heist-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/inglourious-basterds-opening-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/whiplash-final-drum-solo-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/parasite-peach-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/sicario-border-crossing-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/goodfellas-funny-how-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/alien-chestburster-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/scream-opening-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/the-silence-of-the-lambs-first-meeting-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/se7en-whats-in-the-box-scene-breakdown</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-
-  <!-- Editorial & Creator Craft Guides -->
-  <url>
-       <loc>https://www.draftsrush.com/50-video-hook-formulas-cheatsheet</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/30-visual-pattern-interrupts-for-video-editors</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/40-script-open-loops-and-curiosity-gap-formulas</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/how-to-write-a-saas-explainer-video-script</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/how-to-write-a-true-crime-video-essay-script</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/how-to-write-a-tiktok-short-drama-script</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/how-to-write-a-crowdfunding-video-script</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/how-many-acts-are-in-a-movie-three-act-structure</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/script-breakdown-sheet</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/how-to-write-a-scary-story-with-examples</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/how-to-write-a-podcast-script</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/visual-comparisons</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/best-free-screenwriting-software</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/ai-tools-for-screenwriters</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/video-hook-formulas</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/write-realistic-dialogue</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/story-structure-frameworks</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/screenplay-formatting-mistakes</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/best-screenwriting-books</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/brainstorming-techniques-for-writers</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/best-cinematography-books</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/best-filmmaking-and-screenwriting-podcasts</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/best-websites-to-read-movie-scripts</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/screenwriting-competitions-worth-it</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.6400</priority>
-  </url>
-
-  <!-- Legal & Informational -->
-  <url>
-       <loc>https://www.draftsrush.com/sitemap</loc>
-       <lastmod>2026-09-26T11:30:00+00:00</lastmod>
-       <priority>0.5000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/privacy</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.5000</priority>
-  </url>
-  <url>
-       <loc>https://www.draftsrush.com/terms</loc>
-       <lastmod>2026-09-25T11:11:48+00:00</lastmod>
-       <priority>0.5000</priority>
-  </url>
-
-</urlset>
+          <div class="table-box">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 55%;">URL Location</th>
+                  <th style="width: 25%;">Last Modified</th>
+                  <th style="width: 20%;">Priority</th>
+                </tr>
+              </thead>
+              <tbody>
+                <xsl:for-each select="sitemap:urlset/sitemap:url">
+                  <tr>
+                    <td>
+                      <xsl:variable name="itemURL">
+                        <xsl:value-of select="sitemap:loc"/>
+                      </xsl:variable>
+                      <a href="{$itemURL}">
+                        <xsl:value-of select="sitemap:loc"/>
+                      </a>
+                    </td>
+                    <td>
+                      <xsl:value-of select="substring(sitemap:lastmod, 0, 11)"/>
+                    </td>
+                    <td>
+                      <span class="priority-pill">
+                        <xsl:value-of select="sitemap:priority"/>
+                      </span>
+                    </td>
+                  </tr>
+                </xsl:for-each>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
